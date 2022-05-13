@@ -1,5 +1,4 @@
-搁着小丑竟是我自己
-谁清楚发生啥事的跟我说说 bruh  
+原FDP库由于XiGuaGeGe遭到黑客攻击 被迁移到Dimples-1337/FDPClient</br>希望西瓜没事🙏🙏🙏
 ## All Owner Permissions have been downgraded  
 ## for commit, please start a pull-request  
 
