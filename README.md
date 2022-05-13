@@ -1,4 +1,5 @@
-原FDP库由于XiGuaGeGe遭到黑客攻击 被迁移到Dimples-1337/FDPClient</br>希望西瓜没事🙏🙏🙏
+原FDP库由于XiGuaGeGe遭到黑客攻击 被迁移到Dimples-1337/FDPClient</br>
+现在人已经没事了
 ## All Owner Permissions have been downgraded  
 ## for commit, please start a pull-request  
 
