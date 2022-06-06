@@ -22,7 +22,8 @@ import java.util.*
 
 @ModuleInfo(name = "AntiBot", category = ModuleCategory.MISC)
 object AntiBot : Module() {
-
+    
+    private val hypixel = BoolValue("HypixelNametag",false)
     private val tabValue = BoolValue("Tab", true)
     private val tabModeValue = ListValue("TabMode", arrayOf("Equals", "Contains"), "Contains").displayable { tabValue.get() }
     private val entityIDValue = BoolValue("EntityID", true)
@@ -84,6 +85,11 @@ object AntiBot : Module() {
         }
 
         // Anti Bot checks
+        
+        if (hypixel.get() && entity.getName().contains("\u00A7") || (entity.hasCustomName() && entity.getCustomNameTag().contains(entity.getName()))) {
+            return true
+        }
+        
         if (colorValue.get() && !entity.displayName.formattedText.replace("§r", "").contains("§")) {
             return true
         }
