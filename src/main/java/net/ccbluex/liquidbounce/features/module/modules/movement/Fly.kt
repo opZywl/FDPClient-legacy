@@ -100,11 +100,6 @@ class Fly : Module() {
     fun onUpdate(event: UpdateEvent) {
         mode.onUpdate(event)
 
-        if (mc.thePlayer.isSneaking || event.eventState !== EventState.PRE || mc.thePlayer.isInWater) {
-            return
-        }
-
-        mode.onPreMotion()        
     }
 
     @EventTarget
@@ -114,6 +109,13 @@ class Fly : Module() {
             mc.thePlayer.prevCameraYaw = viewBobbingYawValue.get()
         }
         mode.onMotion(event)
+
+        if (mc.thePlayer.isSneaking || event.eventState !== EventState.PRE || mc.thePlayer.isInWater) {
+            return
+        }
+
+        mode.onPreMotion()        
+
     }
 
     @EventTarget
