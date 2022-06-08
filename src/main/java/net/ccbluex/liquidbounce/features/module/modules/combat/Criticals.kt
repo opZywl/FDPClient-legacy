@@ -28,7 +28,7 @@ import net.minecraft.stats.StatList
 @ModuleInfo(name = "Criticals", category = ModuleCategory.COMBAT)
 class Criticals : Module() {
 
-    val modeValue = ListValue("Mode", arrayOf("Packet", "NCPPacket", "MiPacket", "Hypixel", "Hypixel2", "VulcanSemi", "AACPacket", "AAC4.3.11OldHYT", "AAC5.0.4", "NoGround", "TPHop", "FakeCollide", "Mineplex", "More", "TestMinemora", "Motion", "Hover"), "packet")
+    val modeValue = ListValue("Mode", arrayOf("Packet", "NCPPacket", "MiPacket", "Hypixel", "Hypixel2", "VulcanSemi", "AACPacket", "AAC4.3.11OldHYT", "AAC5.0.4", "NoGround", "TPHop", "FakeCollide", "Mineplex", "More", "TestMinemora", "Motion", "Hover", "MatrixSemi"), "packet")
     private val motionValue = ListValue("MotionMode", arrayOf("RedeSkyLowHop", "Hop", "Jump", "LowJump", "MinemoraTest"), "Jump")
     private val hoverValue = ListValue("HoverMode", arrayOf("AAC4", "AAC4Other", "OldRedesky", "Normal1", "Normal2", "Minis", "Minis2", "TPCollide", "2b2t"), "AAC4")
     private val hoverNoFall = BoolValue("HoverNoFall", true).displayable { modeValue.equals("Hover") }
@@ -113,6 +113,18 @@ class Criticals : Module() {
                     sendCriticalPacket(yOffset = 0.023243243674, ground = false)
                     sendCriticalPacket(yOffset = 0.01, ground = false)
                     sendCriticalPacket(yOffset = 0.0011, ground = false)
+                }
+                
+                "matrixsemi" -> {
+                    attacks++
+                    if(attacks > 3) {
+                    sendCriticalPacket(yOffset = 0.110314, ground = false)
+                    sendCriticalPacket(yOffset = 0.0200081, ground = false)
+                    sendCriticalPacket(yOffset = 0.00000001300009, ground = false)
+                    sendCriticalPacket(yOffset = 0.000000000022, ground = false)
+                    sendCriticalPacket(ground = true)
+                    attacks = 0
+                    }
                 }
 
                 "aac4.3.11oldhyt" -> {
