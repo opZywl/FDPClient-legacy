@@ -99,6 +99,12 @@ class Fly : Module() {
     @EventTarget
     fun onUpdate(event: UpdateEvent) {
         mode.onUpdate(event)
+
+        if (mc.thePlayer.isSneaking || event.eventState !== EventState.PRE || mc.thePlayer.isInWater) {
+            return
+        }
+
+        mode.onPreMotion()        
     }
 
     @EventTarget
