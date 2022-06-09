@@ -23,7 +23,7 @@ class MinemoraFly : FlyMode("Minemora") {
     private val packetBuffer = LinkedBlockingQueue<Packet<INetHandlerPlayServer>>()
 
     override fun onEnable() {
-        tick = 11451 //4
+        tick = 0 //;-;;;
         mc.gameSettings.keyBindJump.pressed = false
         mc.gameSettings.keyBindSneak.pressed = false
     }
@@ -44,11 +44,7 @@ class MinemoraFly : FlyMode("Minemora") {
     @EventTarget
     override fun onPacket(event: PacketEvent) {
         val packet = event.packet
-        if (mc.thePlayer == null || tick == 0) return
-        if (tick == 11451 && packet is C03PacketPlayer) {
-            event.cancelEvent()
-            return
-        }
+        if (mc.thePlayer == null) return
         if (packet is C03PacketPlayer) {
             event.cancelEvent()
         }
@@ -61,9 +57,6 @@ class MinemoraFly : FlyMode("Minemora") {
         }
     }
     fun onUpdate() {
-        if (tick == 11451) {
-            tick = 0
-        }
         mc.gameSettings.keyBindJump.pressed = false
         mc.gameSettings.keyBindSneak.pressed = false
         tick++
@@ -76,7 +69,7 @@ class MinemoraFly : FlyMode("Minemora") {
             mc.thePlayer.jump()
         } else {
             if (MovementUtils.isMoving()) {
-                MovementUtils.strafe(((1.7-0.02)/0.98).toFloat()) //no need MotionPre
+                MovementUtils.strafe(((1.7-0.02)/0.98).toFloat()) //no need MotionPre // ok 
             } else {
                 mc.thePlayer.motionZ = 0.0
                 mc.thePlayer.motionX = 0.0
