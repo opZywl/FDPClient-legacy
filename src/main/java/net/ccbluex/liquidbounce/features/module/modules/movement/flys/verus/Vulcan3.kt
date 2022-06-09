@@ -14,7 +14,7 @@ import net.minecraft.network.play.server.S08PacketPlayerPosLook
 import kotlin.math.cos
 import kotlin.math.sin
 
-class Vulcan3Fly : FlyMode("Vulcan3") {
+class Vulcan4Fly : FlyMode("Vulcan4") {
 
     private val hclipValue = FloatValue("${valuePrefix}HClip", 5.0f, 3.0f, 7.0f)
     private val vclipValue = FloatValue("${valuePrefix}VClip", 5.0f, 3.0f, 7.0f)
