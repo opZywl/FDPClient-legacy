@@ -69,7 +69,7 @@ class MinemoraFly : FlyMode("Minemora") {
             mc.thePlayer.jump()
         } else {
             if (MovementUtils.isMoving()) {
-                MovementUtils.strafe(((1.7-0.02)/0.98).toFloat()) //no need MotionPre // ok 
+                MovementUtils.strafe(1.7f) //no need MotionPre // ok 
             } else {
                 mc.thePlayer.motionZ = 0.0
                 mc.thePlayer.motionX = 0.0
