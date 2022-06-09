@@ -8,6 +8,7 @@ import net.ccbluex.liquidbounce.features.module.modules.movement.flys.FlyMode
 import net.ccbluex.liquidbounce.utils.MovementUtils
 import net.ccbluex.liquidbounce.utils.timer.MSTimer
 import net.ccbluex.liquidbounce.value.FloatValue
+import net.ccbluex.liquidbounce.value.ListValue
 import net.ccbluex.liquidbounce.value.BoolValue
 import net.minecraft.block.BlockAir
 import net.minecraft.network.play.client.C03PacketPlayer
@@ -15,6 +16,10 @@ import net.minecraft.network.play.client.C03PacketPlayer.C04PacketPlayerPosition
 import net.minecraft.util.AxisAlignedBB
 
 class Verus2Fly : FlyMode("Verus2") {
+    private val damageMode = ListValue("VerusDamage", arrayOf("Damage1","Damage2","Damage3","CustomDamage"),"Damage1")
+    private val packet1 = FloatValue("CustomPacket1Clip", 4f,0f,5f).displayable {damageMode.equals("CustomDamage")}
+    private val packet2 = FloatValue("CustomPacket2Clip", -0.2f,-1f,5f).displayable {damageMode.equals("CustomDamage")}
+    private val packet3 = FloatValue("CustomPacket3Clip", 0.5f,0f,5f).displayable {damageMode.equals("CustomDamage")}
     private val speedValue = FloatValue("${valuePrefix}Speed", 1.5f, 0f, 5f)
     private val yMotionZero = BoolValue("SetYMotion0",true)
     private val blocksBB = BoolValue("useBlocksBBfly",true)
@@ -22,11 +27,34 @@ class Verus2Fly : FlyMode("Verus2") {
 
     private var flyable = false
     private val timer = MSTimer()
+    
+    private fun verusDamage() {
+        when (damageMode.get().lowercase()) {
+          "damage1" -> {
+            PacketUtils.sendPacketNoEvent(C04PacketPlayerPosition(mc.thePlayer.posX, mc.thePlayer.posY + 3.05, mc.thePlayer.posZ, false))
+            PacketUtils.sendPacketNoEvent(C04PacketPlayerPosition(mc.thePlayer.posX, mc.thePlayer.posY, mc.thePlayer.posZ, false))
+            PacketUtils.sendPacketNoEvent(C04PacketPlayerPosition(mc.thePlayer.posX, mc.thePlayer.posY + 0.41999998688697815, mc.thePlayer.posZ, true))
+          }
+          "damage2" -> {
+            PacketUtils.sendPacketNoEvent(C04PacketPlayerPosition(mc.thePlayer.posX, mc.thePlayer.posY + 3.35, mc.thePlayer.posZ, false))
+            PacketUtils.sendPacketNoEvent(C04PacketPlayerPosition(mc.thePlayer.posX, mc.thePlayer.posY, mc.thePlayer.posZ, false))
+            PacketUtils.sendPacketNoEvent(C04PacketPlayerPosition(mc.thePlayer.posX, mc.thePlayer.posY, mc.thePlayer.posZ, true))
+          }
+          "damage3" -> {
+            PacketUtils.sendPacketNoEvent(C04PacketPlayerPosition(mc.thePlayer.posX, mc.thePlayer.posY + 4, mc.thePlayer.posZ, false))
+            PacketUtils.sendPacketNoEvent(C04PacketPlayerPosition(mc.thePlayer.posX, mc.thePlayer.posY, mc.thePlayer.posZ, false))
+            PacketUtils.sendPacketNoEvent(C04PacketPlayerPosition(mc.thePlayer.posX, mc.thePlayer.posY, mc.thePlayer.posZ, true))
+          }
+          "customdamage" -> {
+            PacketUtils.sendPacketNoEvent(C04PacketPlayerPosition(mc.thePlayer.posX, mc.thePlayer.posY + packet1.get().toDouble(), mc.thePlayer.posZ, false))
+            PacketUtils.sendPacketNoEvent(C04PacketPlayerPosition(mc.thePlayer.posX, mc.thePlayer.posY + packet2.get().toDouble(), mc.thePlayer.posZ, false))
+            PacketUtils.sendPacketNoEvent(C04PacketPlayerPosition(mc.thePlayer.posX, mc.thePlayer.posY + packet3.get().toDouble(), mc.thePlayer.posZ, true))
+          }
+        }
+    }
 
     override fun onEnable() {
-        mc.netHandler.addToSendQueue(C04PacketPlayerPosition(mc.thePlayer.posX, mc.thePlayer.posY + 3.35, mc.thePlayer.posZ, false))
-        mc.netHandler.addToSendQueue(C04PacketPlayerPosition(mc.thePlayer.posX, mc.thePlayer.posY, mc.thePlayer.posZ, false))
-        mc.netHandler.addToSendQueue(C04PacketPlayerPosition(mc.thePlayer.posX, mc.thePlayer.posY, mc.thePlayer.posZ, true))
+        verusDamage()
         mc.thePlayer.motionX = 0.0
         mc.thePlayer.motionY = 0.0
         mc.thePlayer.motionZ = 0.0
