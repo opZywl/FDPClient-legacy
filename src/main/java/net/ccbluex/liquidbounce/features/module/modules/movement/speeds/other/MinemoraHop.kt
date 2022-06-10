@@ -21,7 +21,7 @@ class MinemoraHop : SpeedMode("MinemoraHop") {
         if ((launchpos - mc.thePlayer.posY) >= 0.9) {
           fastfall = true
         }
-        if(fastfall) mc.thePlayer.motionY = -1.0
+        if(fastfall) mc.thePlayer.motionY = mc.thePlayer.motionY - 0.2
         if (MovementUtils.isMoving()) {
             if (mc.thePlayer.onGround) {
                 fastfall = false
