@@ -10,7 +10,7 @@ import net.ccbluex.liquidbounce.utils.MovementUtils
 
 class MinemoraHop : SpeedMode("MinemoraHop") {
     private var needboost = false
-    private var launchy = 0
+    private var launchy = 0.0
     override fun onEnable() {
       needboost = false
       launchy = mc.thePlayer.posY
