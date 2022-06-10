@@ -91,9 +91,9 @@ class FastUse : Module() {
                 }
 
                 "minemoratest" -> {
-                    mc.timer.timerSpeed = 0.5F
+                    mc.timer.timerSpeed = 0.51F
                     usedTimer = true
-                    if (mc.thePlayer.ticksExisted % 2 == 0) {
+                    if (mc.thePlayer.ticksExisted % 1 == 0) {
                         repeat(2) {
                             mc.netHandler.addToSendQueue(C03PacketPlayer(mc.thePlayer.onGround))
                         }
