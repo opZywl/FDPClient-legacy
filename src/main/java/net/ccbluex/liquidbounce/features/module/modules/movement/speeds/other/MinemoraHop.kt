@@ -24,9 +24,11 @@ class MinemoraHop : SpeedMode("MinemoraHop") {
                 launchy = mc.thePlayer.posY
             } else {
               if (needboost && (mc.thePlayer.posY - launchy) >= 0.9) {
-                mc.thePlayer.motionY = mc.thePlayer.motionY - 0.05
+                  mc.timer.timerSpeed = 1.1
+              } else {
+                mc.timer.timerSpeed = 1
               }
-              MovementUtils.strafe(MovementUtils.getSpeed() * 1.01f)
+              MovementUtils.strafe(MovementUtils.getSpeed() * 1.011f)
             }
         } else {
             mc.thePlayer.motionX = 0.0
