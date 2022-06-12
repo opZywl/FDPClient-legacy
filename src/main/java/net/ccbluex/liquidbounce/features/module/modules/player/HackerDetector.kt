@@ -105,11 +105,11 @@ class HackerDetector : Module() {
     }
 
     private fun checkPlayer(player: EntityPlayer) {
-        if (player.equals(mc.thePlayer) || EntityUtils.isFriend(player)) return
+        if (player == mc.thePlayer || EntityUtils.isFriend(player)) return
         if (hackerDataMap[player] == null) hackerDataMap[player] = HackerData(player)
         val data = hackerDataMap[player] ?: return
         data.update()
-        if (data.aliveTicks <20) return
+        if (data.aliveTicks < 20) return
 
         // settings
         var minAirTicks = 10
@@ -141,15 +141,17 @@ class HackerDetector : Module() {
             data.lastMovePacket = packetTimeNow
         }
 
-        if (player.hurtTime> 0) {
+        if (player.hurtTime > 0) {
             // velocity
             if (player.hurtResistantTime in 7..11 &&
                 player.prevPosX == player.posX && player.posZ == player.lastTickPosZ &&
-                !mc.theWorld.checkBlockCollision(player.entityBoundingBox.expand(0.05, 0.0, 0.05))) {
+                !mc.theWorld.checkBlockCollision(player.entityBoundingBox.expand(0.05, 0.0, 0.05))
+            ) {
                 data.flag("velocity", 50, "NO KNOCKBACK")
             }
             if (player.hurtResistantTime in 7..11 &&
-                player.lastTickPosY == player.posY) {
+                player.lastTickPosY == player.posY
+            ) {
                 data.flag("velocity", 50, "NO KNOCKBACK")
             }
             return
@@ -171,14 +173,24 @@ class HackerDetector : Module() {
             passed = false
         }
         if (abs(player.rotationYaw - player.prevRotationYaw) > 50 && player.swingProgress != 0F &&
-            data.aps >= 3) {
-            data.flag("killaura", 30, "YAW RATE(aps=${data.aps},yawRot=${abs(player.rotationYaw - player.prevRotationYaw)})")
+            data.aps >= 3
+        ) {
+            data.flag(
+                "killaura",
+                30,
+                "YAW RATE(aps=${data.aps},yawRot=${abs(player.rotationYaw - player.prevRotationYaw)})"
+            )
             passed = false
         }
 
         // flight
-        if (player.ridingEntity == null && data.airTicks> (minAirTicks / 2)) {
-            if (abs(data.motionY - data.lastMotionY) < (if (data.airTicks >= 115) { 1E-3 } else { 5E-3 })) {
+        if (player.ridingEntity == null && data.airTicks > (minAirTicks / 2)) {
+            if (abs(data.motionY - data.lastMotionY) < (if (data.airTicks >= 115) {
+                    1E-3
+                } else {
+                    5E-3
+                })
+            ) {
                 data.flag("fly", 20, "GLIDE(diff=${abs(data.motionY - data.lastMotionY)})")
                 passed = false
             }
@@ -186,7 +198,7 @@ class HackerDetector : Module() {
                 data.flag("fly", 20, "YAXIS(motY=${data.motionY})")
                 passed = false
             }
-            if (data.airTicks > minAirTicks && data.motionY> 0) {
+            if (data.airTicks > minAirTicks && data.motionY > 0) {
                 data.flag("fly", 30, "YAXIS(motY=${data.motionY})")
                 passed = false
             }
@@ -206,7 +218,7 @@ class HackerDetector : Module() {
             if (data.groundTicks < 5) limit += 0.1
             if (player.isBlocking) limit *= 0.45
             if (player.isSneaking) limit *= 0.68
-            if (player.isPotionActive(Potion.moveSpeed)) { // server will send real player potionData?i hope that
+            if (player.isPotionActive(Potion.moveSpeed)) { // server will send real player potionData? I hope that
                 limit += player.getActivePotionEffect(Potion.moveSpeed).amplifier
                 limit *= 1.5
             }
@@ -259,7 +271,7 @@ class HackerDetector : Module() {
         }
         this.vl += vl
 
-        if (this.vl> vlValue.get()) {
+        if (this.vl > vlValue.get()) {
             var use = ""
             for (typ in this.useHacks) {
                 use += "$typ,"
@@ -267,7 +279,13 @@ class HackerDetector : Module() {
             use = use.substring(0, use.length - 1)
             alert("§f${this.player.name} §eusing hack §a$use")
             if (notifyValue.get()) {
-                LiquidBounce.hud.addNotification(Notification(name, "${this.player.name} might use hack ($use)", NotifyType.WARNING))
+                LiquidBounce.hud.addNotification(
+                    Notification(
+                        name,
+                        "${this.player.name} might use hack ($use)",
+                        NotifyType.WARNING
+                    )
+                )
             }
             this.vl = -vlValue.get()
 
@@ -283,7 +301,7 @@ class HackerDetector : Module() {
         var attackerCount = 0
 
         for (worldEntity in mc.theWorld.loadedEntityList) {
-            if (worldEntity !is EntityPlayer || worldEntity.getDistanceToEntity(entity)> 7 || worldEntity.equals(entity)) continue
+            if (worldEntity !is EntityPlayer || worldEntity.getDistanceToEntity(entity) > 7 || worldEntity.equals(entity)) continue
             attackerCount++
             attacker = worldEntity
         }
@@ -295,13 +313,13 @@ class HackerDetector : Module() {
 
         // reach check
         val reach = attacker.getDistanceToEntity(entity)
-        if (reach> 3.7) {
+        if (reach > 3.7) {
             data.flag("killaura", 70, "(reach=$reach)")
         }
 
         // aim check
         val yawDiff = calculateYawDifference(attacker, entity)
-        if (yawDiff> 50) {
+        if (yawDiff > 50) {
             data.flag("killaura", 100, "(yawDiff=$yawDiff)")
         }
     }
@@ -323,6 +341,7 @@ class HackerData(val player: EntityPlayer) {
     var packetBalance = 0.0
     var lastMovePacket = System.currentTimeMillis()
     var aliveTicks = 0
+
     // Ticks in air
     var airTicks = 0
 
@@ -379,7 +398,14 @@ class HackerData(val player: EntityPlayer) {
     private fun calculateGround(): Boolean {
         val playerBoundingBox = player.entityBoundingBox
         val blockHeight = 1
-        val customBox = AxisAlignedBB(playerBoundingBox.maxX, player.posY - blockHeight, playerBoundingBox.maxZ, playerBoundingBox.minX, player.posY, playerBoundingBox.minZ)
+        val customBox = AxisAlignedBB(
+            playerBoundingBox.maxX,
+            player.posY - blockHeight,
+            playerBoundingBox.maxZ,
+            playerBoundingBox.minX,
+            player.posY,
+            playerBoundingBox.minZ
+        )
         return Minecraft.getMinecraft().theWorld.checkBlockCollision(customBox)
     }
 }

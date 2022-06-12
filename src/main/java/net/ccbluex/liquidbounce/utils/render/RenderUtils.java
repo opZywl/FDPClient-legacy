@@ -27,7 +27,6 @@ import net.minecraft.util.BlockPos;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.Timer;
 import org.lwjgl.opengl.GL11;
-import org.lwjgl.opengl.GL13;
 import org.lwjgl.util.glu.GLU;
 import org.lwjgl.util.glu.GLUtessellator;
 import org.lwjgl.util.glu.GLUtessellatorCallbackAdapter;
@@ -46,10 +45,8 @@ import static org.lwjgl.opengl.GL11.*;
 
 public final class RenderUtils extends MinecraftInstance {
     private static final Map<String, Map<Integer, Boolean>> glCapMap = new HashMap<>();
-
-    public static int deltaTime;
-
     private static final int[] DISPLAY_LISTS_2D = new int[4];
+    public static int deltaTime;
 
     static {
         for (int i = 0; i < DISPLAY_LISTS_2D.length; i++) {
@@ -120,7 +117,7 @@ public final class RenderUtils extends MinecraftInstance {
         glPushMatrix();
         glLineWidth(1F);
         glBegin(GL_POLYGON);
-        for(int i = 0; i <= 360; i++)
+        for (int i = 0; i <= 360; i++)
             glVertex2d(x + Math.sin(i * Math.PI / 180.0D) * radius, y + Math.cos(i * Math.PI / 180.0D) * radius);
         glEnd();
         glPopMatrix();
@@ -161,7 +158,7 @@ public final class RenderUtils extends MinecraftInstance {
 
         GL11.glBegin(GL11.GL_TRIANGLE_FAN);
         GL11.glVertex2d(x, y);
-        for(double i = end; i >= start; i-=4) {
+        for (double i = end; i >= start; i -= 4) {
             double ldx = Math.cos(i * Math.PI / 180.0) * w;
             double ldy = Math.sin(i * Math.PI / 180.0) * h;
             GL11.glVertex2d(x + ldx, y + ldy);
@@ -171,22 +168,21 @@ public final class RenderUtils extends MinecraftInstance {
     }
 
     private static void quickPolygonCircle(float x, float y, float xRadius, float yRadius, int start, int end, int split) {
-        for(int i = end; i >= start; i -= split) {
+        for (int i = end; i >= start; i -= split) {
             glVertex2d(x + Math.sin(i * Math.PI / 180.0D) * xRadius, y + Math.cos(i * Math.PI / 180.0D) * yRadius);
         }
     }
 
-    public static void drawTexturedModalRect(int x, int y, int textureX, int textureY, int width, int height, float zLevel)
-    {
+    public static void drawTexturedModalRect(int x, int y, int textureX, int textureY, int width, int height, float zLevel) {
         float f = 0.00390625F;
         float f1 = 0.00390625F;
         Tessellator tessellator = Tessellator.getInstance();
         WorldRenderer worldrenderer = tessellator.getWorldRenderer();
         worldrenderer.begin(7, DefaultVertexFormats.POSITION_TEX);
-        worldrenderer.pos((double)(x + 0), (double)(y + height), (double)zLevel).tex((double)((float)(textureX + 0) * f), (double)((float)(textureY + height) * f1)).endVertex();
-        worldrenderer.pos((double)(x + width), (double)(y + height), (double)zLevel).tex((double)((float)(textureX + width) * f), (double)((float)(textureY + height) * f1)).endVertex();
-        worldrenderer.pos((double)(x + width), (double)(y + 0), (double)zLevel).tex((double)((float)(textureX + width) * f), (double)((float)(textureY + 0) * f1)).endVertex();
-        worldrenderer.pos((double)(x + 0), (double)(y + 0), (double)zLevel).tex((double)((float)(textureX + 0) * f), (double)((float)(textureY + 0) * f1)).endVertex();
+        worldrenderer.pos(x + 0, y + height, zLevel).tex((float) (textureX + 0) * f, (float) (textureY + height) * f1).endVertex();
+        worldrenderer.pos(x + width, y + height, zLevel).tex((float) (textureX + width) * f, (float) (textureY + height) * f1).endVertex();
+        worldrenderer.pos(x + width, y + 0, zLevel).tex((float) (textureX + width) * f, (float) (textureY + 0) * f1).endVertex();
+        worldrenderer.pos(x + 0, y + 0, zLevel).tex((float) (textureX + 0) * f, (float) (textureY + 0) * f1).endVertex();
         tessellator.draw();
     }
 
@@ -210,10 +206,10 @@ public final class RenderUtils extends MinecraftInstance {
 
         float xRadius = (float) Math.min((x1 - x) * 0.5, radius);
         float yRadius = (float) Math.min((y1 - y) * 0.5, radius);
-        quickPolygonCircle(x + xRadius,y + yRadius, xRadius, yRadius,180,270,4);
-        quickPolygonCircle(x1 - xRadius,y + yRadius, xRadius, yRadius,90,180,4);
-        quickPolygonCircle(x1 - xRadius,y1 - yRadius, xRadius, yRadius,0,90,4);
-        quickPolygonCircle(x + xRadius,y1 - yRadius, xRadius, yRadius,270,360,4);
+        quickPolygonCircle(x + xRadius, y + yRadius, xRadius, yRadius, 180, 270, 4);
+        quickPolygonCircle(x1 - xRadius, y + yRadius, xRadius, yRadius, 90, 180, 4);
+        quickPolygonCircle(x1 - xRadius, y1 - yRadius, xRadius, yRadius, 0, 90, 4);
+        quickPolygonCircle(x + xRadius, y1 - yRadius, xRadius, yRadius, 270, 360, 4);
 
         glEnd();
     }
@@ -301,7 +297,7 @@ public final class RenderUtils extends MinecraftInstance {
         disableGlCap(GL_TEXTURE_2D, GL_DEPTH_TEST);
         glDepthMask(false);
 
-        if(box) {
+        if (box) {
             glColor(color.getRed(), color.getGreen(), color.getBlue(), color.getAlpha() != 255 ? color.getAlpha() : outline ? 26 : 35);
             drawFilledBox(axisAlignedBB);
         }
@@ -381,11 +377,11 @@ public final class RenderUtils extends MinecraftInstance {
         if (outline) {
             glLineWidth(outlineWidth);
             enableGlCap(GL_LINE_SMOOTH);
-            glColor(color.getRed(), color.getGreen(), color.getBlue(), box?170:255);
+            glColor(color.getRed(), color.getGreen(), color.getBlue(), box ? 170 : 255);
             drawSelectionBoundingBox(axisAlignedBB);
         }
 
-        if(box) {
+        if (box) {
             glColor(color.getRed(), color.getGreen(), color.getBlue(), outline ? 26 : 35);
             drawFilledBox(axisAlignedBB);
         }
@@ -411,7 +407,7 @@ public final class RenderUtils extends MinecraftInstance {
             drawSelectionBoundingBox(axisAlignedBB);
         }
 
-        if(box) {
+        if (box) {
             glColor(color.getRed(), color.getGreen(), color.getBlue(), outline ? 26 : 35);
             drawFilledBox(axisAlignedBB);
         }
@@ -427,7 +423,7 @@ public final class RenderUtils extends MinecraftInstance {
         final RenderManager renderManager = mc.getRenderManager();
         final double renderY = y - renderManager.renderPosY;
 
-        drawAxisAlignedBB(new AxisAlignedBB(size, renderY + 0.02D, size, -size, renderY, -size), color,false,true,2F);
+        drawAxisAlignedBB(new AxisAlignedBB(size, renderY + 0.02D, size, -size, renderY, -size), color, false, true, 2F);
     }
 
     public static void drawPlatform(final Entity entity, final Color color) {
@@ -446,7 +442,7 @@ public final class RenderUtils extends MinecraftInstance {
                 .offset(x, y, z);
 
         drawAxisAlignedBB(new AxisAlignedBB(axisAlignedBB.minX, axisAlignedBB.maxY + 0.2, axisAlignedBB.minZ, axisAlignedBB.maxX, axisAlignedBB.maxY + 0.26, axisAlignedBB.maxZ),
-                color,false,true,2F);
+                color, false, true, 2F);
     }
 
     public static void drawFilledBox(final AxisAlignedBB axisAlignedBB) {
@@ -547,9 +543,11 @@ public final class RenderUtils extends MinecraftInstance {
     public static void drawRect(final float x, final float y, final float x2, final float y2, final Color color) {
         drawRect(x, y, x2, y2, color.getRGB());
     }
+
     public static void drawBorderedRect(final double x, final double y, final double x2, final double y2, final double width, final int color1, final int color2) {
-        drawBorderedRect((float)x,(float)y,(float)x2,(float)y2,(float)width,color1,color2);
+        drawBorderedRect((float) x, (float) y, (float) x2, (float) y2, (float) width, color1, color2);
     }
+
     public static void drawBorderedRect(final float x, final float y, final float x2, final float y2, final float width, final int color1, final int color2) {
         drawRect(x, y, x2, y2, color2);
         glEnable(GL_BLEND);
@@ -628,7 +626,7 @@ public final class RenderUtils extends MinecraftInstance {
         glPopAttrib();
     }
 
-    public static void drawLimitedCircle(final float lx, final float ly, final float x2, final float y2,final int xx, final int yy, final float radius, final Color color) {
+    public static void drawLimitedCircle(final float lx, final float ly, final float x2, final float y2, final int xx, final int yy, final float radius, final Color color) {
         int sections = 50;
         double dAngle = 2 * Math.PI / sections;
         float x, y;
@@ -645,7 +643,7 @@ public final class RenderUtils extends MinecraftInstance {
         for (int i = 0; i < sections; i++) {
             x = (float) (radius * Math.sin((i * dAngle)));
             y = (float) (radius * Math.cos((i * dAngle)));
-            glVertex2f(Math.min(x2,Math.max(xx + x,lx)), Math.min(y2,Math.max(yy + y,ly)));
+            glVertex2f(Math.min(x2, Math.max(xx + x, lx)), Math.min(y2, Math.max(yy + y, ly)));
         }
 
         GlStateManager.color(0, 0, 0);
@@ -682,7 +680,7 @@ public final class RenderUtils extends MinecraftInstance {
     }
 
     public static void glColor(final Color color, final int alpha) {
-        glColor(color, alpha/255F);
+        glColor(color, alpha / 255F);
     }
 
     public static void glColor(final Color color, final float alpha) {
@@ -846,7 +844,7 @@ public final class RenderUtils extends MinecraftInstance {
     }
 
     public static void resetCaps(final String scale) {
-        if(!glCapMap.containsKey(scale)) {
+        if (!glCapMap.containsKey(scale)) {
             return;
         }
         Map<Integer, Boolean> map = glCapMap.get(scale);
@@ -859,11 +857,11 @@ public final class RenderUtils extends MinecraftInstance {
     }
 
     public static void clearCaps(final String scale) {
-        if(!glCapMap.containsKey(scale)) {
+        if (!glCapMap.containsKey(scale)) {
             return;
         }
         Map<Integer, Boolean> map = glCapMap.get(scale);
-        if(!map.isEmpty()) {
+        if (!map.isEmpty()) {
             ClientUtils.INSTANCE.logWarn("Cap map is not empty! [" + map.size() + "]");
         }
         map.clear();
@@ -891,19 +889,19 @@ public final class RenderUtils extends MinecraftInstance {
 
 
     public static void enableGlCap(final int... caps) {
-        for(int cap : caps) {
+        for (int cap : caps) {
             setGlCap(cap, true, "COMMON");
         }
     }
 
     public static void disableGlCap(final int... caps) {
-        for(int cap : caps) {
+        for (int cap : caps) {
             setGlCap(cap, false, "COMMON");
         }
     }
 
     public static void setGlCap(final int cap, final boolean state, final String scale) {
-        if(!glCapMap.containsKey(scale)) {
+        if (!glCapMap.containsKey(scale)) {
             glCapMap.put(scale, new HashMap<>());
         }
         glCapMap.get(scale).put(cap, glGetBoolean(cap));
@@ -1009,7 +1007,7 @@ public final class RenderUtils extends MinecraftInstance {
         float yRadius = height / 2f;
         float uRadius = (((u + (float) uWidth) * f) - (u * f)) / 2f;
         float vRadius = (((v + (float) vHeight) * f1) - (v * f1)) / 2f;
-        for(int i = 0; i <= 360; i+=10) {
+        for (int i = 0; i <= 360; i += 10) {
             double xPosOffset = Math.sin(i * Math.PI / 180.0D);
             double yPosOffset = Math.cos(i * Math.PI / 180.0D);
             worldrenderer.pos(x + xRadius + xPosOffset * xRadius, y + yRadius + yPosOffset * yRadius, 0)
@@ -1104,12 +1102,13 @@ public final class RenderUtils extends MinecraftInstance {
 
     /**
      * 在LWJGL中渲染AWT图形
-     * @param shape 准备渲染的图形
+     *
+     * @param shape   准备渲染的图形
      * @param epsilon 图形精细度，传0不做处理
      */
     public static void drawAWTShape(Shape shape, double epsilon, GLUtessellatorCallbackAdapter gluTessCallback) {
-        PathIterator path=shape.getPathIterator(new AffineTransform());
-        Double[] cp=new Double[2]; // 记录上次操作的点用于计算曲线
+        PathIterator path = shape.getPathIterator(new AffineTransform());
+        Double[] cp = new Double[2]; // 记录上次操作的点用于计算曲线
 
         GLUtessellator tess = GLU.gluNewTess(); // 创建GLUtessellator用于渲染凹多边形（GL_POLYGON只能渲染凸多边形）
 
@@ -1118,12 +1117,12 @@ public final class RenderUtils extends MinecraftInstance {
         tess.gluTessCallback(GLU.GLU_TESS_VERTEX, gluTessCallback);
         tess.gluTessCallback(GLU.GLU_TESS_COMBINE, gluTessCallback);
 
-        switch (path.getWindingRule()){
-            case PathIterator.WIND_EVEN_ODD:{
+        switch (path.getWindingRule()) {
+            case PathIterator.WIND_EVEN_ODD: {
                 tess.gluTessProperty(GLU.GLU_TESS_WINDING_RULE, GLU.GLU_TESS_WINDING_ODD);
                 break;
             }
-            case PathIterator.WIND_NON_ZERO:{
+            case PathIterator.WIND_NON_ZERO: {
                 tess.gluTessProperty(GLU.GLU_TESS_WINDING_RULE, GLU.GLU_TESS_WINDING_NONZERO);
                 break;
             }
@@ -1134,41 +1133,41 @@ public final class RenderUtils extends MinecraftInstance {
 
         tess.gluTessBeginPolygon(null);
 
-        while (!path.isDone()){
-            double[] segment=new double[6];
-            int type=path.currentSegment(segment);
-            switch (type){
-                case PathIterator.SEG_MOVETO:{
+        while (!path.isDone()) {
+            double[] segment = new double[6];
+            int type = path.currentSegment(segment);
+            switch (type) {
+                case PathIterator.SEG_MOVETO: {
                     tess.gluTessBeginContour();
-                    pointsCache.add(new Double[] {segment[0], segment[1]});
+                    pointsCache.add(new Double[]{segment[0], segment[1]});
                     cp[0] = segment[0];
                     cp[1] = segment[1];
                     break;
                 }
-                case PathIterator.SEG_LINETO:{
-                    pointsCache.add(new Double[] {segment[0], segment[1]});
+                case PathIterator.SEG_LINETO: {
+                    pointsCache.add(new Double[]{segment[0], segment[1]});
                     cp[0] = segment[0];
                     cp[1] = segment[1];
                     break;
                 }
-                case PathIterator.SEG_QUADTO:{
-                    Double[][] points=MathUtils.getPointsOnCurve(new Double[][]{new Double[]{cp[0], cp[1]}, new Double[]{segment[0], segment[1]}, new Double[]{segment[2], segment[3]}}, 10);
+                case PathIterator.SEG_QUADTO: {
+                    Double[][] points = MathUtils.getPointsOnCurve(new Double[][]{new Double[]{cp[0], cp[1]}, new Double[]{segment[0], segment[1]}, new Double[]{segment[2], segment[3]}}, 10);
                     pointsCache.addAll(Arrays.asList(points));
                     cp[0] = segment[2];
                     cp[1] = segment[3];
                     break;
                 }
-                case PathIterator.SEG_CUBICTO:{
-                    Double[][] points=MathUtils.getPointsOnCurve(new Double[][]{new Double[]{cp[0], cp[1]}, new Double[]{segment[0], segment[1]}, new Double[]{segment[2], segment[3]}, new Double[]{segment[4], segment[5]}}, 10);
+                case PathIterator.SEG_CUBICTO: {
+                    Double[][] points = MathUtils.getPointsOnCurve(new Double[][]{new Double[]{cp[0], cp[1]}, new Double[]{segment[0], segment[1]}, new Double[]{segment[2], segment[3]}, new Double[]{segment[4], segment[5]}}, 10);
                     pointsCache.addAll(Arrays.asList(points));
                     cp[0] = segment[4];
                     cp[1] = segment[5];
                     break;
                 }
-                case PathIterator.SEG_CLOSE:{
+                case PathIterator.SEG_CLOSE: {
                     // 精简路径上的点
-                    for(Double[] point : MathUtils.simplifyPoints(pointsCache.toArray(new Double[0][0]), epsilon)){
-                        tessVertex(tess, new double[] {point[0], point[1], 0.0, 0.0, 0.0, 0.0});
+                    for (Double[] point : MathUtils.simplifyPoints(pointsCache.toArray(new Double[0][0]), epsilon)) {
+                        tessVertex(tess, new double[]{point[0], point[1], 0.0, 0.0, 0.0, 0.0});
                     }
                     // 清除缓存以便画下一个图形
                     pointsCache.clear();
@@ -1197,10 +1196,11 @@ public final class RenderUtils extends MinecraftInstance {
 
     /**
      * Reads the image into a texture.
+     *
      * @return texture id
      * @author func16
      */
-    public static int loadGlTexture(BufferedImage bufferedImage){
+    public static int loadGlTexture(BufferedImage bufferedImage) {
         int textureId = GL11.glGenTextures();
 
         GL11.glBindTexture(GL11.GL_TEXTURE_2D, textureId);

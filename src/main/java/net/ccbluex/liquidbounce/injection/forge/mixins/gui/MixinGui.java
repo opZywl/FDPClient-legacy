@@ -8,8 +8,8 @@ import org.spongepowered.asm.mixin.Shadow;
 public abstract class MixinGui {
 
     @Shadow
-    public abstract void drawTexturedModalRect(int x, int y, int textureX, int textureY, int width, int height);
+    protected float zLevel;
 
     @Shadow
-    protected float zLevel;
+    public abstract void drawTexturedModalRect(int x, int y, int textureX, int textureY, int width, int height);
 }

@@ -1,7 +1,5 @@
 package net.ccbluex.liquidbounce.launch.data.legacyui.clickgui.style.styles.novoline;
 
-import net.ccbluex.liquidbounce.font.CFontRenderer;
-import net.ccbluex.liquidbounce.font.FontLoaders;
 import net.ccbluex.liquidbounce.ui.font.Fonts;
 import net.ccbluex.liquidbounce.ui.font.GameFontRenderer;
 import net.ccbluex.liquidbounce.utils.render.RenderUtils;
@@ -9,24 +7,22 @@ import net.ccbluex.liquidbounce.value.BoolValue;
 import net.ccbluex.liquidbounce.value.IntegerValue;
 import net.ccbluex.liquidbounce.value.ListValue;
 import net.ccbluex.liquidbounce.value.Value;
-import net.minecraft.client.gui.Gui;
 import net.minecraft.client.renderer.GlStateManager;
 import org.lwjgl.input.Mouse;
 
 import java.awt.*;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 
 public class ValueButton {
+    public static int valuebackcolor;
     public final Value value;
     public String name;
     public boolean custom;
     public boolean change;
     public int x;
     public float y;
-    public static int valuebackcolor;
 
 
     public ValueButton(Value value, int x, float y) {
@@ -105,7 +101,7 @@ public class ValueButton {
     }
 
     public void click(int mouseX, int mouseY, int button) {
-        if (!custom && mouseX > x - 9 && mouseX < x + 87 && mouseY > y - 4 && mouseY < y +Fonts.font35.FONT_HEIGHT + 4) {
+        if (!custom && mouseX > x - 9 && mouseX < x + 87 && mouseY > y - 4 && mouseY < y + Fonts.font35.FONT_HEIGHT + 4) {
             if (value instanceof BoolValue) {
                 BoolValue m1 = (BoolValue) value;
                 m1.set(!(Boolean) m1.get());

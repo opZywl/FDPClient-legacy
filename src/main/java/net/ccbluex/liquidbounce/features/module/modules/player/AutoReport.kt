@@ -37,7 +37,7 @@ class AutoReport : Module() {
 
     @EventTarget
     fun onAttack(event: AttackEvent) {
-        val entity = event.targetEntity ?: return
+        val entity = event.targetEntity
         if (isTarget(entity)) {
             doReport(entity as EntityPlayer)
         }
@@ -48,7 +48,7 @@ class AutoReport : Module() {
         if (modeValue.equals("All") && delayTimer.hasTimePassed(allDelayValue.get().toLong())) {
             mc.netHandler.playerInfoMap.forEach {
                 val name = it.gameProfile.name
-                if(name != mc.session.username && !EntityUtils.isFriend(name)) {
+                if (name != mc.session.username && !EntityUtils.isFriend(name)) {
                     if (doReport(name) && allDelayValue.get() != 0) {
                         return@forEach
                     }

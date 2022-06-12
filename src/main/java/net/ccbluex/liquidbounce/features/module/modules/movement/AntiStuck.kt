@@ -54,14 +54,14 @@ class AntiStuck : Module() {
                 reduceTimer.reset()
             }
         } else {
-            if (flagsTime> flagsValue.get()) {
+            if (flagsTime > flagsValue.get()) {
                 timer.reset()
                 reduceTimer.reset()
                 flagsTime = 0
                 stuck = true
                 LiquidBounce.hud.addNotification(Notification(name, "Trying to unstuck you", NotifyType.INFO, 1500))
             }
-            if (timer.hasTimePassed(1500) && reduceTimer.hasTimePassed(500) && flagsTime> 0) {
+            if (timer.hasTimePassed(1500) && reduceTimer.hasTimePassed(500) && flagsTime > 0) {
                 flagsTime -= 1
                 reduceTimer.reset()
             }

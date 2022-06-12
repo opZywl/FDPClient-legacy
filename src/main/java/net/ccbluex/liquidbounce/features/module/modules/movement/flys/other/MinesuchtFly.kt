@@ -27,13 +27,27 @@ class MinesuchtFly : FlyMode("Minesucht") {
                 mc.thePlayer.fallDistance = 0f
                 mc.thePlayer.sendQueue.addToSendQueue(C04PacketPlayerPosition(posX, posY + 20, posZ, true))
             }
-            mc.thePlayer.sendQueue.addToSendQueue(C04PacketPlayerPosition(vec32.xCoord, mc.thePlayer.posY + 50, vec32.zCoord, true))
+            mc.thePlayer.sendQueue.addToSendQueue(
+                C04PacketPlayerPosition(
+                    vec32.xCoord,
+                    mc.thePlayer.posY + 50,
+                    vec32.zCoord,
+                    true
+                )
+            )
             mc.thePlayer.sendQueue.addToSendQueue(C04PacketPlayerPosition(posX, posY, posZ, false))
             mc.thePlayer.sendQueue.addToSendQueue(C04PacketPlayerPosition(vec32.xCoord, posY, vec32.zCoord, true))
             mc.thePlayer.sendQueue.addToSendQueue(C04PacketPlayerPosition(posX, posY, posZ, false))
             timer.reset()
         } else {
-            mc.thePlayer.sendQueue.addToSendQueue(C04PacketPlayerPosition(mc.thePlayer.posX, mc.thePlayer.posY, mc.thePlayer.posZ, false))
+            mc.thePlayer.sendQueue.addToSendQueue(
+                C04PacketPlayerPosition(
+                    mc.thePlayer.posX,
+                    mc.thePlayer.posY,
+                    mc.thePlayer.posZ,
+                    false
+                )
+            )
             mc.thePlayer.sendQueue.addToSendQueue(C04PacketPlayerPosition(posX, posY, posZ, true))
         }
     }

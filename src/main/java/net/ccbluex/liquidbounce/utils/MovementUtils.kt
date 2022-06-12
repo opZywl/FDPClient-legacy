@@ -72,7 +72,11 @@ object MovementUtils : MinecraftInstance() {
 
     fun forward(length: Double) {
         val yaw = Math.toRadians(mc.thePlayer.rotationYaw.toDouble())
-        mc.thePlayer.setPosition(mc.thePlayer.posX + -sin(yaw) * length, mc.thePlayer.posY, mc.thePlayer.posZ + cos(yaw) * length)
+        mc.thePlayer.setPosition(
+            mc.thePlayer.posX + -sin(yaw) * length,
+            mc.thePlayer.posY,
+            mc.thePlayer.posZ + cos(yaw) * length
+        )
     }
 
     val direction: Double
@@ -145,7 +149,13 @@ object MovementUtils : MinecraftInstance() {
         bps = distance * (20 * mc.timer.timerSpeed)
     }
 
-    fun setSpeed(moveEvent: MoveEvent, moveSpeed: Double, pseudoYaw: Float, pseudoStrafe: Double, pseudoForward: Double) {
+    fun setSpeed(
+        moveEvent: MoveEvent,
+        moveSpeed: Double,
+        pseudoYaw: Float,
+        pseudoStrafe: Double,
+        pseudoForward: Double
+    ) {
         var forward = pseudoForward
         var strafe = pseudoStrafe
         var yaw = pseudoYaw
@@ -166,8 +176,8 @@ object MovementUtils : MinecraftInstance() {
                     forward = -1.0
                 }
             }
-            val cos = Math.cos(Math.toRadians((yaw + 90.0f).toDouble()))
-            val sin = Math.sin(Math.toRadians((yaw + 90.0f).toDouble()))
+            val cos = cos(Math.toRadians((yaw + 90.0f).toDouble()))
+            val sin = sin(Math.toRadians((yaw + 90.0f).toDouble()))
             moveEvent.x = forward * moveSpeed * cos + strafe * moveSpeed * sin
             moveEvent.z = forward * moveSpeed * sin - strafe * moveSpeed * cos
         }
@@ -178,7 +188,14 @@ object MovementUtils : MinecraftInstance() {
         var blockHeight = 1.0
         var ground = mc.thePlayer.posY
         while (ground > 0.0) {
-            val customBox = AxisAlignedBB(playerBoundingBox.maxX, ground + blockHeight, playerBoundingBox.maxZ, playerBoundingBox.minX, ground, playerBoundingBox.minZ)
+            val customBox = AxisAlignedBB(
+                playerBoundingBox.maxX,
+                ground + blockHeight,
+                playerBoundingBox.maxZ,
+                playerBoundingBox.minX,
+                ground,
+                playerBoundingBox.minZ
+            )
             if (mc.theWorld.checkBlockCollision(customBox)) {
                 if (blockHeight <= 0.05) return ground + blockHeight
                 ground += blockHeight
@@ -206,6 +223,13 @@ object MovementUtils : MinecraftInstance() {
             if (posY + 8.0 > mc.thePlayer.posY) break // Prevent next step
             posY += 8.0
         }
-        mc.netHandler.addToSendQueue(C04PacketPlayerPosition(mc.thePlayer.posX, mc.thePlayer.posY, mc.thePlayer.posZ, true))
+        mc.netHandler.addToSendQueue(
+            C04PacketPlayerPosition(
+                mc.thePlayer.posX,
+                mc.thePlayer.posY,
+                mc.thePlayer.posZ,
+                true
+            )
+        )
     }
 }

@@ -43,7 +43,12 @@ class GuiDirectLogin(private val prevGui: GuiScreen) : GuiScreen() {
             drawCenteredString(mc.fontRendererObj, "§7%ui.alt.loginPassword%", width / 2 - 74, 91, 0xffffff)
         }
         "Add ms@ before your real username can login microsoft account without browser!".also {
-            mc.fontRendererObj.drawString(it, width - mc.fontRendererObj.getStringWidth(it), height - mc.fontRendererObj.FONT_HEIGHT, 0xffffff)
+            mc.fontRendererObj.drawString(
+                it,
+                width - mc.fontRendererObj.getStringWidth(it),
+                height - mc.fontRendererObj.FONT_HEIGHT,
+                0xffffff
+            )
         }
         super.drawScreen(mouseX, mouseY, partialTicks)
     }

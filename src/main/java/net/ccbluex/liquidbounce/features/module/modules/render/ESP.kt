@@ -38,22 +38,40 @@ import java.text.DecimalFormat
 class ESP : Module() {
     val modeValue = ListValue(
         "Mode",
-        arrayOf("Box", "OtherBox", "WireFrame", "2D", "Real2D", "CSGO", "CSGO-Old", "Outline", "ShaderOutline", "ShaderGlow", "Jello"),
+        arrayOf(
+            "Box",
+            "OtherBox",
+            "WireFrame",
+            "2D",
+            "Real2D",
+            "CSGO",
+            "CSGO-Old",
+            "Outline",
+            "ShaderOutline",
+            "ShaderGlow",
+            "Jello"
+        ),
         "Jello"
     )
-    private val outlineWidthValue = FloatValue("Outline-Width", 3f, 0.5f, 5f).displayable { modeValue.equals("Outline") }
+    private val outlineWidthValue =
+        FloatValue("Outline-Width", 3f, 0.5f, 5f).displayable { modeValue.equals("Outline") }
     val wireframeWidthValue = FloatValue("WireFrame-Width", 2f, 0.5f, 5f).displayable { modeValue.equals("WireFrame") }
-    private val shaderOutlineRadiusValue = FloatValue("ShaderOutline-Radius", 1.35f, 1f, 2f).displayable { modeValue.equals("ShaderOutline") }
-    private val shaderGlowRadiusValue = FloatValue("ShaderGlow-Radius", 2.3f, 2f, 3f).displayable { modeValue.equals("ShaderGlow") }
+    private val shaderOutlineRadiusValue =
+        FloatValue("ShaderOutline-Radius", 1.35f, 1f, 2f).displayable { modeValue.equals("ShaderOutline") }
+    private val shaderGlowRadiusValue =
+        FloatValue("ShaderGlow-Radius", 2.3f, 2f, 3f).displayable { modeValue.equals("ShaderGlow") }
     private val csgoDirectLineValue = BoolValue("CSGO-DirectLine", false).displayable { modeValue.equals("CSGO") }
     private val csgoShowHealthValue = BoolValue("CSGO-ShowHealth", true).displayable { modeValue.equals("CSGO") }
     private val csgoShowHeldItemValue = BoolValue("CSGO-ShowHeldItem", true).displayable { modeValue.equals("CSGO") }
     private val csgoShowNameValue = BoolValue("CSGO-ShowName", true).displayable { modeValue.equals("CSGO") }
     private val csgoWidthValue = FloatValue("CSGOOld-Width", 2f, 0.5f, 5f).displayable { modeValue.equals("CSGO-Old") }
     private val colorModeValue = ListValue("ColorMode", arrayOf("Name", "Armor", "OFF"), "Name")
-    private val colorRedValue = IntegerValue("R", 255, 0, 255).displayable { colorModeValue.get() == "OFF" && !colorRainbowValue.get() }
-    private val colorGreenValue = IntegerValue("G", 255, 0, 255).displayable { colorModeValue.get() == "OFF" && !colorRainbowValue.get() }
-    private val colorBlueValue = IntegerValue("B", 255, 0, 255).displayable { colorModeValue.get() == "OFF" && !colorRainbowValue.get() }
+    private val colorRedValue =
+        IntegerValue("R", 255, 0, 255).displayable { colorModeValue.get() == "OFF" && !colorRainbowValue.get() }
+    private val colorGreenValue =
+        IntegerValue("G", 255, 0, 255).displayable { colorModeValue.get() == "OFF" && !colorRainbowValue.get() }
+    private val colorBlueValue =
+        IntegerValue("B", 255, 0, 255).displayable { colorModeValue.get() == "OFF" && !colorRainbowValue.get() }
     private val colorRainbowValue = BoolValue("Rainbow", false).displayable { colorModeValue.get() == "OFF" }
 
     private val decimalFormat = DecimalFormat("0.0")
@@ -89,7 +107,13 @@ class ESP : Module() {
                 val entityLiving = entity as EntityLivingBase
                 val color = getColor(entityLiving)
                 when (mode) {
-                    "box", "otherbox" -> RenderUtils.drawEntityBox(entity, color, mode != "otherbox", true, outlineWidthValue.get())
+                    "box", "otherbox" -> RenderUtils.drawEntityBox(
+                        entity,
+                        color,
+                        mode != "otherbox",
+                        true,
+                        outlineWidthValue.get()
+                    )
 
                     "outline" -> RenderUtils.drawEntityBox(entity, color, true, false, outlineWidthValue.get())
 
@@ -178,7 +202,8 @@ class ESP : Module() {
                                     GL11.glEnd()
                                 }
                                 if (csgoShowHealthValue.get()) {
-                                    val barHeight = (maxY - minY) * (1.0f - entityLiving.health / entityLiving.maxHealth)
+                                    val barHeight =
+                                        (maxY - minY) * (1.0f - entityLiving.health / entityLiving.maxHealth)
                                     GL11.glColor4f(0.1f, 1.0f, 0.1f, 1.0f)
                                     GL11.glBegin(GL11.GL_QUADS)
                                     GL11.glVertex2f(maxX + 2.0f, minY + barHeight)
@@ -189,7 +214,13 @@ class ESP : Module() {
                                     GL11.glColor4f(1.0f, 1.0f, 1.0f, 1.0f)
                                     GL11.glEnable(GL11.GL_TEXTURE_2D)
                                     GL11.glEnable(GL11.GL_DEPTH_TEST)
-                                    mc.fontRendererObj.drawString(this.decimalFormat.format(entityLiving.health) + "§c❤", maxX + 4.0f, minY + barHeight, ColorUtils.healthColor(entityLiving.health, entityLiving.maxHealth).rgb, false)
+                                    mc.fontRendererObj.drawString(
+                                        this.decimalFormat.format(entityLiving.health) + "§c❤",
+                                        maxX + 4.0f,
+                                        minY + barHeight,
+                                        ColorUtils.healthColor(entityLiving.health, entityLiving.maxHealth).rgb,
+                                        false
+                                    )
                                     GL11.glDisable(GL11.GL_TEXTURE_2D)
                                     GL11.glDisable(GL11.GL_DEPTH_TEST)
                                     GL11.glColor4f(1.0f, 1.0f, 1.0f, 1.0f)
@@ -197,14 +228,24 @@ class ESP : Module() {
                                 if (csgoShowHeldItemValue.get() && entityLiving.heldItem?.displayName != null) {
                                     GL11.glEnable(GL11.GL_TEXTURE_2D)
                                     GL11.glEnable(GL11.GL_DEPTH_TEST)
-                                    mc.fontRendererObj.drawCenteredString(entityLiving.heldItem.displayName, minX + (maxX - minX) / 2.0f, maxY + 2.0f, -1)
+                                    mc.fontRendererObj.drawCenteredString(
+                                        entityLiving.heldItem.displayName,
+                                        minX + (maxX - minX) / 2.0f,
+                                        maxY + 2.0f,
+                                        -1
+                                    )
                                     GL11.glDisable(GL11.GL_TEXTURE_2D)
                                     GL11.glDisable(GL11.GL_DEPTH_TEST)
                                 }
                                 if (csgoShowNameValue.get()) {
                                     GL11.glEnable(GL11.GL_TEXTURE_2D)
                                     GL11.glEnable(GL11.GL_DEPTH_TEST)
-                                    mc.fontRendererObj.drawCenteredString(entityLiving.displayName.formattedText, minX + (maxX - minX) / 2.0f, minY - 12.0f, -1)
+                                    mc.fontRendererObj.drawCenteredString(
+                                        entityLiving.displayName.formattedText,
+                                        minX + (maxX - minX) / 2.0f,
+                                        minY - 12.0f,
+                                        -1
+                                    )
                                     GL11.glDisable(GL11.GL_TEXTURE_2D)
                                     GL11.glDisable(GL11.GL_DEPTH_TEST)
                                 }
@@ -221,8 +262,20 @@ class ESP : Module() {
                                 RenderUtils.drawRect(minX - width, minY - width, maxX, minY, color)
                                 // hp bar
                                 val hpSize = (maxY + width - minY) * (entityLiving.health / entityLiving.maxHealth)
-                                RenderUtils.drawRect(minX - width * 3, minY - width, minX - width * 2, maxY + width, Color.GRAY)
-                                RenderUtils.drawRect(minX - width * 3, maxY - hpSize, minX - width * 2, maxY + width, ColorUtils.healthColor(entityLiving.health, entityLiving.maxHealth))
+                                RenderUtils.drawRect(
+                                    minX - width * 3,
+                                    minY - width,
+                                    minX - width * 2,
+                                    maxY + width,
+                                    Color.GRAY
+                                )
+                                RenderUtils.drawRect(
+                                    minX - width * 3,
+                                    maxY - hpSize,
+                                    minX - width * 2,
+                                    maxY + width,
+                                    ColorUtils.healthColor(entityLiving.health, entityLiving.maxHealth)
+                                )
                             }
                         }
                     }
@@ -344,6 +397,10 @@ class ESP : Module() {
                 }
             }
         }
-        return if (colorRainbowValue.get()) ColorUtils.rainbow() else Color(colorRedValue.get(), colorGreenValue.get(), colorBlueValue.get())
+        return if (colorRainbowValue.get()) ColorUtils.rainbow() else Color(
+            colorRedValue.get(),
+            colorGreenValue.get(),
+            colorBlueValue.get()
+        )
     }
 }

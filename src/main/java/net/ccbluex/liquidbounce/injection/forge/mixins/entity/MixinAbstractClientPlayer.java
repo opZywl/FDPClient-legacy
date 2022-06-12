@@ -22,11 +22,11 @@ public abstract class MixinAbstractClientPlayer extends MixinEntityPlayer {
 
     @Inject(method = "getLocationCape", at = @At("HEAD"), cancellable = true)
     private void getCape(CallbackInfoReturnable<ResourceLocation> callbackInfoReturnable) {
-        if(!getUniqueID().equals(Minecraft.getMinecraft().thePlayer.getUniqueID()))
+        if (!getUniqueID().equals(Minecraft.getMinecraft().thePlayer.getUniqueID()))
             return;
 
 
-        if(GuiCapeManager.INSTANCE.getNowCape()!=null)
+        if (GuiCapeManager.INSTANCE.getNowCape() != null)
             callbackInfoReturnable.setReturnValue(GuiCapeManager.INSTANCE.getNowCape().getCape());
     }
 
@@ -34,15 +34,15 @@ public abstract class MixinAbstractClientPlayer extends MixinEntityPlayer {
     private void getFovModifier(CallbackInfoReturnable<Float> callbackInfoReturnable) {
         final NoFOV fovModule = LiquidBounce.moduleManager.getModule(NoFOV.class);
 
-        if(fovModule.getState()) {
+        if (fovModule.getState()) {
             float newFOV = fovModule.getFovValue().get();
 
-            if(!this.isUsingItem()) {
+            if (!this.isUsingItem()) {
                 callbackInfoReturnable.setReturnValue(newFOV);
                 return;
             }
 
-            if(this.getItemInUse().getItem() != Items.bow) {
+            if (this.getItemInUse().getItem() != Items.bow) {
                 callbackInfoReturnable.setReturnValue(newFOV);
                 return;
             }

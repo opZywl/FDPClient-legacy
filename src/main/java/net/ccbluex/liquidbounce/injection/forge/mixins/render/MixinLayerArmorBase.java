@@ -11,10 +11,10 @@ import org.spongepowered.asm.mixin.injection.ModifyArgs;
 import org.spongepowered.asm.mixin.injection.Slice;
 import org.spongepowered.asm.mixin.injection.invoke.arg.Args;
 
-@Mixin(value={LayerArmorBase.class})
+@Mixin(value = {LayerArmorBase.class})
 public abstract class MixinLayerArmorBase implements LayerRenderer<EntityLivingBase> {
 
-    @ModifyArgs(method="renderGlint", slice=@Slice(from=@At(value="INVOKE", target="Lnet/minecraft/client/renderer/GlStateManager;disableLighting()V", ordinal=0)), at=@At(value="INVOKE", target="Lnet/minecraft/client/renderer/GlStateManager;color(FFFF)V", ordinal=0), require=1, allow=1)
+    @ModifyArgs(method = "renderGlint", slice = @Slice(from = @At(value = "INVOKE", target = "Lnet/minecraft/client/renderer/GlStateManager;disableLighting()V", ordinal = 0)), at = @At(value = "INVOKE", target = "Lnet/minecraft/client/renderer/GlStateManager;color(FFFF)V", ordinal = 0), require = 1, allow = 1)
     private void renderGlint(Args args) {
         Glint glint = LiquidBounce.moduleManager.getModule(Glint.class);
         if (glint.getState()) {

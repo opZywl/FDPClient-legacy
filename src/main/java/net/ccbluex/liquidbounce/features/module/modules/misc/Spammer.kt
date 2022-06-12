@@ -37,9 +37,10 @@ class Spammer : Module() {
     }
 
     private val modeValue = ListValue("Mode", arrayOf("Single", "Insult", "OrderInsult"), "Single")
-    private val endingChars = IntegerValue("EndingRandomChars",5,0,30)
-    private val messageValue = TextValue("Message", "Buy %r Minecraft %r Legit %r and %r stop %r using %r cracked %r servers %r%r")
-        .displayable { !modeValue.contains("insult") }
+    private val endingChars = IntegerValue("EndingRandomChars", 5, 0, 30)
+    private val messageValue =
+        TextValue("Message", "Buy %r Minecraft %r Legit %r and %r stop %r using %r cracked %r servers %r%r")
+            .displayable { !modeValue.contains("insult") }
     private val insultMessageValue = TextValue("InsultMessage", "[%s] %w [%s]")
         .displayable { modeValue.contains("insult") }
 
@@ -58,19 +59,21 @@ class Spammer : Module() {
         }
 
         if (msTimer.hasTimePassed(delay)) {
-            mc.thePlayer.sendChatMessage(when (modeValue.get().lowercase()) {
-                "insult" -> {
-                    replaceAbuse(KillInsults.getRandomOne())
-                }
-                "orderinsult" -> {
-                    lastIndex++
-                    if (lastIndex >= (KillInsults.insultWords.size - 1)) {
-                        lastIndex = 0
+            mc.thePlayer.sendChatMessage(
+                when (modeValue.get().lowercase()) {
+                    "insult" -> {
+                        replaceAbuse(KillInsults.getRandomOne())
                     }
-                    replaceAbuse(KillInsults.insultWords[lastIndex])
+                    "orderinsult" -> {
+                        lastIndex++
+                        if (lastIndex >= (KillInsults.insultWords.size - 1)) {
+                            lastIndex = 0
+                        }
+                        replaceAbuse(KillInsults.insultWords[lastIndex])
+                    }
+                    else -> replace(messageValue.get())
                 }
-                else -> replace(messageValue.get())
-            })
+            )
             msTimer.reset()
             delay = TimeUtils.randomDelay(minDelayValue.get(), maxDelayValue.get())
         }
@@ -82,8 +85,14 @@ class Spammer : Module() {
 
     private fun replace(str: String): String {
         return str.replace("%r", RandomUtils.nextInt(0, 99).toString())
-                    .replace("%s", RandomUtils.randomString(3))
-                    .replace("%c", RandomUtils.randomString(1))
-                    .replace("%name%", if (LiquidBounce.combatManager.target != null) { LiquidBounce.combatManager.target!!.name } else { "You" }) + (RandomUtils.randomString(endingChars.get().toInt()).toString())
+            .replace("%s", RandomUtils.randomString(3))
+            .replace("%c", RandomUtils.randomString(1))
+            .replace(
+                "%name%", if (LiquidBounce.combatManager.target != null) {
+                    LiquidBounce.combatManager.target!!.name
+                } else {
+                    "You"
+                }
+            ) + (RandomUtils.randomString(endingChars.get().toInt()).toString())
     }
 }

@@ -7,7 +7,12 @@ import net.minecraft.client.shader.ShaderGroup
 import net.minecraft.util.ResourceLocation
 
 object BlurUtils : MinecraftInstance() {
-    private val blurShader: ShaderGroup = ShaderGroup(mc.textureManager, mc.resourceManager, mc.framebuffer, ResourceLocation("shaders/post/blurArea.json"))
+    private val blurShader: ShaderGroup = ShaderGroup(
+        mc.textureManager,
+        mc.resourceManager,
+        mc.framebuffer,
+        ResourceLocation("shaders/post/blurArea.json")
+    )
     private lateinit var buffer: Framebuffer
     private var lastScale = 0
     private var lastScaleWidth = 0

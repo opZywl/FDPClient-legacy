@@ -6,7 +6,6 @@
 package net.ccbluex.liquidbounce.utils;
 
 import me.liuli.path.Cell;
-import me.liuli.path.IWorldProvider;
 import me.liuli.path.Pathfinder;
 import net.ccbluex.liquidbounce.utils.block.MinecraftWorldProvider;
 import net.minecraft.util.Vec3;
@@ -15,17 +14,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 public final class PathUtils extends MinecraftInstance {
-    public static List<Vec3> findBlinkPath(final double tpX, final double tpY, final double tpZ){
-        return findBlinkPath(tpX, tpY, tpZ,5);
+    public static List<Vec3> findBlinkPath(final double tpX, final double tpY, final double tpZ) {
+        return findBlinkPath(tpX, tpY, tpZ, 5);
     }
 
-    public static List<Vec3> findBlinkPath(final double tpX, final double tpY, final double tpZ,final double dist){
+    public static List<Vec3> findBlinkPath(final double tpX, final double tpY, final double tpZ, final double dist) {
         return findBlinkPath(mc.thePlayer.posX, mc.thePlayer.posY, mc.thePlayer.posZ, tpX, tpY, tpZ, dist);
     }
 
     public static List<Vec3> findBlinkPath(double curX, double curY, double curZ, final double tpX, final double tpY, final double tpZ, final double dashDistance) {
         final MinecraftWorldProvider worldProvider = new MinecraftWorldProvider(mc.theWorld);
-        final Pathfinder pathfinder = new Pathfinder(new Cell((int)curX, (int)curY, (int)curZ), new Cell((int)tpX, (int)tpY, (int)tpZ),
+        final Pathfinder pathfinder = new Pathfinder(new Cell((int) curX, (int) curY, (int) curZ), new Cell((int) tpX, (int) tpY, (int) tpZ),
                 Pathfinder.COMMON_NEIGHBORS, worldProvider);
 
         return simplifyPath(pathfinder.findPath(3000), dashDistance, worldProvider);

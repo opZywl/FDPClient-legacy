@@ -15,7 +15,6 @@ import net.ccbluex.liquidbounce.utils.ClientUtils
 import net.ccbluex.liquidbounce.utils.MinecraftInstance
 import java.io.File
 import java.util.function.Function
-import javax.script.ScriptEngineManager
 
 class Script(private val scriptFile: File) : MinecraftInstance() {
 
@@ -39,11 +38,11 @@ class Script(private val scriptFile: File) : MinecraftInstance() {
     private val registeredModules = mutableListOf<Module>()
     private val registeredCommands = mutableListOf<Command>()
     fun getState(): Boolean {
-        return isEnable;
+        return isEnable
     }
 
     fun getRegisteredModules(): MutableList<Module> {
-        return registeredModules;
+        return registeredModules
     }
 
     init {
@@ -172,13 +171,13 @@ class Script(private val scriptFile: File) : MinecraftInstance() {
      * Calls the handler of a registered event.
      * @param eventName Name of the event to be called.
      */
-    public fun callEvent(eventName: String) {
+    fun callEvent(eventName: String) {
         //println("call $eventName")
         if (eventName == "enable") {
-            isEnable = true;
+            isEnable = true
         } else {
             if (eventName == "disable") {
-                isEnable = false;
+                isEnable = false
             }
         }
         try {

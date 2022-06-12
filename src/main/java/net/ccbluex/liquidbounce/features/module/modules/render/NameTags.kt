@@ -41,8 +41,8 @@ class NameTags : Module() {
     private val jelloColorValue = BoolValue("JelloHPColor", true).displayable { modeValue.equals("Jello") }
     private val jelloAlphaValue = IntegerValue("JelloAlpha", 170, 0, 255).displayable { modeValue.equals("Jello") }
     private val scaleValue = FloatValue("Scale", 1F, 1F, 4F)
-    private val onlyTarget = BoolValue("OnlyTarget",true)
-    private val translateY = FloatValue("TanslateY", 0.55F,-2F,2F)
+    private val onlyTarget = BoolValue("OnlyTarget", true)
+    private val translateY = FloatValue("TanslateY", 0.55F, -2F, 2F)
 
     private var targetTicks = 0
     private var entityKeep = "yes"
@@ -51,9 +51,23 @@ class NameTags : Module() {
     fun onRender3D(event: Render3DEvent) {
         for (entity in mc.theWorld.loadedEntityList) {
             if (EntityUtils.isSelected(entity, false)) {
-                renderNameTag(entity as EntityLivingBase,
-                    if (hackerValue.get() && LiquidBounce.moduleManager[HackerDetector::class.java]!!.isHacker(entity)) { "§c" } else { "" } + if (!modeValue.equals("Liquid") && AntiBot.isBot(entity)) { "§e" } else { "" } +
-                            if (clearNamesValue.get()) { entity.name } else { entity.getDisplayName().unformattedText })
+                renderNameTag(
+                    entity as EntityLivingBase,
+                    if (hackerValue.get() && LiquidBounce.moduleManager[HackerDetector::class.java]!!.isHacker(entity)) {
+                        "§c"
+                    } else {
+                        ""
+                    } + if (!modeValue.equals("Liquid") && AntiBot.isBot(entity)) {
+                        "§e"
+                    } else {
+                        ""
+                    } +
+                            if (clearNamesValue.get()) {
+                                entity.name
+                            } else {
+                                entity.getDisplayName().unformattedText
+                            }
+                )
             }
         }
     }
@@ -82,10 +96,10 @@ class NameTags : Module() {
     }
 
     private fun renderNameTag(entity: EntityLivingBase, tag: String) {
-        if (onlyTarget.get() && entity != LiquidBounce.combatManager.target && entity.getName() != entityKeep) {
+        if (onlyTarget.get() && entity != LiquidBounce.combatManager.target && entity.name != entityKeep) {
             return
         } else if (onlyTarget.get() && entity == LiquidBounce.combatManager.target) {
-            entityKeep = entity.getName()
+            entityKeep = entity.name
             targetTicks++
             if (targetTicks >= 5) {
                 targetTicks = 4
@@ -101,7 +115,7 @@ class NameTags : Module() {
         if (onlyTarget.get() && targetTicks == 0) {
             return
         }
-        
+
         // Set fontrenderer local
         val fontRenderer = fontValue.get()
 
@@ -114,7 +128,8 @@ class NameTags : Module() {
 
         glTranslated( // Translate to player position with render pos and interpolate it
             entity.lastTickPosX + (entity.posX - entity.lastTickPosX) * timer.renderPartialTicks - renderManager.renderPosX,
-            entity.lastTickPosY + (entity.posY - entity.lastTickPosY) * timer.renderPartialTicks - renderManager.renderPosY + entity.eyeHeight.toDouble() + translateY.get().toDouble(),
+            entity.lastTickPosY + (entity.posY - entity.lastTickPosY) * timer.renderPartialTicks - renderManager.renderPosY + entity.eyeHeight.toDouble() + translateY.get()
+                .toDouble(),
             entity.lastTickPosZ + (entity.posZ - entity.lastTickPosZ) * timer.renderPartialTicks - renderManager.renderPosZ
         )
 
@@ -146,20 +161,46 @@ class NameTags : Module() {
                 val maxWidth = width * 2 + 12F
 
                 glScalef(-scale * 2, -scale * 2, scale * 2)
-                drawRect(-width - 6F, -fontRenderer.FONT_HEIGHT * 1.7F, width + 6F, -2F, Color(0, 0, 0, jelloAlphaValue.get()))
-                drawRect(-width - 6F, -2F, -width - 6F + (maxWidth * healthPercent), 0F, ColorUtils.healthColor(entity.health, entity.maxHealth, jelloAlphaValue.get()))
-                drawRect(-width - 6F + (maxWidth * healthPercent), -2F, width + 6F, 0F, Color(0, 0, 0, jelloAlphaValue.get()))
-                fontRenderer.drawString(tag, (-fontRenderer.getStringWidth(tag) * 0.5F).toInt(), (-fontRenderer.FONT_HEIGHT * 1.4F).toInt(), Color.WHITE.rgb)
+                drawRect(
+                    -width - 6F,
+                    -fontRenderer.FONT_HEIGHT * 1.7F,
+                    width + 6F,
+                    -2F,
+                    Color(0, 0, 0, jelloAlphaValue.get())
+                )
+                drawRect(
+                    -width - 6F,
+                    -2F,
+                    -width - 6F + (maxWidth * healthPercent),
+                    0F,
+                    ColorUtils.healthColor(entity.health, entity.maxHealth, jelloAlphaValue.get())
+                )
+                drawRect(
+                    -width - 6F + (maxWidth * healthPercent),
+                    -2F,
+                    width + 6F,
+                    0F,
+                    Color(0, 0, 0, jelloAlphaValue.get())
+                )
+                fontRenderer.drawString(
+                    tag,
+                    (-fontRenderer.getStringWidth(tag) * 0.5F).toInt(),
+                    (-fontRenderer.FONT_HEIGHT * 1.4F).toInt(),
+                    Color.WHITE.rgb
+                )
             }
 
             "liquid" -> {
                 // Modify tag
                 val bot = AntiBot.isBot(entity)
-                val nameColor = if (bot) "§3" else if (entity.isInvisible) "§6" else if (entity.isSneaking) "§4" else "§7"
+                val nameColor =
+                    if (bot) "§3" else if (entity.isInvisible) "§6" else if (entity.isSneaking) "§4" else "§7"
                 val ping = entity.ping
 
-                val distanceText = if (distanceValue.get()) "§7 [§a${mc.thePlayer.getDistanceToEntity(entity).roundToInt()}§7]" else ""
-                val pingText = if (pingValue.get() && entity is EntityPlayer) (if (ping > 200) "§c" else if (ping > 100) "§e" else "§a") + ping + "ms §7" else ""
+                val distanceText =
+                    if (distanceValue.get()) "§7 [§a${mc.thePlayer.getDistanceToEntity(entity).roundToInt()}§7]" else ""
+                val pingText =
+                    if (pingValue.get() && entity is EntityPlayer) (if (ping > 200) "§c" else if (ping > 100) "§e" else "§a") + ping + "ms §7" else ""
                 val healthText = if (healthValue.get()) "§7 [§f" + entity.health.toInt() + "§c❤§7]" else ""
                 val botText = if (bot) " §7[§6§lBot§7]" else ""
 
@@ -168,12 +209,26 @@ class NameTags : Module() {
                 glScalef(-scale, -scale, scale)
                 val width = fontRenderer.getStringWidth(text) / 2
                 if (borderValue.get()) {
-                    drawBorderedRect(-width - 2F, -2F, width + 4F, fontRenderer.FONT_HEIGHT + 2F, 2F, Color(255, 255, 255, 90).rgb, Integer.MIN_VALUE)
+                    drawBorderedRect(
+                        -width - 2F,
+                        -2F,
+                        width + 4F,
+                        fontRenderer.FONT_HEIGHT + 2F,
+                        2F,
+                        Color(255, 255, 255, 90).rgb,
+                        Integer.MIN_VALUE
+                    )
                 } else {
                     drawRect(-width - 2F, -2F, width + 4F, fontRenderer.FONT_HEIGHT + 2F, Integer.MIN_VALUE)
                 }
 
-                fontRenderer.drawString(text, 1F + -width, if (fontRenderer == Fonts.minecraftFont) 1F else 1.5F, 0xFFFFFF, true)
+                fontRenderer.drawString(
+                    text,
+                    1F + -width,
+                    if (fontRenderer == Fonts.minecraftFont) 1F else 1.5F,
+                    0xFFFFFF,
+                    true
+                )
 
                 if (armorValue.get() && entity is EntityPlayer) {
                     for (index in 0..4) {
@@ -182,7 +237,11 @@ class NameTags : Module() {
                         }
 
                         mc.renderItem.zLevel = -147F
-                        mc.renderItem.renderItemAndEffectIntoGUI(entity.getEquipmentInSlot(index), -50 + index * 20, -22)
+                        mc.renderItem.renderItemAndEffectIntoGUI(
+                            entity.getEquipmentInSlot(index),
+                            -50 + index * 20,
+                            -22
+                        )
                     }
 
                     enableAlpha()
@@ -208,7 +267,7 @@ class NameTags : Module() {
                 drawRect(-width - 4F, -fontRenderer.FONT_HEIGHT * 3F, width + 4F, -3F, bgColor)
 
                 // render hp bar
-                if (healthPercent> 1) {
+                if (healthPercent > 1) {
                     healthPercent = 1F
                 }
 
@@ -218,7 +277,12 @@ class NameTags : Module() {
                 // string
                 fontRenderer.drawString(tag, -width, -fontRenderer.FONT_HEIGHT * 2 - 4, Color.WHITE.rgb)
                 glScalef(0.5F, 0.5F, 0.5F)
-                fontRenderer.drawString("Health: " + entity.health.toInt(), -width * 2, -fontRenderer.FONT_HEIGHT * 2, Color.WHITE.rgb)
+                fontRenderer.drawString(
+                    "Health: " + entity.health.toInt(),
+                    -width * 2,
+                    -fontRenderer.FONT_HEIGHT * 2,
+                    Color.WHITE.rgb
+                )
             }
         }
         // Reset caps

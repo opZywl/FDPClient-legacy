@@ -38,7 +38,8 @@ class AutoWeapon : Module() {
     @EventTarget
     fun onPacket(event: PacketEvent) {
         if (event.packet is C02PacketUseEntity && event.packet.action == C02PacketUseEntity.Action.ATTACK &&
-                attackEnemy) {
+            attackEnemy
+        ) {
             attackEnemy = false
 
             // Find best weapon in hotbar (#Kotlin Style)

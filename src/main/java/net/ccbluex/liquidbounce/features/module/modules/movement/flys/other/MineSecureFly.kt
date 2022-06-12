@@ -24,7 +24,14 @@ class MineSecureFly : FlyMode("MineSecure") {
         MovementUtils.strafe(speedValue.get())
 
         if (timer.hasTimePassed(150) && mc.gameSettings.keyBindJump.isKeyDown) {
-            mc.netHandler.addToSendQueue(C03PacketPlayer.C04PacketPlayerPosition(mc.thePlayer.posX, mc.thePlayer.posY + 5, mc.thePlayer.posZ, false))
+            mc.netHandler.addToSendQueue(
+                C03PacketPlayer.C04PacketPlayerPosition(
+                    mc.thePlayer.posX,
+                    mc.thePlayer.posY + 5,
+                    mc.thePlayer.posZ,
+                    false
+                )
+            )
             mc.netHandler.addToSendQueue(C03PacketPlayer.C04PacketPlayerPosition(0.5, -1000.0, 0.5, false))
             val yaw = Math.toRadians(mc.thePlayer.rotationYaw.toDouble())
             val x = -sin(yaw) * 0.4

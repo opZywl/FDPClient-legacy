@@ -49,7 +49,11 @@ fun Entity.rayTrace(blockReachDistance: Double): MovingObjectPosition {
 fun Entity.rayTraceWithCustomRotation(blockReachDistance: Double, yaw: Float, pitch: Float): MovingObjectPosition {
     val vec3 = this.getPositionEyes(1f)
     val vec31 = this.getVectorForRotation(pitch, yaw)
-    val vec32 = vec3.addVector(vec31.xCoord * blockReachDistance, vec31.yCoord * blockReachDistance, vec31.zCoord * blockReachDistance)
+    val vec32 = vec3.addVector(
+        vec31.xCoord * blockReachDistance,
+        vec31.yCoord * blockReachDistance,
+        vec31.zCoord * blockReachDistance
+    )
     return this.worldObj.rayTraceBlocks(vec3, vec32, false, false, true)
 }
 
@@ -66,13 +70,25 @@ fun EntityPlayer.getEyeVec3(): Vec3 {
 }
 
 val EntityLivingBase.renderHurtTime: Float
-    get() = this.hurtTime - if (this.hurtTime != 0) { Minecraft.getMinecraft().timer.renderPartialTicks } else { 0f }
+    get() = this.hurtTime - if (this.hurtTime != 0) {
+        Minecraft.getMinecraft().timer.renderPartialTicks
+    } else {
+        0f
+    }
 
 val EntityLivingBase.hurtPercent: Float
     get() = (this.renderHurtTime) / 10
 
 val EntityLivingBase.skin: ResourceLocation // TODO: add special skin for mobs
-    get() = if (this is EntityPlayer) { Minecraft.getMinecraft().netHandler.getPlayerInfo(this.uniqueID)?.locationSkin } else { null } ?: DefaultPlayerSkin.getDefaultSkinLegacy()
+    get() = if (this is EntityPlayer) {
+        Minecraft.getMinecraft().netHandler.getPlayerInfo(this.uniqueID)?.locationSkin
+    } else {
+        null
+    } ?: DefaultPlayerSkin.getDefaultSkinLegacy()
 
 val EntityLivingBase.ping: Int
-    get() = if (this is EntityPlayer) { Minecraft.getMinecraft().netHandler.getPlayerInfo(this.uniqueID)?.responseTime?.coerceAtLeast(0) } else { null } ?: -1
+    get() = if (this is EntityPlayer) {
+        Minecraft.getMinecraft().netHandler.getPlayerInfo(this.uniqueID)?.responseTime?.coerceAtLeast(0)
+    } else {
+        null
+    } ?: -1

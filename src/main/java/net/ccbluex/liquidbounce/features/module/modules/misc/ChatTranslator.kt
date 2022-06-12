@@ -29,7 +29,13 @@ class ChatTranslator : Module() {
             if (!cache.contains(msg)) {
                 doTranslate(msg)
             } else {
-                ClientUtils.displayChatMessage(if (cache.containsKey(msg)) { msg } else { cache[msg]!! })
+                ClientUtils.displayChatMessage(
+                    if (cache.containsKey(msg)) {
+                        msg
+                    } else {
+                        cache[msg]!!
+                    }
+                )
             }
 
             event.cancelEvent()
@@ -39,8 +45,15 @@ class ChatTranslator : Module() {
     private fun getLink(msg: String): String {
         val message = msg.replace(" ", "%20")
         return when (apiValue.get().lowercase()) {
-            "google" -> "http://translate.google.cn/translate_a/single?client=gtx&dt=t&dj=1&ie=UTF-8&sl=auto&tl=" + (if (languageValue.equals("chinese")) "zh_cn" else "en_us") + "&q=$message"
-            "bing" -> "http://api.microsofttranslator.com/v2/Http.svc/Translate?appId=A4D660A48A6A97CCA791C34935E4C02BBB1BEC1C&from=&to=" + (if (languageValue.equals("chinese")) "zh" else "en") + "&text=$message"
+            //TODO: test this with HTTPS
+            "google" -> "http://translate.google.cn/translate_a/single?client=gtx&dt=t&dj=1&ie=UTF-8&sl=auto&tl=" + (if (languageValue.equals(
+                    "chinese"
+                )
+            ) "zh_cn" else "en_us") + "&q=$message"
+            "bing" -> "http://api.microsofttranslator.com/v2/Http.svc/Translate?appId=A4D660A48A6A97CCA791C34935E4C02BBB1BEC1C&from=&to=" + (if (languageValue.equals(
+                    "chinese"
+                )
+            ) "zh" else "en") + "&text=$message"
             "youdao" -> "http://fanyi.youdao.com/translate?&doctype=json&type=AUTO&i=$message"
             else -> ""
         }

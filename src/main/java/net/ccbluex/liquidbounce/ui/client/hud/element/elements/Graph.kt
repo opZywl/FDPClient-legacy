@@ -23,7 +23,9 @@ import net.minecraft.client.renderer.Tessellator
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats
 import org.lwjgl.opengl.GL11
 import java.awt.Color
-import java.lang.Math.pow
+import java.util.*
+import kotlin.math.min
+import kotlin.math.pow
 import kotlin.math.sqrt
 
 /**
@@ -32,8 +34,10 @@ import kotlin.math.sqrt
  * Allows to draw custom text
  */
 @ElementInfo(name = "Graph")
-class Graph(x: Double = 75.0, y: Double = 110.0, scale: Float = 1F,
-            side: Side = Side(Side.Horizontal.MIDDLE, Side.Vertical.DOWN)) : Element(x, y, scale, side) {
+class Graph(
+    x: Double = 75.0, y: Double = 110.0, scale: Float = 1F,
+    side: Side = Side(Side.Horizontal.MIDDLE, Side.Vertical.DOWN)
+) : Element(x, y, scale, side) {
 
     // general
     private val graphValue = ListValue("Graph-Value", arrayOf("Speed", "BPS", "Packet-In", "Packet-Out"), "Speed")
@@ -76,7 +80,8 @@ class Graph(x: Double = 75.0, y: Double = 110.0, scale: Float = 1F,
 
     override fun updateElement() {
         if (mc.thePlayer == null) return
-        speedVal = sqrt(pow(lastX - mc.thePlayer.posX, 2.0) + pow(lastZ - mc.thePlayer.posZ, 2.0)).toFloat() * 20F * mc.timer.timerSpeed
+        speedVal =
+            sqrt((lastX - mc.thePlayer.posX).pow(2.0) + (lastZ - mc.thePlayer.posZ).pow(2.0)).toFloat() * 20F * mc.timer.timerSpeed
         lastX = mc.thePlayer.posX
         lastZ = mc.thePlayer.posZ
     }
@@ -98,7 +103,7 @@ class Graph(x: Double = 75.0, y: Double = 110.0, scale: Float = 1F,
         lastValue = graphValue.get()
 
         if (timer.hasTimePassed(updateDelay.get().toLong())) {
-            when (graphValue.get().toLowerCase()) {
+            when (graphValue.get().lowercase(Locale.getDefault())) {
                 "speed" -> valueStore.add(MovementUtils.getSpeed() * 10F)
                 "bps" -> valueStore.add(speedVal)
                 "packet-in" -> valueStore.add(PacketCounterUtils.avgInBound.toFloat())
@@ -114,8 +119,13 @@ class Graph(x: Double = 75.0, y: Double = 110.0, scale: Float = 1F,
             avgtimer.reset()
         }
 
-        val working = if (graphValue.get().startsWith("packet", true)) valueStore[valueStore.size - 1].toInt().toString() else String.format("%.2f", valueStore[valueStore.size - 1])
-        val average = if (graphValue.get().startsWith("packet", true)) averageNumber.toInt().toString() else String.format("%.2f", averageNumber)
+        val working = if (graphValue.get().startsWith("packet", true)) valueStore[valueStore.size - 1].toInt()
+            .toString() else String.format("%.2f", valueStore[valueStore.size - 1])
+        val average =
+            if (graphValue.get().startsWith("packet", true)) averageNumber.toInt().toString() else String.format(
+                "%.2f",
+                averageNumber
+            )
 
         if (displayGraphName.get()) {
             var displayString = if (nameValue.get()) when (graphValue.get().lowercase()) {
@@ -140,12 +150,24 @@ class Graph(x: Double = 75.0, y: Double = 110.0, scale: Float = 1F,
             RenderUtils.drawRect(-1F, -1F, width - xMultiplier.get() + 1F, maxHeight.get() + 1F, bgColor)
 
         if (bordalpha.get() > 0F)
-            RenderUtils.drawBorder(-1F, -1F, width - xMultiplier.get() + 1F, maxHeight.get() + 1F, bordRad.get(), borderColor)
+            RenderUtils.drawBorder(
+                -1F,
+                -1F,
+                width - xMultiplier.get() + 1F,
+                maxHeight.get() + 1F,
+                bordRad.get(),
+                borderColor
+            )
 
-        val avgheight = Math.min(averageNumber * yMultiplier.get(), maxHeight.get())
-        val firstheight = Math.min(valueStore[valueStore.size - 1] * yMultiplier.get(), maxHeight.get())
+        val avgheight = min(averageNumber * yMultiplier.get(), maxHeight.get())
+        val firstheight = min(valueStore[valueStore.size - 1] * yMultiplier.get(), maxHeight.get())
 
-        if (showAverageLine.get() && !nameValue.get()) font.drawStringWithShadow(average, -font.getStringWidth(average) - 3F, maxHeight.get() - avgheight - font.FONT_HEIGHT / 2F, markColor)
+        if (showAverageLine.get() && !nameValue.get()) font.drawStringWithShadow(
+            average,
+            -font.getStringWidth(average) - 3F,
+            maxHeight.get() - avgheight - font.FONT_HEIGHT / 2F,
+            markColor
+        )
 
         GlStateManager.pushMatrix()
         GlStateManager.enableBlend()
@@ -154,18 +176,19 @@ class Graph(x: Double = 75.0, y: Double = 110.0, scale: Float = 1F,
         GL11.glLineWidth(thickness.get())
         GlStateManager.tryBlendFuncSeparate(770, 771, 1, 0)
         val tessellator = Tessellator.getInstance()
-        val worldRenderer = tessellator.getWorldRenderer()
+        val worldRenderer = tessellator.worldRenderer
         if (showAverageLine.get() && averageLayer.get().equals("bottom", true)) {
             GlStateManager.color(0.1F, 1F, 0.1F, 1F)
             worldRenderer.begin(GL11.GL_LINE_STRIP, DefaultVertexFormats.POSITION)
             worldRenderer.pos(0.0, (maxHeight.get() - avgheight).toDouble(), 0.0).endVertex()
-            worldRenderer.pos((width - xMultiplier.get()).toDouble(), (maxHeight.get() - avgheight).toDouble(), 0.0).endVertex()
+            worldRenderer.pos((width - xMultiplier.get()).toDouble(), (maxHeight.get() - avgheight).toDouble(), 0.0)
+                .endVertex()
             tessellator.draw()
         }
         GlStateManager.color(1F, 1F, 1F, 1F)
         worldRenderer.begin(GL11.GL_LINE_STRIP, DefaultVertexFormats.POSITION)
         for (valu in valueStore) {
-            val height = Math.min(valu * yMultiplier.get(), maxHeight.get())
+            val height = min(valu * yMultiplier.get(), maxHeight.get())
             worldRenderer.pos(defaultX.toDouble(), (maxHeight.get() - height).toDouble(), 0.0).endVertex()
             defaultX += xMultiplier.get()
         }
@@ -174,7 +197,8 @@ class Graph(x: Double = 75.0, y: Double = 110.0, scale: Float = 1F,
             GlStateManager.color(0.1F, 1F, 0.1F, 1F)
             worldRenderer.begin(GL11.GL_LINE_STRIP, DefaultVertexFormats.POSITION)
             worldRenderer.pos(0.0, (maxHeight.get() - avgheight).toDouble(), 0.0).endVertex()
-            worldRenderer.pos((width - xMultiplier.get()).toDouble(), (maxHeight.get() - avgheight).toDouble(), 0.0).endVertex()
+            worldRenderer.pos((width - xMultiplier.get()).toDouble(), (maxHeight.get() - avgheight).toDouble(), 0.0)
+                .endVertex()
             tessellator.draw()
         }
         GL11.glDisable(GL11.GL_LINE_SMOOTH)
@@ -182,8 +206,18 @@ class Graph(x: Double = 75.0, y: Double = 110.0, scale: Float = 1F,
         GlStateManager.disableBlend()
         GlStateManager.popMatrix()
 
-        if (nameValue.get()) font.drawStringWithShadow(average, defaultX - xMultiplier.get() + 3F, maxHeight.get() - avgheight - font.FONT_HEIGHT / 2F, markColor)
-        else font.drawStringWithShadow(working, defaultX - xMultiplier.get() + 3F, maxHeight.get() - firstheight - font.FONT_HEIGHT / 2F, -1)
+        if (nameValue.get()) font.drawStringWithShadow(
+            average,
+            defaultX - xMultiplier.get() + 3F,
+            maxHeight.get() - avgheight - font.FONT_HEIGHT / 2F,
+            markColor
+        )
+        else font.drawStringWithShadow(
+            working,
+            defaultX - xMultiplier.get() + 3F,
+            maxHeight.get() - firstheight - font.FONT_HEIGHT / 2F,
+            -1
+        )
 
         return Border(0F, 0F, width, maxHeight.get() + 2F)
     }

@@ -14,7 +14,9 @@ import net.ccbluex.liquidbounce.features.module.modules.client.Rotations;
 import net.ccbluex.liquidbounce.features.module.modules.combat.AutoClicker;
 import net.ccbluex.liquidbounce.features.module.modules.world.FastPlace;
 import net.ccbluex.liquidbounce.injection.access.StaticStorage;
-import net.ccbluex.liquidbounce.utils.*;
+import net.ccbluex.liquidbounce.utils.CPSCounter;
+import net.ccbluex.liquidbounce.utils.ClientUtils;
+import net.ccbluex.liquidbounce.utils.RotationUtils;
 import net.ccbluex.liquidbounce.utils.misc.MiscUtils;
 import net.ccbluex.liquidbounce.utils.render.ImageUtils;
 import net.ccbluex.liquidbounce.utils.render.RenderUtils;
@@ -65,37 +67,28 @@ public abstract class MixinMinecraft {
 
     @Shadow
     public boolean skipRenderWorld;
-
-    @Shadow
-    private int leftClickCounter;
-
     @Shadow
     public MovingObjectPosition objectMouseOver;
-
     @Shadow
     public WorldClient theWorld;
-
     @Shadow
     public EntityPlayerSP thePlayer;
-
     @Shadow
     public EffectRenderer effectRenderer;
-
     @Shadow
     public PlayerControllerMP playerController;
-
     @Shadow
     public int rightClickDelayTimer;
-
     @Shadow
     public GameSettings gameSettings;
-
     @Shadow
     @Final
     public File mcDataDir;
-
+    @Shadow
+    private int leftClickCounter;
     @Shadow
     private boolean fullscreen;
+    private long lastFrame = getTime();
 
     /**
      * @author XiGuaGeGe
@@ -133,8 +126,6 @@ public abstract class MixinMinecraft {
 
         LiquidBounce.eventManager.callEvent(new ScreenEvent(currentScreen));
     }
-
-    private long lastFrame = getTime();
 
     @Inject(method = "runGameLoop", at = @At("HEAD"))
     private void runGameLoop(final CallbackInfo callbackInfo) {

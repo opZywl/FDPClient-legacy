@@ -15,7 +15,6 @@ import net.ccbluex.liquidbounce.utils.extensions.RendererExtensionKt;
 import net.ccbluex.liquidbounce.utils.login.LoginUtils;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiDisconnected;
-import net.minecraft.client.gui.GuiMultiplayer;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.multiplayer.ServerData;
 import net.minecraftforge.fml.client.config.GuiSlider;
@@ -38,7 +37,9 @@ public abstract class MixinGuiDisconnected extends MixinGuiScreen {
     @Shadow
     private int field_175353_i;
 
-    @Shadow @Final private GuiScreen parentScreen;
+    @Shadow
+    @Final
+    private GuiScreen parentScreen;
     private GuiButton reconnectButton;
     private GuiSlider autoReconnectDelaySlider;
     private GuiButton forgeBypassButton;
@@ -48,8 +49,8 @@ public abstract class MixinGuiDisconnected extends MixinGuiScreen {
     @Inject(method = "initGui", at = @At("RETURN"))
     private void initGui(CallbackInfo callbackInfo) {
         reconnectTimer = 0;
-        final ServerData server=ServerUtils.serverData;
-        infoStr="§fPlaying on: "+mc.session.getUsername()+" | "+server.serverIP;
+        final ServerData server = ServerUtils.serverData;
+        infoStr = "§fPlaying on: " + mc.session.getUsername() + " | " + server.serverIP;
         buttonList.add(reconnectButton = new GuiButton(1, this.width / 2 - 100, this.height / 2 + field_175353_i / 2 + this.fontRendererObj.FONT_HEIGHT + 22, 98, 20, "%ui.reconnect%"));
 
         buttonList.add(autoReconnectDelaySlider =
@@ -108,7 +109,7 @@ public abstract class MixinGuiDisconnected extends MixinGuiScreen {
 
     @Inject(method = "drawScreen", at = @At("RETURN"))
     private void drawScreen(CallbackInfo callbackInfo) {
-        RendererExtensionKt.drawCenteredString(mc.fontRendererObj, infoStr, this.width / 2F, this.height / 2F + field_175353_i / 2F + this.fontRendererObj.FONT_HEIGHT + 100, 0,false);
+        RendererExtensionKt.drawCenteredString(mc.fontRendererObj, infoStr, this.width / 2F, this.height / 2F + field_175353_i / 2F + this.fontRendererObj.FONT_HEIGHT + 100, 0, false);
         if (AutoReconnect.INSTANCE.isEnabled()) {
             this.updateReconnectButton();
         }

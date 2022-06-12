@@ -48,6 +48,7 @@ public abstract class MixinServerListEntryNormal {
 
     @Shadow
     public abstract void prepareServerIcon();
+
     @Shadow
     public abstract boolean func_178013_b();
 
@@ -84,7 +85,7 @@ public abstract class MixinServerListEntryNormal {
         List<String> list = this.mc.fontRendererObj.listFormattedStringToWidth(FMLClientHandler.instance().fixDescription(this.server.serverMOTD), p_drawEntry_4_ - 48 - 2);
 
         for (int i = 0; i < Math.min(list.size(), 2); ++i) {
-            this.mc.fontRendererObj.drawStringWithShadow((String) list.get(i), p_drawEntry_2_ + 32 + 3, p_drawEntry_3_ + 12 + this.mc.fontRendererObj.FONT_HEIGHT * i, 8421504);
+            this.mc.fontRendererObj.drawStringWithShadow(list.get(i), p_drawEntry_2_ + 32 + 3, p_drawEntry_3_ + 12 + this.mc.fontRendererObj.FONT_HEIGHT * i, 8421504);
         }
 
         String s2 = flag2 ? EnumChatFormatting.DARK_RED + this.server.gameVersion : this.server.populationInfo;

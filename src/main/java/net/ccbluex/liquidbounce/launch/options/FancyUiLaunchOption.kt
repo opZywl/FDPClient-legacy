@@ -68,11 +68,22 @@ object FancyUiLaunchOption : LaunchOption() {
             val width = mc.currentScreen.width
             val height = mc.currentScreen.height
             val inArea = RenderUtils.inArea(mouseX, mouseY, width - 30, height - 30, width - 15, height - 15)
-            if(inArea && clicked && Mouse.getEventButton() == 0) {
+            if (inArea && clicked && Mouse.getEventButton() == 0) {
                 windowList.add(WindowView())
             }
-            RenderUtils.drawRect(width - 30f, height - 30f, width - 15f, height - 15f, if (inArea) { Color.LIGHT_GRAY } else { Color.GRAY })
-            mc.fontRendererObj.drawCenteredString("+", width - 22.5f, height - 22.5f - (mc.fontRendererObj.FONT_HEIGHT * 0.5f), Color.WHITE.rgb)
+            RenderUtils.drawRect(
+                width - 30f, height - 30f, width - 15f, height - 15f, if (inArea) {
+                    Color.LIGHT_GRAY
+                } else {
+                    Color.GRAY
+                }
+            )
+            mc.fontRendererObj.drawCenteredString(
+                "+",
+                width - 22.5f,
+                height - 22.5f - (mc.fontRendererObj.FONT_HEIGHT * 0.5f),
+                Color.WHITE.rgb
+            )
             return
         } else {
             lastMouse = false

@@ -44,7 +44,11 @@ class Breadcrumbs : Module() {
     private val points = mutableMapOf<Int, MutableList<BreadcrumbPoint>>()
 
     val color: Color
-        get() = if (colorRainbowValue.get()) rainbow() else Color(colorRedValue.get(), colorGreenValue.get(), colorBlueValue.get())
+        get() = if (colorRainbowValue.get()) rainbow() else Color(
+            colorRedValue.get(),
+            colorGreenValue.get(),
+            colorBlueValue.get()
+        )
 
     private val sphereList = GL11.glGenLists(1)
 
@@ -77,7 +81,7 @@ class Breadcrumbs : Module() {
             var lastPosX = 114514.0
             var lastPosY = 114514.0
             var lastPosZ = 114514.0
-            when(typeValue.get().lowercase()) {
+            when (typeValue.get().lowercase()) {
                 "line" -> {
                     GL11.glLineWidth(lineWidthValue.get().toFloat())
                     GL11.glEnable(GL11.GL_LINE_SMOOTH)
@@ -95,17 +99,23 @@ class Breadcrumbs : Module() {
                         continue
                     }
                     pct
-                } else { 1f } * colorAlpha
+                } else {
+                    1f
+                } * colorAlpha
                 RenderUtils.glColor(point.color, alpha)
-                when(typeValue.get().lowercase()) {
+                when (typeValue.get().lowercase()) {
                     "line" -> GL11.glVertex3d(point.x - renderPosX, point.y - renderPosY, point.z - renderPosZ)
                     "rect" -> {
-                        if(!(lastPosX==114514.0 && lastPosY==114514.0 && lastPosZ==114514.0)) {
+                        if (!(lastPosX == 114514.0 && lastPosY == 114514.0 && lastPosZ == 114514.0)) {
                             GL11.glBegin(GL11.GL_QUADS)
                             GL11.glVertex3d(point.x - renderPosX, point.y - renderPosY, point.z - renderPosZ)
                             GL11.glVertex3d(lastPosX, lastPosY, lastPosZ)
                             GL11.glVertex3d(lastPosX, lastPosY + mc.thePlayer.height, lastPosZ)
-                            GL11.glVertex3d(point.x - renderPosX, point.y - renderPosY + mc.thePlayer.height, point.z - renderPosZ)
+                            GL11.glVertex3d(
+                                point.x - renderPosX,
+                                point.y - renderPosY + mc.thePlayer.height,
+                                point.z - renderPosZ
+                            )
                             GL11.glEnd()
                         }
                         lastPosX = point.x - renderPosX
@@ -121,7 +131,7 @@ class Breadcrumbs : Module() {
                     }
                 }
             }
-            when(typeValue.get().lowercase()) {
+            when (typeValue.get().lowercase()) {
                 "line" -> {
                     GL11.glEnd()
                     GL11.glDisable(GL11.GL_LINE_SMOOTH)
@@ -142,29 +152,37 @@ class Breadcrumbs : Module() {
     fun onUpdate(event: UpdateEvent) {
         // clear points for entities not exist
         points.forEach { (id, _) ->
-            if(mc.theWorld.getEntityByID(id) == null) {
+            if (mc.theWorld.getEntityByID(id) == null) {
                 points.remove(id)
             }
         }
         // add new points
-        if(mc.thePlayer.ticksExisted % precisionValue.get() != 0) {
+        if (mc.thePlayer.ticksExisted % precisionValue.get() != 0) {
             return // skip if not on tick
         }
-        if(drawTargetsValue.get()) {
+        if (drawTargetsValue.get()) {
             mc.theWorld.loadedEntityList.forEach {
-                if(EntityUtils.isSelected(it, true)) {
+                if (EntityUtils.isSelected(it, true)) {
                     updatePoints(it as EntityLivingBase)
                 }
             }
         }
-        if(drawThePlayerValue.get()) {
+        if (drawThePlayerValue.get()) {
             updatePoints(mc.thePlayer)
         }
     }
 
     private fun updatePoints(entity: EntityLivingBase) {
         (points[entity.entityId] ?: mutableListOf<BreadcrumbPoint>().also { points[entity.entityId] = it })
-            .add(BreadcrumbPoint(entity.posX, entity.entityBoundingBox.minY, entity.posZ, System.currentTimeMillis(), color.rgb))
+            .add(
+                BreadcrumbPoint(
+                    entity.posX,
+                    entity.entityBoundingBox.minY,
+                    entity.posZ,
+                    System.currentTimeMillis(),
+                    color.rgb
+                )
+            )
     }
 
     @EventTarget

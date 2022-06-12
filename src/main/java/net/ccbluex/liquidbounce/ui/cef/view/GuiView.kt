@@ -22,7 +22,7 @@ abstract class GuiView(private val page: Page) : GuiScreen() {
     private val pressedKeyMap = mutableMapOf<Int, Char>()
 
     fun init() {
-        if(cefBrowser != null || cefRenderer != null) {
+        if (cefBrowser != null || cefRenderer != null) {
             destroy()
         }
         cefRenderer = CefRendererLwjgl(true)
@@ -74,11 +74,25 @@ abstract class GuiView(private val page: Page) : GuiScreen() {
     }
 
     override fun mouseClicked(mouseX: Int, mouseY: Int, key: Int) {
-        cefBrowser!!.mouseInteracted(Mouse.getX(), Display.getHeight() - Mouse.getY(), mouseModifiers(keyModifiers(0)), key, true, 1)
+        cefBrowser!!.mouseInteracted(
+            Mouse.getX(),
+            Display.getHeight() - Mouse.getY(),
+            mouseModifiers(keyModifiers(0)),
+            key,
+            true,
+            1
+        )
     }
 
     override fun mouseReleased(mouseX: Int, mouseY: Int, key: Int) {
-        cefBrowser!!.mouseInteracted(Mouse.getX(), Display.getHeight() - Mouse.getY(), mouseModifiers(keyModifiers(0)), key, false, 1)
+        cefBrowser!!.mouseInteracted(
+            Mouse.getX(),
+            Display.getHeight() - Mouse.getY(),
+            mouseModifiers(keyModifiers(0)),
+            key,
+            false,
+            1
+        )
     }
 
     override fun handleKeyboardInput() {

@@ -12,8 +12,14 @@ class RiseButtonRenderer(button: GuiButton) : AbstractButtonRenderer(button) {
         val startX = button.xPosition.toFloat()
         val endX = button.xPosition + button.width.toFloat()
         val endY = button.yPosition + button.height.toFloat()
-        RenderUtils.drawRect(startX, button.yPosition.toFloat(), endX, endY,
-            (if(button.hovered) { Color(60, 60, 60, 150) } else { Color(31, 31, 31, 150) }).rgb)
+        RenderUtils.drawRect(
+            startX, button.yPosition.toFloat(), endX, endY,
+            (if (button.hovered) {
+                Color(60, 60, 60, 150)
+            } else {
+                Color(31, 31, 31, 150)
+            }).rgb
+        )
         if (button.enabled) {
             GL11.glEnable(3042)
             GL11.glDisable(3553)
@@ -21,8 +27,10 @@ class RiseButtonRenderer(button: GuiButton) : AbstractButtonRenderer(button) {
             GL11.glEnable(2848)
             GL11.glShadeModel(7425)
             for (i in button.xPosition..button.xPosition + button.width step 1) {
-                RenderUtils.quickDrawGradientSidewaysH(i.toDouble(), endY - 1.0, i + 1.0, endY.toDouble(),
-                    ColorUtils.hslRainbow(i, indexOffset = 10).rgb, ColorUtils.hslRainbow(i + 1, indexOffset = 10).rgb)
+                RenderUtils.quickDrawGradientSidewaysH(
+                    i.toDouble(), endY - 1.0, i + 1.0, endY.toDouble(),
+                    ColorUtils.hslRainbow(i, indexOffset = 10).rgb, ColorUtils.hslRainbow(i + 1, indexOffset = 10).rgb
+                )
             }
             GL11.glEnable(3553)
             GL11.glDisable(3042)

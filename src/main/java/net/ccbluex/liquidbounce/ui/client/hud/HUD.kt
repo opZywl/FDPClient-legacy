@@ -23,8 +23,9 @@ open class HUD : MinecraftInstance() {
 
     companion object {
 
-        val elements = ClassUtils.resolvePackage("${HUD::class.java.`package`.name}.element.elements", Element::class.java)
-            .toTypedArray()
+        val elements =
+            ClassUtils.resolvePackage("${HUD::class.java.`package`.name}.element.elements", Element::class.java)
+                .toTypedArray()
 
         /**
          * Create default HUD
@@ -88,13 +89,18 @@ open class HUD : MinecraftInstance() {
      */
     fun handleMouseClick(mouseX: Int, mouseY: Int, button: Int) {
         for (element in elements)
-            element.handleMouseClick((mouseX / element.scale) - element.renderX, (mouseY / element.scale) -
-                    element.renderY, button)
+            element.handleMouseClick(
+                (mouseX / element.scale) - element.renderX, (mouseY / element.scale) -
+                        element.renderY, button
+            )
 
         if (button == 0) {
             for (element in elements.reversed()) {
-                if (!element.isInBorder((mouseX / element.scale) - element.renderX,
-                                (mouseY / element.scale) - element.renderY)) {
+                if (!element.isInBorder(
+                        (mouseX / element.scale) - element.renderX,
+                        (mouseY / element.scale) - element.renderY
+                    )
+                ) {
                     continue
                 }
 
@@ -200,7 +206,8 @@ open class HUD : MinecraftInstance() {
     /**
      * Add [notification]
      */
-    fun addNotification(notification: Notification) = elements.any { it is Notifications } && notifications.add(notification)
+    fun addNotification(notification: Notification) =
+        elements.any { it is Notifications } && notifications.add(notification)
 
     /**
      * Remove [notification]

@@ -37,7 +37,8 @@ class Regen : Module() {
         resetTimer = false
 
         if ((!noAirValue.get() || mc.thePlayer.onGround) && !mc.thePlayer.capabilities.isCreativeMode &&
-            mc.thePlayer.foodStats.foodLevel > foodValue.get() && mc.thePlayer.isEntityAlive && mc.thePlayer.health < healthValue.get()) {
+            mc.thePlayer.foodStats.foodLevel > foodValue.get() && mc.thePlayer.isEntityAlive && mc.thePlayer.health < healthValue.get()
+        ) {
             if (potionEffectValue.get() && !mc.thePlayer.isPotionActive(Potion.regeneration)) {
                 return
             }
@@ -84,6 +85,7 @@ class Regen : Module() {
             }
         }
     }
+
     override val tag: String
         get() = modeValue.get()
 }

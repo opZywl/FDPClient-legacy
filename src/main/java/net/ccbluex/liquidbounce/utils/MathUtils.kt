@@ -13,7 +13,8 @@ object MathUtils {
     }
     // TODO: 两圆相交坐标求解（月底能有时间弄）（TargetStrafe）
 
-    fun lerp(a: Array<Double>, b: Array<Double>, t: Double) = arrayOf(a[0] + (b[0] - a[0]) * t, a[1] + (b[1] - a[1]) * t)
+    fun lerp(a: Array<Double>, b: Array<Double>, t: Double) =
+        arrayOf(a[0] + (b[0] - a[0]) * t, a[1] + (b[1] - a[1]) * t)
 
     fun distanceSq(a: Array<Double>, b: Array<Double>): Double = (a[0] - b[0]).pow(2) + (a[1] - b[1]).pow(2)
 
@@ -22,7 +23,15 @@ object MathUtils {
         if (l2 == 0.0) {
             return distanceSq(p, v)
         }
-        return distanceSq(p, lerp(v, w, (((p[0] - v[0]) * (w[0] - v[0]) + (p[1] - v[1]) * (w[1] - v[1])) / l2).coerceAtMost(1.0).coerceAtLeast(0.0)))
+        return distanceSq(
+            p,
+            lerp(
+                v,
+                w,
+                (((p[0] - v[0]) * (w[0] - v[0]) + (p[1] - v[1]) * (w[1] - v[1])) / l2).coerceAtMost(1.0)
+                    .coerceAtLeast(0.0)
+            )
+        )
     }
 
     @JvmStatic
@@ -70,7 +79,7 @@ object MathUtils {
         }
 
         // if that point is too far
-        if (Math.sqrt(maxDistSq) > epsilon) {
+        if (sqrt(maxDistSq) > epsilon) {
             // split
             simplifyPoints(points, epsilon, start, maxNdx + 1, outPoints)
             simplifyPoints(points, epsilon, maxNdx, end, outPoints)

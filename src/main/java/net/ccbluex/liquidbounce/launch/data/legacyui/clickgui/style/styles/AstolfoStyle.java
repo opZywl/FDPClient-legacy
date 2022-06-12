@@ -11,10 +11,9 @@ import net.ccbluex.liquidbounce.launch.data.legacyui.clickgui.elements.ButtonEle
 import net.ccbluex.liquidbounce.launch.data.legacyui.clickgui.elements.ModuleElement;
 import net.ccbluex.liquidbounce.launch.data.legacyui.clickgui.style.Style;
 import net.ccbluex.liquidbounce.ui.font.Fonts;
-import net.ccbluex.liquidbounce.ui.i18n.LanguageManager;
 import net.ccbluex.liquidbounce.ui.font.GameFontRenderer;
+import net.ccbluex.liquidbounce.ui.i18n.LanguageManager;
 import net.ccbluex.liquidbounce.utils.block.BlockUtils;
-import net.ccbluex.liquidbounce.utils.misc.RandomUtils;
 import net.ccbluex.liquidbounce.utils.render.RenderUtils;
 import net.ccbluex.liquidbounce.value.*;
 import net.minecraft.client.audio.PositionedSoundRecord;
@@ -30,7 +29,6 @@ import org.lwjgl.input.Mouse;
 import java.awt.*;
 import java.math.BigDecimal;
 import java.util.List;
-import java.util.Random;
 
 @SideOnly(Side.CLIENT)
 public class AstolfoStyle extends Style {
@@ -38,7 +36,7 @@ public class AstolfoStyle extends Style {
     private boolean rightMouseDown;
 
     private Color getCategoryColor(String categoryName) {
-        categoryName=categoryName.toLowerCase();
+        categoryName = categoryName.toLowerCase();
         if (categoryName.equals("combat")) {
             return new Color(231, 75, 58, 175);
         }
@@ -70,7 +68,7 @@ public class AstolfoStyle extends Style {
                 panel.getY() + 18 + panel.getFade(), new Color(26, 26, 26).getRGB());
 
         GlStateManager.resetColor();
-        Fonts.font35.drawString("§l" + LanguageManager.INSTANCE.get(panel.getName().replaceAll("%","")), panel.getX() + 2, panel.getY() + 6, Integer.MAX_VALUE);
+        Fonts.font35.drawString("§l" + LanguageManager.INSTANCE.get(panel.getName().replaceAll("%", "")), panel.getX() + 2, panel.getY() + 6, Integer.MAX_VALUE);
     }
 
     @Override
@@ -79,7 +77,7 @@ public class AstolfoStyle extends Style {
 
         RenderUtils.drawRect(mouseX + 9, mouseY, mouseX + textWidth + 14, mouseY + Fonts.font35.FONT_HEIGHT + 3, new Color(26, 26, 26).getRGB());
         GlStateManager.resetColor();
-        Fonts.font35.drawString(LanguageManager.INSTANCE.get(text.replaceAll("%","")), mouseX + 12, mouseY + (Fonts.font35.FONT_HEIGHT / 2), Integer.MAX_VALUE);
+        Fonts.font35.drawString(LanguageManager.INSTANCE.get(text.replaceAll("%", "")), mouseX + 12, mouseY + (Fonts.font35.FONT_HEIGHT / 2), Integer.MAX_VALUE);
     }
 
     @Override
@@ -89,7 +87,7 @@ public class AstolfoStyle extends Style {
                         ? ClickGUIModule.generateColor() : new Color(26, 26, 26), buttonElement.hoverTime).getRGB());
 
         GlStateManager.resetColor();
-        Fonts.font35.drawString(LanguageManager.INSTANCE.get(buttonElement.getDisplayName().replaceAll("%","")), buttonElement.getX() + 3,
+        Fonts.font35.drawString(LanguageManager.INSTANCE.get(buttonElement.getDisplayName().replaceAll("%", "")), buttonElement.getX() + 3,
                 buttonElement.getY() + 6, Color.WHITE.getRGB());
     }
 
@@ -104,13 +102,13 @@ public class AstolfoStyle extends Style {
         final int guiColor = ClickGUIModule.generateColor().getRGB();
 
         GlStateManager.resetColor();
-        Fonts.font35.drawString(LanguageManager.INSTANCE.get(moduleElement.getDisplayName().replaceAll("%","")), moduleElement.getX() + 3,
+        Fonts.font35.drawString(LanguageManager.INSTANCE.get(moduleElement.getDisplayName().replaceAll("%", "")), moduleElement.getX() + 3,
                 moduleElement.getY() + 7, Integer.MAX_VALUE);
 
         final List<Value<?>> moduleValues = moduleElement.getModule().getValues();
 
         if (!moduleValues.isEmpty()) {
-             Fonts.font35.drawString("+", moduleElement.getX() + moduleElement.getWidth() - 8,
+            Fonts.font35.drawString("+", moduleElement.getX() + moduleElement.getWidth() - 8,
                     moduleElement.getY() + (moduleElement.getHeight() / 2), new Color(255, 255, 255, 200).getRGB());
 
             if (moduleElement.isShowSettings()) {
@@ -138,7 +136,7 @@ public class AstolfoStyle extends Style {
                         }
 
                         GlStateManager.resetColor();
-                        Fonts.font35.drawString(LanguageManager.INSTANCE.get(text.replaceAll("%","")), moduleElement.getX() + moduleElement.getWidth() + 6,
+                        Fonts.font35.drawString(LanguageManager.INSTANCE.get(text.replaceAll("%", "")), moduleElement.getX() + moduleElement.getWidth() + 6,
                                 yPos + 4, ((BoolValue) value).get() ? guiColor : Integer.MAX_VALUE);
 
                         yPos += 12;
@@ -153,7 +151,7 @@ public class AstolfoStyle extends Style {
                         RenderUtils.drawRect(moduleElement.getX() + moduleElement.getWidth() + 4, yPos + 2, moduleElement.getX() +
                                 moduleElement.getWidth() + moduleElement.getSettingsWidth(), yPos + 14, new Color(26, 26, 26).getRGB());
                         GlStateManager.resetColor();
-                        Fonts.font35.drawString("§c" + LanguageManager.INSTANCE.get(text.replaceAll("%","")), moduleElement.getX() + moduleElement.getWidth() + 6, yPos + 4, 0xffffff);
+                        Fonts.font35.drawString("§c" + LanguageManager.INSTANCE.get(text.replaceAll("%", "")), moduleElement.getX() + moduleElement.getWidth() + 6, yPos + 4, 0xffffff);
                         Fonts.font35.drawString(listValue.openList ? "-" : "+", (int) (moduleElement.getX() + moduleElement.getWidth() +
                                 moduleElement.getSettingsWidth() - (listValue.openList ? 5 : 6)), yPos + 4, 0xffffff);
 
@@ -188,7 +186,7 @@ public class AstolfoStyle extends Style {
                                 GlStateManager.resetColor();
                                 Fonts.font35.drawString(">", moduleElement.getX() +
                                         moduleElement.getWidth() + 6, yPos + 4, Integer.MAX_VALUE);
-                                Fonts.font35.drawString(LanguageManager.INSTANCE.get(valueOfList.replaceAll("%","")), moduleElement.getX() + moduleElement.getWidth() + 14,
+                                Fonts.font35.drawString(LanguageManager.INSTANCE.get(valueOfList.replaceAll("%", "")), moduleElement.getX() + moduleElement.getWidth() + 14,
                                         yPos + 4, listValue.get() != null && listValue.get().equalsIgnoreCase(valueOfList) ? guiColor : Integer.MAX_VALUE);
                                 yPos += 12;
                             }
@@ -219,7 +217,7 @@ public class AstolfoStyle extends Style {
                         }
 
                         GlStateManager.resetColor();
-                        Fonts.font35.drawString(LanguageManager.INSTANCE.get(text.replaceAll("%","")), moduleElement.getX() + moduleElement.getWidth() + 6, yPos + 4, 0xffffff);
+                        Fonts.font35.drawString(LanguageManager.INSTANCE.get(text.replaceAll("%", "")), moduleElement.getX() + moduleElement.getWidth() + 6, yPos + 4, 0xffffff);
                         yPos += 22;
                     } else if (value instanceof IntegerValue) {
                         IntegerValue integerValue = (IntegerValue) value;
@@ -246,7 +244,7 @@ public class AstolfoStyle extends Style {
                         }
 
                         GlStateManager.resetColor();
-                        Fonts.font35.drawString(LanguageManager.INSTANCE.get(text.replaceAll("%","")), moduleElement.getX() + moduleElement.getWidth() + 6, yPos + 4, 0xffffff);
+                        Fonts.font35.drawString(LanguageManager.INSTANCE.get(text.replaceAll("%", "")), moduleElement.getX() + moduleElement.getWidth() + 6, yPos + 4, 0xffffff);
                         yPos += 22;
                     } else if (value instanceof FontValue) {
                         final FontValue fontValue = (FontValue) value;
@@ -271,8 +269,8 @@ public class AstolfoStyle extends Style {
                             }
                         }
 
-                        Fonts.font35.drawString(LanguageManager.INSTANCE.get(displayString.replaceAll("%","")), moduleElement.getX() + moduleElement.getWidth() + 6, yPos + 4, Color.WHITE.getRGB());
-                        int stringWidth = Fonts.font35.getStringWidth(LanguageManager.INSTANCE.get(displayString.replaceAll("%","")));
+                        Fonts.font35.drawString(LanguageManager.INSTANCE.get(displayString.replaceAll("%", "")), moduleElement.getX() + moduleElement.getWidth() + 6, yPos + 4, Color.WHITE.getRGB());
+                        int stringWidth = Fonts.font35.getStringWidth(LanguageManager.INSTANCE.get(displayString.replaceAll("%", "")));
 
                         if (moduleElement.getSettingsWidth() < stringWidth + 8)
                             moduleElement.setSettingsWidth(stringWidth + 8);
@@ -325,7 +323,7 @@ public class AstolfoStyle extends Style {
                         RenderUtils.drawRect(moduleElement.getX() + moduleElement.getWidth() + 4, yPos + 2, moduleElement.getX() +
                                 moduleElement.getWidth() + moduleElement.getSettingsWidth(), yPos + 14, new Color(26, 26, 26).getRGB());
                         GlStateManager.resetColor();
-                        Fonts.font35.drawString(LanguageManager.INSTANCE.get(text.replaceAll("%","")), moduleElement.getX() + moduleElement.getWidth() + 6, yPos + 4, 0xffffff);
+                        Fonts.font35.drawString(LanguageManager.INSTANCE.get(text.replaceAll("%", "")), moduleElement.getX() + moduleElement.getWidth() + 6, yPos + 4, 0xffffff);
                         yPos += 12;
                     }
                 }

@@ -55,8 +55,10 @@ class Aimbot : Module() {
             if (centerValue.get()) {
                 RotationUtils.toRotation(RotationUtils.getCenter(entity.entityBoundingBox), true)
             } else {
-                RotationUtils.searchCenter(entity.entityBoundingBox, false, false, true,
-                    false).rotation
+                RotationUtils.searchCenter(
+                    entity.entityBoundingBox, false, false, true,
+                    false
+                ).rotation
             },
             (turnSpeedValue.get() + Math.random()).toFloat()
         )
@@ -70,11 +72,17 @@ class Aimbot : Module() {
             val pitchNegative = Random.nextBoolean()
 
             if (yaw) {
-                mc.thePlayer.rotationYaw += if (yawNegative) -RandomUtils.nextFloat(0F, 1F) else RandomUtils.nextFloat(0F, 1F)
+                mc.thePlayer.rotationYaw += if (yawNegative) -RandomUtils.nextFloat(0F, 1F) else RandomUtils.nextFloat(
+                    0F,
+                    1F
+                )
             }
 
             if (pitch) {
-                mc.thePlayer.rotationPitch += if (pitchNegative) -RandomUtils.nextFloat(0F, 1F) else RandomUtils.nextFloat(0F, 1F)
+                mc.thePlayer.rotationPitch += if (pitchNegative) -RandomUtils.nextFloat(
+                    0F,
+                    1F
+                ) else RandomUtils.nextFloat(0F, 1F)
                 if (mc.thePlayer.rotationPitch > 90) {
                     mc.thePlayer.rotationPitch = 90F
                 } else if (mc.thePlayer.rotationPitch < -90) {

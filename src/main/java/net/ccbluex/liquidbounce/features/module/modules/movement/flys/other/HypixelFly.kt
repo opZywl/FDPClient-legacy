@@ -23,7 +23,8 @@ class HypixelFly : FlyMode("Hypixel") {
         fly.antiDesync = true
         val boostDelay: Long = boostDelayValue.get().toLong()
         if (boostValue.get() && !flyTimer.hasTimePassed(boostDelay)) {
-            mc.timer.timerSpeed = 1f + boostTimerValue.get() * (flyTimer.hasTimeLeft(boostDelay).toFloat() / boostDelay.toFloat())
+            mc.timer.timerSpeed =
+                1f + boostTimerValue.get() * (flyTimer.hasTimeLeft(boostDelay).toFloat() / boostDelay.toFloat())
         }
 
         timer.update()
@@ -35,7 +36,14 @@ class HypixelFly : FlyMode("Hypixel") {
 
     override fun onBlockBB(event: BlockBBEvent) {
         if (event.block is BlockAir && event.y <= mc.thePlayer.posY) {
-            event.boundingBox = AxisAlignedBB.fromBounds(event.x.toDouble(), event.y.toDouble(), event.z.toDouble(), event.x + 1.0, mc.thePlayer.posY, event.z + 1.0)
+            event.boundingBox = AxisAlignedBB.fromBounds(
+                event.x.toDouble(),
+                event.y.toDouble(),
+                event.z.toDouble(),
+                event.x + 1.0,
+                mc.thePlayer.posY,
+                event.z + 1.0
+            )
         }
     }
 

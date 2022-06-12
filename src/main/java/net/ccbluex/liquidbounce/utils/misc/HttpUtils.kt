@@ -24,7 +24,8 @@ import java.net.URL
  */
 object HttpUtils {
 
-    const val DEFAULT_AGENT = "Mozilla/5.0 (Windows NT 10.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.7113.93 Safari/537.36 Java/1.8.0_191"
+    const val DEFAULT_AGENT =
+        "Mozilla/5.0 (Windows NT 10.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.7113.93 Safari/537.36 Java/1.8.0_191"
 
     init {
         HttpURLConnection.setFollowRedirects(true)

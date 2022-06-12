@@ -24,7 +24,8 @@ import kotlin.concurrent.schedule
 @ModuleInfo(name = "AutoPlay", category = ModuleCategory.MISC)
 class AutoPlay : Module() {
 
-    private val modeValue = ListValue("Server", arrayOf("RedeSky", "BlocksMC", "Minemora", "Hypixel", "Jartex", "HyCraft"), "RedeSky")
+    private val modeValue =
+        ListValue("Server", arrayOf("RedeSky", "BlocksMC", "Minemora", "Hypixel", "Jartex", "HyCraft"), "RedeSky")
     private val delayValue = IntegerValue("JoinDelay", 3, 0, 7)
 
     private var clicking = false
@@ -67,7 +68,11 @@ class AutoPlay : Module() {
 
             when (modeValue.get().lowercase()) {
                 "redesky" -> {
-                    if (clickState == 0 && windowId == 0 && slot == 42 && itemName.contains("paper", ignoreCase = true) && displayName.contains("Jogar novamente", ignoreCase = true)) {
+                    if (clickState == 0 && windowId == 0 && slot == 42 && itemName.contains(
+                            "paper",
+                            ignoreCase = true
+                        ) && displayName.contains("Jogar novamente", ignoreCase = true)
+                    ) {
                         clickState = 1
                         clicking = true
                         queueAutoPlay {
@@ -76,7 +81,11 @@ class AutoPlay : Module() {
                             mc.netHandler.addToSendQueue(C09PacketHeldItemChange(mc.thePlayer.inventory.currentItem))
                             clickState = 2
                         }
-                    } else if (clickState == 2 && windowId != 0 && slot == 11 && itemName.contains("enderPearl", ignoreCase = true)) {
+                    } else if (clickState == 2 && windowId != 0 && slot == 11 && itemName.contains(
+                            "enderPearl",
+                            ignoreCase = true
+                        )
+                    ) {
                         Timer().schedule(500L) {
                             clicking = false
                             clickState = 0
@@ -85,7 +94,11 @@ class AutoPlay : Module() {
                     }
                 }
                 "blocksmc", "hypixel" -> {
-                    if (clickState == 0 && windowId == 0 && slot == 43 && itemName.contains("paper", ignoreCase = true)) {
+                    if (clickState == 0 && windowId == 0 && slot == 43 && itemName.contains(
+                            "paper",
+                            ignoreCase = true
+                        )
+                    ) {
                         queueAutoPlay {
                             mc.netHandler.addToSendQueue(C09PacketHeldItemChange(7))
                             repeat(2) {
@@ -94,7 +107,11 @@ class AutoPlay : Module() {
                         }
                         clickState = 1
                     }
-                    if (modeValue.equals("hypixel") && clickState == 1 && windowId != 0 && itemName.equals("item.fireworks", ignoreCase = true)) {
+                    if (modeValue.equals("hypixel") && clickState == 1 && windowId != 0 && itemName.equals(
+                            "item.fireworks",
+                            ignoreCase = true
+                        )
+                    ) {
                         mc.netHandler.addToSendQueue(C0EPacketClickWindow(windowId, slot, 0, 0, item, 1919))
                         mc.netHandler.addToSendQueue(C0DPacketCloseWindow(windowId))
                     }
@@ -114,7 +131,10 @@ class AutoPlay : Module() {
                 "hycraft" -> {
                     component.siblings.forEach { sib ->
                         val clickEvent = sib.chatStyle.chatClickEvent
-                        if(clickEvent != null && clickEvent.action == ClickEvent.Action.RUN_COMMAND && clickEvent.value.contains("playagain")) {
+                        if (clickEvent != null && clickEvent.action == ClickEvent.Action.RUN_COMMAND && clickEvent.value.contains(
+                                "playagain"
+                            )
+                        ) {
                             queueAutoPlay {
                                 mc.thePlayer.sendChatMessage(clickEvent.value)
                             }
@@ -123,7 +143,14 @@ class AutoPlay : Module() {
                 }
                 "blocksmc" -> {
                     if (clickState == 1 && text.contains("Only VIP players can join full servers!", true)) {
-                        LiquidBounce.hud.addNotification(Notification(this.name, "Join failed! trying again...", NotifyType.WARNING, 3000))
+                        LiquidBounce.hud.addNotification(
+                            Notification(
+                                this.name,
+                                "Join failed! trying again...",
+                                NotifyType.WARNING,
+                                3000
+                            )
+                        )
                         // connect failed so try to join again
                         Timer().schedule(1500L) {
                             mc.netHandler.addToSendQueue(C09PacketHeldItemChange(7))
@@ -137,7 +164,10 @@ class AutoPlay : Module() {
                     if (text.contains("Click here to play again", true)) {
                         component.siblings.forEach { sib ->
                             val clickEvent = sib.chatStyle.chatClickEvent
-                            if(clickEvent != null && clickEvent.action == ClickEvent.Action.RUN_COMMAND && clickEvent.value.startsWith("/")) {
+                            if (clickEvent != null && clickEvent.action == ClickEvent.Action.RUN_COMMAND && clickEvent.value.startsWith(
+                                    "/"
+                                )
+                            ) {
                                 queueAutoPlay {
                                     mc.thePlayer.sendChatMessage(clickEvent.value)
                                 }
@@ -176,7 +206,14 @@ class AutoPlay : Module() {
                     runnable()
                 }
             }
-            LiquidBounce.hud.addNotification(Notification(this.name, "Sending you to next game in ${delayValue.get()}s...", NotifyType.INFO, delayValue.get() * 1000))
+            LiquidBounce.hud.addNotification(
+                Notification(
+                    this.name,
+                    "Sending you to next game in ${delayValue.get()}s...",
+                    NotifyType.INFO,
+                    delayValue.get() * 1000
+                )
+            )
         }
     }
 

@@ -27,20 +27,17 @@ import java.awt.*;
 
 @ModuleInfo(name = "ClickGUI", category = ModuleCategory.CLIENT, keyBind = Keyboard.KEY_RSHIFT, canEnable = false)
 public class ClickGUIModule extends Module {
-    private final ListValue styleValue = new ListValue("Style", new String[]{"Novoline", "LiquidBounce", "Null", "Slowly", "Black", "White", "Astolfo"}, "Novoline") {
+    public static final BoolValue colorRainbow = new BoolValue("Rainbow", false);    private final ListValue styleValue = new ListValue("Style", new String[]{"Novoline", "LiquidBounce", "Null", "Slowly", "Black", "White", "Astolfo"}, "Novoline") {
         @Override
         protected void onChanged(final String oldValue, final String newValue) {
             updateStyle();
         }
     };
-
-    public final FloatValue scaleValue = new FloatValue("Scale", 1F, 0.7F, 2F);
-    public final IntegerValue maxElementsValue = new IntegerValue("MaxElements", 15, 1, 20);
-
-    public static final BoolValue colorRainbow = new BoolValue("Rainbow", false);
     public static final IntegerValue colorRedValue = (IntegerValue) new IntegerValue("R", 0, 0, 255).displayable(() -> !colorRainbow.get());
     public static final IntegerValue colorGreenValue = (IntegerValue) new IntegerValue("G", 160, 0, 255).displayable(() -> !colorRainbow.get());
     public static final IntegerValue colorBlueValue = (IntegerValue) new IntegerValue("B", 255, 0, 255).displayable(() -> !colorRainbow.get());
+    public final FloatValue scaleValue = new FloatValue("Scale", 1F, 0.7F, 2F);
+    public final IntegerValue maxElementsValue = new IntegerValue("MaxElements", 15, 1, 20);
 
     public static Color generateColor() {
         return colorRainbow.get() ? ColorUtils.INSTANCE.rainbow() : new Color(colorRedValue.get(), colorGreenValue.get(), colorBlueValue.get());
@@ -88,4 +85,6 @@ public class ClickGUIModule extends Module {
             event.cancelEvent();
         }
     }
+
+
 }

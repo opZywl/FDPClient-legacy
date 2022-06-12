@@ -7,10 +7,8 @@ package net.ccbluex.liquidbounce.injection.forge.mixins.gui;
 
 import net.ccbluex.liquidbounce.LiquidBounce;
 import net.ccbluex.liquidbounce.launch.options.FancyUiLaunchOption;
-import net.ccbluex.liquidbounce.utils.ClientUtils;
 import net.ccbluex.liquidbounce.utils.render.RenderUtils;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.Gui;
 import net.minecraft.client.gui.GuiChat;
 import net.minecraft.client.gui.GuiTextField;
 import net.minecraft.util.IChatComponent;
@@ -39,17 +37,15 @@ public abstract class MixinGuiChat extends MixinGuiScreen {
 
     @Shadow
     private boolean waitingOnAutocomplete;
+    @Shadow
+    private int sentHistoryCursor;
+    @Shadow
+    private String historyBuffer;
+    private float yPosOfInputField;
+    private float fade = 0;
 
     @Shadow
     public abstract void onAutocompleteResponse(String[] p_onAutocompleteResponse_1_);
-
-    @Shadow
-    private int sentHistoryCursor;
-
-    @Shadow private String historyBuffer;
-
-    private float yPosOfInputField;
-    private float fade = 0;
 
     /**
      * @author Liuli
@@ -76,8 +72,8 @@ public abstract class MixinGuiChat extends MixinGuiScreen {
         }
     }
 
-    private void setText(String text){
-        if(text.startsWith(String.valueOf(LiquidBounce.commandManager.getPrefix()))) {
+    private void setText(String text) {
+        if (text.startsWith(String.valueOf(LiquidBounce.commandManager.getPrefix()))) {
             this.inputField.setMaxStringLength(114514);
         } else {
             this.inputField.setMaxStringLength(100);
@@ -102,15 +98,15 @@ public abstract class MixinGuiChat extends MixinGuiScreen {
             return;
         }
         String text = inputField.getText();
-        if(text.startsWith(String.valueOf(LiquidBounce.commandManager.getPrefix()))) {
+        if (text.startsWith(String.valueOf(LiquidBounce.commandManager.getPrefix()))) {
             this.inputField.setMaxStringLength(114514);
             if (keyCode == 28 || keyCode == 156) {
                 LiquidBounce.commandManager.executeCommands(text);
                 callbackInfo.cancel();
                 mc.ingameGUI.getChatGUI().addToSentMessages(text);
-                if(mc.currentScreen instanceof GuiChat)
+                if (mc.currentScreen instanceof GuiChat)
                     Minecraft.getMinecraft().displayGuiScreen(null);
-            }else{
+            } else {
                 LiquidBounce.commandManager.autoComplete(text);
             }
         } else {
@@ -123,8 +119,8 @@ public abstract class MixinGuiChat extends MixinGuiScreen {
      */
     @Inject(method = "setText", at = @At("HEAD"), cancellable = true)
     private void setText(String newChatText, boolean shouldOverwrite, CallbackInfo callbackInfo) {
-        if(shouldOverwrite&&newChatText.startsWith(String.valueOf(LiquidBounce.commandManager.getPrefix()))){
-            setText(LiquidBounce.commandManager.getPrefix()+"say "+newChatText);
+        if (shouldOverwrite && newChatText.startsWith(String.valueOf(LiquidBounce.commandManager.getPrefix()))) {
+            setText(LiquidBounce.commandManager.getPrefix() + "say " + newChatText);
             callbackInfo.cancel();
         }
     }
@@ -149,7 +145,7 @@ public abstract class MixinGuiChat extends MixinGuiScreen {
     }
 
     /**
-     * Adds client command auto completion and cancels sending an auto completion request packet
+     * Adds client command autocompletion and cancels sending an autocompletion request packet
      * to the server if the message contains a client command.
      *
      * @author NurMarvin
@@ -174,16 +170,18 @@ public abstract class MixinGuiChat extends MixinGuiScreen {
     private void onAutocompleteResponse(String[] autoCompleteResponse, CallbackInfo callbackInfo) {
         if (LiquidBounce.commandManager.getLatestAutoComplete().length != 0) callbackInfo.cancel();
     }
-    public void draw(){
+
+    public void draw() {
     }
+
     /**
      * @author CCBlueX
      */
     @Inject(method = "drawScreen", at = @At("HEAD"), cancellable = true)
-    public void drawScreen(int mouseX, int mouseY, float partialTicks,CallbackInfo ci) {
+    public void drawScreen(int mouseX, int mouseY, float partialTicks, CallbackInfo ci) {
         //RenderUtils.drawRect(10,10,20,20,new Color(255,255,255,255).getRGB());
-        RenderUtils.drawRoundedCornerRect(1, this.height - (int) fade - 2, this.width - 4, this.height - 1 , 2f, new Color(255,255,255,50).getRGB());
-        RenderUtils.drawRoundedCornerRect(2, this.height - (int) fade - 1, this.width - 3, this.height - 2 ,3f, new Color(0,0,0,200).getRGB());
+        RenderUtils.drawRoundedCornerRect(1, this.height - (int) fade - 2, this.width - 4, this.height - 1, 2f, new Color(255, 255, 255, 50).getRGB());
+        RenderUtils.drawRoundedCornerRect(2, this.height - (int) fade - 1, this.width - 3, this.height - 2, 3f, new Color(0, 0, 0, 200).getRGB());
 
         this.inputField.drawTextBox();
         FancyUiLaunchOption.INSTANCE.render(true, mouseX, mouseY);
@@ -194,10 +192,10 @@ public abstract class MixinGuiChat extends MixinGuiScreen {
             String text = textArray[textArray.length - 1];
             Object[] result = Arrays.stream(latestAutoComplete).filter((str) -> str.toLowerCase().startsWith(text.toLowerCase())).toArray();
             String resultText = "";
-            if(result.length>0)
-                resultText = ((String)result[0]).substring(Math.min(((String)result[0]).length(),text.length()));
+            if (result.length > 0)
+                resultText = ((String) result[0]).substring(Math.min(((String) result[0]).length(), text.length()));
 
-            mc.fontRendererObj.drawStringWithShadow(resultText, 5.5F + inputField.xPosition + mc.fontRendererObj.getStringWidth(inputField.getText()), inputField.yPosition+2f, new Color(165, 165, 165).getRGB());
+            mc.fontRendererObj.drawStringWithShadow(resultText, 5.5F + inputField.xPosition + mc.fontRendererObj.getStringWidth(inputField.getText()), inputField.yPosition + 2f, new Color(165, 165, 165).getRGB());
         }
 
         IChatComponent ichatcomponent =

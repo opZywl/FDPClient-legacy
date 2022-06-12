@@ -66,7 +66,9 @@ object EntityUtils : MinecraftInstance() {
     }
 
     fun isFriend(entity: Entity): Boolean {
-        return entity is EntityPlayer && entity.getName() != null && LiquidBounce.fileManager.friendsConfig.isFriend(stripColor(entity.getName()))
+        return entity is EntityPlayer && entity.getName() != null && LiquidBounce.fileManager.friendsConfig.isFriend(
+            stripColor(entity.getName())
+        )
     }
 
     fun isFriend(entity: String): Boolean {

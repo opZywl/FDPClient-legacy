@@ -10,14 +10,14 @@ abstract class DynamicCape(override val name: String) : ICape {
     protected val frames = mutableListOf<BufferedImage>()
     protected val delays = mutableListOf<Int>()
     protected var playTime = 0
-    protected val path = "fdp/cape/${name.lowercase().replace(" ","_")}_frame"
+    protected val path = "fdp/cape/${name.lowercase().replace(" ", "_")}_frame"
 
     override val cape: ResourceLocation
         get() {
             val frameTime = System.currentTimeMillis() % playTime
             var frameId = 0
-            for(i in delays.indices) {
-                if(frameTime < delays[i]) {
+            for (i in delays.indices) {
+                if (frameTime < delays[i]) {
                     break
                 }
                 frameId = i

@@ -7,13 +7,13 @@ package net.ccbluex.liquidbounce.injection.forge.mixins.entity;
 
 import net.ccbluex.liquidbounce.LiquidBounce;
 import net.ccbluex.liquidbounce.event.*;
-import net.ccbluex.liquidbounce.features.module.modules.combat.KillAura;
 import net.ccbluex.liquidbounce.features.module.modules.combat.Criticals;
+import net.ccbluex.liquidbounce.features.module.modules.combat.KillAura;
+import net.ccbluex.liquidbounce.features.module.modules.exploit.AntiDesync;
+import net.ccbluex.liquidbounce.features.module.modules.movement.Fly;
 import net.ccbluex.liquidbounce.features.module.modules.movement.InventoryMove;
 import net.ccbluex.liquidbounce.features.module.modules.movement.NoSlow;
 import net.ccbluex.liquidbounce.features.module.modules.movement.Sprint;
-import net.ccbluex.liquidbounce.features.module.modules.movement.Fly;
-import net.ccbluex.liquidbounce.features.module.modules.exploit.AntiDesync;
 import net.ccbluex.liquidbounce.features.module.modules.world.Scaffold;
 import net.ccbluex.liquidbounce.utils.Rotation;
 import net.ccbluex.liquidbounce.utils.RotationUtils;
@@ -50,31 +50,43 @@ import java.util.List;
 public abstract class MixinEntityPlayerSP extends MixinAbstractClientPlayer {
 
     @Shadow
-    private boolean serverSneakState;
-
-    @Shadow
     public boolean serverSprintState;
+    @Shadow
+    public int sprintingTicksLeft;
+    @Shadow
+    public float timeInPortal;
+    @Shadow
+    public float prevTimeInPortal;
+    @Shadow
+    public MovementInput movementInput;
+    @Shadow
+    public float horseJumpPower;
+    @Shadow
+    public int horseJumpPowerCounter;
+    @Shadow
+    @Final
+    public NetHandlerPlayClient sendQueue;
+    @Shadow
+    protected int sprintToggleTimer;
+    @Shadow
+    protected Minecraft mc;
+    @Shadow
+    private boolean serverSneakState;
+    @Shadow
+    private double lastReportedPosX;
+    @Shadow
+    private int positionUpdateTicks;
+    @Shadow
+    private double lastReportedPosY;
+    @Shadow
+    private double lastReportedPosZ;
+    @Shadow
+    private float lastReportedYaw;
+    @Shadow
+    private float lastReportedPitch;
 
     @Shadow
     public abstract void playSound(String name, float volume, float pitch);
-
-    @Shadow
-    public int sprintingTicksLeft;
-
-    @Shadow
-    protected int sprintToggleTimer;
-
-    @Shadow
-    public float timeInPortal;
-
-    @Shadow
-    public float prevTimeInPortal;
-
-    @Shadow
-    protected Minecraft mc;
-
-    @Shadow
-    public MovementInput movementInput;
 
     @Shadow
     public abstract void setSprinting(boolean sprinting);
@@ -86,48 +98,20 @@ public abstract class MixinEntityPlayerSP extends MixinAbstractClientPlayer {
     public abstract void sendPlayerAbilities();
 
     @Shadow
-    public float horseJumpPower;
-
-    @Shadow
-    public int horseJumpPowerCounter;
-
-    @Shadow
     protected abstract void sendHorseJump();
 
     @Shadow
     public abstract boolean isRidingHorse();
 
     @Shadow
-    @Final
-    public NetHandlerPlayClient sendQueue;
-
-    @Shadow
     public abstract boolean isSneaking();
-
-    @Shadow
-    private double lastReportedPosX;
-
-    @Shadow
-    private int positionUpdateTicks;
-
-    @Shadow
-    private double lastReportedPosY;
-
-    @Shadow
-    private double lastReportedPosZ;
-
-    @Shadow
-    private float lastReportedYaw;
-
-    @Shadow
-    private float lastReportedPitch;
 
     @Shadow
     protected abstract boolean isCurrentViewEntity();
 
     /**
      * @author CCBlueX, liulihaocai
-     *
+     * <p>
      * use inject to make sure this works with ViaForge mod
      */
     @Inject(method = "onUpdateWalkingPlayer", at = @At("HEAD"), cancellable = true)
@@ -173,7 +157,7 @@ public abstract class MixinEntityPlayerSP extends MixinAbstractClientPlayer {
                 double zDiff = this.posZ - this.lastReportedPosZ;
                 double yawDiff = yaw - lastReportedYaw;
                 double pitchDiff = pitch - lastReportedPitch;
-                
+
                 final Fly fly = LiquidBounce.moduleManager.getModule(Fly.class);
                 final Criticals criticals = LiquidBounce.moduleManager.getModule(Criticals.class);
                 final AntiDesync antiDesync = LiquidBounce.moduleManager.getModule(AntiDesync.class);
@@ -326,9 +310,9 @@ public abstract class MixinEntityPlayerSP extends MixinAbstractClientPlayer {
 
         if (this.isSprinting() && ((!(sprint.getState() && sprint.getAllDirectionsValue().get()) && this.movementInput.moveForward < f) || this.isCollidedHorizontally || !flag3))
             this.setSprinting(false);
-        
+
         final InventoryMove inventoryMove = LiquidBounce.moduleManager.getModule(InventoryMove.class);
-        if(inventoryMove.getNoSprintValue().equals("Real") && inventoryMove.getInvOpen())
+        if (inventoryMove.getNoSprintValue().equals("Real") && inventoryMove.getInvOpen())
             this.setSprinting(false);
 
         //aac may check it :(

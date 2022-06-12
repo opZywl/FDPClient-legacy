@@ -9,7 +9,6 @@ import io.netty.buffer.Unpooled;
 import net.ccbluex.liquidbounce.LiquidBounce;
 import net.ccbluex.liquidbounce.event.PacketEvent;
 import net.ccbluex.liquidbounce.features.module.modules.misc.SilentDisconnect;
-//import net.ccbluex.liquidbounce.features.module.modules.exploit.AntiExploit;
 import net.ccbluex.liquidbounce.features.special.AntiForge;
 import net.ccbluex.liquidbounce.utils.ClientUtils;
 import net.minecraft.client.ClientBrandRetriever;
@@ -48,17 +47,14 @@ import java.net.URISyntaxException;
 public abstract class MixinNetHandlerPlayClient {
 
     @Shadow
+    public int currentServerMaxPlayers;
+    @Shadow
     @Final
     private NetworkManager netManager;
-
     @Shadow
     private Minecraft gameController;
-
     @Shadow
     private WorldClient clientWorldController;
-
-    @Shadow
-    public int currentServerMaxPlayers;
 
     @Shadow
     public abstract void handleEntityVelocity(S12PacketEntityVelocity packetIn);
@@ -67,7 +63,7 @@ public abstract class MixinNetHandlerPlayClient {
     private void handleResourcePack(final S48PacketResourcePackSend p_handleResourcePack_1_, final CallbackInfo callbackInfo) {
         final String url = p_handleResourcePack_1_.getURL();
         final String hash = p_handleResourcePack_1_.getHash();
-        
+
         // fix this later final AntiExploit antiExploit = (AntiExploit) LiquidBounce.moduleManager.getModule(AntiExploit.class);
 
         try {
@@ -78,13 +74,13 @@ public abstract class MixinNetHandlerPlayClient {
                 throw new URISyntaxException(url, "Wrong protocol");
 
             // ensure it performed like vanilla
-            if(isLevelProtocol && (url.contains("..") || !url.endsWith(".zip"))) {
+            if (isLevelProtocol && (url.contains("..") || !url.endsWith(".zip"))) {
                 String s2 = url.substring("level://".length());
                 File file1 = new File(this.gameController.mcDataDir, "saves");
                 File file2 = new File(file1, s2);
                 if (file2.isFile()
                         && !url.toLowerCase().contains(LiquidBounce.CLIENT_NAME.toLowerCase())
-                        /* lmao imagine check the client legal with this exploit, zqat.top */) {
+                    /* lmao imagine check the client legal with this exploit, zqat.top */) {
                     netManager.sendPacket(new C19PacketResourcePackStatus(hash, C19PacketResourcePackStatus.Action.ACCEPTED));
                     // a legit client will send SUCCESSFULLY_LOADED back even [java.util.zip.ZipException] is thrown
                     netManager.sendPacket(new C19PacketResourcePackStatus(hash, C19PacketResourcePackStatus.Action.SUCCESSFULLY_LOADED));
@@ -95,7 +91,7 @@ public abstract class MixinNetHandlerPlayClient {
                 /* fix this later if (antiExploit.getState() && antiExploit.getNotifyValue().get()) {
                     ClientUtils.displayChatMessage("§B[§6§lFDPCLIENT§8] §6Resourcepack exploit detected.");
                     ClientUtils.displayChatMessage("§B[§6§lFDPCLIENT§8] §BExploit target directory: §r" + url);*/
-                
+
                 throw new IllegalStateException("Exploit founded!");
             }
         } catch (final URISyntaxException e) {
@@ -151,7 +147,7 @@ public abstract class MixinNetHandlerPlayClient {
 
     @Inject(method = "onDisconnect", at = @At("HEAD"), cancellable = true)
     private void onDisconnect(IChatComponent reason, CallbackInfo callbackInfo) {
-        if(gameController.theWorld != null && gameController.thePlayer != null
+        if (gameController.theWorld != null && gameController.thePlayer != null
                 && LiquidBounce.moduleManager.getModule(SilentDisconnect.class).getState()) {
             ClientUtils.INSTANCE.displayAlert(I18n.format("disconnect.lost") + ":");
             ClientUtils.INSTANCE.displayChatMessage(reason.getFormattedText());
@@ -159,67 +155,67 @@ public abstract class MixinNetHandlerPlayClient {
         }
     }
 
-    @ModifyArg(method={"handleJoinGame", "handleRespawn"}, at=@At(value="INVOKE", target="Lnet/minecraft/client/Minecraft;displayGuiScreen(Lnet/minecraft/client/gui/GuiScreen;)V"))
+    @ModifyArg(method = {"handleJoinGame", "handleRespawn"}, at = @At(value = "INVOKE", target = "Lnet/minecraft/client/Minecraft;displayGuiScreen(Lnet/minecraft/client/gui/GuiScreen;)V"))
     private GuiScreen handleJoinGame(GuiScreen guiScreen) {
         return null;
     }
 
-    @Inject(method={"handleAnimation"}, at={@At(value="INVOKE", target="Lnet/minecraft/network/PacketThreadUtil;checkThreadAndEnqueue(Lnet/minecraft/network/Packet;Lnet/minecraft/network/INetHandler;Lnet/minecraft/util/IThreadListener;)V", shift=At.Shift.AFTER)}, cancellable=true)
+    @Inject(method = {"handleAnimation"}, at = {@At(value = "INVOKE", target = "Lnet/minecraft/network/PacketThreadUtil;checkThreadAndEnqueue(Lnet/minecraft/network/Packet;Lnet/minecraft/network/INetHandler;Lnet/minecraft/util/IThreadListener;)V", shift = At.Shift.AFTER)}, cancellable = true)
     private void handleAnimation(S0BPacketAnimation s0BPacketAnimation, CallbackInfo callbackInfo) {
         this.cancelIfNull(this.clientWorldController, callbackInfo);
     }
 
-    @Inject(method={"handleEntityTeleport"}, at={@At(value="INVOKE", target="Lnet/minecraft/network/PacketThreadUtil;checkThreadAndEnqueue(Lnet/minecraft/network/Packet;Lnet/minecraft/network/INetHandler;Lnet/minecraft/util/IThreadListener;)V", shift=At.Shift.AFTER)}, cancellable=true)
+    @Inject(method = {"handleEntityTeleport"}, at = {@At(value = "INVOKE", target = "Lnet/minecraft/network/PacketThreadUtil;checkThreadAndEnqueue(Lnet/minecraft/network/Packet;Lnet/minecraft/network/INetHandler;Lnet/minecraft/util/IThreadListener;)V", shift = At.Shift.AFTER)}, cancellable = true)
     private void handleEntityTeleport(S18PacketEntityTeleport s18PacketEntityTeleport, CallbackInfo callbackInfo) {
         this.cancelIfNull(this.clientWorldController, callbackInfo);
     }
 
-    @Inject(method={"handleEntityMovement"}, at={@At(value="INVOKE", target="Lnet/minecraft/network/PacketThreadUtil;checkThreadAndEnqueue(Lnet/minecraft/network/Packet;Lnet/minecraft/network/INetHandler;Lnet/minecraft/util/IThreadListener;)V", shift=At.Shift.AFTER)}, cancellable=true)
+    @Inject(method = {"handleEntityMovement"}, at = {@At(value = "INVOKE", target = "Lnet/minecraft/network/PacketThreadUtil;checkThreadAndEnqueue(Lnet/minecraft/network/Packet;Lnet/minecraft/network/INetHandler;Lnet/minecraft/util/IThreadListener;)V", shift = At.Shift.AFTER)}, cancellable = true)
     private void handleEntityMovement(S14PacketEntity s14PacketEntity, CallbackInfo callbackInfo) {
         this.cancelIfNull(this.clientWorldController, callbackInfo);
     }
 
-    @Inject(method={"handleEntityHeadLook"}, at={@At(value="INVOKE", target="Lnet/minecraft/network/PacketThreadUtil;checkThreadAndEnqueue(Lnet/minecraft/network/Packet;Lnet/minecraft/network/INetHandler;Lnet/minecraft/util/IThreadListener;)V", shift=At.Shift.AFTER)}, cancellable=true)
+    @Inject(method = {"handleEntityHeadLook"}, at = {@At(value = "INVOKE", target = "Lnet/minecraft/network/PacketThreadUtil;checkThreadAndEnqueue(Lnet/minecraft/network/Packet;Lnet/minecraft/network/INetHandler;Lnet/minecraft/util/IThreadListener;)V", shift = At.Shift.AFTER)}, cancellable = true)
     private void handleEntityHeadLook(S19PacketEntityHeadLook s19PacketEntityHeadLook, CallbackInfo callbackInfo) {
         this.cancelIfNull(this.clientWorldController, callbackInfo);
     }
 
-    @Inject(method={"handleEntityProperties"}, at={@At(value="INVOKE", target="Lnet/minecraft/network/PacketThreadUtil;checkThreadAndEnqueue(Lnet/minecraft/network/Packet;Lnet/minecraft/network/INetHandler;Lnet/minecraft/util/IThreadListener;)V", shift=At.Shift.AFTER)}, cancellable=true)
+    @Inject(method = {"handleEntityProperties"}, at = {@At(value = "INVOKE", target = "Lnet/minecraft/network/PacketThreadUtil;checkThreadAndEnqueue(Lnet/minecraft/network/Packet;Lnet/minecraft/network/INetHandler;Lnet/minecraft/util/IThreadListener;)V", shift = At.Shift.AFTER)}, cancellable = true)
     private void handleEntityProperties(S20PacketEntityProperties s20PacketEntityProperties, CallbackInfo callbackInfo) {
         this.cancelIfNull(this.clientWorldController, callbackInfo);
     }
 
-    @Inject(method={"handleEntityMetadata"}, at={@At(value="INVOKE", target="Lnet/minecraft/network/PacketThreadUtil;checkThreadAndEnqueue(Lnet/minecraft/network/Packet;Lnet/minecraft/network/INetHandler;Lnet/minecraft/util/IThreadListener;)V", shift=At.Shift.AFTER)}, cancellable=true)
+    @Inject(method = {"handleEntityMetadata"}, at = {@At(value = "INVOKE", target = "Lnet/minecraft/network/PacketThreadUtil;checkThreadAndEnqueue(Lnet/minecraft/network/Packet;Lnet/minecraft/network/INetHandler;Lnet/minecraft/util/IThreadListener;)V", shift = At.Shift.AFTER)}, cancellable = true)
     private void handleEntityMetadata(S1CPacketEntityMetadata s1CPacketEntityMetadata, CallbackInfo callbackInfo) {
         this.cancelIfNull(this.clientWorldController, callbackInfo);
     }
 
-    @Inject(method={"handleEntityEquipment"}, at={@At(value="INVOKE", target="Lnet/minecraft/network/PacketThreadUtil;checkThreadAndEnqueue(Lnet/minecraft/network/Packet;Lnet/minecraft/network/INetHandler;Lnet/minecraft/util/IThreadListener;)V", shift=At.Shift.AFTER)}, cancellable=true)
+    @Inject(method = {"handleEntityEquipment"}, at = {@At(value = "INVOKE", target = "Lnet/minecraft/network/PacketThreadUtil;checkThreadAndEnqueue(Lnet/minecraft/network/Packet;Lnet/minecraft/network/INetHandler;Lnet/minecraft/util/IThreadListener;)V", shift = At.Shift.AFTER)}, cancellable = true)
     private void handleEntityEquipment(S04PacketEntityEquipment s04PacketEntityEquipment, CallbackInfo callbackInfo) {
         this.cancelIfNull(this.clientWorldController, callbackInfo);
     }
 
-    @Inject(method={"handleDestroyEntities"}, at={@At(value="INVOKE", target="Lnet/minecraft/network/PacketThreadUtil;checkThreadAndEnqueue(Lnet/minecraft/network/Packet;Lnet/minecraft/network/INetHandler;Lnet/minecraft/util/IThreadListener;)V", shift=At.Shift.AFTER)}, cancellable=true)
+    @Inject(method = {"handleDestroyEntities"}, at = {@At(value = "INVOKE", target = "Lnet/minecraft/network/PacketThreadUtil;checkThreadAndEnqueue(Lnet/minecraft/network/Packet;Lnet/minecraft/network/INetHandler;Lnet/minecraft/util/IThreadListener;)V", shift = At.Shift.AFTER)}, cancellable = true)
     private void handleDestroyEntities(S13PacketDestroyEntities s13PacketDestroyEntities, CallbackInfo callbackInfo) {
         this.cancelIfNull(this.clientWorldController, callbackInfo);
     }
 
-    @Inject(method={"handleScoreboardObjective"}, at={@At(value="INVOKE", target="Lnet/minecraft/network/PacketThreadUtil;checkThreadAndEnqueue(Lnet/minecraft/network/Packet;Lnet/minecraft/network/INetHandler;Lnet/minecraft/util/IThreadListener;)V", shift=At.Shift.AFTER)}, cancellable=true)
+    @Inject(method = {"handleScoreboardObjective"}, at = {@At(value = "INVOKE", target = "Lnet/minecraft/network/PacketThreadUtil;checkThreadAndEnqueue(Lnet/minecraft/network/Packet;Lnet/minecraft/network/INetHandler;Lnet/minecraft/util/IThreadListener;)V", shift = At.Shift.AFTER)}, cancellable = true)
     private void handleScoreboardObjective(S3BPacketScoreboardObjective s3BPacketScoreboardObjective, CallbackInfo callbackInfo) {
         this.cancelIfNull(this.clientWorldController, callbackInfo);
     }
 
-    @Inject(method={"handleConfirmTransaction"}, at={@At(value="INVOKE", target="Lnet/minecraft/network/play/server/S32PacketConfirmTransaction;getWindowId()I", ordinal=0)}, cancellable=true, locals=LocalCapture.CAPTURE_FAILEXCEPTION)
+    @Inject(method = {"handleConfirmTransaction"}, at = {@At(value = "INVOKE", target = "Lnet/minecraft/network/play/server/S32PacketConfirmTransaction;getWindowId()I", ordinal = 0)}, cancellable = true, locals = LocalCapture.CAPTURE_FAILEXCEPTION)
     private void handleConfirmTransaction(S32PacketConfirmTransaction s32PacketConfirmTransaction, CallbackInfo callbackInfo, Container container, EntityPlayer entityPlayer) {
         this.cancelIfNull(entityPlayer, callbackInfo);
     }
 
-    @Inject(method={"handleSoundEffect"}, at={@At(value="INVOKE", target="Lnet/minecraft/network/PacketThreadUtil;checkThreadAndEnqueue(Lnet/minecraft/network/Packet;Lnet/minecraft/network/INetHandler;Lnet/minecraft/util/IThreadListener;)V")}, cancellable=true)
+    @Inject(method = {"handleSoundEffect"}, at = {@At(value = "INVOKE", target = "Lnet/minecraft/network/PacketThreadUtil;checkThreadAndEnqueue(Lnet/minecraft/network/Packet;Lnet/minecraft/network/INetHandler;Lnet/minecraft/util/IThreadListener;)V")}, cancellable = true)
     private void handleSoundEffect(S29PacketSoundEffect s29PacketSoundEffect, CallbackInfo callbackInfo) {
         this.cancelIfNull(this.gameController.theWorld, callbackInfo);
     }
 
-    @Inject(method={"handleTimeUpdate"}, at={@At(value="INVOKE", target="Lnet/minecraft/network/PacketThreadUtil;checkThreadAndEnqueue(Lnet/minecraft/network/Packet;Lnet/minecraft/network/INetHandler;Lnet/minecraft/util/IThreadListener;)V")}, cancellable=true)
+    @Inject(method = {"handleTimeUpdate"}, at = {@At(value = "INVOKE", target = "Lnet/minecraft/network/PacketThreadUtil;checkThreadAndEnqueue(Lnet/minecraft/network/Packet;Lnet/minecraft/network/INetHandler;Lnet/minecraft/util/IThreadListener;)V")}, cancellable = true)
     private void handleTimeUpdate(S03PacketTimeUpdate s03PacketTimeUpdate, CallbackInfo callbackInfo) {
         this.cancelIfNull(this.gameController.theWorld, callbackInfo);
     }

@@ -5,7 +5,6 @@ package net.ccbluex.liquidbounce.launch.data.legacyui.clickgui.style.styles.novo
 
 
 import net.ccbluex.liquidbounce.utils.render.RenderUtils;
-import net.minecraft.client.gui.Gui;
 import org.lwjgl.input.Mouse;
 
 import java.awt.*;

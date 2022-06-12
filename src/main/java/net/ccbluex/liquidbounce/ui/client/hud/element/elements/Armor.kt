@@ -11,7 +11,6 @@ import net.ccbluex.liquidbounce.ui.client.hud.element.ElementInfo
 import net.ccbluex.liquidbounce.ui.client.hud.element.Side
 import net.ccbluex.liquidbounce.value.ListValue
 import net.minecraft.client.renderer.GlStateManager
-import org.lwjgl.opengl.GL11
 
 /**
  * CustomHUD Armor element
@@ -27,7 +26,7 @@ class Armor(
 ) : Element(x, y, scale, side) {
 
     private val modeValue = ListValue("Alignment", arrayOf("Horizontal", "Vertical"), "Horizontal")
-    
+
     /**
      * Draw element
      */

@@ -50,7 +50,7 @@ class VanillaFly : FlyMode("Vanilla") {
         val packet = event.packet
 
         if (packet is C03PacketPlayer) {
-            if(spoofValue.get()) {
+            if (spoofValue.get()) {
                 packet.onGround = true
             }
             packets++

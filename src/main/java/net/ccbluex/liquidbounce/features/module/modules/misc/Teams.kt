@@ -28,7 +28,8 @@ class Teams : Module() {
         mc.thePlayer ?: return false
 
         if (scoreboardValue.get() && mc.thePlayer.team != null && entity.team != null &&
-                mc.thePlayer.team.isSameTeam(entity.team)) {
+            mc.thePlayer.team.isSameTeam(entity.team)
+        ) {
             return true
         }
         if (gommeSWValue.get() && mc.thePlayer.displayName != null && entity.displayName != null) {

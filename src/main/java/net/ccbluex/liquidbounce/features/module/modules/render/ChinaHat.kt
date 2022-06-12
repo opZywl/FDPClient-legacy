@@ -36,12 +36,12 @@ class ChinaHat : Module() {
 
     @EventTarget
     fun onRender3d(event: Render3DEvent) {
-        if(drawThePlayerValue.get() && !(onlyThirdPersonValue.get() && mc.gameSettings.thirdPersonView == 0)) {
+        if (drawThePlayerValue.get() && !(onlyThirdPersonValue.get() && mc.gameSettings.thirdPersonView == 0)) {
             drawChinaHatFor(mc.thePlayer)
         }
-        if(drawTargetsValue.get()) {
+        if (drawTargetsValue.get()) {
             mc.theWorld.loadedEntityList.forEach {
-                if(EntityUtils.isSelected(it, true)) {
+                if (EntityUtils.isSelected(it, true)) {
                     drawChinaHatFor(it as EntityLivingBase)
                 }
             }
@@ -56,22 +56,41 @@ class ChinaHat : Module() {
         GL11.glDisable(GL11.GL_DEPTH_TEST)
         GL11.glDepthMask(false)
         GL11.glDisable(GL11.GL_CULL_FACE)
-        if(!colorRainbowValue.get()) {
-            GL11.glColor4f(colorRedValue.get() / 255f, colorGreenValue.get() / 255f, colorBlueValue.get() / 255f, colorAlphaValue.get() / 255f)
+        if (!colorRainbowValue.get()) {
+            GL11.glColor4f(
+                colorRedValue.get() / 255f,
+                colorGreenValue.get() / 255f,
+                colorBlueValue.get() / 255f,
+                colorAlphaValue.get() / 255f
+            )
         }
-        GL11.glTranslated(entity.lastTickPosX + (entity.posX - entity.lastTickPosX) * mc.timer.renderPartialTicks - mc.renderManager.renderPosX,
+        GL11.glTranslated(
+            entity.lastTickPosX + (entity.posX - entity.lastTickPosX) * mc.timer.renderPartialTicks - mc.renderManager.renderPosX,
             entity.lastTickPosY + (entity.posY - entity.lastTickPosY) * mc.timer.renderPartialTicks - mc.renderManager.renderPosY + entity.height + yPosValue.get(),
-            entity.lastTickPosZ + (entity.posZ - entity.lastTickPosZ) * mc.timer.renderPartialTicks - mc.renderManager.renderPosZ)
+            entity.lastTickPosZ + (entity.posZ - entity.lastTickPosZ) * mc.timer.renderPartialTicks - mc.renderManager.renderPosZ
+        )
         GL11.glRotatef((entity.ticksExisted + mc.timer.renderPartialTicks) * rotateSpeedValue.get(), 0f, 1f, 0f)
 
         GL11.glBegin(GL11.GL_TRIANGLE_FAN)
         GL11.glVertex3d(0.0, heightValue.get().toDouble(), 0.0)
         val radius = radiusValue.get().toDouble()
-        for(i in 0..360 step 5) {
-            if(colorRainbowValue.get()) {
-                RenderUtils.glColor(Color.getHSBColor(if (i <180) { HUD.rainbowStartValue.get() + (HUD.rainbowStopValue.get() - HUD.rainbowStartValue.get()) * (i / 180f) } else { HUD.rainbowStartValue.get() + (HUD.rainbowStopValue.get() - HUD.rainbowStartValue.get()) * (-(i-360) / 180f) }, 0.7f, 1.0f), colorAlphaValue.get() / 255f)
+        for (i in 0..360 step 5) {
+            if (colorRainbowValue.get()) {
+                RenderUtils.glColor(
+                    Color.getHSBColor(
+                        if (i < 180) {
+                            HUD.rainbowStartValue.get() + (HUD.rainbowStopValue.get() - HUD.rainbowStartValue.get()) * (i / 180f)
+                        } else {
+                            HUD.rainbowStartValue.get() + (HUD.rainbowStopValue.get() - HUD.rainbowStartValue.get()) * (-(i - 360) / 180f)
+                        }, 0.7f, 1.0f
+                    ), colorAlphaValue.get() / 255f
+                )
             }
-            GL11.glVertex3d(cos(i.toDouble() * Math.PI / 180.0) * radius, 0.0, sin(i.toDouble() * Math.PI / 180.0) * radius)
+            GL11.glVertex3d(
+                cos(i.toDouble() * Math.PI / 180.0) * radius,
+                0.0,
+                sin(i.toDouble() * Math.PI / 180.0) * radius
+            )
         }
         GL11.glVertex3d(0.0, heightValue.get().toDouble(), 0.0)
         GL11.glEnd()

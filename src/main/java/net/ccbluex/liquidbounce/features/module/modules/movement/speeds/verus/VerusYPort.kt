@@ -6,19 +6,19 @@ import net.ccbluex.liquidbounce.utils.MovementUtils
 import net.ccbluex.liquidbounce.value.FloatValue
 
 class VerusYPort : SpeedMode("VerusYPort") {
-	private val speedValue = FloatValue("${valuePrefix}Speed", 0.61f, 0.1f, 1f)
+    private val speedValue = FloatValue("${valuePrefix}Speed", 0.61f, 0.1f, 1f)
 
-	override fun onMove(event: MoveEvent) {
-		if (MovementUtils.isMoving()) {
-			mc.gameSettings.keyBindJump.pressed = false
-			if (mc.thePlayer.onGround) {
-				mc.thePlayer.jump() // sproof jump
-				mc.thePlayer.motionY = 0.0
-				MovementUtils.strafe(speedValue.get())
-				event.y = 0.41999998688698
-			} else {
-				MovementUtils.strafe()
-			}
-		}
-	}
+    override fun onMove(event: MoveEvent) {
+        if (MovementUtils.isMoving()) {
+            mc.gameSettings.keyBindJump.pressed = false
+            if (mc.thePlayer.onGround) {
+                mc.thePlayer.jump() // sproof jump
+                mc.thePlayer.motionY = 0.0
+                MovementUtils.strafe(speedValue.get())
+                event.y = 0.41999998688698
+            } else {
+                MovementUtils.strafe()
+            }
+        }
+    }
 }

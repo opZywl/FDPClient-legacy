@@ -23,8 +23,9 @@ public class OptimizeTransformer implements IClassTransformer {
 
     /**
      * Add transform to transformMap
-     * @param mcpName the normal name look like in developing env
-     * @param notchName the obfuscated name in player env
+     *
+     * @param mcpName    the normal name look like in developing env
+     * @param notchName  the obfuscated name in player env
      * @param targetName the target method in [StaticStorage]
      */
     private static void addTransform(final String mcpName, final String notchName, final String targetName) {
@@ -34,7 +35,7 @@ public class OptimizeTransformer implements IClassTransformer {
 
     @Override
     public byte[] transform(String name, String transformedName, byte[] basicClass) {
-        if(transformedName.startsWith("net.minecraft") && basicClass != null && !transformMap.containsKey(transformedName)) {
+        if (transformedName.startsWith("net.minecraft") && basicClass != null && !transformMap.containsKey(transformedName)) {
             try {
                 final ClassNode classNode = ASMUtils.INSTANCE.toClassNode(basicClass);
                 AtomicBoolean changed = new AtomicBoolean(false);
@@ -44,7 +45,7 @@ public class OptimizeTransformer implements IClassTransformer {
                         final AbstractInsnNode abstractInsnNode = methodNode.instructions.get(i);
                         if (abstractInsnNode instanceof MethodInsnNode) {
                             MethodInsnNode min = (MethodInsnNode) abstractInsnNode;
-                            if(min.getOpcode() == Opcodes.INVOKESTATIC && min.name.equals("values")) {
+                            if (min.getOpcode() == Opcodes.INVOKESTATIC && min.name.equals("values")) {
                                 final String owner = min.owner.replaceAll("/", ".");
                                 if (transformMap.containsKey(owner)) {
                                     changed.set(true);
@@ -59,7 +60,7 @@ public class OptimizeTransformer implements IClassTransformer {
                 if (changed.get()) {
                     return ASMUtils.INSTANCE.toBytes(classNode);
                 }
-            }catch(final Throwable throwable) {
+            } catch (final Throwable throwable) {
                 throwable.printStackTrace();
             }
         }

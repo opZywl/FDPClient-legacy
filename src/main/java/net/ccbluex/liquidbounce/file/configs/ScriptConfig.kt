@@ -15,7 +15,10 @@ class ScriptConfig(file: File) : FileConfig(file) {
         config.split("\n").forEach { line ->
             if (line.contains(":")) {
                 val data = line.split(":").toTypedArray()
-                addSubscripts(Base64.getDecoder().decode(data[0]).toString(Charset.defaultCharset()), Base64.getDecoder().decode(data[1]).toString(Charset.defaultCharset()))
+                addSubscripts(
+                    Base64.getDecoder().decode(data[0]).toString(Charset.defaultCharset()),
+                    Base64.getDecoder().decode(data[1]).toString(Charset.defaultCharset())
+                )
             } else {
                 Base64.getDecoder().decode(line).toString(Charset.defaultCharset())
             }

@@ -27,7 +27,7 @@ abstract class Element(
 ) : MinecraftInstance() {
 
     val info = javaClass.getAnnotation(ElementInfo::class.java)
-            ?: throw IllegalArgumentException("Passed element with missing element info")
+        ?: throw IllegalArgumentException("Passed element with missing element info")
 
     val name: String
         get() = info.name
@@ -132,7 +132,13 @@ abstract class Element(
             return
         }
 
-        BlurUtils.draw((renderX + (x.coerceAtMost(x2))).toFloat() * scale, (renderY + (y.coerceAtMost(y2))).toFloat() * scale, abs(x2 - x) * scale, abs(y2 - y) * scale, blurValue.get())
+        BlurUtils.draw(
+            (renderX + (x.coerceAtMost(x2))).toFloat() * scale,
+            (renderY + (y.coerceAtMost(y2))).toFloat() * scale,
+            abs(x2 - x) * scale,
+            abs(y2 - y) * scale,
+            blurValue.get()
+        )
     }
 
     /**
@@ -149,7 +155,7 @@ abstract class Element(
 /**
  * Element info
  */
-@kotlin.annotation.Retention(AnnotationRetention.RUNTIME)
+@Retention(AnnotationRetention.RUNTIME)
 annotation class ElementInfo(val name: String, val blur: Boolean = false)
 
 /**

@@ -174,9 +174,9 @@ object PacketUtils : MinecraftInstance() {
     fun getPacketType(packet: Packet<*>): PacketType {
         val className = packet.javaClass.simpleName
         if (className.startsWith("C", ignoreCase = true)) {
-                return PacketType.CLIENTSIDE
+            return PacketType.CLIENTSIDE
         } else if (className.startsWith("S", ignoreCase = true)) {
-                return PacketType.SERVERSIDE
+            return PacketType.SERVERSIDE
         }
         // idk...
         return PacketType.UNKNOWN

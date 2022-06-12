@@ -11,7 +11,6 @@ import net.minecraft.client.gui.GuiScreen
 import net.minecraft.client.renderer.GlStateManager
 import net.minecraft.client.renderer.OpenGlHelper
 import net.minecraft.client.renderer.RenderHelper
-import org.lwjgl.Sys
 import org.lwjgl.opengl.GL11
 import java.io.File
 import java.io.FileInputStream
@@ -26,11 +25,27 @@ object GuiCapeManager : GuiScreen() {
     val capeList = mutableListOf<ICape>()
 
     init {
-        arrayOf("classic", "classic2", "aurora", "forest", "rose", "lavender", "ocean", "modern1", "modern2", "lava", "citrus", "fire", "nightlife", "abstract", "blur").forEach {
+        arrayOf(
+            "classic",
+            "classic2",
+            "aurora",
+            "forest",
+            "rose",
+            "lavender",
+            "ocean",
+            "modern1",
+            "modern2",
+            "lava",
+            "citrus",
+            "fire",
+            "nightlife",
+            "abstract",
+            "blur"
+        ).forEach {
             try {
                 embeddedCapes.add(loadCapeFromResource(it, "assets/minecraft/fdpclient/cape/$it.png"))
-            }catch (e: Throwable){
-                System.out.println("Failed to load Capes")
+            } catch (e: Throwable) {
+                println("Failed to load Capes")
             }
         }
         nowCape = embeddedCapes.random()
@@ -52,11 +67,13 @@ object GuiCapeManager : GuiScreen() {
                 try {
                     val args = file.name.split(".").toTypedArray()
                     val name = java.lang.String.join(".", *args.copyOfRange(0, args.size - 1))
-                    capeList.add(if(args.last() == "gif") {
-                        loadGifCapeFromFile(name, file)
-                    } else {
-                        loadCapeFromFile(name, file)
-                    })
+                    capeList.add(
+                        if (args.last() == "gif") {
+                            loadGifCapeFromFile(name, file)
+                        } else {
+                            loadCapeFromFile(name, file)
+                        }
+                    )
                 } catch (e: Exception) {
                     ClientUtils.logError("Occurred an error while loading cape from file: ${file.name}")
                     e.printStackTrace()
@@ -82,16 +99,24 @@ object GuiCapeManager : GuiScreen() {
     fun save() {
         val json = JsonObject()
 
-        json.addProperty("name", if (nowCape != null) { nowCape!!.name } else { "NONE" })
+        json.addProperty(
+            "name", if (nowCape != null) {
+                nowCape!!.name
+            } else {
+                "NONE"
+            }
+        )
 
         jsonFile.writeText(FileManager.PRETTY_GSON.toJson(json), Charsets.UTF_8)
     }
 
-    private fun loadCapeFromResource(name: String, loc: String) = SingleImageCape(name, ImageIO.read(GuiCapeManager::class.java.classLoader.getResourceAsStream(loc)))
+    private fun loadCapeFromResource(name: String, loc: String) =
+        SingleImageCape(name, ImageIO.read(GuiCapeManager::class.java.classLoader.getResourceAsStream(loc)))
 
     private fun loadCapeFromFile(name: String, file: File) = SingleImageCape(name, ImageIO.read(file))
 
-    private fun loadGifCapeFromResource(name: String, loc: String) = GifCape(name, GuiCapeManager::class.java.classLoader.getResourceAsStream(loc))
+    private fun loadGifCapeFromResource(name: String, loc: String) =
+        GifCape(name, GuiCapeManager::class.java.classLoader.getResourceAsStream(loc))
 
     private fun loadGifCapeFromFile(name: String, file: File) = GifCape(name, FileInputStream(file))
 
@@ -102,8 +127,26 @@ object GuiCapeManager : GuiScreen() {
     // render
     override fun initGui() {
         this.buttonList.add(GuiButton(0, 0, 0, mc.fontRendererObj.getStringWidth("< QUIT") + 10, 20, "< QUIT"))
-        this.buttonList.add(GuiButton(1, (width * 0.3).toInt(), (height * 0.5).toInt(), mc.fontRendererObj.getStringWidth("<-") + 10, 20, "<-"))
-        this.buttonList.add(GuiButton(2, (width * 0.7).toInt(), (height * 0.5).toInt(), mc.fontRendererObj.getStringWidth("->") + 10, 20, "->"))
+        this.buttonList.add(
+            GuiButton(
+                1,
+                (width * 0.3).toInt(),
+                (height * 0.5).toInt(),
+                mc.fontRendererObj.getStringWidth("<-") + 10,
+                20,
+                "<-"
+            )
+        )
+        this.buttonList.add(
+            GuiButton(
+                2,
+                (width * 0.7).toInt(),
+                (height * 0.5).toInt(),
+                mc.fontRendererObj.getStringWidth("->") + 10,
+                20,
+                "->"
+            )
+        )
     }
 
     override fun actionPerformed(p_actionPerformed_1_: GuiButton) {
@@ -136,7 +179,13 @@ object GuiCapeManager : GuiScreen() {
         this.drawDefaultBackground()
 
         GL11.glPushMatrix()
-        mc.fontRendererObj.drawCenteredString(if (nowCape == null) { "§cNONE" } else { "§a${nowCape!!.name}" }, width * 0.50f, height * 0.23f, -1, false)
+        mc.fontRendererObj.drawCenteredString(
+            if (nowCape == null) {
+                "§cNONE"
+            } else {
+                "§a${nowCape!!.name}"
+            }, width * 0.50f, height * 0.23f, -1, false
+        )
         GL11.glScalef(2f, 2f, 2f)
         mc.fontRendererObj.drawCenteredString("Cape Manager", width * 0.25f, height * 0.03f, -1, false)
         GL11.glPopMatrix()

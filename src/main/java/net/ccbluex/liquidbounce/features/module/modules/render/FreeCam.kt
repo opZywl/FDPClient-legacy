@@ -58,7 +58,13 @@ class FreeCam : Module() {
 
     override fun onDisable() {
         if (mc.thePlayer == null || fakePlayer == null) return
-        mc.thePlayer.setPositionAndRotation(fakePlayer!!.posX, fakePlayer!!.posY, fakePlayer!!.posZ, mc.thePlayer.rotationYaw, mc.thePlayer.rotationPitch)
+        mc.thePlayer.setPositionAndRotation(
+            fakePlayer!!.posX,
+            fakePlayer!!.posY,
+            fakePlayer!!.posZ,
+            mc.thePlayer.rotationYaw,
+            mc.thePlayer.rotationPitch
+        )
         mc.theWorld.removeEntityFromWorld(fakePlayer!!.entityId)
         fakePlayer = null
         mc.thePlayer.motionX = motionX
@@ -88,7 +94,16 @@ class FreeCam : Module() {
             if (packet is C03PacketPlayer.C04PacketPlayerPosition || packet is C03PacketPlayer.C05PacketPlayerLook || packet is C03PacketPlayer.C06PacketPlayerPosLook) {
                 if (packetCount >= 20) {
                     packetCount = 0
-                    PacketUtils.sendPacketNoEvent(C03PacketPlayer.C06PacketPlayerPosLook(fakePlayer!!.posX, fakePlayer!!.posY, fakePlayer!!.posZ, fakePlayer!!.rotationYaw, fakePlayer!!.rotationPitch, fakePlayer!!.onGround))
+                    PacketUtils.sendPacketNoEvent(
+                        C03PacketPlayer.C06PacketPlayerPosLook(
+                            fakePlayer!!.posX,
+                            fakePlayer!!.posY,
+                            fakePlayer!!.posZ,
+                            fakePlayer!!.rotationYaw,
+                            fakePlayer!!.rotationPitch,
+                            fakePlayer!!.onGround
+                        )
+                    )
                 } else {
                     packetCount++
                     PacketUtils.sendPacketNoEvent(C03PacketPlayer(fakePlayer!!.onGround))
@@ -106,7 +121,16 @@ class FreeCam : Module() {
             motionY = 0.0
             motionZ = 0.0
             // apply the flag to bypass some anticheat
-            PacketUtils.sendPacketNoEvent(C03PacketPlayer.C06PacketPlayerPosLook(fakePlayer!!.posX, fakePlayer!!.posY, fakePlayer!!.posZ, fakePlayer!!.rotationYaw, fakePlayer!!.rotationPitch, fakePlayer!!.onGround))
+            PacketUtils.sendPacketNoEvent(
+                C03PacketPlayer.C06PacketPlayerPosLook(
+                    fakePlayer!!.posX,
+                    fakePlayer!!.posY,
+                    fakePlayer!!.posZ,
+                    fakePlayer!!.rotationYaw,
+                    fakePlayer!!.rotationPitch,
+                    fakePlayer!!.onGround
+                )
+            )
 
             event.cancelEvent()
         }

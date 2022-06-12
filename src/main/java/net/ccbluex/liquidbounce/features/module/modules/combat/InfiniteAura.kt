@@ -42,9 +42,12 @@ class InfiniteAura : Module() {
     private val noRegenValue = BoolValue("NoRegen", true)
     private val swingValue = BoolValue("Swing", true).displayable { modeValue.equals("Aura") }
     private val pathRenderValue = BoolValue("PathRender", true)
-    private val colorRedValue = IntegerValue("ColorRed", 0, 0, 255).displayable { pathRenderValue.get() && !colorRainbowValue.get() }
-    private val colorGreenValue = IntegerValue("ColorGreen", 160, 0, 255).displayable { pathRenderValue.get() && !colorRainbowValue.get() }
-    private val colorBlueValue = IntegerValue("ColorBlue", 255, 0, 255).displayable { pathRenderValue.get() && !colorRainbowValue.get() }
+    private val colorRedValue =
+        IntegerValue("ColorRed", 0, 0, 255).displayable { pathRenderValue.get() && !colorRainbowValue.get() }
+    private val colorGreenValue =
+        IntegerValue("ColorGreen", 160, 0, 255).displayable { pathRenderValue.get() && !colorRainbowValue.get() }
+    private val colorBlueValue =
+        IntegerValue("ColorBlue", 255, 0, 255).displayable { pathRenderValue.get() && !colorRainbowValue.get() }
     private val colorAlphaValue = IntegerValue("ColorAlpha", 150, 0, 255).displayable { pathRenderValue.get() }
     private val colorRainbowValue = BoolValue("Rainbow", false).displayable { pathRenderValue.get() }
 
@@ -85,8 +88,10 @@ class InfiniteAura : Module() {
                 if (mc.gameSettings.keyBindAttack.isKeyDown) {
                     thread = thread(name = "InfiniteAura") {
                         // do it async because a* pathfinding need some time
-                        val entity = RaycastUtils.raycastEntity(distValue.get().toDouble()) { entity -> entity != null && EntityUtils.isSelected(entity, true) } ?: return@thread
-                        if (mc.thePlayer.getDistanceToEntity(entity) <3) {
+                        val entity = RaycastUtils.raycastEntity(
+                            distValue.get().toDouble()
+                        ) { entity -> entity != null && EntityUtils.isSelected(entity, true) } ?: return@thread
+                        if (mc.thePlayer.getDistanceToEntity(entity) < 3) {
                             return@thread
                         }
 
@@ -100,16 +105,18 @@ class InfiniteAura : Module() {
     }
 
     private fun doTpAura() {
-        val targets = mc.theWorld.loadedEntityList.filter { it is EntityLivingBase &&
-                EntityUtils.isSelected(it, true) &&
-                mc.thePlayer.getDistanceToEntity(it) < distValue.get() }.toMutableList()
+        val targets = mc.theWorld.loadedEntityList.filter {
+            it is EntityLivingBase &&
+                    EntityUtils.isSelected(it, true) &&
+                    mc.thePlayer.getDistanceToEntity(it) < distValue.get()
+        }.toMutableList()
         if (targets.isEmpty()) return
         targets.sortBy { mc.thePlayer.getDistanceToEntity(it) }
 
         var count = 0
         for (entity in targets) {
 
-            if(hit(entity as EntityLivingBase)) {
+            if (hit(entity as EntityLivingBase)) {
                 count++
             }
             if (count > targetsValue.get()) break
@@ -117,17 +124,25 @@ class InfiniteAura : Module() {
     }
 
     private fun hit(entity: EntityLivingBase, force: Boolean = false): Boolean {
-        val path = PathUtils.findBlinkPath(mc.thePlayer.posX, mc.thePlayer.posY, mc.thePlayer.posZ, entity.posX, entity.posY, entity.posZ, moveDistanceValue.get().toDouble())
+        val path = PathUtils.findBlinkPath(
+            mc.thePlayer.posX,
+            mc.thePlayer.posY,
+            mc.thePlayer.posZ,
+            entity.posX,
+            entity.posY,
+            entity.posZ,
+            moveDistanceValue.get().toDouble()
+        )
         if (path.isEmpty()) return false
         val lastDistance = path.last().let { entity.getDistance(it.xCoord, it.yCoord, it.zCoord) }
-        if(!force && lastDistance > 10) return false // pathfinding has failed
+        if (!force && lastDistance > 10) return false // pathfinding has failed
 
         path.forEach {
             mc.netHandler.addToSendQueue(C04PacketPlayerPosition(it.xCoord, it.yCoord, it.zCoord, true))
             points.add(it)
         }
 
-        if(lastDistance > 3) {
+        if (lastDistance > 3) {
             mc.netHandler.addToSendQueue(C04PacketPlayerPosition(entity.posX, entity.posY, entity.posZ, true))
         }
 
@@ -140,7 +155,14 @@ class InfiniteAura : Module() {
             val vec = path[i]
             mc.netHandler.addToSendQueue(C04PacketPlayerPosition(vec.xCoord, vec.yCoord, vec.zCoord, true))
         }
-        mc.netHandler.addToSendQueue(C04PacketPlayerPosition(mc.thePlayer.posX, mc.thePlayer.posY, mc.thePlayer.posZ, true))
+        mc.netHandler.addToSendQueue(
+            C04PacketPlayerPosition(
+                mc.thePlayer.posX,
+                mc.thePlayer.posY,
+                mc.thePlayer.posZ,
+                true
+            )
+        )
 
         return true
     }
@@ -150,7 +172,8 @@ class InfiniteAura : Module() {
         if (event.packet is S08PacketPlayerPosLook) {
             timer.reset()
         }
-        val isMovePacket = (event.packet is C04PacketPlayerPosition || event.packet is C03PacketPlayer.C06PacketPlayerPosLook)
+        val isMovePacket =
+            (event.packet is C04PacketPlayerPosition || event.packet is C03PacketPlayer.C06PacketPlayerPosLook)
         if (noRegenValue.get() && event.packet is C03PacketPlayer && !isMovePacket) {
             event.cancelEvent()
         }
@@ -174,11 +197,13 @@ class InfiniteAura : Module() {
             GL11.glDisable(GL11.GL_LIGHTING)
             GL11.glDepthMask(false)
 
-            RenderUtils.glColor(if (colorRainbowValue.get()) {
-                ColorUtils.rainbow()
-            } else {
-                Color(colorRedValue.get(), colorGreenValue.get(), colorBlueValue.get())
-            }, colorAlphaValue.get())
+            RenderUtils.glColor(
+                if (colorRainbowValue.get()) {
+                    ColorUtils.rainbow()
+                } else {
+                    Color(colorRedValue.get(), colorGreenValue.get(), colorBlueValue.get())
+                }, colorAlphaValue.get()
+            )
 
             for (vec in points) {
                 val x = vec.xCoord - renderPosX

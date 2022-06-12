@@ -26,7 +26,20 @@ class LightningDetect : Module() {
         if (event.packet is S2CPacketSpawnGlobalEntity) {
             val packet = event.packet
             if (packet.func_149053_g() != 1) return
-            LiquidBounce.hud.addNotification(Notification(name, "Lightning at X:${decimalFormat.format(packet.func_149051_d() / 32.0)} Y:${decimalFormat.format(packet.func_149050_e() / 32.0)} Z:${decimalFormat.format(packet.func_149049_f() / 32.0)}", NotifyType.WARNING, time = 5000))
+            LiquidBounce.hud.addNotification(
+                Notification(
+                    name,
+                    "Lightning at X:${decimalFormat.format(packet.func_149051_d() / 32.0)} Y:${
+                        decimalFormat.format(
+                            packet.func_149050_e() / 32.0
+                        )
+                    } Z:${
+                        decimalFormat.format(packet.func_149049_f() / 32.0)
+                    }",
+                    NotifyType.WARNING,
+                    time = 5000
+                )
+            )
         }
     }
 }

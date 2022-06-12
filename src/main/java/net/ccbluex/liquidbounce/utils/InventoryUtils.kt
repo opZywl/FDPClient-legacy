@@ -24,10 +24,29 @@ import net.minecraft.potion.Potion
 object InventoryUtils : MinecraftInstance(), Listenable {
     val CLICK_TIMER = MSTimer()
     val INV_TIMER = MSTimer()
-    val BLOCK_BLACKLIST = listOf(Blocks.enchanting_table, Blocks.chest, Blocks.ender_chest, Blocks.trapped_chest,
-        Blocks.anvil, Blocks.sand, Blocks.web, Blocks.torch, Blocks.crafting_table, Blocks.furnace, Blocks.waterlily,
-        Blocks.dispenser, Blocks.stone_pressure_plate, Blocks.wooden_pressure_plate, Blocks.red_flower, Blocks.flower_pot, Blocks.yellow_flower,
-        Blocks.noteblock, Blocks.dropper, Blocks.standing_banner, Blocks.wall_banner)
+    val BLOCK_BLACKLIST = listOf(
+        Blocks.enchanting_table,
+        Blocks.chest,
+        Blocks.ender_chest,
+        Blocks.trapped_chest,
+        Blocks.anvil,
+        Blocks.sand,
+        Blocks.web,
+        Blocks.torch,
+        Blocks.crafting_table,
+        Blocks.furnace,
+        Blocks.waterlily,
+        Blocks.dispenser,
+        Blocks.stone_pressure_plate,
+        Blocks.wooden_pressure_plate,
+        Blocks.red_flower,
+        Blocks.flower_pot,
+        Blocks.yellow_flower,
+        Blocks.noteblock,
+        Blocks.dropper,
+        Blocks.standing_banner,
+        Blocks.wall_banner
+    )
 
     fun findItem(startSlot: Int, endSlot: Int, item: Item): Int {
         for (i in startSlot until endSlot) {
@@ -97,7 +116,8 @@ object InventoryUtils : MinecraftInstance(), Listenable {
             id == Potion.resistance.id || id == Potion.waterBreathing.id ||
             id == Potion.absorption.id || id == Potion.digSpeed.id ||
             id == Potion.damageBoost.id || id == Potion.healthBoost.id ||
-            id == Potion.fireResistance.id) {
+            id == Potion.fireResistance.id
+        ) {
             return true
         }
         return false
@@ -114,7 +134,7 @@ object InventoryUtils : MinecraftInstance(), Listenable {
     }
 
     fun getItemDurability(stack: ItemStack): Float {
-        if (stack.isItemStackDamageable && stack.maxDamage> 0) {
+        if (stack.isItemStackDamageable && stack.maxDamage > 0) {
             return (stack.maxDamage - stack.itemDamage) / stack.maxDamage.toFloat()
         }
         return 1f

@@ -66,7 +66,8 @@ class GuiBackground(val prevGui: GuiScreen) : GuiScreen() {
         blurButton.displayString = "Background Blur (${if (blur) "%ui.on%" else "%ui.off%"})"
         typeButton.displayString = "%ui.background.gtype%: ${GradientBackground.gradientSide}"
         particlesButton.displayString = "%ui.background.particles% (${if (particles) "%ui.on%" else "%ui.off%"})"
-        animatedButton.displayString = "%ui.background.ganimated% (${if (GradientBackground.animated) "%ui.on%" else "%ui.off%"})"
+        animatedButton.displayString =
+            "%ui.background.ganimated% (${if (GradientBackground.animated) "%ui.on%" else "%ui.off%"})"
         val hasCustomBackground = LiquidBounce.background != null
         lastButton.enabled = !hasCustomBackground
         nextButton.enabled = !hasCustomBackground
@@ -97,7 +98,10 @@ class GuiBackground(val prevGui: GuiScreen) : GuiScreen() {
                     mc.textureManager.loadTexture(LiquidBounce.background, DynamicTexture(image))
                 } catch (e: Exception) {
                     e.printStackTrace()
-                    MiscUtils.showErrorPopup("Error", "Exception class: " + e.javaClass.name + "\nMessage: " + e.message)
+                    MiscUtils.showErrorPopup(
+                        "Error",
+                        "Exception class: " + e.javaClass.name + "\nMessage: " + e.message
+                    )
                     LiquidBounce.fileManager.backgroundFile.delete()
                 }
             }
@@ -107,18 +111,18 @@ class GuiBackground(val prevGui: GuiScreen) : GuiScreen() {
             }
             5 -> {
                 val index = GradientBackground.gradientSides.indexOf(GradientBackground.gradientSide)
-                GradientBackground.gradientSide = if(index == GradientBackground.gradientSides.lastIndex) {
+                GradientBackground.gradientSide = if (index == GradientBackground.gradientSides.lastIndex) {
                     GradientBackground.gradientSides[0]
                 } else {
                     GradientBackground.gradientSides[index + 1]
                 }
             }
             6, 7 -> {
-                val indexAffect = if(button.id == 6) -1 else 1
+                val indexAffect = if (button.id == 6) -1 else 1
                 val index = GradientBackground.gradients.indexOf(GradientBackground.nowGradient) + indexAffect
-                GradientBackground.nowGradient = if(index > GradientBackground.gradients.lastIndex) {
+                GradientBackground.nowGradient = if (index > GradientBackground.gradients.lastIndex) {
                     GradientBackground.gradients[0]
-                } else if(index < 0) {
+                } else if (index < 0) {
                     GradientBackground.gradients[GradientBackground.gradients.lastIndex]
                 } else {
                     GradientBackground.gradients[index]
@@ -138,8 +142,17 @@ class GuiBackground(val prevGui: GuiScreen) : GuiScreen() {
     override fun drawScreen(mouseX: Int, mouseY: Int, partialTicks: Float) {
         drawBackground(0)
         mc.fontRendererObj.drawCenteredString("%ui.background%", this.width / 2F, height / 8F + 5F, 4673984, true)
-        mc.fontRendererObj.drawCenteredString("%ui.background.gcurrent%: " + if(LiquidBounce.background == null) { GradientBackground.nowGradient.name } else { "Customized" },
-            this.width / 2F, height / 4 + 40 + 25 * 2f + (20 - mc.fontRendererObj.FONT_HEIGHT) * 0.5f, Color.WHITE.rgb, true)
+        mc.fontRendererObj.drawCenteredString(
+            "%ui.background.gcurrent%: " + if (LiquidBounce.background == null) {
+                GradientBackground.nowGradient.name
+            } else {
+                "Customized"
+            },
+            this.width / 2F,
+            height / 4 + 40 + 25 * 2f + (20 - mc.fontRendererObj.FONT_HEIGHT) * 0.5f,
+            Color.WHITE.rgb,
+            true
+        )
 
         super.drawScreen(mouseX, mouseY, partialTicks)
     }

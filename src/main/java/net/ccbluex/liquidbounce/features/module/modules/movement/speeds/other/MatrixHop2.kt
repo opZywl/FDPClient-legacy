@@ -4,14 +4,14 @@ import net.ccbluex.liquidbounce.event.PacketEvent
 import net.ccbluex.liquidbounce.features.module.modules.movement.speeds.SpeedMode
 import net.ccbluex.liquidbounce.utils.MovementUtils
 import net.ccbluex.liquidbounce.value.BoolValue
+import net.minecraft.client.settings.GameSettings
 import net.minecraft.network.play.server.S12PacketEntityVelocity
 import kotlin.math.sqrt
-import net.minecraft.client.settings.GameSettings
 
 
 class MatrixHop2 : SpeedMode("Matrix6.6.1") {
     val veloBoostValue = BoolValue("MatrixVelocBoost", true)
-	  val timerBoostValue = BoolValue("MatrixTimerBoost", true)
+    val timerBoostValue = BoolValue("MatrixTimerBoost", true)
     private var recX = 0.0
     private var recZ = 0.0
 
@@ -26,8 +26,8 @@ class MatrixHop2 : SpeedMode("Matrix6.6.1") {
         }
         if (mc.thePlayer.motionY < 0) {
             timer(1.09f)
-        if (mc.thePlayer.fallDistance > 1.4)
-            timer(1.0f)
+            if (mc.thePlayer.fallDistance > 1.4)
+                timer(1.0f)
         } else {
             timer(0.95f)
         }
@@ -49,11 +49,11 @@ class MatrixHop2 : SpeedMode("Matrix6.6.1") {
         mc.timer.timerSpeed = 1f
     }
 
-	private fun timer(value: Float) {
-		if(timerBoostValue.get()) {
-			mc.timer.timerSpeed = value
-		}
-	}
+    private fun timer(value: Float) {
+        if (timerBoostValue.get()) {
+            mc.timer.timerSpeed = value
+        }
+    }
 
     override fun onPacket(event: PacketEvent) {
         val packet = event.packet

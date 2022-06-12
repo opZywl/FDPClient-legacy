@@ -24,7 +24,7 @@ class WindowView : MinecraftInstance() {
     var focus = false
         set(value) {
             field = value
-            if(value) {
+            if (value) {
                 lastFocusUpdate = System.currentTimeMillis()
             }
         }
@@ -64,17 +64,19 @@ class WindowView : MinecraftInstance() {
      * @param mouseX realMouseX - x
      */
     fun render(fromChat: Boolean, mouseX: Float, mouseY: Float, mouseEvent: Boolean) {
-        if(drag) {
+        if (drag) {
             x = (mouseX + x) - dragOffsetX
             y = (mouseY + y) - dragOffsetY
             drag = Mouse.isButtonDown(0)
         }
-        if(scale) {
+        if (scale) {
             width = mouseX.coerceAtLeast(minWidth)
             height = mouseY.coerceAtLeast(minHeight)
             scale = Mouse.isButtonDown(0)
-            mc.fontRendererObj.drawString("${width.toInt()}x${height.toInt()} Scale ${browserScale}", x + width,
-                y + height - mc.fontRendererObj.FONT_HEIGHT, Color.WHITE.rgb, false)
+            mc.fontRendererObj.drawString(
+                "${width.toInt()}x${height.toInt()} Scale ${browserScale}", x + width,
+                y + height - mc.fontRendererObj.FONT_HEIGHT, Color.WHITE.rgb, false
+            )
             if (Mouse.hasWheel()) {
                 val wheel = Mouse.getDWheel()
                 if (wheel > 0) {
@@ -92,39 +94,85 @@ class WindowView : MinecraftInstance() {
 
         val titleHeight = mc.fontRendererObj.FONT_HEIGHT + 2f
 
-        if(handleInput) {
-            if(!fromChat || mouseEvent) {
+        if (handleInput) {
+            if (!fromChat || mouseEvent) {
                 textField.text = ""
                 handleInput = false
             }
             RenderUtils.drawRect(0f, -titleHeight, width, 0f, Color.LIGHT_GRAY.rgb)
-            mc.fontRendererObj.drawString(if(textField.text.isNotEmpty()) { mc.fontRendererObj.trimStringToWidth(textField.text, width.toInt(), true) + if(System.currentTimeMillis() % 1500 > 1000) { "|" } else { "" } } else { "Input URL..." }, 2f, -titleHeight + 1f, Color.WHITE.rgb, false)
+            mc.fontRendererObj.drawString(
+                if (textField.text.isNotEmpty()) {
+                    mc.fontRendererObj.trimStringToWidth(
+                        textField.text,
+                        width.toInt(),
+                        true
+                    ) + if (System.currentTimeMillis() % 1500 > 1000) {
+                        "|"
+                    } else {
+                        ""
+                    }
+                } else {
+                    "Input URL..."
+                }, 2f, -titleHeight + 1f, Color.WHITE.rgb, false
+            )
         }
 
-        if(showTitle || fromChat) {
+        if (showTitle || fromChat) {
             // render title
-            RenderUtils.drawRect(0f, 0f, width, titleHeight, if(focus) Color.LIGHT_GRAY else Color.GRAY)
-            mc.fontRendererObj.drawString(if(cefBrowser.isLoading) { "Loading..." } else { "Browser" },
-                2f, 1f, Color.WHITE.rgb, false)
+            RenderUtils.drawRect(0f, 0f, width, titleHeight, if (focus) Color.LIGHT_GRAY else Color.GRAY)
+            mc.fontRendererObj.drawString(
+                if (cefBrowser.isLoading) {
+                    "Loading..."
+                } else {
+                    "Browser"
+                },
+                2f, 1f, Color.WHITE.rgb, false
+            )
             mc.fontRendererObj.drawCenteredString("X", width - (titleHeight * 0.5f), 1f, Color.WHITE.rgb)
-            if(transparent) {
+            if (transparent) {
                 RenderUtils.drawRect(width - (titleHeight * 2), 0f, width - titleHeight, titleHeight, Color.WHITE)
             }
-            mc.fontRendererObj.drawCenteredString("T", width - (titleHeight * 1.5f), 1f, (if(transparent) Color.BLACK else Color.WHITE).rgb)
-            if(!showTitle) {
+            mc.fontRendererObj.drawCenteredString(
+                "T",
+                width - (titleHeight * 1.5f),
+                1f,
+                (if (transparent) Color.BLACK else Color.WHITE).rgb
+            )
+            if (!showTitle) {
                 RenderUtils.drawRect(width - (titleHeight * 3), 0f, width - (titleHeight * 2), titleHeight, Color.WHITE)
             }
-            mc.fontRendererObj.drawCenteredString("S", width - (titleHeight * 2.5f), 1f, (if(!showTitle) Color.BLACK else Color.WHITE).rgb)
+            mc.fontRendererObj.drawCenteredString(
+                "S",
+                width - (titleHeight * 2.5f),
+                1f,
+                (if (!showTitle) Color.BLACK else Color.WHITE).rgb
+            )
 
             // handle title events
-            if(mouseEvent && RenderUtils.inArea(mouseX, mouseY, 0f, 0f, width, titleHeight)) {
+            if (mouseEvent && RenderUtils.inArea(mouseX, mouseY, 0f, 0f, width, titleHeight)) {
                 focus = true
-                if(Mouse.getEventButton() == 0) {
-                    if(RenderUtils.inArea(mouseX, mouseY, width - (titleHeight * 2), 0f, width - titleHeight, titleHeight)) {
+                if (Mouse.getEventButton() == 0) {
+                    if (RenderUtils.inArea(
+                            mouseX,
+                            mouseY,
+                            width - (titleHeight * 2),
+                            0f,
+                            width - titleHeight,
+                            titleHeight
+                        )
+                    ) {
                         transparent = !transparent
-                    } else if(RenderUtils.inArea(mouseX, mouseY, width - (titleHeight * 3), 0f, width - (titleHeight * 2), titleHeight)) {
+                    } else if (RenderUtils.inArea(
+                            mouseX,
+                            mouseY,
+                            width - (titleHeight * 3),
+                            0f,
+                            width - (titleHeight * 2),
+                            titleHeight
+                        )
+                    ) {
                         showTitle = !showTitle
-                    } else if(RenderUtils.inArea(mouseX, mouseY, width - titleHeight, 0f, width, titleHeight)) {
+                    } else if (RenderUtils.inArea(mouseX, mouseY, width - titleHeight, 0f, width, titleHeight)) {
                         finalize()
                     } else {
                         drag = true
@@ -141,7 +189,7 @@ class WindowView : MinecraftInstance() {
             RenderUtils.drawRect(0f, titleHeight, width, height, Color.WHITE)
         }
         cefRenderer.render(0.0, titleHeight.toDouble(), width.toDouble(), height.toDouble())
-        if(fromChat) {
+        if (fromChat) {
             GL11.glEnable(GL11.GL_BLEND)
             GL11.glDisable(GL11.GL_TEXTURE_2D)
             GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA)
@@ -168,22 +216,32 @@ class WindowView : MinecraftInstance() {
                 if (Mouse.hasWheel()) {
                     val wheel = Mouse.getDWheel()
                     if (wheel != 0) {
-                        cefBrowser.mouseScrolled(mouseRX, mouseRY,
-                            GuiView.keyModifiers(0), 1, wheel)
+                        cefBrowser.mouseScrolled(
+                            mouseRX, mouseRY,
+                            GuiView.keyModifiers(0), 1, wheel
+                        )
                     }
                 }
             }
-            if(mouseEvent) {
-                if(RenderUtils.inArea(mouseX, mouseY, 0f, titleHeight, width, height)) {
+            if (mouseEvent) {
+                if (RenderUtils.inArea(mouseX, mouseY, 0f, titleHeight, width, height)) {
                     focus = true
-                    if(Mouse.getEventButton() == 0 && RenderUtils.inArea(mouseX, mouseY, width - 5f, height - 5f, width, height)) {
+                    if (Mouse.getEventButton() == 0 && RenderUtils.inArea(
+                            mouseX,
+                            mouseY,
+                            width - 5f,
+                            height - 5f,
+                            width,
+                            height
+                        )
+                    ) {
                         scale = true
                     } else {
                         val mod = GuiView.mouseModifiers(GuiView.keyModifiers(0))
                         cefBrowser.mouseInteracted(mouseRX, mouseRY, mod, Mouse.getEventButton(), true, 1)
                         cefBrowser.mouseInteracted(mouseRX, mouseRY, mod, Mouse.getEventButton(), false, 1)
                     }
-                } else if(!RenderUtils.inArea(mouseX, mouseY, 0f, 0f, width, titleHeight)) {
+                } else if (!RenderUtils.inArea(mouseX, mouseY, 0f, 0f, width, titleHeight)) {
                     focus = false
                 }
             }
@@ -193,8 +251,8 @@ class WindowView : MinecraftInstance() {
     }
 
     fun keyTyped(char: Char, key: Int) {
-        if(handleInput) {
-            if(key == Keyboard.KEY_RETURN) {
+        if (handleInput) {
+            if (key == Keyboard.KEY_RETURN) {
                 handleInput = false
                 cefBrowser.loadURL(textField.text)
             } else {
@@ -212,7 +270,7 @@ class WindowView : MinecraftInstance() {
     }
 
     fun finalize() { // finalize or destroy
-        if(FancyUiLaunchOption.windowList.contains(this)) {
+        if (FancyUiLaunchOption.windowList.contains(this)) {
             FancyUiLaunchOption.windowList.remove(this)
         }
         cefBrowser.close(true)

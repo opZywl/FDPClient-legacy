@@ -9,12 +9,14 @@ import net.ccbluex.liquidbounce.features.module.ModuleCategory
 import net.ccbluex.liquidbounce.features.module.ModuleInfo
 import net.ccbluex.liquidbounce.value.BoolValue
 import net.ccbluex.liquidbounce.value.FloatValue
-import kotlin.math.*
+import kotlin.math.cos
+import kotlin.math.sin
+import kotlin.math.sqrt
 
 @ModuleInfo(name = "Strafe", category = ModuleCategory.MOVEMENT)
 class Strafe : Module() {
 
-    private var strengthValue= FloatValue("Strength", 0.5F, 0F, 1F)
+    private var strengthValue = FloatValue("Strength", 0.5F, 0F, 1F)
     private var noMoveStopValue = BoolValue("NoMoveStop", false)
     private var onGroundStrafeValue = BoolValue("OnGroundStrafe", false)
     private var allDirectionsJumpValue = BoolValue("AllDirectionsJump", false)
@@ -57,7 +59,8 @@ class Strafe : Module() {
 
     @EventTarget
     fun onStrafe(event: StrafeEvent) {
-        val shotSpeed = sqrt((mc.thePlayer!!.motionX * mc.thePlayer!!.motionX) + (mc.thePlayer!!.motionZ * mc.thePlayer!!.motionZ))
+        val shotSpeed =
+            sqrt((mc.thePlayer!!.motionX * mc.thePlayer!!.motionX) + (mc.thePlayer!!.motionZ * mc.thePlayer!!.motionZ))
         val speed = (shotSpeed * strengthValue.get())
         val motionX = (mc.thePlayer!!.motionX * (1 - strengthValue.get()))
         val motionZ = (mc.thePlayer!!.motionZ * (1 - strengthValue.get()))
@@ -79,16 +82,16 @@ class Strafe : Module() {
     fun getMoveYaw(): Float {
         var moveYaw = mc.thePlayer!!.rotationYaw
         if (mc.thePlayer!!.moveForward != 0F && mc.thePlayer!!.moveStrafing == 0F) {
-            moveYaw += if(mc.thePlayer!!.moveForward > 0) 0 else 180
+            moveYaw += if (mc.thePlayer!!.moveForward > 0) 0 else 180
         } else if (mc.thePlayer!!.moveForward != 0F && mc.thePlayer!!.moveStrafing != 0F) {
             if (mc.thePlayer!!.moveForward > 0) {
                 moveYaw += if (mc.thePlayer!!.moveStrafing > 0) -45 else 45
             } else {
                 moveYaw -= if (mc.thePlayer!!.moveStrafing > 0) -45 else 45
             }
-            moveYaw += if(mc.thePlayer!!.moveForward > 0) 0 else 180
+            moveYaw += if (mc.thePlayer!!.moveForward > 0) 0 else 180
         } else if (mc.thePlayer!!.moveStrafing != 0F && mc.thePlayer!!.moveForward == 0F) {
-            moveYaw += if(mc.thePlayer!!.moveStrafing > 0) -90 else 90
+            moveYaw += if (mc.thePlayer!!.moveStrafing > 0) -90 else 90
         }
         return moveYaw
     }

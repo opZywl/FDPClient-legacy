@@ -53,7 +53,7 @@ public class DirectTessCallback extends GLUtessellatorCallbackAdapter {
         combined[4] = 1;
         combined[5] = 1;
 
-        for (int i=0;i < outData.length;i++) {
+        for (int i = 0; i < outData.length; i++) {
             outData[i] = new VertexData(combined);
         }
     }
@@ -66,6 +66,6 @@ public class DirectTessCallback extends GLUtessellatorCallbackAdapter {
     public void vertex(Object vertexData) {
         VertexData vertex = (VertexData) vertexData;
 
-        glVertex3f((float)vertex.data[0], (float)vertex.data[1], (float)vertex.data[2]);
+        glVertex3f((float) vertex.data[0], (float) vertex.data[1], (float) vertex.data[2]);
     }
 }

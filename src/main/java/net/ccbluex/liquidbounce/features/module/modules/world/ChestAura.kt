@@ -36,7 +36,8 @@ object ChestAura : Module() {
     private val swingValue = ListValue("Swing", arrayOf("Normal", "Packet", "None"), "Normal")
     private val rotationsValue = BoolValue("Rotations", true)
     private val discoverDelayEnabledValue = BoolValue("DiscoverDelay", false)
-    private val discoverDelayValue = IntegerValue("DiscoverDelayValue", 200, 50, 300).displayable { discoverDelayEnabledValue.get() }
+    private val discoverDelayValue =
+        IntegerValue("DiscoverDelayValue", 200, 50, 300).displayable { discoverDelayEnabledValue.get() }
     private val onlyOnGroundValue = BoolValue("OnlyOnGround", true)
     private val notOpenedValue = BoolValue("NotOpened", false)
     private val noCombatingValue = BoolValue("NoCombating", true)
@@ -59,8 +60,10 @@ object ChestAura : Module() {
 
             val radius = rangeValue.get() + 1
 
-            val eyesPos = Vec3(mc.thePlayer.posX, mc.thePlayer.entityBoundingBox.minY + mc.thePlayer.getEyeHeight(),
-                mc.thePlayer.posZ)
+            val eyesPos = Vec3(
+                mc.thePlayer.posX, mc.thePlayer.entityBoundingBox.minY + mc.thePlayer.getEyeHeight(),
+                mc.thePlayer.posZ
+            )
 
             currentBlock = BlockUtils.searchBlocks(radius.toInt())
                 .filter {
@@ -73,18 +76,25 @@ object ChestAura : Module() {
                     }
 
                     val blockPos = it.key
-                    val movingObjectPosition = mc.theWorld.rayTraceBlocks(eyesPos,
-                        blockPos.getVec(), false, true, false)
+                    val movingObjectPosition = mc.theWorld.rayTraceBlocks(
+                        eyesPos,
+                        blockPos.getVec(), false, true, false
+                    )
 
                     movingObjectPosition != null && movingObjectPosition.blockPos == blockPos
                 }
                 .minByOrNull { BlockUtils.getCenterDistance(it.key) }?.key
 
             if (rotationsValue.get()) {
-                RotationUtils.setTargetRotation((RotationUtils.faceBlock(currentBlock ?: return)
-                    ?: return).rotation)
+                RotationUtils.setTargetRotation(
+                    (RotationUtils.faceBlock(currentBlock ?: return)
+                        ?: return).rotation
+                )
             }
-        } else if (currentBlock != null && InventoryUtils.INV_TIMER.hasTimePassed(delayValue.get().toLong()) && !underClick) {
+        } else if (currentBlock != null && InventoryUtils.INV_TIMER.hasTimePassed(
+                delayValue.get().toLong()
+            ) && !underClick
+        ) {
             underClick = true
             if (discoverDelayEnabledValue.get()) {
                 java.util.Timer().schedule(discoverDelayValue.get().toLong()) {
@@ -98,8 +108,11 @@ object ChestAura : Module() {
 
     private fun click() {
         try {
-            if (mc.playerController.onPlayerRightClick(mc.thePlayer, mc.theWorld, mc.thePlayer.heldItem, currentBlock,
-                    EnumFacing.DOWN, currentBlock!!.getVec())) {
+            if (mc.playerController.onPlayerRightClick(
+                    mc.thePlayer, mc.theWorld, mc.thePlayer.heldItem, currentBlock,
+                    EnumFacing.DOWN, currentBlock!!.getVec()
+                )
+            ) {
                 if (swingValue.equals("packet")) {
                     mc.netHandler.addToSendQueue(C0APacketAnimation())
                 } else if (swingValue.equals("normal")) {
@@ -120,7 +133,7 @@ object ChestAura : Module() {
         if (notOpenedValue.get() && event.packet is S24PacketBlockAction) {
             val packet = event.packet
             if (packet.blockType is BlockChest && packet.data2 == 1 && !clickedBlocks.contains(packet.blockPosition)) {
-                    clickedBlocks.add(packet.blockPosition)
+                clickedBlocks.add(packet.blockPosition)
             }
         }
     }

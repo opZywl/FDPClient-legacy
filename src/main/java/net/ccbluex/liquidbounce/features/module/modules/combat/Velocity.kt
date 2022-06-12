@@ -37,22 +37,34 @@ class Velocity : Module() {
      */
     private val horizontalValue = FloatValue("Horizontal", 0F, -2F, 2F)
     private val verticalValue = FloatValue("Vertical", 0F, -2F, 2F)
-    private val velocityTickValue = IntegerValue("VelocityTick", 1, 0, 10).displayable { modeValue.equals("Tick") || modeValue.equals("OldSpartan")}
-    private val modeValue = ListValue("Mode", arrayOf("Simple", "Tick", "Vanilla", "AACPush", "AACZero", "AAC4Reduce", "AAC5Reduce",
-                                                      "Redesky1", "Redesky2",
-                                                      "AAC5.2.0", "AAC5.2.0Combat",
-                                                      "MatrixReduce", "MatrixSimple", "MatrixReverse",
-                                                      "Reverse", "SmoothReverse",
-                                                      "Jump",
-                                                      "Phase", "PacketPhase", "Glitch", "Spoof",
-                                                      "Legit"), "Simple")
+    private val velocityTickValue = IntegerValue(
+        "VelocityTick",
+        1,
+        0,
+        10
+    ).displayable { modeValue.equals("Tick") || modeValue.equals("OldSpartan") }
+    private val modeValue = ListValue(
+        "Mode", arrayOf(
+            "Simple", "Tick", "Vanilla", "AACPush", "AACZero", "AAC4Reduce", "AAC5Reduce",
+            "Redesky1", "Redesky2",
+            "AAC5.2.0", "AAC5.2.0Combat",
+            "MatrixReduce", "MatrixSimple", "MatrixReverse",
+            "Reverse", "SmoothReverse",
+            "Jump",
+            "Phase", "PacketPhase", "Glitch", "Spoof",
+            "Legit"
+        ), "Simple"
+    )
 
     // Reverse
-    private val reverseStrengthValue = FloatValue("ReverseStrength", 1F, 0.1F, 1F).displayable { modeValue.equals("Reverse") }
-    private val reverse2StrengthValue = FloatValue("SmoothReverseStrength", 0.05F, 0.02F, 0.1F).displayable { modeValue.equals("SmoothReverse") }
+    private val reverseStrengthValue =
+        FloatValue("ReverseStrength", 1F, 0.1F, 1F).displayable { modeValue.equals("Reverse") }
+    private val reverse2StrengthValue =
+        FloatValue("SmoothReverseStrength", 0.05F, 0.02F, 0.1F).displayable { modeValue.equals("SmoothReverse") }
 
     // AAC Push
-    private val aacPushXZReducerValue = FloatValue("AACPushXZReducer", 2F, 1F, 3F).displayable { modeValue.equals("AACPush") }
+    private val aacPushXZReducerValue =
+        FloatValue("AACPushXZReducer", 2F, 1F, 3F).displayable { modeValue.equals("AACPush") }
     private val aacPushYReducerValue = BoolValue("AACPushYReducer", true).displayable { modeValue.equals("AACPush") }
 
     // phase
@@ -72,6 +84,7 @@ class Velocity : Module() {
 
     private val onlyGroundValue = BoolValue("OnlyGround", false)
     private val onlyCombatValue = BoolValue("OnlyCombat", false)
+
     // private val onlyHitVelocityValue = BoolValue("OnlyHitVelocity",false)
     private val noFireValue = BoolValue("noFire", false)
 
@@ -113,11 +126,11 @@ class Velocity : Module() {
 
     @EventTarget
     fun onUpdate(event: UpdateEvent) {
-        if(velocityInput) {
+        if (velocityInput) {
             velocityTick++
-        }else velocityTick = 0
-        
-        if (redeCount <24) redeCount++
+        } else velocityTick = 0
+
+        if (redeCount < 24) redeCount++
         if (mc.thePlayer.isInWater || mc.thePlayer.isInLava || mc.thePlayer.isInWeb) {
             return
         }
@@ -125,23 +138,23 @@ class Velocity : Module() {
         if ((onlyGroundValue.get() && !mc.thePlayer.onGround) || (onlyCombatValue.get() && !LiquidBounce.combatManager.inCombat)) {
             return
         }
-            // if(onlyHitVelocityValue.get() && mc.thePlayer.motionY<0.05) return；
+        // if(onlyHitVelocityValue.get() && mc.thePlayer.motionY<0.05) return；
         if (noFireValue.get() && mc.thePlayer.isBurning) return
 
         when (modeValue.get().lowercase()) {
             "tick" -> {
-                if(velocityTick > velocityTickValue.get()) {
-                    if(mc.thePlayer.motionY > 0) mc.thePlayer.motionY = 0.0
+                if (velocityTick > velocityTickValue.get()) {
+                    if (mc.thePlayer.motionY > 0) mc.thePlayer.motionY = 0.0
                     mc.thePlayer.motionX = 0.0
                     mc.thePlayer.motionZ = 0.0
                     mc.thePlayer.jumpMovementFactor = -0.00001f
                     velocityInput = false
                 }
-                if(mc.thePlayer.onGround && velocityTick > 1) {
+                if (mc.thePlayer.onGround && velocityTick > 1) {
                     velocityInput = false
                 }
             }
-            
+
             "jump" -> if (mc.thePlayer.hurtTime > 0 && mc.thePlayer.onGround) {
                 mc.thePlayer.motionY = 0.42
             }
@@ -179,33 +192,49 @@ class Velocity : Module() {
             }
 
             "aac4reduce" -> {
-                if (mc.thePlayer.hurtTime> 0 && !mc.thePlayer.onGround && velocityInput && velocityTimer.hasTimePassed(80L)) {
+                if (mc.thePlayer.hurtTime > 0 && !mc.thePlayer.onGround && velocityInput && velocityTimer.hasTimePassed(
+                        80L
+                    )
+                ) {
                     mc.thePlayer.motionX *= 0.62
                     mc.thePlayer.motionZ *= 0.62
                 }
-                if (velocityInput && (mc.thePlayer.hurtTime <4 || mc.thePlayer.onGround) && velocityTimer.hasTimePassed(120L)) {
+                if (velocityInput && (mc.thePlayer.hurtTime < 4 || mc.thePlayer.onGround) && velocityTimer.hasTimePassed(
+                        120L
+                    )
+                ) {
                     velocityInput = false
                 }
             }
 
             "aac5reduce" -> {
-                if (mc.thePlayer.hurtTime> 1 && velocityInput) {
+                if (mc.thePlayer.hurtTime > 1 && velocityInput) {
                     mc.thePlayer.motionX *= 0.81
                     mc.thePlayer.motionZ *= 0.81
                 }
-                if (velocityInput && (mc.thePlayer.hurtTime <5 || mc.thePlayer.onGround) && velocityTimer.hasTimePassed(120L)) {
+                if (velocityInput && (mc.thePlayer.hurtTime < 5 || mc.thePlayer.onGround) && velocityTimer.hasTimePassed(
+                        120L
+                    )
+                ) {
                     velocityInput = false
                 }
             }
 
             "aac5.2.0combat" -> {
-                if (mc.thePlayer.hurtTime> 0 && velocityInput) {
+                if (mc.thePlayer.hurtTime > 0 && velocityInput) {
                     velocityInput = false
                     mc.thePlayer.motionX = 0.0
                     mc.thePlayer.motionZ = 0.0
                     mc.thePlayer.motionY = 0.0
                     mc.thePlayer.jumpMovementFactor = -0.002f
-                    mc.netHandler.addToSendQueue(C03PacketPlayer.C04PacketPlayerPosition(mc.thePlayer.posX, 1.7976931348623157E+308, mc.thePlayer.posZ, true))
+                    mc.netHandler.addToSendQueue(
+                        C03PacketPlayer.C04PacketPlayerPosition(
+                            mc.thePlayer.posX,
+                            1.7976931348623157E+308,
+                            mc.thePlayer.posZ,
+                            true
+                        )
+                    )
                 }
                 if (velocityTimer.hasTimePassed(80L) && velocityInput) {
                     velocityInput = false
@@ -229,7 +258,8 @@ class Velocity : Module() {
 
                     // Reduce Y
                     if (mc.thePlayer.hurtResistantTime > 0 && aacPushYReducerValue.get() &&
-                            !LiquidBounce.moduleManager[Speed::class.java]!!.state) {
+                        !LiquidBounce.moduleManager[Speed::class.java]!!.state
+                    ) {
                         mc.thePlayer.motionY -= 0.014999993
                     }
                 }
@@ -242,7 +272,7 @@ class Velocity : Module() {
                     mc.thePlayer.motionZ /= reduce
                 }
             }
-           "matrixreduce" -> {
+            "matrixreduce" -> {
                 if (mc.thePlayer.hurtTime > 0) {
                     if (mc.thePlayer.onGround) {
                         if (mc.thePlayer.hurtTime <= 6) {
@@ -258,12 +288,12 @@ class Velocity : Module() {
                         mc.thePlayer.motionZ *= 0.60
                     }
                 }
-           }
+            }
 
-           "matrixground" -> {
-               isMatrixOnGround = mc.thePlayer.onGround && !mc.gameSettings.keyBindJump.isKeyDown
-               if (isMatrixOnGround) mc.thePlayer.onGround = false
-           }
+            "matrixground" -> {
+                isMatrixOnGround = mc.thePlayer.onGround && !mc.gameSettings.keyBindJump.isKeyDown
+                if (isMatrixOnGround) mc.thePlayer.onGround = false
+            }
 
             "glitch" -> {
                 mc.thePlayer.noClip = velocityInput
@@ -306,12 +336,14 @@ class Velocity : Module() {
             velocityTimer.reset()
             velocityTick = 0
 
-            if(!overrideDirectionValue.equals("None")) {
-                val yaw = Math.toRadians(if(overrideDirectionValue.get() == "Hard") {
-                    overrideDirectionYawValue.get()
-                } else {
-                    mc.thePlayer.rotationYaw + overrideDirectionYawValue.get() + 90
-                }.toDouble())
+            if (!overrideDirectionValue.equals("None")) {
+                val yaw = Math.toRadians(
+                    if (overrideDirectionValue.get() == "Hard") {
+                        overrideDirectionYawValue.get()
+                    } else {
+                        mc.thePlayer.rotationYaw + overrideDirectionYawValue.get() + 90
+                    }.toDouble()
+                )
                 val dist = sqrt((packet.motionX * packet.motionX + packet.motionZ * packet.motionZ).toDouble())
                 val x = cos(yaw) * dist
                 val z = sin(yaw) * dist
@@ -367,7 +399,7 @@ class Velocity : Module() {
                         packet.motionZ = (packet.getMotionZ() * 0.6).toInt()
                     }
                 }
-                
+
                 "matrixreverse" -> {
                     packet.motionX = (packet.getMotionX() * -0.3).toInt()
                     packet.motionZ = (packet.getMotionZ() * -0.3).toInt()
@@ -381,7 +413,14 @@ class Velocity : Module() {
 
                 "aac5.2.0" -> {
                     event.cancelEvent()
-                    mc.netHandler.addToSendQueue(C03PacketPlayer.C04PacketPlayerPosition(mc.thePlayer.posX, 1.7976931348623157E+308, mc.thePlayer.posZ, true))
+                    mc.netHandler.addToSendQueue(
+                        C03PacketPlayer.C04PacketPlayerPosition(
+                            mc.thePlayer.posX,
+                            1.7976931348623157E+308,
+                            mc.thePlayer.posZ,
+                            true
+                        )
+                    )
                 }
 
                 "aac5reduce", "reverse", "smoothreverse", "aaczero" -> velocityInput = true
@@ -392,7 +431,11 @@ class Velocity : Module() {
                     }
 
                     velocityInput = true
-                    mc.thePlayer.setPositionAndUpdate(mc.thePlayer.posX, mc.thePlayer.posY - phaseHeightValue.get(), mc.thePlayer.posZ)
+                    mc.thePlayer.setPositionAndUpdate(
+                        mc.thePlayer.posX,
+                        mc.thePlayer.posY - phaseHeightValue.get(),
+                        mc.thePlayer.posZ
+                    )
                     event.cancelEvent()
                     packet.motionX = 0
                     packet.motionY = 0
@@ -409,7 +452,14 @@ class Velocity : Module() {
 
                 "spoof" -> {
                     event.cancelEvent()
-                    mc.netHandler.addToSendQueue(C03PacketPlayer.C04PacketPlayerPosition(mc.thePlayer.posX + packet.motionX / 8000.0, mc.thePlayer.posY + packet.motionY / 8000.0, mc.thePlayer.posZ + packet.motionZ / 8000.0, false))
+                    mc.netHandler.addToSendQueue(
+                        C03PacketPlayer.C04PacketPlayerPosition(
+                            mc.thePlayer.posX + packet.motionX / 8000.0,
+                            mc.thePlayer.posY + packet.motionY / 8000.0,
+                            mc.thePlayer.posZ + packet.motionZ / 8000.0,
+                            false
+                        )
+                    )
                 }
 
                 "packetphase" -> {
@@ -418,11 +468,18 @@ class Velocity : Module() {
                     }
 
 //                    chat("MOTX=${packet.motionX}, MOTZ=${packet.motionZ}")
-                    if (packet.motionX <500 && packet.motionY <500) {
+                    if (packet.motionX < 500 && packet.motionY < 500) {
                         return
                     }
 
-                    mc.netHandler.addToSendQueue(C03PacketPlayer.C04PacketPlayerPosition(mc.thePlayer.posX, mc.thePlayer.posY - phaseHeightValue.get(), mc.thePlayer.posZ, false))
+                    mc.netHandler.addToSendQueue(
+                        C03PacketPlayer.C04PacketPlayerPosition(
+                            mc.thePlayer.posX,
+                            mc.thePlayer.posY - phaseHeightValue.get(),
+                            mc.thePlayer.posZ,
+                            false
+                        )
+                    )
                     event.cancelEvent()
                     packet.motionX = 0
                     packet.motionY = 0
@@ -447,16 +504,23 @@ class Velocity : Module() {
                         return
                     }
 
-                    val target = LiquidBounce.combatManager.getNearByEntity(LiquidBounce.moduleManager[KillAura::class.java]!!.rangeValue.get() + 1) ?: return
+                    val target =
+                        LiquidBounce.combatManager.getNearByEntity(LiquidBounce.moduleManager[KillAura::class.java]!!.rangeValue.get() + 1)
+                            ?: return
                     mc.thePlayer.motionX = 0.0
                     mc.thePlayer.motionZ = 0.0
                     packet.motionX = 0
                     packet.motionZ = 0
                     for (i in 0..redeCount) {
-                        mc.thePlayer.sendQueue.addToSendQueue(C02PacketUseEntity(target, C02PacketUseEntity.Action.ATTACK))
+                        mc.thePlayer.sendQueue.addToSendQueue(
+                            C02PacketUseEntity(
+                                target,
+                                C02PacketUseEntity.Action.ATTACK
+                            )
+                        )
                         mc.thePlayer.sendQueue.addToSendQueue(C0APacketAnimation())
                     }
-                    if (redeCount> 12) redeCount -= 5
+                    if (redeCount > 12) redeCount -= 5
                 }
 
                 "redesky1" -> {
@@ -465,13 +529,26 @@ class Velocity : Module() {
                     }
 
                     if (rspDengerValue.get()) {
-                        val pos = FallingPlayer(mc.thePlayer.posX, mc.thePlayer.posY, mc.thePlayer.posZ, packet.motionX / 8000.0, packet.motionY / 8000.0, packet.motionZ / 8000.0, 0f, 0f, 0f, 0f).findCollision(60)
-                        if (pos != null && pos.y> (mc.thePlayer.posY - 7)) {
+                        val pos = FallingPlayer(
+                            mc.thePlayer.posX,
+                            mc.thePlayer.posY,
+                            mc.thePlayer.posZ,
+                            packet.motionX / 8000.0,
+                            packet.motionY / 8000.0,
+                            packet.motionZ / 8000.0,
+                            0f,
+                            0f,
+                            0f,
+                            0f
+                        ).findCollision(60)
+                        if (pos != null && pos.y > (mc.thePlayer.posY - 7)) {
                             return
                         }
                     }
 
-                    val target = LiquidBounce.combatManager.getNearByEntity(LiquidBounce.moduleManager[KillAura::class.java]!!.rangeValue.get()) ?: return
+                    val target =
+                        LiquidBounce.combatManager.getNearByEntity(LiquidBounce.moduleManager[KillAura::class.java]!!.rangeValue.get())
+                            ?: return
                     if (rspAlwaysValue.get()) {
                         mc.thePlayer.motionX = 0.0
                         mc.thePlayer.motionZ = 0.0
@@ -497,7 +574,12 @@ class Velocity : Module() {
                             25
                         }
                         for (i in 0..count) {
-                            mc.thePlayer.sendQueue.addToSendQueue(C02PacketUseEntity(target, C02PacketUseEntity.Action.ATTACK))
+                            mc.thePlayer.sendQueue.addToSendQueue(
+                                C02PacketUseEntity(
+                                    target,
+                                    C02PacketUseEntity.Action.ATTACK
+                                )
+                            )
                             mc.thePlayer.sendQueue.addToSendQueue(C0APacketAnimation())
                         }
                         velocityCalcTimer.reset()
@@ -505,7 +587,12 @@ class Velocity : Module() {
                         packet.motionX = (packet.motionX * 0.6).toInt()
                         packet.motionZ = (packet.motionZ * 0.6).toInt()
                         for (i in 0..4) {
-                            mc.thePlayer.sendQueue.addToSendQueue(C02PacketUseEntity(target, C02PacketUseEntity.Action.ATTACK))
+                            mc.thePlayer.sendQueue.addToSendQueue(
+                                C02PacketUseEntity(
+                                    target,
+                                    C02PacketUseEntity.Action.ATTACK
+                                )
+                            )
                             mc.thePlayer.sendQueue.addToSendQueue(C0APacketAnimation())
                         }
                     }

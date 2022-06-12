@@ -37,11 +37,11 @@ import java.util.List;
 public abstract class MixinBlock {
 
     @Shadow
-    public abstract AxisAlignedBB getCollisionBoundingBox(World worldIn, BlockPos pos, IBlockState state);
-
-    @Shadow
     @Final
     protected BlockState blockState;
+
+    @Shadow
+    public abstract AxisAlignedBB getCollisionBoundingBox(World worldIn, BlockPos pos, IBlockState state);
 
     // Has to be implemented since a non-virtual call on an abstract method is illegal
     @Shadow
@@ -58,7 +58,7 @@ public abstract class MixinBlock {
         final BlockBBEvent blockBBEvent = new BlockBBEvent(pos, blockState.getBlock(), axisalignedbb);
         LiquidBounce.eventManager.callEvent(blockBBEvent);
         axisalignedbb = blockBBEvent.getBoundingBox();
-        if(axisalignedbb != null && mask.intersectsWith(axisalignedbb))
+        if (axisalignedbb != null && mask.intersectsWith(axisalignedbb))
             list.add(axisalignedbb);
     }
 
@@ -66,7 +66,7 @@ public abstract class MixinBlock {
     private void shouldSideBeRendered(CallbackInfoReturnable<Boolean> callbackInfoReturnable) {
         final XRay xray = LiquidBounce.moduleManager.getModule(XRay.class);
 
-        if(xray.getState())
+        if (xray.getState())
             callbackInfoReturnable.setReturnValue(xray.getXrayBlocks().contains(this));
     }
 

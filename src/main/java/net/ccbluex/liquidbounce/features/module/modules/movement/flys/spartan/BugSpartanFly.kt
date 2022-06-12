@@ -11,10 +11,31 @@ class BugSpartanFly : FlyMode("BugSpartan") {
 
     override fun onEnable() {
         repeat(65) {
-            mc.netHandler.addToSendQueue(C04PacketPlayerPosition(mc.thePlayer.posX, mc.thePlayer.posY + 0.049, mc.thePlayer.posZ, false))
-            mc.netHandler.addToSendQueue(C04PacketPlayerPosition(mc.thePlayer.posX, mc.thePlayer.posY, mc.thePlayer.posZ, false))
+            mc.netHandler.addToSendQueue(
+                C04PacketPlayerPosition(
+                    mc.thePlayer.posX,
+                    mc.thePlayer.posY + 0.049,
+                    mc.thePlayer.posZ,
+                    false
+                )
+            )
+            mc.netHandler.addToSendQueue(
+                C04PacketPlayerPosition(
+                    mc.thePlayer.posX,
+                    mc.thePlayer.posY,
+                    mc.thePlayer.posZ,
+                    false
+                )
+            )
         }
-        mc.netHandler.addToSendQueue(C04PacketPlayerPosition(mc.thePlayer.posX, mc.thePlayer.posY + 0.1, mc.thePlayer.posZ, true))
+        mc.netHandler.addToSendQueue(
+            C04PacketPlayerPosition(
+                mc.thePlayer.posX,
+                mc.thePlayer.posY + 0.1,
+                mc.thePlayer.posZ,
+                true
+            )
+        )
 
         mc.thePlayer.motionX *= 0.1
         mc.thePlayer.motionZ *= 0.1

@@ -142,7 +142,7 @@ class AutoPot : Module() {
 
         val itemPotion = stack.item as ItemPotion
 
-        if (mc.thePlayer.health <healthValue.get() && regenValue.get()) {
+        if (mc.thePlayer.health < healthValue.get() && regenValue.get()) {
             for (potionEffect in itemPotion.getEffects(stack)) {
                 if (potionEffect.potionID == Potion.heal.id) {
                     return true
@@ -156,7 +156,10 @@ class AutoPot : Module() {
             }
         } else if (utilityValue.get()) {
             for (potionEffect in itemPotion.getEffects(stack)) {
-                if (InventoryUtils.isPositivePotionEffect(potionEffect.potionID) && !mc.thePlayer.isPotionActive(potionEffect.potionID)) {
+                if (InventoryUtils.isPositivePotionEffect(potionEffect.potionID) && !mc.thePlayer.isPotionActive(
+                        potionEffect.potionID
+                    )
+                ) {
                     return true
                 }
             }

@@ -24,7 +24,8 @@ import net.minecraft.util.ResourceLocation
 class HitEffect : Module() {
 
     private val timingValue = ListValue("Timing", arrayOf("Attack", "Kill"), "Attack")
-    private val modeValue = ListValue("Mode", arrayOf("Lighting", "Blood", "Fire", "Critical", "MagicCritical"), "Lighting")
+    private val modeValue =
+        ListValue("Mode", arrayOf("Lighting", "Blood", "Fire", "Critical", "MagicCritical"), "Lighting")
     private val timesValue = IntegerValue("Times", 1, 1, 10)
     private val lightingSoundValue = BoolValue("LightingSound", true).displayable { modeValue.equals("Lighting") }
 
@@ -32,32 +33,59 @@ class HitEffect : Module() {
 
     @EventTarget
     fun onAttack(event: AttackEvent) {
-        if(timingValue.equals("Attack") && EntityUtils.isSelected(event.targetEntity, true)) {
+        if (timingValue.equals("Attack") && EntityUtils.isSelected(event.targetEntity, true)) {
             displayEffectFor(event.targetEntity as EntityLivingBase)
         }
     }
 
     @EventTarget
     fun onKilled(event: EntityKilledEvent) {
-        if(timingValue.equals("Kill")) { // the CombatManager has checked if the entity is selected, we don't need to check it again
+        if (timingValue.equals("Kill")) { // the CombatManager has checked if the entity is selected, we don't need to check it again
             displayEffectFor(event.targetEntity)
         }
     }
 
     private fun displayEffectFor(entity: EntityLivingBase) {
         repeat(timesValue.get()) {
-            when(modeValue.get().lowercase()) {
+            when (modeValue.get().lowercase()) {
                 "lighting" -> {
-                    mc.netHandler.handleSpawnGlobalEntity(S2CPacketSpawnGlobalEntity(EntityLightningBolt(mc.theWorld, entity.posX, entity.posY, entity.posZ)))
-                    if(lightingSoundValue.get()) {
-                        mc.soundHandler.playSound(PositionedSoundRecord.create(ResourceLocation("random.explode"), 1.0f))
-                        mc.soundHandler.playSound(PositionedSoundRecord.create(ResourceLocation("ambient.weather.thunder"), 1.0f))
+                    mc.netHandler.handleSpawnGlobalEntity(
+                        S2CPacketSpawnGlobalEntity(
+                            EntityLightningBolt(
+                                mc.theWorld,
+                                entity.posX,
+                                entity.posY,
+                                entity.posZ
+                            )
+                        )
+                    )
+                    if (lightingSoundValue.get()) {
+                        mc.soundHandler.playSound(
+                            PositionedSoundRecord.create(
+                                ResourceLocation("random.explode"),
+                                1.0f
+                            )
+                        )
+                        mc.soundHandler.playSound(
+                            PositionedSoundRecord.create(
+                                ResourceLocation("ambient.weather.thunder"),
+                                1.0f
+                            )
+                        )
                     }
                 }
                 "blood" -> {
                     repeat(10) {
-                        mc.effectRenderer.spawnEffectParticle(EnumParticleTypes.BLOCK_CRACK.particleID, entity.posX, entity.posY + entity.height / 2, entity.posZ,
-                            entity.motionX + RandomUtils.nextFloat(-0.5f, 0.5f), entity.motionY + RandomUtils.nextFloat(-0.5f, 0.5f), entity.motionZ + RandomUtils.nextFloat(-0.5f, 0.5f), blockState)
+                        mc.effectRenderer.spawnEffectParticle(
+                            EnumParticleTypes.BLOCK_CRACK.particleID,
+                            entity.posX,
+                            entity.posY + entity.height / 2,
+                            entity.posZ,
+                            entity.motionX + RandomUtils.nextFloat(-0.5f, 0.5f),
+                            entity.motionY + RandomUtils.nextFloat(-0.5f, 0.5f),
+                            entity.motionZ + RandomUtils.nextFloat(-0.5f, 0.5f),
+                            blockState
+                        )
                     }
                 }
                 "fire" ->

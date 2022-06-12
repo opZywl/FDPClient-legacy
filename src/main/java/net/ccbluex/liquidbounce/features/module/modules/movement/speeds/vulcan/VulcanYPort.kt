@@ -5,13 +5,13 @@ import net.ccbluex.liquidbounce.utils.MovementUtils
 import net.minecraft.client.settings.GameSettings
 
 class VulcanYPort : SpeedMode("VulcanYPort") {
-	
+
     private var wasTimer = false
     private var ticks = 0
 
     override fun onUpdate() {
-         ticks++
-         if (wasTimer) {
+        ticks++
+        if (wasTimer) {
             mc.timer.timerSpeed = 1.00f
             wasTimer = false
         }
@@ -28,17 +28,17 @@ class VulcanYPort : SpeedMode("VulcanYPort") {
             ticks = 0
             mc.gameSettings.keyBindJump.pressed = false
             mc.thePlayer.jump()
-	    if (!mc.thePlayer.isAirBorne) {
+            if (!mc.thePlayer.isAirBorne) {
                 return //Prevent flag with Fly
             }
             mc.timer.timerSpeed = 1.4f
             wasTimer = true
-            if(MovementUtils.getSpeed() < 0.48f) {
+            if (MovementUtils.getSpeed() < 0.48f) {
                 MovementUtils.strafe(0.48f)
-            }else{
-                MovementUtils.strafe((MovementUtils.getSpeed()*0.985).toFloat())
+            } else {
+                MovementUtils.strafe((MovementUtils.getSpeed() * 0.985).toFloat())
             }
-        }else if (!MovementUtils.isMoving()) {
+        } else if (!MovementUtils.isMoving()) {
             mc.timer.timerSpeed = 1.00f
             mc.thePlayer.motionX = 0.0
             mc.thePlayer.motionZ = 0.0

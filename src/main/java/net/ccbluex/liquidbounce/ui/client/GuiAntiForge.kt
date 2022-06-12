@@ -30,8 +30,10 @@ class GuiAntiForge(private val prevGui: GuiScreen) : GuiScreen() {
     private fun updateButtonStat() {
         enabledButton.displayString = "%ui.status%: " + if (AntiForge.enabled) "§a%ui.on%" else "§c%ui.off%"
         fmlButton.displayString = "FML Brand: " + if (AntiForge.blockFML) "§a%ui.on%" else "§c%ui.off%"
-        proxyButton.displayString = "FML Proxy Packets: " + if (AntiForge.blockProxyPacket) "§a%ui.on%" else "§c%ui.off%"
-        payloadButton.displayString = "Payload Packets: " + if (AntiForge.blockPayloadPackets) "§a%ui.on%" else "§c%ui.off%"
+        proxyButton.displayString =
+            "FML Proxy Packets: " + if (AntiForge.blockProxyPacket) "§a%ui.on%" else "§c%ui.off%"
+        payloadButton.displayString =
+            "Payload Packets: " + if (AntiForge.blockPayloadPackets) "§a%ui.on%" else "§c%ui.off%"
     }
 
     override fun actionPerformed(button: GuiButton) {

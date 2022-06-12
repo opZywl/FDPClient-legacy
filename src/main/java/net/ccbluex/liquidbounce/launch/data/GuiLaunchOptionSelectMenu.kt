@@ -11,15 +11,17 @@ class GuiLaunchOptionSelectMenu : GuiScreen() {
         //this.buttonList.add(GuiButton(0, this.width / 2 - 50, height / 2 - 20, 100, 20, "Legacy UI"))
         //this.buttonList.add(GuiButton(1, this.width / 2 - 50, height / 2 + 10, 100, 20, "Fancy UI"))
 
-        LiquidBounce.launchFilters.addAll(when (0) {
-            0 -> arrayListOf(EnumLaunchFilter.LEGACY_UI)
-            1 -> arrayListOf(EnumLaunchFilter.FANCY_UI)
-            else -> emptyList()
-        })
+        LiquidBounce.launchFilters.addAll(
+            when (0) {
+                0 -> arrayListOf(EnumLaunchFilter.LEGACY_UI)
+                1 -> arrayListOf(EnumLaunchFilter.FANCY_UI)
+                else -> emptyList()
+            }
+        )
 
         LiquidBounce.startClient()
 
-        if(mc.currentScreen is GuiLaunchOptionSelectMenu)
+        if (mc.currentScreen is GuiLaunchOptionSelectMenu)
             mc.displayGuiScreen(LiquidBounce.mainMenu)
     }
 
@@ -37,5 +39,5 @@ class GuiLaunchOptionSelectMenu : GuiScreen() {
     override fun actionPerformed(button: GuiButton) {
     }
 
-    override fun keyTyped(p_keyTyped_1_: Char, p_keyTyped_2_: Int) { }
+    override fun keyTyped(p_keyTyped_1_: Char, p_keyTyped_2_: Int) {}
 }

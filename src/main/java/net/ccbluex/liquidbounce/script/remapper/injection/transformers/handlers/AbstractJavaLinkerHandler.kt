@@ -37,7 +37,7 @@ object AbstractJavaLinkerHandler {
 
         var currentClass = clazz
         while (currentClass.name != "java.lang.Object") {
-            if(ScriptSafetyManager.isRestrictedSimple(currentClass, name)) {
+            if (ScriptSafetyManager.isRestrictedSimple(currentClass, name)) {
                 return "RESTRICTED"
             }
             val remapped = Remapper.remapMethod(currentClass, name, Type.getMethodDescriptor(accessibleObject))
@@ -70,7 +70,7 @@ object AbstractJavaLinkerHandler {
     fun addMember(clazz: Class<*>, name: String): String {
         var currentClass = clazz
         while (currentClass.name != "java.lang.Object") {
-            if(ScriptSafetyManager.isRestrictedSimple(currentClass, name)) {
+            if (ScriptSafetyManager.isRestrictedSimple(currentClass, name)) {
                 return "RESTRICTED"
             }
             val remapped = Remapper.remapField(currentClass, name)
@@ -103,7 +103,7 @@ object AbstractJavaLinkerHandler {
     fun setPropertyGetter(clazz: Class<*>, name: String): String {
         var currentClass = clazz
         while (currentClass.name != "java.lang.Object") {
-            if(ScriptSafetyManager.isRestrictedSimple(currentClass, name)) {
+            if (ScriptSafetyManager.isRestrictedSimple(currentClass, name)) {
                 return "RESTRICTED"
             }
             val remapped = Remapper.remapField(currentClass, name)

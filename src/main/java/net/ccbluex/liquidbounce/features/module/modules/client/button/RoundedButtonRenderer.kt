@@ -1,6 +1,5 @@
 package net.ccbluex.liquidbounce.features.module.modules.client.button
 
-import net.ccbluex.liquidbounce.utils.ClientUtils
 import net.ccbluex.liquidbounce.utils.render.EaseUtils
 import net.ccbluex.liquidbounce.utils.render.RenderUtils
 import net.minecraft.client.Minecraft
@@ -34,7 +33,7 @@ class RoundedButtonRenderer(button: GuiButton) : AbstractButtonRenderer(button) 
             //BlurUtil.blurAreaBoarder(button.xPosition, button.yPosition, button.width, button.height, 1f)
 
             val percent = EaseUtils.easeInOutQuad(animation)
-            val al=if(140 + ((percent*50).toInt()) in 1..254) 140 + ((percent*50).toInt()) else 140;
+            val al = if (140 + ((percent * 50).toInt()) in 1..254) 140 + ((percent * 50).toInt()) else 140
             RenderUtils.drawRoundedCornerRect(
                 button.xPosition.toFloat(),
                 button.yPosition.toFloat(),
@@ -47,19 +46,22 @@ class RoundedButtonRenderer(button: GuiButton) : AbstractButtonRenderer(button) 
             lastUpdate = time
             if (!button.enabled) {
                 RenderUtils.drawRoundedCornerRect(
-                    button.xPosition.toFloat(), button.yPosition.toFloat(),
-                    button.xPosition.toFloat() + button.width.toFloat(), button.yPosition.toFloat() + button.height.toFloat(),
-                    2F, Color(100, 100, 100, 180).rgb
+                    button.xPosition.toFloat(),
+                    button.yPosition.toFloat(),
+                    button.xPosition.toFloat() + button.width.toFloat(),
+                    button.yPosition.toFloat() + button.height.toFloat(),
+                    2F,
+                    Color(100, 100, 100, 180).rgb
                 )
                 j = 10526880
             } else if (button.hovered) {
 
-                    if (animation < 1) {
-                        animation += pct
-                    }
-                    if (animation > 1) {
-                        animation = 1.0
-                    }
+                if (animation < 1) {
+                    animation += pct
+                }
+                if (animation > 1) {
+                    animation = 1.0
+                }
                 //System.out.println(aFade);
                 RenderUtils.drawGradientSidewaysV(
                     button.xPosition - 0.5, button.yPosition - 5.0, button.xPosition + button.width + 0.5,
