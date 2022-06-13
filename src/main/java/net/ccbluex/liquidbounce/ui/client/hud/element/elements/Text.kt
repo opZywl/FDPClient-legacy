@@ -303,6 +303,10 @@ class Text(
         )
     }
 
+    override fun drawElement(): Border? {
+        TODO("Not yet implemented")
+    }
+
     override fun updateElement() {
         editTicks += 5
         if (editTicks > 80) editTicks = 0

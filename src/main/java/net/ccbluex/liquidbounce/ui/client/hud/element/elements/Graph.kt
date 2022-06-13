@@ -221,4 +221,8 @@ class Graph(
 
         return Border(0F, 0F, width, maxHeight.get() + 2F)
     }
+
+    override fun drawElement(): Border? {
+        TODO("Not yet implemented")
+    }
 }

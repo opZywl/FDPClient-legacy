@@ -11,10 +11,7 @@ import net.ccbluex.liquidbounce.event.EventManager
 import net.ccbluex.liquidbounce.features.command.CommandManager
 import net.ccbluex.liquidbounce.features.macro.MacroManager
 import net.ccbluex.liquidbounce.features.module.ModuleManager
-import net.ccbluex.liquidbounce.features.special.AntiForge
-import net.ccbluex.liquidbounce.features.special.CombatManager
-import net.ccbluex.liquidbounce.features.special.DiscordRPC
-import net.ccbluex.liquidbounce.features.special.ServerSpoof
+import net.ccbluex.liquidbounce.features.special.*
 import net.ccbluex.liquidbounce.file.FileManager
 import net.ccbluex.liquidbounce.file.config.ConfigManager
 import net.ccbluex.liquidbounce.launch.EnumLaunchFilter
@@ -50,13 +47,13 @@ object LiquidBounce {
 
     var CLIENTTEXT = "Waiting..."
     var Darkmode = true
-    const val COLORED_NAME = "§b[§b!§7] §b§lFDPCLIENT §b» "
-    const val CLIENT_CREATOR = "CCBlueX & UnlegitMC"
+    const val COLORED_NAME = "§7[§b!§7] §b§lFDPCLIENT §b» "
+    const val CLIENT_CREATOR = "CCBlueX & UnlegitMC Team"
     const val CLIENT_WEBSITE = "FDPClient.Club"
     val venti = ResourceLocation("fdpclient/imgs/GenshinImpact/venti.png")
     val lumine = ResourceLocation("fdpclient/imgs/GenshinImpact/lumine.png")
     const val MINECRAFT_VERSION = "1.8.9"
-    const val VERSIONTYPE = "Development"
+    const val VERSIONTYPE = "Preview"
 
     @JvmField
     val gitInfo = Properties().also {
@@ -74,7 +71,7 @@ object LiquidBounce {
 
     @JvmField
     val CLIENT_BRANCH = (gitInfo["git.branch"] ?: "unknown").let {
-        if (it == "main") "Development Build" else it
+        if (it == "main") "Main" else it
     }
 
     var isStarting = true
@@ -129,7 +126,7 @@ object LiquidBounce {
      */
     fun initClient() {
         ClientUtils.logInfo("Loading $CLIENT_NAME $CLIENT_VERSION, by $CLIENT_CREATOR")
-        ClientUtils.setTitle("Initializing...")
+        ClientUtils.setTitle("Initializing...");
         val startTime = System.currentTimeMillis()
         // Create file manager
         fileManager = FileManager()
@@ -213,7 +210,7 @@ object LiquidBounce {
         if (CLIENT_VERSION != "unknown") {
             thread(block = this::checkUpdate)
         }
-        ClientUtils.setTitle("Loading script subscripts...")
+        ClientUtils.setTitle("Loading script subscripts...");
         for (subscript in fileManager.subscriptsConfig.subscripts) {
             //println(subscript.url+":"+subscript.name)
             Subscriptions.addSubscribes(ScriptSubscribe(subscript.url, subscript.name))
@@ -225,7 +222,7 @@ object LiquidBounce {
             scriptManager.loadScripts()
             scriptManager.enableScripts()
         }
-        ClientUtils.setTitle()
+        ClientUtils.setTitle();
         ClientUtils.logInfo("$CLIENT_NAME $CLIENT_VERSION loaded in ${(System.currentTimeMillis() - startTime)}ms!")
     }
 

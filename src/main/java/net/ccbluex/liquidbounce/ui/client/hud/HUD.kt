@@ -7,6 +7,7 @@ package net.ccbluex.liquidbounce.ui.client.hud
 
 import net.ccbluex.liquidbounce.injection.access.StaticStorage
 import net.ccbluex.liquidbounce.ui.client.hud.designer.GuiHudDesigner
+import net.ccbluex.liquidbounce.ui.client.hud.element.elements.Effect
 import net.ccbluex.liquidbounce.ui.client.hud.element.Element
 import net.ccbluex.liquidbounce.ui.client.hud.element.elements.*
 import net.ccbluex.liquidbounce.utils.ClassUtils
@@ -23,9 +24,8 @@ open class HUD : MinecraftInstance() {
 
     companion object {
 
-        val elements =
-            ClassUtils.resolvePackage("${HUD::class.java.`package`.name}.element.elements", Element::class.java)
-                .toTypedArray()
+        val elements = ClassUtils.resolvePackage("${HUD::class.java.`package`.name}.element.elements", Element::class.java)
+            .toTypedArray()
 
         /**
          * Create default HUD
@@ -36,6 +36,10 @@ open class HUD : MinecraftInstance() {
             text1.colorModeValue.set("Rainbow")
             text1.rectValue.set("Logo")
             text1.rectColorModeValue.set("Rainbow")
+
+            val elements = arrayOf(
+                Effect::class.java
+            )
 
             return HUD()
                 .addElement(text1)
@@ -89,18 +93,13 @@ open class HUD : MinecraftInstance() {
      */
     fun handleMouseClick(mouseX: Int, mouseY: Int, button: Int) {
         for (element in elements)
-            element.handleMouseClick(
-                (mouseX / element.scale) - element.renderX, (mouseY / element.scale) -
-                        element.renderY, button
-            )
+            element.handleMouseClick((mouseX / element.scale) - element.renderX, (mouseY / element.scale) -
+                    element.renderY, button)
 
         if (button == 0) {
             for (element in elements.reversed()) {
-                if (!element.isInBorder(
-                        (mouseX / element.scale) - element.renderX,
-                        (mouseY / element.scale) - element.renderY
-                    )
-                ) {
+                if (!element.isInBorder((mouseX / element.scale) - element.renderX,
+                        (mouseY / element.scale) - element.renderY)) {
                     continue
                 }
 
@@ -206,8 +205,7 @@ open class HUD : MinecraftInstance() {
     /**
      * Add [notification]
      */
-    fun addNotification(notification: Notification) =
-        elements.any { it is Notifications } && notifications.add(notification)
+    fun addNotification(notification: Notification) = elements.any { it is Notifications } && notifications.add(notification)
 
     /**
      * Remove [notification]

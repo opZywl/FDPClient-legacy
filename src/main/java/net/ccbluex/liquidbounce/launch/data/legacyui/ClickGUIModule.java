@@ -13,6 +13,7 @@ import net.ccbluex.liquidbounce.features.module.ModuleInfo;
 import net.ccbluex.liquidbounce.launch.data.legacyui.clickgui.ClickGui;
 import net.ccbluex.liquidbounce.launch.data.legacyui.clickgui.style.styles.*;
 import net.ccbluex.liquidbounce.launch.data.legacyui.clickgui.style.styles.novoline.ClickyUI;
+import net.ccbluex.liquidbounce.launch.data.legacyui.clickgui.style.styles.tenacity.DropdownClickGui;
 import net.ccbluex.liquidbounce.launch.options.LegacyUiLaunchOption;
 import net.ccbluex.liquidbounce.utils.render.ColorUtils;
 import net.ccbluex.liquidbounce.value.BoolValue;
@@ -27,17 +28,24 @@ import java.awt.*;
 
 @ModuleInfo(name = "ClickGUI", category = ModuleCategory.CLIENT, keyBind = Keyboard.KEY_RSHIFT, canEnable = false)
 public class ClickGUIModule extends Module {
-    public static final BoolValue colorRainbow = new BoolValue("Rainbow", false);    private final ListValue styleValue = new ListValue("Style", new String[]{"Novoline", "LiquidBounce", "Null", "Slowly", "Black", "White", "Astolfo"}, "Novoline") {
+    private final ListValue styleValue = new ListValue("Style", new String[]{"Novoline", "Tenacity", "LiquidBounce", "Null", "Slowly", "Black", "White", "Astolfo"}, "Novoline") {
         @Override
         protected void onChanged(final String oldValue, final String newValue) {
             updateStyle();
         }
     };
+
+    public static final BoolValue backback = new BoolValue("Background Accent",true);
+    public final FloatValue scaleValue = new FloatValue("Scale", 1F, 0.7F, 2F);
+    public final IntegerValue maxElementsValue = new IntegerValue("MaxElements", 15, 1, 20);
+    public static final ListValue colormode = new ListValue("Setting Accent", new String[]{"White", "Color"},"Color");
+    public static final ListValue scrollMode = new ListValue("Scroll Mode", new String[]{"Screen Height", "Value"},"Value");
+    public static final IntegerValue clickHeight = new IntegerValue("Tab Height", 250, 100, 500);
+
+    public static final BoolValue colorRainbow = new BoolValue("Rainbow", false);
     public static final IntegerValue colorRedValue = (IntegerValue) new IntegerValue("R", 0, 0, 255).displayable(() -> !colorRainbow.get());
     public static final IntegerValue colorGreenValue = (IntegerValue) new IntegerValue("G", 160, 0, 255).displayable(() -> !colorRainbow.get());
     public static final IntegerValue colorBlueValue = (IntegerValue) new IntegerValue("B", 255, 0, 255).displayable(() -> !colorRainbow.get());
-    public final FloatValue scaleValue = new FloatValue("Scale", 1F, 0.7F, 2F);
-    public final IntegerValue maxElementsValue = new IntegerValue("MaxElements", 15, 1, 20);
 
     public static Color generateColor() {
         return colorRainbow.get() ? ColorUtils.INSTANCE.rainbow() : new Color(colorRedValue.get(), colorGreenValue.get(), colorBlueValue.get());
@@ -51,6 +59,9 @@ public class ClickGUIModule extends Module {
         } else {
             updateStyle();
             mc.displayGuiScreen(LegacyUiLaunchOption.clickGui);
+        }
+        if (styleValue.get().contains("Tenacity")) {
+            mc.displayGuiScreen(new DropdownClickGui());
         }
     }
 
@@ -85,6 +96,4 @@ public class ClickGUIModule extends Module {
             event.cancelEvent();
         }
     }
-
-
 }

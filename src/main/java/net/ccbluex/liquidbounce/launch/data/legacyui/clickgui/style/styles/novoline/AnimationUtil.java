@@ -1,13 +1,10 @@
 package net.ccbluex.liquidbounce.launch.data.legacyui.clickgui.style.styles.novoline;
 
-
 import net.ccbluex.liquidbounce.utils.timer.MSTimer;
 
 import java.awt.*;
 
 public class AnimationUtil {
-    public static MSTimer TimerUtils = new MSTimer();
-
     public static float fastmax(float a, float b) {
         return (a >= b) ? a : b;
     }
@@ -46,18 +43,20 @@ public class AnimationUtil {
             f = 1L;
         }
         if (diff > g) {
-            final double xD = (g * f / 16L < 0.25) ? 0.5 : ((double) (g * f / 16L));
-            current -= (float) xD;
+            final double xD = (g * f / 16L < 0.25) ? 0.5 : ((double)(g * f / 16L));
+            current -= (float)xD;
             if (current < target) {
                 current = target;
             }
-        } else if (diff < -g) {
-            final double xD = (g * f / 16L < 0.25) ? 0.5 : ((double) (g * f / 16L));
-            current += (float) xD;
+        }
+        else if (diff < -g) {
+            final double xD = (g * f / 16L < 0.25) ? 0.5 : ((double)(g * f / 16L));
+            current += (float)xD;
             if (current > target) {
                 current = target;
             }
-        } else {
+        }
+        else {
             current = target;
         }
         return current;
@@ -97,7 +96,7 @@ public class AnimationUtil {
         animation = animation < finalState ? (Math.min(animation + add, finalState)) : (Math.max(animation - add, finalState));
         return animation;
     }
-
+    public static MSTimer TimerUtils=new MSTimer();
     public static int animatel(float target, float current, float speed) {
         if (TimerUtils.hasTimePassed(4)) {
             boolean larger;

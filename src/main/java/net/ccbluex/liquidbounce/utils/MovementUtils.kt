@@ -20,6 +20,14 @@ object MovementUtils : MinecraftInstance() {
         return sqrt(mc.thePlayer.motionX * mc.thePlayer.motionX + mc.thePlayer.motionZ * mc.thePlayer.motionZ).toFloat()
     }
 
+    /**
+     * Calculate speed based on the speed potion effect level/amplifier
+     */
+    fun getSpeedWithPotionEffects(speed: Double) =
+        mc.thePlayer.getActivePotionEffect(Potion.moveSpeed)?.let {
+            speed * (1 + (it.amplifier + 1) * 0.2)
+        } ?: speed
+
     fun strafe() {
         strafe(getSpeed())
     }

@@ -150,6 +150,7 @@ abstract class Element(
      * Called when key pressed
      */
     open fun handleKey(c: Char, keyCode: Int) {}
+    abstract fun drawElement(): Border?
 }
 
 /**
