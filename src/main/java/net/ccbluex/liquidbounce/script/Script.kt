@@ -12,6 +12,9 @@ import net.ccbluex.liquidbounce.script.api.*
 import net.ccbluex.liquidbounce.script.api.global.Chat
 import net.ccbluex.liquidbounce.script.api.global.Setting
 import net.ccbluex.liquidbounce.utils.ClientUtils
+import net.ccbluex.liquidbounce.utils.MovementUtils
+import net.ccbluex.liquidbounce.utils.misc.HttpUtils
+import net.ccbluex.liquidbounce.utils.timer.MSTimer
 import net.ccbluex.liquidbounce.utils.MinecraftInstance
 import java.io.File
 import java.util.function.Function
@@ -55,6 +58,11 @@ class Script(private val scriptFile: File) : MinecraftInstance() {
         scriptEngine.put("moduleManager", LiquidBounce.moduleManager)
         scriptEngine.put("commandManager", LiquidBounce.commandManager)
         scriptEngine.put("scriptManager", LiquidBounce.scriptManager)
+
+        //Utils instances
+        scriptEngine.put("MovementUtils", MovementUtils)
+        scriptEngine.put("HttpUtils", HttpUtils)
+        scriptEngine.put("MSTimer", MSTimer)
 
         // Global functions
         scriptEngine.put("registerScript", RegisterScript())
