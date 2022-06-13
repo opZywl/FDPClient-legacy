@@ -50,7 +50,6 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import javax.imageio.ImageIO;
-import javax.swing.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileWriter;
@@ -267,7 +266,6 @@ public abstract class MixinMinecraft {
             e.printStackTrace();
         }
         File file1 = new File("./", "FDPCrashLogs.txt");
-        ;
         String s = file1.getAbsolutePath();
 
         if (Util.getOSType() == Util.EnumOS.OSX) {
@@ -278,7 +276,7 @@ public abstract class MixinMinecraft {
                 ioexception1.printStackTrace();
             }
         } else if (Util.getOSType() == Util.EnumOS.WINDOWS) {
-            String s1 = String.format("cmd.exe /C start \"Open file\" \"%s\"", new Object[]{s});
+            String s1 = String.format("cmd.exe /C start \"Open file\" \"%s\"", s);
 
             try {
                 Runtime.getRuntime().exec(s1);
@@ -292,8 +290,8 @@ public abstract class MixinMinecraft {
 
         try {
             Class<?> oclass = Class.forName("java.awt.Desktop");
-            Object object = oclass.getMethod("getDesktop", new Class[0]).invoke((Object) null, new Object[0]);
-            oclass.getMethod("browse", new Class[]{URI.class}).invoke(object, new Object[]{file1.toURI()});
+            Object object = oclass.getMethod("getDesktop", new Class[0]).invoke(null);
+            oclass.getMethod("browse", new Class[]{URI.class}).invoke(object, file1.toURI());
         } catch (Throwable throwable) {
             throwable.printStackTrace();
             flag = true;
