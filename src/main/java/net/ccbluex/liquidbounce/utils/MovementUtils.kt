@@ -6,12 +6,14 @@
 package net.ccbluex.liquidbounce.utils
 
 import net.ccbluex.liquidbounce.event.MoveEvent
+import net.ccbluex.liquidbounce.utils.RotationUtils
 import net.minecraft.network.play.client.C03PacketPlayer.C04PacketPlayerPosition
 import net.minecraft.potion.Potion
 import net.minecraft.util.AxisAlignedBB
 import kotlin.math.cos
 import kotlin.math.sin
 import kotlin.math.sqrt
+import net.minecraft.entity.EntityLivingBase
 
 object MovementUtils : MinecraftInstance() {
 
@@ -40,6 +42,39 @@ object MovementUtils : MinecraftInstance() {
         val yaw = direction
         mc.thePlayer.motionX = -sin(yaw) * speed
         mc.thePlayer.motionZ = cos(yaw) * speed
+    }
+
+    fun doTargetStrafe(curTarget: EntityLivingBase, direction_: Float, radius: Float) {
+        if(!isMoving())
+            return
+        var forward_ = 0.0
+        var strafe_ = 0.0
+        val speed_ = getSpeed()
+        var _direction = 0.0
+        if(direction_ > 0.001) {
+            _direction = 1.0
+        }else if(direction_ < -0.001) {
+            _direction = -1.0
+        }
+        if(mc.thePlayer.getDistanceToEntity(curTarget) < radius - speed_) {
+            forward_ = -1.0
+        }
+        if(mc.thePlayer.getDistanceToEntity(curTarget) > radius + speed_) {
+            forward_ = 1.0
+        }
+        if(mc.thePlayer.getDistanceToEntity(curTarget) < radius + speed_*2 && mc.thePlayer.getDistanceToEntity(curTarget) > radius - speed_*2) {
+            strafe_ = 1.0
+        }
+        strafe_ *= _direction
+        var strafeYaw = RotationUtils.getRotationsEntity(curTarget).yaw.toFloat()
+        if (forward_ < 0f) strafeYaw += 180f
+        var _forward = 1f
+        if (forward_ < 0f) _forward = -0.5f else if (forward_ > 0f) _forward = 0.5f
+        if (strafe_ > 0f) strafeYaw -= 90f * _forward
+        if (strafe_ < 0f) strafeYaw += 90f * _forward
+        strafeYaw = Math.toRadians(strafeYaw.toDouble()).toFloat()
+        mc.thePlayer.motionX = -sin(strafeYaw.toDouble()) * speed_.toDouble()
+        mc.thePlayer.motionZ = cos(strafeYaw.toDouble()) * speed_.toDouble()
     }
 
     fun move(speed: Float) {

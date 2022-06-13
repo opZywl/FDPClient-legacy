@@ -25,6 +25,7 @@ import net.ccbluex.liquidbounce.value.BoolValue
 import net.ccbluex.liquidbounce.value.FloatValue
 import net.ccbluex.liquidbounce.value.IntegerValue
 import net.ccbluex.liquidbounce.value.ListValue
+import net.ccbluex.liquidbounce.features.module.modules.movement.TargetStrafe
 import net.minecraft.client.gui.inventory.GuiContainer
 import net.minecraft.client.gui.inventory.GuiInventory
 import net.minecraft.enchantment.EnchantmentHelper
@@ -266,6 +267,8 @@ class KillAura : Module() {
     // Fake block status
     var blockingStatus = false
 
+    val targetStrafe = LiquidBounce.moduleManager.getModule(TargetStrafe::class.java) as TargetStrafe
+
     val displayBlocking: Boolean
         get() = blockingStatus || (autoBlockValue.equals("Fake") && canFakeBlock)
 
@@ -283,6 +286,7 @@ class KillAura : Module() {
      * Disable kill aura module
      */
     override fun onDisable() {
+        targetStrafe.doStrafe = false
         target = null
         currentTarget = null
         hitable = false
@@ -440,6 +444,9 @@ class KillAura : Module() {
         ) {
             target = currentTarget
         }
+
+        targetStrafe.targetEntity = currentTarget?:return
+        targetStrafe.doStrafe = true
     }
 
     /**
@@ -856,11 +863,14 @@ class KillAura : Module() {
             if (mc.thePlayer.getDistanceToEntityBox(entity) < maxRange) {
                 target = entity
                 canSwing = false
+                targetStrafe.targetEntity = target?:return
+                targetStrafe.doStrafe = true
                 return
             }
         }
 
         target = null
+        targetStrafe.doStrafe = false
         canSwing = discoveredTargets.find { mc.thePlayer.getDistanceToEntityBox(it) < swingRangeValue.get() } != null
     }
 
