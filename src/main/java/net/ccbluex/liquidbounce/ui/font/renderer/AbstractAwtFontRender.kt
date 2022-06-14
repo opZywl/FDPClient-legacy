@@ -12,7 +12,11 @@ import java.awt.Font
 abstract class AbstractAwtFontRender(val font: Font) {
 
     protected val fontMetrics = Canvas().getFontMetrics(font)
-    protected open val fontHeight = if (fontMetrics.height <= 0) { font.size } else { fontMetrics.height + 3 }
+    protected open val fontHeight = if (fontMetrics.height <= 0) {
+        font.size
+    } else {
+        fontMetrics.height + 3
+    }
     open val height: Int
         get() = (fontHeight - 8) / 2
 

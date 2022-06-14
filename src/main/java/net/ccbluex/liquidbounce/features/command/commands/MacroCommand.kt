@@ -31,7 +31,12 @@ class MacroCommand : Command("macro", arrayOf("m")) {
                 "remove" -> {
                     if (args.size > 2) {
                         if (args[2].startsWith(".")) {
-                            LiquidBounce.macroManager.macros.filter { it.command == StringUtils.toCompleteString(args, 2) }
+                            LiquidBounce.macroManager.macros.filter {
+                                it.command == StringUtils.toCompleteString(
+                                    args,
+                                    2
+                                )
+                            }
                         } else {
                             val key = Keyboard.getKeyIndex(args[2].uppercase())
                             LiquidBounce.macroManager.macros.filter { it.key == key }

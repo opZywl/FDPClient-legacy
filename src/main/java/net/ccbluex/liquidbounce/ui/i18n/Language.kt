@@ -15,21 +15,24 @@ class Language(val locale: String) {
     private fun find(): InputStream {
         val split = locale.replace("-", "_").split("_")
 
-        if(split.size > 1) {
+        if (split.size > 1) {
             val str = split[0].lowercase() + "-" + split[1].uppercase()
-            LanguageManager::class.java.classLoader.getResourceAsStream("assets/minecraft/fdpclient/translations/${str}/source.properties")?.let {
-                return it
-            }
+            LanguageManager::class.java.classLoader.getResourceAsStream("assets/minecraft/fdpclient/translations/${str}/source.properties")
+                ?.let {
+                    return it
+                }
         }
 
         val str = split[0].lowercase()
-        LanguageManager::class.java.classLoader.getResourceAsStream("assets/minecraft/fdpclient/translations/${str}/source.properties")?.let {
-            return it
-        }
+        LanguageManager::class.java.classLoader.getResourceAsStream("assets/minecraft/fdpclient/translations/${str}/source.properties")
+            ?.let {
+                return it
+            }
 
-        LanguageManager::class.java.classLoader.getResourceAsStream("assets/minecraft/fdpclient/translations/source.properties")?.let {
-            return it
-        }
+        LanguageManager::class.java.classLoader.getResourceAsStream("assets/minecraft/fdpclient/translations/source.properties")
+            ?.let {
+                return it
+            }
 
         throw IllegalStateException("Can't find language file! Try sync gitsubmodule if this is a custom build!")
     }

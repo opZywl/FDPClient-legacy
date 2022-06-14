@@ -1,0 +1,17 @@
+diff a/src/main/java/net/ccbluex/liquidbounce/features/module/modules/combat/InfiniteAura.kt b/src/main/java/net/ccbluex/liquidbounce/features/module/modules/combat/InfiniteAura.kt	(rejected hunks)
+@@ -42,9 +42,12 @@ class InfiniteAura : Module() {
+     private val noRegenValue = BoolValue("NoRegen", true)
+     private val swingValue = BoolValue("Swing", true).displayable { modeValue.equals("Aura") }
+     private val pathRenderValue = BoolValue("PathRender", true)
+-    private val colorRedValue = IntegerValue("ColorRed", 0, 0, 255).displayable { pathRenderValue.get() && !colorRainbowValue.get() }
+-    private val colorGreenValue = IntegerValue("ColorGreen", 160, 0, 255).displayable { pathRenderValue.get() && !colorRainbowValue.get() }
+-    private val colorBlueValue = IntegerValue("ColorBlue", 255, 0, 255).displayable { pathRenderValue.get() && !colorRainbowValue.get() }
++    private val colorRedValue =
++        IntegerValue("ColorRed", 0, 0, 255).displayable { pathRenderValue.get() && !colorRainbowValue.get() }
++    private val colorGreenValue =
++        IntegerValue("ColorGreen", 160, 0, 255).displayable { pathRenderValue.get() && !colorRainbowValue.get() }
++    private val colorBlueValue =
++        IntegerValue("ColorBlue", 255, 0, 255).displayable { pathRenderValue.get() && !colorRainbowValue.get() }
+     private val colorAlphaValue = IntegerValue("ColorAlpha", 150, 0, 255).displayable { pathRenderValue.get() }
+     private val colorRainbowValue = BoolValue("Rainbow", false).displayable { pathRenderValue.get() }
+ 

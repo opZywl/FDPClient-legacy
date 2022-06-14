@@ -25,7 +25,14 @@ class FunCraft : FlyMode("FunCraft") {
 
     override fun onBlockBB(event: BlockBBEvent) {
         if (event.block is BlockAir && event.y <= mc.thePlayer.posY) {
-            event.boundingBox = AxisAlignedBB.fromBounds(event.x.toDouble(), event.y.toDouble(), event.z.toDouble(), event.x + 1.0, mc.thePlayer.posY, event.z + 1.0)
+            event.boundingBox = AxisAlignedBB.fromBounds(
+                event.x.toDouble(),
+                event.y.toDouble(),
+                event.z.toDouble(),
+                event.x + 1.0,
+                mc.thePlayer.posY,
+                event.z + 1.0
+            )
         }
     }
 

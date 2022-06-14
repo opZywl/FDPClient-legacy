@@ -10,7 +10,7 @@ class AAC1910Fly : FlyMode("AAC1.9.10") {
     private val speedValue = FloatValue("${valuePrefix}Speed", 0.3f, 0.2f, 1.7f)
 
     private var aacJump = 0.0
-    
+
     override fun onEnable() {
         aacJump = -3.8
     }

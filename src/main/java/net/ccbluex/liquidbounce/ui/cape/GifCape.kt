@@ -13,7 +13,7 @@ class GifCape(name: String, imageIS: InputStream) : DynamicCape(name) {
         imageIS.close()
 
         var delay = 0
-        for(i in 0 until gif.frameCount) {
+        for (i in 0 until gif.frameCount) {
             frames.add(gif.getFrame(i))
 
             delay += gif.getDelay(i) * 10

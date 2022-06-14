@@ -34,16 +34,18 @@ ClientUtils : MinecraftInstance() {
 
             val vendor = systemInfo.operatingSystem.manufacturer
             val processorSerialNumber = processors.joinToString("-") { it.identifier }
-            val processorModel = if(processors.first() !is CentralProcessor) {
+            val processorModel = if (processors.first() !is CentralProcessor) {
                 processors.joinToString("-") { it.model }
             } else {
                 "Unknown"
             }
-            UUID.nameUUIDFromBytes(("$vendor, " +
-                    "$processorSerialNumber, " +
-                    "$processorModel, " +
-                    "${memory.total}, " +
-                    "${hardware.processors.size}").toByteArray())
+            UUID.nameUUIDFromBytes(
+                ("$vendor, " +
+                        "$processorSerialNumber, " +
+                        "$processorModel, " +
+                        "${memory.total}, " +
+                        "${hardware.processors.size}").toByteArray()
+            )
         } catch (e: Throwable) {
             e.printStackTrace()
             UUID.randomUUID()
@@ -59,7 +61,8 @@ ClientUtils : MinecraftInstance() {
             bsUuidFile.delete()
 
         // build metrics
-        val metrics = Metrics(LiquidBounce.CLIENT_NAME, 11076, LiquidBounce.CLIENT_VERSION, hardwareUuid.toString(), true)
+        val metrics =
+            Metrics(LiquidBounce.CLIENT_NAME, 11076, LiquidBounce.CLIENT_VERSION, hardwareUuid.toString(), true)
 
         metrics.addCustomChart(SimplePie("config_name") {
             LiquidBounce.configManager.nowConfig
@@ -92,8 +95,9 @@ ClientUtils : MinecraftInstance() {
     fun setTitle() {
         Display.setTitle("${LiquidBounce.CLIENT_NAME} ${LiquidBounce.CLIENT_VERSION} (${LiquidBounce.CLIENT_BRANCH}) | ${LiquidBounce.CLIENT_WEBSITE}")
     }
-    fun setTitle(stats:String) {
-        Display.setTitle("${LiquidBounce.CLIENT_NAME} ${LiquidBounce.CLIENT_VERSION} (${LiquidBounce.CLIENT_BRANCH}) | ${LiquidBounce.CLIENT_WEBSITE} - "+stats)
+
+    fun setTitle(stats: String) {
+        Display.setTitle("${LiquidBounce.CLIENT_NAME} ${LiquidBounce.CLIENT_VERSION} (${LiquidBounce.CLIENT_BRANCH}) | ${LiquidBounce.CLIENT_WEBSITE} - " + stats)
     }
 
     fun displayAlert(message: String) {

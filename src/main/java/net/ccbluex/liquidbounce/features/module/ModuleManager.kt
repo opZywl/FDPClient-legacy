@@ -126,11 +126,24 @@ class ModuleManager : Listenable {
     @EventTarget
     private fun onKey(event: KeyEvent) {
         if (pendingBindModule == null) {
-            modules.toMutableList().filter { it.triggerType == EnumTriggerType.TOGGLE && it.keyBind == event.key }.forEach { it.toggle() }
+            modules.toMutableList().filter { it.triggerType == EnumTriggerType.TOGGLE && it.keyBind == event.key }
+                .forEach { it.toggle() }
         } else {
             pendingBindModule!!.keyBind = event.key
-            ClientUtils.displayAlert("Bound module §a§l${pendingBindModule!!.name}§3 to key §a§l${Keyboard.getKeyName(event.key)}§3.")
-            LiquidBounce.hud.addNotification(Notification("KeyBind", "Bound ${pendingBindModule!!.name} to ${Keyboard.getKeyName(event.key)}.", NotifyType.INFO))
+            ClientUtils.displayAlert(
+                "Bound module §a§l${pendingBindModule!!.name}§3 to key §a§l${
+                    Keyboard.getKeyName(
+                        event.key
+                    )
+                }§3."
+            )
+            LiquidBounce.hud.addNotification(
+                Notification(
+                    "KeyBind",
+                    "Bound ${pendingBindModule!!.name} to ${Keyboard.getKeyName(event.key)}.",
+                    NotifyType.INFO
+                )
+            )
             pendingBindModule = null
         }
     }

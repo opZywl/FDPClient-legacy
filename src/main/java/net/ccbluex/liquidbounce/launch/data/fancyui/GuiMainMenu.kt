@@ -14,8 +14,10 @@ import java.io.File
 object GuiMainMenu : DynamicGuiView(Page(File("mainmenu.html"))) {
     @JvmField
     var cancelledUpdate = false
+
     @JvmField
     var updateVersion: String? = null
+
     @JvmField
     var updateMessage: String? = null
 

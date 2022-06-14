@@ -20,7 +20,7 @@ class VulcanFly : FlyMode("Vulcan") {
     private var ticks = 0
 
     override fun onEnable() {
-        if(mc.thePlayer.onGround && canClipValue.get()) {
+        if (mc.thePlayer.onGround && canClipValue.get()) {
             clip(0f, -0.1f)
             waitFlag = true
             canGlide = false
@@ -35,12 +35,12 @@ class VulcanFly : FlyMode("Vulcan") {
     override fun onMotion(event: MotionEvent) {
         if (event.eventState == EventState.PRE && canGlide) {
             mc.timer.timerSpeed = 1f
-            mc.thePlayer.motionY = -if(ticks % 2 == 0) {
+            mc.thePlayer.motionY = -if (ticks % 2 == 0) {
                 0.17
             } else {
                 0.10
             }
-            if(ticks == 0) {
+            if (ticks == 0) {
                 mc.thePlayer.motionY = -0.07
             }
             ticks++
@@ -49,10 +49,19 @@ class VulcanFly : FlyMode("Vulcan") {
 
     override fun onPacket(event: PacketEvent) {
         val packet = event.packet
-        if(packet is S08PacketPlayerPosLook && waitFlag) {
+        if (packet is S08PacketPlayerPosLook && waitFlag) {
             waitFlag = false
             mc.thePlayer.setPosition(packet.x, packet.y, packet.z)
-            mc.netHandler.addToSendQueue(C06PacketPlayerPosLook(mc.thePlayer.posX, mc.thePlayer.posY, mc.thePlayer.posZ, mc.thePlayer.rotationYaw, mc.thePlayer.rotationPitch, false))
+            mc.netHandler.addToSendQueue(
+                C06PacketPlayerPosLook(
+                    mc.thePlayer.posX,
+                    mc.thePlayer.posY,
+                    mc.thePlayer.posZ,
+                    mc.thePlayer.rotationYaw,
+                    mc.thePlayer.rotationPitch,
+                    false
+                )
+            )
             event.cancelEvent()
             mc.thePlayer.jump()
             clip(0.127318f, 0f)
@@ -68,6 +77,13 @@ class VulcanFly : FlyMode("Vulcan") {
         val x = -sin(yaw) * dist
         val z = cos(yaw) * dist
         mc.thePlayer.setPosition(mc.thePlayer.posX + x, mc.thePlayer.posY + y, mc.thePlayer.posZ + z)
-        mc.netHandler.addToSendQueue(C04PacketPlayerPosition(mc.thePlayer.posX, mc.thePlayer.posY, mc.thePlayer.posZ, false))
+        mc.netHandler.addToSendQueue(
+            C04PacketPlayerPosition(
+                mc.thePlayer.posX,
+                mc.thePlayer.posY,
+                mc.thePlayer.posZ,
+                false
+            )
+        )
     }
 }

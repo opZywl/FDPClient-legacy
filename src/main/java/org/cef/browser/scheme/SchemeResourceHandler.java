@@ -19,11 +19,15 @@ public class SchemeResourceHandler extends CefResourceHandlerAdapter {
         scheme = scm;
     }
 
+    public static CefSchemeHandlerFactory build(IScheme scheme) {
+        return (browser, frame, scheme_name, request) -> new SchemeResourceHandler(scheme);
+    }
+
     @Override
     public boolean processRequest(CefRequest request, CefCallback callback) {
         SchemePreResponse resp = scheme.processRequest(request.getURL());
 
-        switch(resp) {
+        switch (resp) {
             case HANDLED_CONTINUE:
                 callback.Continue();
                 return true;
@@ -45,9 +49,5 @@ public class SchemeResourceHandler extends CefResourceHandlerAdapter {
     @Override
     public boolean readResponse(byte[] data_out, int bytes_to_read, IntRef bytes_read, CefCallback callback) {
         return scheme.readResponse(new SchemeResponseData(data_out, bytes_to_read, bytes_read));
-    }
-
-    public static CefSchemeHandlerFactory build(IScheme scheme) {
-        return (browser, frame, scheme_name, request) -> new SchemeResourceHandler(scheme);
     }
 }

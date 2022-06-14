@@ -48,7 +48,7 @@ class GuiProxySelect(private val prevGui: GuiScreen) : GuiScreen() {
                 mc.displayGuiScreen(prevGui)
             }
             1 -> {
-                when(ProxyManager.proxyType) {
+                when (ProxyManager.proxyType) {
                     Proxy.Type.SOCKS -> ProxyManager.proxyType = Proxy.Type.HTTP
                     Proxy.Type.HTTP -> ProxyManager.proxyType = Proxy.Type.SOCKS
                     else -> throw IllegalStateException("Proxy type is not supported!")

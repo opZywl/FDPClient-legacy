@@ -37,19 +37,17 @@ import java.awt.*;
 public abstract class MixinGuiInGame extends MixinGui {
 
     @Shadow
-    protected abstract void renderHotbarItem(int index, int xPos, int yPos, float partialTicks, EntityPlayer player);
-
-    @Shadow
     @Final
     protected static ResourceLocation widgetsTexPath;
-
     @Shadow
     @Final
     protected GuiPlayerTabOverlay overlayPlayerList;
-
     @Shadow
     @Final
     protected Minecraft mc;
+
+    @Shadow
+    protected abstract void renderHotbarItem(int index, int xPos, int yPos, float partialTicks, EntityPlayer player);
 
     @Inject(method = "renderScoreboard", at = @At("HEAD"), cancellable = true)
     private void renderScoreboard(CallbackInfo callbackInfo) {
@@ -66,15 +64,15 @@ public abstract class MixinGuiInGame extends MixinGui {
 
         float tabHope = this.mc.gameSettings.keyBindPlayerList.isKeyDown() ? 1f : 0f;
         final Animations animations = Animations.INSTANCE;
-        if(animations.getTabHopePercent() != tabHope) {
+        if (animations.getTabHopePercent() != tabHope) {
             animations.setLastTabSync(System.currentTimeMillis());
             animations.setTabHopePercent(tabHope);
         }
-        if(animations.getTabPercent() > 0 && tabHope == 0) {
+        if (animations.getTabPercent() > 0 && tabHope == 0) {
             overlayPlayerList.renderPlayerlist(sr.getScaledWidth(), mc.theWorld.getScoreboard(), mc.theWorld.getScoreboard().getObjectiveInDisplaySlot(0));
         }
 
-        if(Minecraft.getMinecraft().getRenderViewEntity() instanceof EntityPlayer) {
+        if (Minecraft.getMinecraft().getRenderViewEntity() instanceof EntityPlayer) {
             boolean canBetterHotbar = hud.getState() && hud.getBetterHotbarValue().get();
             Minecraft mc = Minecraft.getMinecraft();
 
@@ -88,7 +86,7 @@ public abstract class MixinGuiInGame extends MixinGui {
             GlStateManager.enableRescaleNormal();
             GlStateManager.enableBlend();
             GlStateManager.tryBlendFuncSeparate(770, 771, 1, 0);
-            if(canBetterHotbar) {
+            if (canBetterHotbar) {
                 GlStateManager.disableTexture2D();
                 RenderUtils.quickDrawRect(i - 91, sr.getScaledHeight() - 22, i + 91, sr.getScaledHeight(), new Color(0, 0, 0, HUD.INSTANCE.getHotbarAlphaValue().get()));
                 RenderUtils.quickDrawRect(itemX, sr.getScaledHeight() - 22, itemX + 22, sr.getScaledHeight() - 21, ColorUtils.INSTANCE.rainbow());
@@ -101,8 +99,7 @@ public abstract class MixinGuiInGame extends MixinGui {
             this.zLevel = f;
             RenderHelper.enableGUIStandardItemLighting();
 
-            for (int j = 0; j < 9; ++j)
-            {
+            for (int j = 0; j < 9; ++j) {
                 int k = sr.getScaledWidth() / 2 - 90 + j * 20 + 2;
                 int l = sr.getScaledHeight() - 16 - 3;
                 this.renderHotbarItem(j, k, l, partialTicks, entityplayer);
@@ -120,7 +117,7 @@ public abstract class MixinGuiInGame extends MixinGui {
     private void renderPumpkinOverlay(final CallbackInfo callbackInfo) {
         final AntiBlind antiBlind = LiquidBounce.moduleManager.getModule(AntiBlind.class);
 
-        if(antiBlind.getState() && antiBlind.getPumpkinEffectValue().get())
+        if (antiBlind.getState() && antiBlind.getPumpkinEffectValue().get())
             callbackInfo.cancel();
     }
 
@@ -130,4 +127,4 @@ public abstract class MixinGuiInGame extends MixinGui {
         if (crossHair.getState())
             cir.setReturnValue(false);
     }
- }
+}

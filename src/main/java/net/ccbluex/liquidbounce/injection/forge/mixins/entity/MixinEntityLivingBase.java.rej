@@ -1,0 +1,80 @@
+diff a/src/main/java/net/ccbluex/liquidbounce/injection/forge/mixins/entity/MixinEntityLivingBase.java b/src/main/java/net/ccbluex/liquidbounce/injection/forge/mixins/entity/MixinEntityLivingBase.java	(rejected hunks)
+@@ -35,22 +35,22 @@
+ public abstract class MixinEntityLivingBase extends MixinEntity {
+ 
+     @Shadow
+-    protected abstract float getJumpUpwardsMotion();
+-
++    protected boolean isJumping;
+     @Shadow
+-    public abstract PotionEffect getActivePotionEffect(Potion potionIn);
++    private int jumpTicks;
+ 
+     @Shadow
+-    public abstract boolean isPotionActive(Potion potionIn);
++    protected abstract float getJumpUpwardsMotion();
+ 
+     @Shadow
+-    private int jumpTicks;
++    public abstract PotionEffect getActivePotionEffect(Potion potionIn);
+ 
+     @Shadow
+-    protected boolean isJumping;
++    public abstract boolean isPotionActive(Potion potionIn);
+ 
+     @Shadow
+-    public void onLivingUpdate() {}
++    public void onLivingUpdate() {
++    }
+ 
+     @Shadow
+     protected abstract void updateFallState(double y, boolean onGroundIn, Block blockIn, BlockPos pos);
+@@ -69,18 +69,18 @@ public void onLivingUpdate() {}
+      */
+     @Overwrite
+     protected void jump() {
+-        if(!this.equals(Minecraft.getMinecraft().thePlayer)) {
++        if (!this.equals(Minecraft.getMinecraft().thePlayer)) {
+             return;
+         }
+ 
+         final JumpEvent jumpEvent = new JumpEvent(MovementUtils.INSTANCE.getJumpMotion());
+         LiquidBounce.eventManager.callEvent(jumpEvent);
+-        if(jumpEvent.isCancelled())
++        if (jumpEvent.isCancelled())
+             return;
+ 
+         this.motionY = jumpEvent.getMotion();
+ 
+-        if(this.isSprinting()) {
++        if (this.isSprinting()) {
+             final Sprint sprint = LiquidBounce.moduleManager.getModule(Sprint.class);
+             float f = ((sprint.getState() && sprint.getJumpDirectionsValue().get()) ? MovementUtils.INSTANCE.getMovingYaw() : this.rotationYaw) * 0.017453292F;
+             this.motionX -= MathHelper.sin(f) * 0.2F;
+@@ -100,7 +100,7 @@ private void headLiving(CallbackInfo callbackInfo) {
+     private void onJumpSection(CallbackInfo callbackInfo) {
+         final Jesus jesus = LiquidBounce.moduleManager.getModule(Jesus.class);
+ 
+-        if(jesus.getState() && !isJumping && !isSneaking() && isInWater() &&
++        if (jesus.getState() && !isJumping && !isSneaking() && isInWater() &&
+                 jesus.getModeValue().equals("Legit")) {
+             this.updateAITick();
+         }
+@@ -108,7 +108,7 @@ private void onJumpSection(CallbackInfo callbackInfo) {
+ 
+     @Inject(method = "getLook", at = @At("HEAD"), cancellable = true)
+     private void getLook(CallbackInfoReturnable<Vec3> callbackInfoReturnable) {
+-        if(((EntityLivingBase) (Object) this) instanceof EntityPlayerSP)
++        if (((EntityLivingBase) (Object) this) instanceof EntityPlayerSP)
+             callbackInfoReturnable.setReturnValue(getVectorForRotation(this.rotationPitch, this.rotationYaw));
+     }
+ 
+@@ -116,7 +116,7 @@ private void getLook(CallbackInfoReturnable<Vec3> callbackInfoReturnable) {
+     private void isPotionActive(Potion p_isPotionActive_1_, final CallbackInfoReturnable<Boolean> callbackInfoReturnable) {
+         final AntiBlind antiBlind = LiquidBounce.moduleManager.getModule(AntiBlind.class);
+ 
+-        if((p_isPotionActive_1_ == Potion.confusion || p_isPotionActive_1_ == Potion.blindness) && antiBlind.getState() && antiBlind.getConfusionEffectValue().get())
++        if ((p_isPotionActive_1_ == Potion.confusion || p_isPotionActive_1_ == Potion.blindness) && antiBlind.getState() && antiBlind.getConfusionEffectValue().get())
+             callbackInfoReturnable.setReturnValue(false);
+     }
+ 

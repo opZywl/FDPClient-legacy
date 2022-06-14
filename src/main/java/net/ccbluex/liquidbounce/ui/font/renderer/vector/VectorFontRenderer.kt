@@ -21,12 +21,14 @@ import java.awt.geom.AffineTransform
 class VectorFontRenderer(font: Font) : AbstractAwtFontRender(font) {
 
     override fun drawChar(char: String): Int {
-        val cached =  if (!cachedChars.containsKey(char)) {
+        val cached = if (!cachedChars.containsKey(char)) {
             val list = GL11.glGenLists(1)
             // list is faster than buffer
             GL11.glNewList(list, GL11.GL_COMPILE_AND_EXECUTE)
-            RenderUtils.directDrawAWTShape(font.createGlyphVector(FontRenderContext(AffineTransform(), true, false), char)
-                .getOutline(0f, fontMetrics.ascent.toFloat()), HUD.fontEpsilonValue.get().toDouble())
+            RenderUtils.directDrawAWTShape(
+                font.createGlyphVector(FontRenderContext(AffineTransform(), true, false), char)
+                    .getOutline(0f, fontMetrics.ascent.toFloat()), HUD.fontEpsilonValue.get().toDouble()
+            )
             GL11.glEndList()
 
             CachedVectorFont(list, fontMetrics.stringWidth(char)).also { cachedChars[char] = it }

@@ -16,7 +16,8 @@ import net.minecraft.block.Block
  *
  * @author SenkJu
  */
-class ModuleCommand(val module: Module, val values: List<Value<*>> = module.values) : Command(module.name.lowercase(), emptyArray()) {
+class ModuleCommand(val module: Module, val values: List<Value<*>> = module.values) :
+    Command(module.name.lowercase(), emptyArray()) {
 
     init {
         if (values.isEmpty())
@@ -56,7 +57,11 @@ class ModuleCommand(val module: Module, val values: List<Value<*>> = module.valu
                 if (value is IntegerValue || value is FloatValue || value is TextValue)
                     chatSyntax("$moduleName ${args[1].lowercase()} <value>")
                 else if (value is ListValue)
-                    chatSyntax("$moduleName ${args[1].lowercase()} <${value.values.joinToString(separator = "/").lowercase()}>")
+                    chatSyntax(
+                        "$moduleName ${args[1].lowercase()} <${
+                            value.values.joinToString(separator = "/").lowercase()
+                        }>"
+                    )
                 return
             }
 
@@ -85,7 +90,11 @@ class ModuleCommand(val module: Module, val values: List<Value<*>> = module.valu
                     is FloatValue -> value.set(args[2].toFloat())
                     is ListValue -> {
                         if (!value.values.any { it.lowercase() == args[2].lowercase() }) {
-                            chatSyntax("$moduleName ${args[1].lowercase()} <${value.values.joinToString(separator = "/").lowercase()}>")
+                            chatSyntax(
+                                "$moduleName ${args[1].lowercase()} <${
+                                    value.values.joinToString(separator = "/").lowercase()
+                                }>"
+                            )
                             return
                         }
 
@@ -110,7 +119,7 @@ class ModuleCommand(val module: Module, val values: List<Value<*>> = module.valu
                 .filter { it !is FontValue && it.name.startsWith(args[0], true) }
                 .map { it.name.lowercase() }
             2 -> {
-                when(module.getValue(args[0])) {
+                when (module.getValue(args[0])) {
                     is BlockValue -> {
                         return Block.blockRegistry.keys
                             .map { it.resourcePath.lowercase() }

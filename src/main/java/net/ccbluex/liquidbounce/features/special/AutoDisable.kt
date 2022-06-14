@@ -20,7 +20,14 @@ object AutoDisable : Listenable {
             .filter { it.state && it.autoDisable == EnumAutoDisableType.RESPAWN && it.triggerType == EnumTriggerType.TOGGLE }
             .forEach { module ->
                 module.state = false
-                LiquidBounce.hud.addNotification(Notification(this.name, "Disabled ${module.name} due to respawn.", NotifyType.WARNING, 2000))
+                LiquidBounce.hud.addNotification(
+                    Notification(
+                        this.name,
+                        "Disabled ${module.name} due to respawn.",
+                        NotifyType.WARNING,
+                        2000
+                    )
+                )
             }
     }
 
@@ -31,7 +38,14 @@ object AutoDisable : Listenable {
                 .filter { it.state && it.autoDisable == EnumAutoDisableType.FLAG && it.triggerType == EnumTriggerType.TOGGLE }
                 .forEach { module ->
                     module.state = false
-                    LiquidBounce.hud.addNotification(Notification(this.name, "Disabled ${module.name} due to flags.", NotifyType.WARNING, 2000))
+                    LiquidBounce.hud.addNotification(
+                        Notification(
+                            this.name,
+                            "Disabled ${module.name} due to flags.",
+                            NotifyType.WARNING,
+                            2000
+                        )
+                    )
                 }
         }
     }
@@ -41,7 +55,14 @@ object AutoDisable : Listenable {
             .filter { it.state && it.autoDisable == EnumAutoDisableType.GAME_END }
             .forEach { module ->
                 module.state = false
-                LiquidBounce.hud.addNotification(Notification(this.name, "Disabled ${module.name} due to game end.", NotifyType.WARNING, 2000))
+                LiquidBounce.hud.addNotification(
+                    Notification(
+                        this.name,
+                        "Disabled ${module.name} due to game end.",
+                        NotifyType.WARNING,
+                        2000
+                    )
+                )
             }
     }
 

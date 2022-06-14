@@ -32,7 +32,7 @@ public class TransformerLoader implements IFMLLoadingPlugin {
      */
     @Override
     public String[] getASMTransformerClass() {
-        return new String[] {ForgeNetworkTransformer.class.getName(), AbstractJavaLinkerTransformer.class.getName(), ViaForgeSupportTransformer.class.getName(), OptimizeTransformer.class.getName()};
+        return new String[]{ForgeNetworkTransformer.class.getName(), AbstractJavaLinkerTransformer.class.getName(), ViaForgeSupportTransformer.class.getName(), OptimizeTransformer.class.getName()};
     }
 
     /**
@@ -42,7 +42,8 @@ public class TransformerLoader implements IFMLLoadingPlugin {
      * Trivially, this modcontainer will be loaded before all regular mod containers,
      * which means it will be forced to be "immutable" - not susceptible to normal
      * sorting behaviour.
-     * All other mod behaviours are available however- this container can receive and handle
+     * All other mod behaviours are available.
+     * However, this container can receive and handle
      * normal loading events
      */
     @Override

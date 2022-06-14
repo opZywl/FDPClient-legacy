@@ -22,15 +22,16 @@ class Glide : Module() {
     private val mode: GlideMode
         get() = modes.find { modeValue.equals(it.modeName) } ?: throw NullPointerException() // this should not happen
 
-    private val modeValue: ListValue = object : ListValue("Mode", modes.map { it.modeName }.toTypedArray(), "Vulcan2.6.3") {
-        override fun onChange(oldValue: String, newValue: String) {
-            if (state) onDisable()
-        }
+    private val modeValue: ListValue =
+        object : ListValue("Mode", modes.map { it.modeName }.toTypedArray(), "Vulcan2.6.3") {
+            override fun onChange(oldValue: String, newValue: String) {
+                if (state) onDisable()
+            }
 
-        override fun onChanged(oldValue: String, newValue: String) {
-            if (state) onEnable()
+            override fun onChanged(oldValue: String, newValue: String) {
+                if (state) onEnable()
+            }
         }
-    }
 
     private val motionResetValue = BoolValue("MotionReset", false)
 
@@ -87,7 +88,7 @@ class Glide : Module() {
 
     @EventTarget
     fun onMotion(event: MotionEvent) {
-        if(viewBobbingValue.get()) {
+        if (viewBobbingValue.get()) {
             mc.thePlayer.cameraYaw = viewBobbingYawValue.get()
             mc.thePlayer.prevCameraYaw = viewBobbingYawValue.get()
         }
@@ -126,5 +127,6 @@ class Glide : Module() {
      * 读取mode中的value并和本体中的value合并
      * 所有的value必须在这个之前初始化
      */
-    override val values = super.values.toMutableList().also { modes.map { mode -> mode.values.forEach { value -> it.add(value.displayable { modeValue.equals(mode.modeName) }) } } }
+    override val values = super.values.toMutableList()
+        .also { modes.map { mode -> mode.values.forEach { value -> it.add(value.displayable { modeValue.equals(mode.modeName) }) } } }
 }

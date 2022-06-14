@@ -2,12 +2,9 @@ package net.ccbluex.liquidbounce.launch.data.legacyui.clickgui.style.styles.novo
 
 
 import net.ccbluex.liquidbounce.features.module.Module;
-import net.ccbluex.liquidbounce.features.module.modules.client.HUD;
 import net.ccbluex.liquidbounce.launch.data.legacyui.ClickGUIModule;
-import net.ccbluex.liquidbounce.ui.client.other.Limitation;
 import net.ccbluex.liquidbounce.ui.font.Fonts;
 import net.ccbluex.liquidbounce.ui.font.GameFontRenderer;
-import net.ccbluex.liquidbounce.utils.render.ColorUtils;
 import net.ccbluex.liquidbounce.utils.render.RenderUtils;
 import net.ccbluex.liquidbounce.value.Value;
 import net.minecraft.client.Minecraft;
@@ -26,7 +23,10 @@ public class Button {
     public double opacity;
     public ArrayList<ValueButton> buttons = new ArrayList<>();
     public boolean expand;
+    public long rticks;
     boolean hover;
+    int smoothalpha;
+    float animationsize;
 
     public Button(Module cheat, int x, int y) {
         this.cheat = cheat;
@@ -39,15 +39,11 @@ public class Button {
         }
     }
 
-    int smoothalpha;
-    float animationsize;
-
     public float processFPS(float fps, float defF, float defV) {
         return defV / (fps / defF);
     }
 
-    public long rticks;
-    public void render(int mouseX, int mouseY, int x11,int y11,int x22,int y22) {
+    public void render(int mouseX, int mouseY, int x11, int y11, int x22, int y22) {
         final GameFontRenderer font = Fonts.font35;
         float y2 = y + 15;
         buttons.clear();
@@ -56,7 +52,7 @@ public class Button {
             y2 += 15;
         }
         if (index != 0) {
-            int FPS = Minecraft.getMinecraft().getDebugFPS() == 0 ? 1 : Minecraft.getMinecraft().getDebugFPS();
+            int FPS = Minecraft.getDebugFPS() == 0 ? 1 : Minecraft.getDebugFPS();
             Button b2 = parent.buttons.get(index - 1);
             y = b2.y + 15 + animationsize;
             if (b2.expand) {
@@ -113,14 +109,14 @@ public class Button {
                 (float) ((double) Minecraft.getMinecraft().thePlayer.ticksExisted / 50.0 + Math.sin((double) 50 / 50.0 * 1.6))
                         % 1.0f,
                 0.5f, 1.0f));
-        return cheat.getState() ? Ranbow.getRGB() : new Color(40,40,40).getRGB();
+        return cheat.getState() ? Ranbow.getRGB() : new Color(40, 40, 40).getRGB();
         //} else {
-            //return new Color(HUD.r.getValue().intValue(), HUD.g.getValue().intValue(), HUD.b.getValue().intValue(), smoothalpha).getRGB();
+        //return new Color(HUD.r.getValue().intValue(), HUD.g.getValue().intValue(), HUD.b.getValue().intValue(), smoothalpha).getRGB();
         //}
     }
 
     private void smoothalphas() {
-        int FPS = Minecraft.getMinecraft().getDebugFPS() == 0 ? 1 : Minecraft.getMinecraft().getDebugFPS();
+        int FPS = Minecraft.getDebugFPS() == 0 ? 1 : Minecraft.getDebugFPS();
         if (cheat.getState()) {
             smoothalpha = (int) AnimationUtil.moveUD(smoothalpha, 255, processFPS(FPS, 1000, 0.013F), processFPS(FPS, 1000, 0.011F));
         } else {

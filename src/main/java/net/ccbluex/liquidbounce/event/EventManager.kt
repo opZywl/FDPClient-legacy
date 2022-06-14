@@ -89,8 +89,8 @@ class EventManager : MinecraftInstance() {
                     throwable.printStackTrace()
                 }
             }
-        }catch (e :Exception){
-            e.printStackTrace();
+        } catch (e: Exception) {
+            e.printStackTrace()
         }
     }
 }

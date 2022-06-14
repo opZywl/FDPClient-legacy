@@ -1,16 +1,5 @@
 package org.cef.browser;
 
-import java.awt.Component;
-import java.awt.Point;
-import java.awt.Rectangle;
-import java.awt.event.KeyEvent;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseWheelEvent;
-import java.awt.image.BufferedImage;
-import java.nio.ByteBuffer;
-import java.util.HashMap;
-import java.util.concurrent.CompletableFuture;
-
 import net.ccbluex.liquidbounce.ui.cef.CefRenderManager;
 import net.ccbluex.liquidbounce.utils.ClientUtils;
 import org.cef.CefClient;
@@ -20,18 +9,29 @@ import org.cef.handler.CefScreenInfo;
 import org.lwjgl.BufferUtils;
 import org.lwjgl.input.Keyboard;
 
+import java.awt.*;
+import java.awt.event.KeyEvent;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseWheelEvent;
+import java.awt.image.BufferedImage;
+import java.nio.ByteBuffer;
+import java.util.concurrent.CompletableFuture;
+
 /**
  * CefBrowserOsr but with custom rendering
- * @see org.cef.browser.CefBrowser_N is fucking package private
+ *
  * @author montoyo, Feather Client Team, modified by Liulihaocai
+ * @see org.cef.browser.CefBrowser_N is fucking package private
  */
 public class CefBrowserCustom extends CefBrowser_N implements CefRenderHandler {
     private final ICefRenderer renderer_;
-    private boolean justCreated_ = false;
     private final Rectangle browser_rect_ = new Rectangle(0, 0, 1, 1);
     private final Point screenPoint_ = new Point(0, 0);
     private final boolean isTransparent_;
-    private final Component dc_ = new Component(){};
+    private final Component dc_ = new Component() {
+    };
+    private final PaintData paintData = new PaintData();
+    private boolean justCreated_ = false;
 
     public CefBrowserCustom(CefClient client, String url, boolean transparent, CefRequestContext context, ICefRenderer renderer) {
         this(client, url, transparent, context, renderer, null, null);
@@ -42,6 +42,62 @@ public class CefBrowserCustom extends CefBrowser_N implements CefRenderHandler {
         this.isTransparent_ = transparent;
         this.renderer_ = renderer;
         CefRenderManager.INSTANCE.getBrowsers().add(this);
+    }
+
+    private static int remapMouseCode(int kc) {
+        switch (kc) {
+            case 0:
+                return 1;
+            case 1:
+                return 3;
+            case 2:
+                return 2;
+            default:
+                return 0;
+        }
+    }
+
+    /**
+     * fill the gap between LWJGL and AWT key codes
+     * https://stackoverflow.com/questions/15313469/java-keyboard-keycodes-list/31637206
+     */
+    private static int remapKeycode(int kc, char c) {
+        switch (kc) {
+            case Keyboard.KEY_BACK:
+                return 8;
+            case Keyboard.KEY_DELETE:
+                return 127;
+            case Keyboard.KEY_RETURN:
+                return 10;
+            case Keyboard.KEY_ESCAPE:
+                return 27;
+            case Keyboard.KEY_LEFT:
+                return 37;
+            case Keyboard.KEY_UP:
+                return 38;
+            case Keyboard.KEY_RIGHT:
+                return 39;
+            case Keyboard.KEY_DOWN:
+                return 40;
+            case Keyboard.KEY_TAB:
+                return 9;
+            case Keyboard.KEY_END:
+                return 35;
+            case Keyboard.KEY_HOME:
+                return 36;
+            case Keyboard.KEY_LSHIFT:
+            case Keyboard.KEY_RSHIFT:
+                return 16;
+            case Keyboard.KEY_LCONTROL:
+            case Keyboard.KEY_RCONTROL:
+                return 17;
+            case Keyboard.KEY_LMENU: // 其实是alt
+            case Keyboard.KEY_RMENU:
+                return 18;
+
+            default:
+                return c;
+        }
     }
 
     @Override
@@ -94,33 +150,22 @@ public class CefBrowserCustom extends CefBrowser_N implements CefRenderHandler {
         this.renderer_.onPopupSize(size);
     }
 
-    private static class PaintData {
-        private ByteBuffer buffer;
-        private int width;
-        private int height;
-        private Rectangle[] dirtyRects;
-        private boolean hasFrame;
-        private boolean fullReRender;
-    }
-
-    private final PaintData paintData = new PaintData();
-
     @Override
     public void onPaint(CefBrowser browser, boolean popup, Rectangle[] dirtyRects,
                         ByteBuffer buffer, int width, int height) {
-        if(popup)
+        if (popup)
             return;
 
         final int size = (width * height) << 2;
 
-        synchronized(paintData) {
-            if(buffer.limit() > size)
+        synchronized (paintData) {
+            if (buffer.limit() > size)
                 ClientUtils.INSTANCE.logWarn("Skipping MCEF browser frame, data is too heavy"); //TODO: Don't spam
             else {
-                if(paintData.hasFrame) //The previous frame was not uploaded to GL texture, so we skip it and render this on instead
+                if (paintData.hasFrame) //The previous frame was not uploaded to GL texture, so we skip it and render this on instead
                     paintData.fullReRender = true;
 
-                if(paintData.buffer == null || size != paintData.buffer.capacity()) //This only happens when the browser gets resized
+                if (paintData.buffer == null || size != paintData.buffer.capacity()) //This only happens when the browser gets resized
                     paintData.buffer = BufferUtils.createByteBuffer(size);
 
                 paintData.buffer.position(0);
@@ -138,8 +183,8 @@ public class CefBrowserCustom extends CefBrowser_N implements CefRenderHandler {
     }
 
     public void mcefUpdate() {
-        synchronized(paintData) {
-            if(paintData.hasFrame) {
+        synchronized (paintData) {
+            if (paintData.hasFrame) {
                 renderer_.onPaint(false, paintData.dirtyRects, paintData.buffer, paintData.width, paintData.height, paintData.fullReRender);
                 paintData.hasFrame = false;
                 paintData.fullReRender = false;
@@ -197,14 +242,14 @@ public class CefBrowserCustom extends CefBrowser_N implements CefRenderHandler {
         return null;
     }
 
+    // these methods are fucking protected in the superclass, we need to wrap it
+
     @Override
     public void close(boolean force) {
         CefRenderManager.INSTANCE.getBrowsers().remove(this);
         this.renderer_.destroy();
         super.close(force);
     }
-
-    // these methods are fucking protected in the superclass, we need to wrap it
 
     public void wasResized_(int width, int height) {
         this.browser_rect_.setBounds(0, 0, width, height);
@@ -221,15 +266,6 @@ public class CefBrowserCustom extends CefBrowser_N implements CefRenderHandler {
         sendMouseEvent(ev);
     }
 
-    private static int remapMouseCode(int kc) {
-        switch (kc) {
-            case 0: return 1;
-            case 1: return 3;
-            case 2: return 2;
-            default: return 0;
-        }
-    }
-
     public void mouseScrolled(int x, int y, int mods, int amount, int rot) {
         MouseWheelEvent ev = new MouseWheelEvent(dc_, MouseEvent.MOUSE_WHEEL, 0, mods, x, y, 0, false, MouseWheelEvent.WHEEL_UNIT_SCROLL, amount, rot);
         sendMouseWheelEvent(ev);
@@ -240,34 +276,6 @@ public class CefBrowserCustom extends CefBrowser_N implements CefRenderHandler {
         sendKeyEvent(ev);
     }
 
-    /**
-     * fill the gap between LWJGL and AWT key codes
-     * https://stackoverflow.com/questions/15313469/java-keyboard-keycodes-list/31637206
-     */
-    private static int remapKeycode(int kc, char c) {
-        switch(kc) {
-            case Keyboard.KEY_BACK:   return 8;
-            case Keyboard.KEY_DELETE: return 127;
-            case Keyboard.KEY_RETURN: return 10;
-            case Keyboard.KEY_ESCAPE: return 27;
-            case Keyboard.KEY_LEFT:   return 37;
-            case Keyboard.KEY_UP:     return 38;
-            case Keyboard.KEY_RIGHT:  return 39;
-            case Keyboard.KEY_DOWN:   return 40;
-            case Keyboard.KEY_TAB:    return 9;
-            case Keyboard.KEY_END:    return 35;
-            case Keyboard.KEY_HOME:   return 36;
-            case Keyboard.KEY_LSHIFT:
-            case Keyboard.KEY_RSHIFT:   return 16;
-            case Keyboard.KEY_LCONTROL:
-            case Keyboard.KEY_RCONTROL:   return 17;
-            case Keyboard.KEY_LMENU: // 其实是alt
-            case Keyboard.KEY_RMENU:   return 18;
-
-            default: return c;
-        }
-    }
-
     public void keyEventByKeyCode(int keyCode, char c, int mods, boolean pressed) {
         // we already processed the char in GuiView, so we don't need to do it again like MCEF does
         KeyEvent ev = new KeyEvent(dc_, pressed ? KeyEvent.KEY_PRESSED : KeyEvent.KEY_RELEASED, 0, mods, remapKeycode(keyCode, c), c);
@@ -276,9 +284,18 @@ public class CefBrowserCustom extends CefBrowser_N implements CefRenderHandler {
 
     @Override
     protected void finalize() throws Throwable {
-        if(!isClosed()) {
+        if (!isClosed()) {
             close(true); // NO FUCKING MEMORY LEAKS
         }
         super.finalize();
+    }
+
+    private static class PaintData {
+        private ByteBuffer buffer;
+        private int width;
+        private int height;
+        private Rectangle[] dirtyRects;
+        private boolean hasFrame;
+        private boolean fullReRender;
     }
 }

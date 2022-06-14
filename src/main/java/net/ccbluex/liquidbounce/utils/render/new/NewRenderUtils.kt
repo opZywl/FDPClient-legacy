@@ -1,23 +1,23 @@
 package skidunion.destiny.utils.render
 
 import net.minecraft.client.Minecraft
-import net.minecraft.client.renderer.*
-import net.minecraft.client.renderer.vertex.DefaultVertexFormats
-import net.minecraft.util.*
-import org.lwjgl.opengl.GL11.*
-import org.lwjgl.opengl.GL11.GL_BLEND
-import org.lwjgl.opengl.GL11.glDisable
-import org.lwjgl.opengl.GL11.glEnable
 import net.minecraft.client.renderer.GlStateManager
+import net.minecraft.client.renderer.Tessellator
+import net.minecraft.client.renderer.vertex.DefaultVertexFormats
+import net.minecraft.util.ResourceLocation
+import org.lwjgl.opengl.GL11.*
 
 
 object NewRenderUtils {
     @JvmStatic
     private val glCapMap: MutableMap<Int, Boolean> = HashMap()
+
     @JvmStatic
     var deltaTime = 0
+
     @JvmStatic
     private val DISPLAY_LISTS_2D = IntArray(4)
+
     @JvmStatic
     fun drawShadowWithCustomAlpha(x: Float, y: Float, width: Float, height: Float, alpha: Float) {
         drawTexturedRectWithCustomAlpha(x - 9, y - 9, 9f, 9f, "paneltopleft", alpha)
@@ -29,6 +29,7 @@ object NewRenderUtils {
         drawTexturedRectWithCustomAlpha(x, y - 9, width, 9f, "paneltop", alpha)
         drawTexturedRectWithCustomAlpha(x, y + height, width, 9f, "panelbottom", alpha)
     }
+
     @JvmStatic
     fun drawTexturedRectWithCustomAlpha(x: Float, y: Float, width: Float, height: Float, image: String, alpha: Float) {
         glPushMatrix()
@@ -53,6 +54,7 @@ object NewRenderUtils {
         GlStateManager.resetColor()
         glPopMatrix()
     }
+
     @JvmStatic
     fun drawTexturedRect(x: Float, y: Float, width: Float, height: Float, image: String) {
         glPushMatrix()
@@ -76,6 +78,7 @@ object NewRenderUtils {
         if (!disableAlpha) glEnable(GL_ALPHA_TEST)
         glPopMatrix()
     }
+
     @JvmStatic
     fun drawModalRectWithCustomSizedTexture(
         x: Float,

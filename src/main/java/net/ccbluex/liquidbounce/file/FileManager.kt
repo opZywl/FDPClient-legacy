@@ -17,6 +17,7 @@ import net.ccbluex.liquidbounce.utils.MinecraftInstance
 import net.minecraft.client.renderer.texture.DynamicTexture
 import net.minecraft.util.ResourceLocation
 import java.io.*
+import java.util.*
 import javax.imageio.ImageIO
 
 class FileManager : MinecraftInstance() {
@@ -185,7 +186,7 @@ class FileManager : MinecraftInstance() {
         if (backgroundFile.exists()) {
             try {
                 val bufferedImage = ImageIO.read(FileInputStream(backgroundFile)) ?: return
-                LiquidBounce.background = ResourceLocation(LiquidBounce.CLIENT_NAME.toLowerCase() + "/background.png")
+                LiquidBounce.background = ResourceLocation(LiquidBounce.CLIENT_NAME.lowercase(Locale.getDefault()) + "/background.png")
                 mc.textureManager.loadTexture(LiquidBounce.background, DynamicTexture(bufferedImage))
                 ClientUtils.logInfo("[FileManager] Loaded background.")
             } catch (e: Exception) {

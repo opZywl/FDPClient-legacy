@@ -51,10 +51,25 @@ class GuiAltManager(private val prevGui: GuiScreen) : GuiScreen() {
         drawBackground(0)
         altsList.drawScreen(mouseX, mouseY, partialTicks)
         mc.fontRendererObj.drawCenteredString("%ui.altmanager%", (width / 2).toFloat(), 6f, 0xffffff)
-        mc.fontRendererObj.drawCenteredString(LanguageManager.getAndFormat("ui.alt.alts", LiquidBounce.fileManager.accountsConfig.altManagerMinecraftAccounts.size), (width / 2).toFloat(), 18f, 0xffffff)
+        mc.fontRendererObj.drawCenteredString(
+            LanguageManager.getAndFormat(
+                "ui.alt.alts",
+                LiquidBounce.fileManager.accountsConfig.altManagerMinecraftAccounts.size
+            ), (width / 2).toFloat(), 18f, 0xffffff
+        )
         mc.fontRendererObj.drawCenteredString(status, (width / 2).toFloat(), 32f, 0xffffff)
-        mc.fontRendererObj.drawStringWithShadow(LanguageManager.getAndFormat("ui.alt.username", mc.getSession().username), 6f, 6f, 0xffffff)
-        mc.fontRendererObj.drawStringWithShadow(LanguageManager.getAndFormat("ui.alt.type", if (mc.getSession().token.length >= 32) "%ui.alt.type.premium%" else "%ui.alt.type.cracked%"), 6f, 15f, 0xffffff)
+        mc.fontRendererObj.drawStringWithShadow(
+            LanguageManager.getAndFormat(
+                "ui.alt.username",
+                mc.getSession().username
+            ), 6f, 6f, 0xffffff
+        )
+        mc.fontRendererObj.drawStringWithShadow(
+            LanguageManager.getAndFormat(
+                "ui.alt.type",
+                if (mc.getSession().token.length >= 32) "%ui.alt.type.premium%" else "%ui.alt.type.cracked%"
+            ), 6f, 15f, 0xffffff
+        )
         randomAltField.drawTextBox()
         if (randomAltField.text.isEmpty() && !randomAltField.isFocused) {
             drawCenteredString(mc.fontRendererObj, "§7%ui.alt.randomAltField%", width / 2 - 55, 66, 0xffffff)
@@ -76,7 +91,8 @@ class GuiAltManager(private val prevGui: GuiScreen) : GuiScreen() {
             }
             3 -> if (altsList.selectedSlot != -1 && altsList.selectedSlot < altsList.size) {
                 Thread {
-                    val minecraftAccount = LiquidBounce.fileManager.accountsConfig.altManagerMinecraftAccounts[altsList.selectedSlot]
+                    val minecraftAccount =
+                        LiquidBounce.fileManager.accountsConfig.altManagerMinecraftAccounts[altsList.selectedSlot]
                     status = "§a%ui.alt.loggingIn%"
                     status = login(minecraftAccount)
                 }.start()
@@ -88,7 +104,8 @@ class GuiAltManager(private val prevGui: GuiScreen) : GuiScreen() {
                     status = "§c%ui.alt.emptyList%"
                     return
                 }
-                val randomInteger = Random().nextInt(LiquidBounce.fileManager.accountsConfig.altManagerMinecraftAccounts.size)
+                val randomInteger =
+                    Random().nextInt(LiquidBounce.fileManager.accountsConfig.altManagerMinecraftAccounts.size)
                 if (randomInteger < altsList.size) altsList.selectedSlot = randomInteger
                 Thread {
                     val minecraftAccount =
@@ -150,8 +167,8 @@ class GuiAltManager(private val prevGui: GuiScreen) : GuiScreen() {
         altsList.handleMouseInput()
     }
 
-    private inner class GuiList(prevGui: GuiScreen)
-        : GuiSlot(mc, prevGui.width, prevGui.height, 40, prevGui.height - 40, 30) {
+    private inner class GuiList(prevGui: GuiScreen) :
+        GuiSlot(mc, prevGui.width, prevGui.height, 40, prevGui.height - 40, 30) {
 
         var selectedSlot = 0
             get() {
@@ -173,7 +190,8 @@ class GuiAltManager(private val prevGui: GuiScreen) : GuiScreen() {
             if (doubleClick) {
                 if (altsList.selectedSlot != -1 && altsList.selectedSlot < altsList.size) {
                     Thread {
-                        val minecraftAccount = LiquidBounce.fileManager.accountsConfig.altManagerMinecraftAccounts[altsList.selectedSlot]
+                        val minecraftAccount =
+                            LiquidBounce.fileManager.accountsConfig.altManagerMinecraftAccounts[altsList.selectedSlot]
                         status = "§a%ui.alt.loggingIn%"
                         status = "§c" + login(minecraftAccount)
                     }.start()
@@ -186,7 +204,13 @@ class GuiAltManager(private val prevGui: GuiScreen) : GuiScreen() {
         override fun drawSlot(id: Int, x: Int, y: Int, var4: Int, var5: Int, var6: Int) {
             val minecraftAccount = LiquidBounce.fileManager.accountsConfig.altManagerMinecraftAccounts[id]
             mc.fontRendererObj.drawCenteredString(minecraftAccount.name, width / 2f, y + 2f, Color.WHITE.rgb, true)
-            mc.fontRendererObj.drawCenteredString(minecraftAccount.type, width / 2f, y + 15f, Color.LIGHT_GRAY.rgb, true)
+            mc.fontRendererObj.drawCenteredString(
+                minecraftAccount.type,
+                width / 2f,
+                y + 15f,
+                Color.LIGHT_GRAY.rgb,
+                true
+            )
         }
 
         override fun drawBackground() {}

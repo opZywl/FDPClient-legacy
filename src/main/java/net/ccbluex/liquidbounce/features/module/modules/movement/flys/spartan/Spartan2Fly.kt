@@ -11,7 +11,14 @@ class Spartan2Fly : FlyMode("Spartan2") {
         MovementUtils.strafe(0.264f)
 
         if (mc.thePlayer.ticksExisted % 8 == 0) {
-            mc.thePlayer.sendQueue.addToSendQueue(C03PacketPlayer.C04PacketPlayerPosition(mc.thePlayer.posX, mc.thePlayer.posY + 10, mc.thePlayer.posZ, true))
+            mc.thePlayer.sendQueue.addToSendQueue(
+                C03PacketPlayer.C04PacketPlayerPosition(
+                    mc.thePlayer.posX,
+                    mc.thePlayer.posY + 10,
+                    mc.thePlayer.posZ,
+                    true
+                )
+            )
         }
     }
 }

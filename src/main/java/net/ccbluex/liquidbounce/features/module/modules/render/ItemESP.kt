@@ -34,7 +34,11 @@ class ItemESP : Module() {
     private val colorRainbowValue = BoolValue("Rainbow", true)
 
     private fun getColor(): Color {
-        return if (colorRainbowValue.get()) rainbow() else Color(colorRedValue.get(), colorGreenValue.get(), colorBlueValue.get())
+        return if (colorRainbowValue.get()) rainbow() else Color(
+            colorRedValue.get(),
+            colorGreenValue.get(),
+            colorBlueValue.get()
+        )
     }
 
     @EventTarget
@@ -52,8 +56,9 @@ class ItemESP : Module() {
 
     @EventTarget
     fun onRender2D(event: Render2DEvent) {
-        val shader = (if (modeValue.equals("shaderoutline")) OutlineShader.OUTLINE_SHADER else if (modeValue.equals("shaderglow")) GlowShader.GLOW_SHADER else null)
-            ?: return
+        val shader =
+            (if (modeValue.equals("shaderoutline")) OutlineShader.OUTLINE_SHADER else if (modeValue.equals("shaderglow")) GlowShader.GLOW_SHADER else null)
+                ?: return
         val partialTicks = event.partialTicks
 
         shader.startDraw(partialTicks)

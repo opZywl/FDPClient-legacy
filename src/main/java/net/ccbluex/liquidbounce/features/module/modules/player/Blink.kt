@@ -19,7 +19,6 @@ import net.ccbluex.liquidbounce.utils.timer.MSTimer
 import net.ccbluex.liquidbounce.value.BoolValue
 import net.ccbluex.liquidbounce.value.IntegerValue
 import net.minecraft.client.entity.EntityOtherPlayerMP
-import net.minecraft.network.NetHandlerPlayServer
 import net.minecraft.network.Packet
 import net.minecraft.network.play.INetHandlerPlayServer
 import net.minecraft.network.play.client.*
@@ -53,7 +52,13 @@ class Blink : Module() {
             mc.theWorld.addEntityToWorld(-1337, fakePlayer)
         }
         synchronized(positions) {
-            positions.add(doubleArrayOf(mc.thePlayer.posX, mc.thePlayer.entityBoundingBox.minY + mc.thePlayer.getEyeHeight() / 2, mc.thePlayer.posZ))
+            positions.add(
+                doubleArrayOf(
+                    mc.thePlayer.posX,
+                    mc.thePlayer.entityBoundingBox.minY + mc.thePlayer.getEyeHeight() / 2,
+                    mc.thePlayer.posZ
+                )
+            )
             positions.add(doubleArrayOf(mc.thePlayer.posX, mc.thePlayer.entityBoundingBox.minY, mc.thePlayer.posZ))
         }
         pulseTimer.reset()
@@ -78,7 +83,8 @@ class Blink : Module() {
         if (packet is C04PacketPlayerPosition || packet is C06PacketPlayerPosLook ||
             packet is C08PacketPlayerBlockPlacement ||
             packet is C0APacketAnimation ||
-            packet is C0BPacketEntityAction || packet is C02PacketUseEntity) {
+            packet is C0BPacketEntityAction || packet is C02PacketUseEntity
+        ) {
             event.cancelEvent()
             packets.add(packet as Packet<INetHandlerPlayServer>)
         }

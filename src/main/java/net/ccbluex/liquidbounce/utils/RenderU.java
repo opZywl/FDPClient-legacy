@@ -7,27 +7,25 @@ package net.ccbluex.liquidbounce.utils;
 
 import net.minecraft.client.gui.Gui;
 import net.minecraft.client.gui.ScaledResolution;
-import net.minecraft.client.renderer.*;
+import net.minecraft.client.renderer.GlStateManager;
+import net.minecraft.client.renderer.OpenGlHelper;
+import net.minecraft.client.renderer.Tessellator;
+import net.minecraft.client.renderer.WorldRenderer;
 import net.minecraft.client.renderer.culling.Frustum;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.entity.Entity;
-import net.minecraft.util.*;
+import net.minecraft.util.AxisAlignedBB;
+import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
 
 import java.awt.*;
+
 import static org.lwjgl.opengl.GL11.*;
 
 public final class RenderU extends MinecraftInstance {
-    public static int deltaTime;
-
-    public static Color rainbow(long time, float count, float fade) {
-        float hue = ((float)time + (1 + count) * 2.0E8F) / 1.0E10F % 1;
-        long color = Long.parseLong(Integer.toHexString(Color.HSBtoRGB(hue, 1, 1)), 16);
-        Color c = new Color((int)color);
-        return new Color((float)c.getRed() / 255 * fade, (float)c.getGreen() / 255 * fade, (float)c.getBlue() / 255 * fade, (float)c.getAlpha() / 255);
-    }
-
     private static final int[] DISPLAY_LISTS_2D = new int[4];
+    public static int deltaTime;
+    private static final Frustum frustrum = new Frustum();
 
     static {
         for (int i = 0; i < DISPLAY_LISTS_2D.length; i++) {
@@ -69,6 +67,13 @@ public final class RenderU extends MinecraftInstance {
         quickDrawRect(-7.3F, -20.3F, -4F, -20F);
 
         glEndList();
+    }
+
+    public static Color rainbow(long time, float count, float fade) {
+        float hue = ((float) time + (1 + count) * 2.0E8F) / 1.0E10F % 1;
+        long color = Long.parseLong(Integer.toHexString(Color.HSBtoRGB(hue, 1, 1)), 16);
+        Color c = new Color((int) color);
+        return new Color((float) c.getRed() / 255 * fade, (float) c.getGreen() / 255 * fade, (float) c.getBlue() / 255 * fade, (float) c.getAlpha() / 255);
     }
 
     public static void drawAxisAlignedBB(final AxisAlignedBB axisAlignedBB, final Color color) {
@@ -168,7 +173,7 @@ public final class RenderU extends MinecraftInstance {
         GlStateManager.color(red, green, blue, alpha);
     }
 
-    public static void drawTriAngle(float cx,float cy,float r,float n,int color) {
+    public static void drawTriAngle(float cx, float cy, float r, float n, int color) {
         GL11.glPushMatrix();
         cx *= 2.0;
         cy *= 2.0;
@@ -179,7 +184,7 @@ public final class RenderU extends MinecraftInstance {
         double y = 0.0;
         enableGL2D();
         GL11.glScalef(0.5F, 0.5F, 0.5F);
-        GlStateManager.color(0,0,0);
+        GlStateManager.color(0, 0, 0);
         GlStateManager.resetColor();
         glColor114514(color);
         GL11.glBegin(2);
@@ -293,7 +298,7 @@ public final class RenderU extends MinecraftInstance {
         OpenGlHelper.glBlendFunc(0x302, 0x303, 0x1, 0x0);
         glColor4f(color.getRed() / 255, color.getGreen() / 255, color.getBlue() / 255, color.getAlpha() / 255);
         mc.getTextureManager().bindTexture(image);
-        Gui.drawModalRectWithCustomSizedTexture(x,y,0,0,width,height,width,height);
+        Gui.drawModalRectWithCustomSizedTexture(x, y, 0, 0, width, height, width, height);
         glDepthMask(true);
         glDisable(0xBE2);
         glEnable(0xB17);
@@ -371,13 +376,14 @@ public final class RenderU extends MinecraftInstance {
     }
 
     public static void arcIiiilllIIiii(final float x, final float y, final float start, final float end, final float radius,
-                              final int color, final float lineWidth) {
+                                       final int color, final float lineWidth) {
         illlIIIIiii(x, y, start, end, radius, radius, color, lineWidth);
     }
 
     public static void drawOutFullCircle(final float x, final float y, final float radius, final int fill, final float lineWidth) {
         arcIiiilllIIiii(x, y, 0.0F, 360.0F, radius, fill, lineWidth);
     }
+
     public static void drawOutFullCircle(final float x, final float y, final float radius, final int fill, final float lineWidth, final float start, final float end) {
         arcIiiilllIIiii(x, y, start, end, radius, fill, lineWidth);
     }
@@ -470,7 +476,7 @@ public final class RenderU extends MinecraftInstance {
     }
 
     public static void illlIIIIiii(final float x, final float y, float start, float end, final float w, final float h,
-                                     final int color, final float lineWidth) {
+                                   final int color, final float lineWidth) {
         float temp;
         if (start > end) {
             temp = end;
@@ -753,8 +759,6 @@ public final class RenderU extends MinecraftInstance {
         return frustrum.isBoundingBoxInFrustum(bb);
     }
 
-    private static Frustum frustrum = new Frustum();
-
     public static void drawModalRectWithCustomSizedTexture(float x, float y, float u, float v, float width,
                                                            float height, float textureWidth, float textureHeight) {
         float f = 1 / textureWidth;
@@ -771,6 +775,7 @@ public final class RenderU extends MinecraftInstance {
         worldrenderer.pos(x, y, 0.0).tex(u * f, v * f1).endVertex();
         tessellator.draw();
     }
+
     public static void drawRect(final float x, final float y, final float x1, final float y1) {
         GL11.glBegin(7);
         GL11.glVertex2f(x, y1);
@@ -779,6 +784,7 @@ public final class RenderU extends MinecraftInstance {
         GL11.glVertex2f(x, y);
         GL11.glEnd();
     }
+
     public static void drawBorderedRect(final float x, final float y, final float x1, final float y1, final float width, final int borderColor) {
         enableGL2D();
         glColor(borderColor);

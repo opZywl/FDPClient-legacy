@@ -9,19 +9,19 @@ import java.util.Random;
 
 /**
  * Particle API
- * This Api is free2use
- * But u have to mention me.
+ * This Api is Free to use
+ * But you have to mention me.
  *
  * @author Vitox
  * @version 3.0
  */
 class Particle {
 
-    public float x;
-    public float y;
     public final float size;
     private final float ySpeed = new Random().nextInt(5);
     private final float xSpeed = new Random().nextInt(5);
+    public float x;
+    public float y;
     private int height;
     private int width;
 
@@ -76,12 +76,12 @@ class Particle {
     }
 
     void interpolation() {
-        for(int n = 0; n <= 64; ++n) {
+        for (int n = 0; n <= 64; ++n) {
             final float f = n / 64.0f;
             final float p1 = lint1(f);
             final float p2 = lint2(f);
 
-            if(p1 != p2) {
+            if (p1 != p2) {
                 y -= f;
                 x -= f;
             }
@@ -106,7 +106,7 @@ class Particle {
 
             if (y < 1)
                 y = scaledResolution.getScaledHeight();
-        }catch (Exception E){
+        } catch (Exception E) {
             E.printStackTrace();
         }
     }

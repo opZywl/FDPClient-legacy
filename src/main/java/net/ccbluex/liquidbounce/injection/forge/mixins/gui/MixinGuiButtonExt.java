@@ -15,10 +15,10 @@ public abstract class MixinGuiButtonExt extends MixinGuiButton {
      */
     @Overwrite
     public void drawButton(Minecraft mc, int mouseX, int mouseY) {
-        if(!visible) {
+        if (!visible) {
             return;
         }
-        if(this.buttonRenderer != null) {
+        if (this.buttonRenderer != null) {
             this.hovered = mouseX >= this.xPosition && mouseY >= this.yPosition && mouseX < this.xPosition + this.width && mouseY < this.yPosition + this.height;
             buttonRenderer.render(mouseX, mouseY, mc);
 

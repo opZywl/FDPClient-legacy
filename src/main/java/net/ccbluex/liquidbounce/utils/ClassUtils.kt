@@ -66,15 +66,15 @@ object ClassUtils {
         // use a list to cache classes
         val list = mutableListOf<Class<out T>>()
 
-        for(resolved in resolver.classes) {
+        for (resolved in resolver.classes) {
             resolved.declaredMethods.find {
                 Modifier.isNative(it.modifiers)
             }?.let {
-                val klass1 = it.declaringClass.typeName+"."+it.name
-                throw UnsatisfiedLinkError(klass1+"\n\tat ${klass1}(Native Method)") // we don't want native methods
+                val klass1 = it.declaringClass.typeName + "." + it.name
+                throw UnsatisfiedLinkError(klass1 + "\n\tat ${klass1}(Native Method)") // we don't want native methods
             }
             // check if class is assignable from target class
-            if(klass.isAssignableFrom(resolved) && !resolved.isInterface && !Modifier.isAbstract(resolved.modifiers)) {
+            if (klass.isAssignableFrom(resolved) && !resolved.isInterface && !Modifier.isAbstract(resolved.modifiers)) {
                 // add to list
                 list.add(resolved as Class<out T>)
             }

@@ -3,14 +3,12 @@ package net.ccbluex.liquidbounce.features.module.modules.movement.flys.other
 import net.ccbluex.liquidbounce.event.EventState
 import net.ccbluex.liquidbounce.event.MotionEvent
 import net.ccbluex.liquidbounce.event.PacketEvent
-import net.ccbluex.liquidbounce.event.UpdateEvent
 import net.ccbluex.liquidbounce.features.module.modules.movement.flys.FlyMode
 import net.ccbluex.liquidbounce.utils.timer.MSTimer
 import net.ccbluex.liquidbounce.value.BoolValue
 import net.ccbluex.liquidbounce.value.FloatValue
 import net.ccbluex.liquidbounce.value.IntegerValue
 import net.minecraft.network.play.client.C03PacketPlayer
-
 import kotlin.math.cos
 import kotlin.math.sin
 
@@ -44,7 +42,11 @@ class ClipFly : FlyMode("Clip") {
         mc.thePlayer.motionZ = motionZValue.get().toDouble()
         if (timer.hasTimePassed(delayValue.get().toLong())) {
             val yaw = Math.toRadians(mc.thePlayer.rotationYaw.toDouble())
-            mc.thePlayer.setPosition(mc.thePlayer.posX + (-sin(yaw) * xValue.get()), mc.thePlayer.posY + yValue.get(), mc.thePlayer.posZ + (cos(yaw) * zValue.get()))
+            mc.thePlayer.setPosition(
+                mc.thePlayer.posX + (-sin(yaw) * xValue.get()),
+                mc.thePlayer.posY + yValue.get(),
+                mc.thePlayer.posZ + (cos(yaw) * zValue.get())
+            )
             timer.reset()
             lastJump = true
         }
@@ -55,10 +57,10 @@ class ClipFly : FlyMode("Clip") {
         val packet = event.packet
 
         if (packet is C03PacketPlayer) {
-            if(spoofValue.get()) {
+            if (spoofValue.get()) {
                 packet.onGround = true
             }
-            if(groundValue.get() && (timer.hasTimePassed(delayValue.get().toLong()) || lastJump)) {
+            if (groundValue.get() && (timer.hasTimePassed(delayValue.get().toLong()) || lastJump)) {
                 packet.onGround = true
                 lastJump = false
             }

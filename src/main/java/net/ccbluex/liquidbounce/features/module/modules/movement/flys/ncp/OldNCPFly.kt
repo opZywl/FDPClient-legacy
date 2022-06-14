@@ -12,8 +12,22 @@ class OldNCPFly : FlyMode("OldNCP") {
         }
 
         repeat(3) {
-            mc.netHandler.addToSendQueue(C04PacketPlayerPosition(mc.thePlayer.posX, mc.thePlayer.posY + 1.01, mc.thePlayer.posZ, false))
-            mc.netHandler.addToSendQueue(C04PacketPlayerPosition(mc.thePlayer.posX, mc.thePlayer.posY, mc.thePlayer.posZ, false))
+            mc.netHandler.addToSendQueue(
+                C04PacketPlayerPosition(
+                    mc.thePlayer.posX,
+                    mc.thePlayer.posY + 1.01,
+                    mc.thePlayer.posZ,
+                    false
+                )
+            )
+            mc.netHandler.addToSendQueue(
+                C04PacketPlayerPosition(
+                    mc.thePlayer.posX,
+                    mc.thePlayer.posY,
+                    mc.thePlayer.posZ,
+                    false
+                )
+            )
         }
 
         mc.thePlayer.jump()

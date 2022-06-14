@@ -21,8 +21,8 @@ import java.util.ArrayList;
 
 public class ClickyUI extends GuiScreen {
     public static ArrayList<Window> windows = Lists.newArrayList();
-    public int scrollVelocity;
     public static boolean binding;
+    public int scrollVelocity;
 
     public ClickyUI() {
         if (windows.isEmpty()) {
@@ -32,7 +32,7 @@ public class ClickyUI extends GuiScreen {
             int n2 = 0;
             while (n2 < n) {
                 ModuleCategory c = arrmoduleType[n2];
-                windows.add(new Window(c, 20 , x));
+                windows.add(new Window(c, 20, x));
                 x += 30;
                 ++n2;
             }
@@ -45,7 +45,8 @@ public class ClickyUI extends GuiScreen {
         int defaultWidth1 = (this.width);
         Gui.drawRect(0, 0, Display.getWidth(), Display.getHeight(), new Color(0, 0, 0, 100).getRGB());//Shadow
 
-        if(HUD.INSTANCE.getGenshinImpactAnim().get()) RenderUtils.drawImage(LiquidBounce.INSTANCE.getVenti(), defaultWidth1-(int) (0.6*defaultWidth1) ,defaultHeight1-(int) (0.3*defaultWidth1),(int) (0.6*defaultWidth1),(int) (0.3*defaultWidth1));
+        if (HUD.INSTANCE.getGenshinImpactAnim().get())
+            RenderUtils.drawImage(LiquidBounce.INSTANCE.getVenti(), defaultWidth1 - (int) (0.6 * defaultWidth1), defaultHeight1 - (int) (0.3 * defaultWidth1), (int) (0.6 * defaultWidth1), (int) (0.3 * defaultWidth1));
         GlStateManager.pushMatrix();
         windows.forEach(w2 -> w2.render(mouseX, mouseY));
         GlStateManager.popMatrix();

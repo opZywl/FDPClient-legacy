@@ -32,11 +32,23 @@ class FLineButtonRenderer(button: GuiButton) : AbstractButtonRenderer(button) {
         }
 
         val percent = easeInOutQuad(animation)
-        RenderUtils.drawRect(button.xPosition.toFloat(), button.yPosition.toFloat(), (button.xPosition + button.width).toFloat(), (button.yPosition + button.height).toFloat(), Color(31, 31, 31, 150).rgb)
+        RenderUtils.drawRect(
+            button.xPosition.toFloat(),
+            button.yPosition.toFloat(),
+            (button.xPosition + button.width).toFloat(),
+            (button.yPosition + button.height).toFloat(),
+            Color(31, 31, 31, 150).rgb
+        )
         if (button.enabled) {
             val half = button.width / 2.0
             val center = button.xPosition + half
-            RenderUtils.drawRect(center - percent * half, (button.yPosition + button.height - 1).toDouble(), center + percent * half, (button.yPosition + button.height).toDouble(), Color.WHITE.rgb)
+            RenderUtils.drawRect(
+                center - percent * half,
+                (button.yPosition + button.height - 1).toDouble(),
+                center + percent * half,
+                (button.yPosition + button.height).toDouble(),
+                Color.WHITE.rgb
+            )
         }
 
         lastUpdate = time

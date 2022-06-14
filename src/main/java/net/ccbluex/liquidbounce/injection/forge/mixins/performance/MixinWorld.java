@@ -27,18 +27,14 @@ import java.util.List;
 import java.util.Random;
 import java.util.Set;
 
-@Mixin(value={World.class})
+@Mixin(value = {World.class})
 public abstract class MixinWorld implements IWorld {
     @Shadow
     @Final
     public WorldProvider provider;
     @Shadow
-    private int skylightSubtracted;
-    @Shadow
     @Final
     public boolean isRemote;
-    @Shadow
-    protected WorldInfo worldInfo;
     @Shadow
     public boolean captureBlockSnapshots;
     @Shadow
@@ -47,9 +43,23 @@ public abstract class MixinWorld implements IWorld {
     @Final
     public Profiler theProfiler;
     @Shadow
+    @Final
+    public List<EntityPlayer> playerEntities;
+    @Shadow
+    @Final
+    public Random rand;
+    @Shadow
+    protected WorldInfo worldInfo;
+    @Shadow
     protected List<IWorldAccess> worldAccesses;
     @Shadow
+    protected Set<ChunkCoordIntPair> activeChunkSet;
+    @Shadow
     int[] lightUpdateBlockList;
+    @Shadow
+    private int skylightSubtracted;
+    @Shadow
+    private int ambientTickCountdown;
 
     @Shadow
     protected abstract boolean isChunkLoaded(int var1, int var2, boolean var3);
@@ -61,21 +71,12 @@ public abstract class MixinWorld implements IWorld {
     protected abstract boolean isAreaLoaded(int var1, int var2, int var3, int var4, int var5, int var6, boolean var7);
 
     @Shadow
-    protected Set<ChunkCoordIntPair> activeChunkSet;
-    @Shadow
-    @Final
-    public List<EntityPlayer> playerEntities;
-    @Shadow
-    private int ambientTickCountdown;
-    @Shadow
-    @Final
-    public Random rand;
-    @Shadow
     public abstract ImmutableSetMultimap<ChunkCoordIntPair, ForgeChunkManager.Ticket> getPersistentChunks();
+
     @Shadow
     protected abstract int getRenderDistanceChunks();
 
-    @Inject(method={"setActivePlayerChunksAndCheckLight"}, at={@At(value="HEAD")}, cancellable=true)
+    @Inject(method = {"setActivePlayerChunksAndCheckLight"}, at = {@At(value = "HEAD")}, cancellable = true)
     private void setActivePlayerChunksAndCheckLight(CallbackInfo callbackInfo) {
         if (Performance.fastBlockLightningValue.get()) {
             int n;
@@ -135,7 +136,7 @@ public abstract class MixinWorld implements IWorld {
 
     @Override
     public boolean canSeeSky(int n, int n2, int n3) {
-        return ((IChunk)this.getChunkFromBlockCoords(n, n2, n3)).canSeeSky(n, n2, n3);
+        return ((IChunk) this.getChunkFromBlockCoords(n, n2, n3)).canSeeSky(n, n2, n3);
     }
 
     @Override
@@ -153,10 +154,10 @@ public abstract class MixinWorld implements IWorld {
         if (enumSkyBlock == EnumSkyBlock.SKY && this.canSeeSky(n, n2, n3)) {
             return 15;
         }
-        IBlock IBlock2 = (IBlock)this.getBlockState(n, n2, n3).getBlock();
-        int n4 = IBlock2.getLightValue((World)(Object)this, n, n2, n3);
+        IBlock IBlock2 = (IBlock) this.getBlockState(n, n2, n3).getBlock();
+        int n4 = IBlock2.getLightValue((World) (Object) this, n, n2, n3);
         int n5 = enumSkyBlock == EnumSkyBlock.SKY ? 0 : n4;
-        int n6 = IBlock2.getLightOpacity((World)(Object)this, n, n2, n3);
+        int n6 = IBlock2.getLightOpacity((World) (Object) this, n, n2, n3);
         if (n6 >= 15 && n4 > 0) {
             n6 = 1;
         }
@@ -214,7 +215,7 @@ public abstract class MixinWorld implements IWorld {
             if (n2 >= 256) {
                 n2 = 255;
             }
-            IChunk IChunk2 = (IChunk)this.getChunkFromBlockCoords(n, n2, n3);
+            IChunk IChunk2 = (IChunk) this.getChunkFromBlockCoords(n, n2, n3);
             return IChunk2.getLightSubtracted(n, n2, n3, this.skylightSubtracted);
         }
         return 15;
@@ -231,7 +232,7 @@ public abstract class MixinWorld implements IWorld {
         if (!this.isBlockLoaded(n, n2, n3)) {
             return enumSkyBlock.defaultLightValue;
         }
-        IChunk IChunk2 = (IChunk)this.getChunkFromBlockCoords(n, n2, n3);
+        IChunk IChunk2 = (IChunk) this.getChunkFromBlockCoords(n, n2, n3);
         return IChunk2.getLightFor(enumSkyBlock, n, n2, n3);
     }
 
@@ -274,14 +275,14 @@ public abstract class MixinWorld implements IWorld {
             }
             return n4;
         }
-        IChunk IChunk2 = (IChunk)this.getChunkFromBlockCoords(n, n2, n3);
+        IChunk IChunk2 = (IChunk) this.getChunkFromBlockCoords(n, n2, n3);
         return IChunk2.getLightFor(enumSkyBlock, n, n2, n3);
     }
 
     @Override
     public void setLightFor(EnumSkyBlock enumSkyBlock, int n, int n2, int n3, int n4) {
         if (this.isValid(n, n2, n3) && this.isBlockLoaded(n, n2, n3)) {
-            IChunk IChunk2 = (IChunk)this.getChunkFromBlockCoords(n, n2, n3);
+            IChunk IChunk2 = (IChunk) this.getChunkFromBlockCoords(n, n2, n3);
             IChunk2.setLightFor(enumSkyBlock, n, n2, n3, n4);
             this.notifyLightSet(n, n2, n3);
         }
@@ -328,7 +329,8 @@ public abstract class MixinWorld implements IWorld {
                 n7 = this.getLightFor(enumSkyBlock, n11, n10, n9);
                 if (n7 != n8) continue;
                 this.setLightFor(enumSkyBlock, n11, n10, n9, 0);
-                if (n8 <= 0 || MathHelper.abs_int(n11 - n) + MathHelper.abs_int(n10 - n2) + MathHelper.abs_int(n9 - n3) >= 17) continue;
+                if (n8 <= 0 || MathHelper.abs_int(n11 - n) + MathHelper.abs_int(n10 - n2) + MathHelper.abs_int(n9 - n3) >= 17)
+                    continue;
                 for (EnumFacing enumFacing : StaticStorage.facings()) {
                     int n17 = n11 + enumFacing.getFrontOffsetX();
                     int n18 = n10 + enumFacing.getFrontOffsetY();
@@ -386,7 +388,7 @@ public abstract class MixinWorld implements IWorld {
         if (!this.isValid(n, n2, n3)) {
             return Blocks.air.getDefaultState();
         }
-        IChunk IChunk2 = (IChunk)this.getChunkFromBlockCoords(n, n2, n3);
+        IChunk IChunk2 = (IChunk) this.getChunkFromBlockCoords(n, n2, n3);
         return IChunk2.getBlockState(n, n2, n3);
     }
 
@@ -400,7 +402,7 @@ public abstract class MixinWorld implements IWorld {
         }
         BlockSnapshot blockSnapshot = null;
         if (this.captureBlockSnapshots && !this.isRemote) {
-            blockSnapshot = BlockSnapshot.getBlockSnapshot((World)(Object)this, new BlockPos(n, n2, n3), n4);
+            blockSnapshot = BlockSnapshot.getBlockSnapshot((World) (Object) this, new BlockPos(n, n2, n3), n4);
             this.capturedBlockSnapshots.add(blockSnapshot);
         }
         if (blockSnapshot != null) {
@@ -448,7 +450,7 @@ public abstract class MixinWorld implements IWorld {
     @Override
     public void markBlockForUpdate(int n, int n2, int n3) {
         for (IWorldAccess iWorldAccess : this.worldAccesses) {
-            ((IMixinWorldAccess)iWorldAccess).markBlockForUpdate(n, n2, n3);
+            ((IMixinWorldAccess) iWorldAccess).markBlockForUpdate(n, n2, n3);
         }
     }
 
@@ -465,7 +467,7 @@ public abstract class MixinWorld implements IWorld {
     @Override
     public void notifyLightSet(int n, int n2, int n3) {
         for (IWorldAccess iWorldAccess : this.worldAccesses) {
-            ((IMixinWorldAccess)iWorldAccess).notifyLightSet(n, n2, n3);
+            ((IMixinWorldAccess) iWorldAccess).notifyLightSet(n, n2, n3);
         }
     }
 

@@ -21,7 +21,7 @@ import org.lwjgl.input.Mouse;
 import org.lwjgl.opengl.GL11;
 
 import javax.swing.*;
-import java.awt.Color;
+import java.awt.*;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -29,6 +29,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 
 public class GuiScriptLoadMenu extends GuiScreen {
+    public static boolean isClickSub = false;
     public MSTimer timer1 = new MSTimer();
     public MSTimer timer2 = new MSTimer();
     public int x = 20;
@@ -37,10 +38,11 @@ public class GuiScriptLoadMenu extends GuiScreen {
     public ScriptMenuType menuType = ScriptMenuType.Main;
     public boolean drag;
     public int dragY;
-
     public int scroll;
     public int scrollTo;
     public int scrollVelocity;
+    private long guiOpenTime = -1;
+    private boolean translated = false;
 
     @Override
     public void initGui() {
@@ -50,8 +52,6 @@ public class GuiScriptLoadMenu extends GuiScreen {
         guiOpenTime = System.currentTimeMillis();
 
     }
-
-    public static boolean isClickSub = false;
 
     @Override
     protected void mouseClicked(int mouseX, int mouseY, int mouseButton) throws IOException {
@@ -206,10 +206,6 @@ public class GuiScriptLoadMenu extends GuiScreen {
     protected void keyTyped(char typedChar, int keyCode) throws IOException {
         super.keyTyped(typedChar, keyCode);
     }
-
-    private long guiOpenTime = -1;
-
-    private boolean translated = false;
 
     @Override
     public void drawScreen(int mouseX, int mouseY, float partialTicks) {

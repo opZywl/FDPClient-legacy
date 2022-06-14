@@ -13,9 +13,27 @@ class TeleportRewinsideFly : FlyMode("TeleportRewinside") {
         val yaw = -mc.thePlayer.rotationYaw
         val pitch = -mc.thePlayer.rotationPitch
         val length = 9.9
-        val vectorEnd = Vec3(sin(Math.toRadians(yaw.toDouble())) * cos(Math.toRadians(pitch.toDouble())) * length + vectorStart.xCoord, sin(Math.toRadians(pitch.toDouble())) * length + vectorStart.yCoord, cos(Math.toRadians(yaw.toDouble())) * cos(Math.toRadians(pitch.toDouble())) * length + vectorStart.zCoord)
-        mc.netHandler.addToSendQueue(C04PacketPlayerPosition(vectorEnd.xCoord, mc.thePlayer.posY + 2, vectorEnd.zCoord, true))
-        mc.netHandler.addToSendQueue(C04PacketPlayerPosition(vectorStart.xCoord, mc.thePlayer.posY + 2, vectorStart.zCoord, true))
+        val vectorEnd = Vec3(
+            sin(Math.toRadians(yaw.toDouble())) * cos(Math.toRadians(pitch.toDouble())) * length + vectorStart.xCoord,
+            sin(Math.toRadians(pitch.toDouble())) * length + vectorStart.yCoord,
+            cos(Math.toRadians(yaw.toDouble())) * cos(Math.toRadians(pitch.toDouble())) * length + vectorStart.zCoord
+        )
+        mc.netHandler.addToSendQueue(
+            C04PacketPlayerPosition(
+                vectorEnd.xCoord,
+                mc.thePlayer.posY + 2,
+                vectorEnd.zCoord,
+                true
+            )
+        )
+        mc.netHandler.addToSendQueue(
+            C04PacketPlayerPosition(
+                vectorStart.xCoord,
+                mc.thePlayer.posY + 2,
+                vectorStart.zCoord,
+                true
+            )
+        )
         mc.thePlayer.motionY = 0.0
     }
 }

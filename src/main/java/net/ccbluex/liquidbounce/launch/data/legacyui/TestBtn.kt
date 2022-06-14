@@ -1,7 +1,6 @@
 package net.ccbluex.liquidbounce.ui.btn
 
 import net.ccbluex.liquidbounce.LiquidBounce
-import net.ccbluex.liquidbounce.font.CFontRenderer
 import net.ccbluex.liquidbounce.font.FontLoaders
 import net.ccbluex.liquidbounce.utils.render.EaseUtils
 import net.ccbluex.liquidbounce.utils.render.RenderUtils
@@ -29,6 +28,7 @@ class TestBtn : GuiButton {
 
     private var animation = 0.0
     private var lastUpdate = System.currentTimeMillis()
+
     constructor(
         buttonId: Int, x: Int, y: Int, widthIn: Int, heightIn: Int, buttonText: String?,
         image: ResourceLocation?, reachTime: Int, color: Color
@@ -73,8 +73,8 @@ class TestBtn : GuiButton {
         GlStateManager.enableBlend()
         GlStateManager.tryBlendFuncSeparate(770, 771, 1, 0)
         GlStateManager.blendFunc(770, 771)
-        var yOffset=0;
-        var offsetLength=2;
+        var yOffset = 0
+        var offsetLength = 2
 
         val time = System.currentTimeMillis()
         val pct = (time - lastUpdate) / 500.0
@@ -89,7 +89,7 @@ class TestBtn : GuiButton {
             }
             timer1.reset()
             for (i in 0..offsetLength) {
-                if (timer.hasTimePassed((i*10 * reachTime).toLong())) {
+                if (timer.hasTimePassed((i * 10 * reachTime).toLong())) {
                     wi++
                 }
             }
@@ -103,24 +103,43 @@ class TestBtn : GuiButton {
             timer.reset()
             wi = offsetLength
             for (i in 0 until offsetLength) {
-                if (timer1.hasTimePassed((i*10 * reachTime).toLong())) {
+                if (timer1.hasTimePassed((i * 10 * reachTime).toLong())) {
                     wi--
                 }
             }
         }
-        yOffset=-1*wi
+        yOffset = -1 * wi
         RenderUtils.drawRoundedCornerRect(
-            xPosition.toFloat()-0.7f, yPosition.toFloat()-0.7f + yOffset, (xPosition + width).toFloat()+0.7f, (
-                    yPosition + height).toFloat()+0.7f + yOffset,
-            if (image != null) width.toFloat()/2 else 2f, if(LiquidBounce.Darkmode) Color(255,255,255, 30).rgb else Color(0,0,0, 70).rgb
+            xPosition.toFloat() - 0.7f,
+            yPosition.toFloat() - 0.7f + yOffset,
+            (xPosition + width).toFloat() + 0.7f,
+            (
+                    yPosition + height).toFloat() + 0.7f + yOffset,
+            if (image != null) width.toFloat() / 2 else 2f,
+            if (LiquidBounce.Darkmode) Color(255, 255, 255, 30).rgb else Color(0, 0, 0, 70).rgb
         )
         RenderUtils.drawRoundedCornerRect(
-            xPosition.toFloat()-0.5f, yPosition.toFloat()-0.5f + yOffset, (xPosition + width).toFloat()+0.5f, (
-                    yPosition + height).toFloat()+0.5f + yOffset, if (image != null) width.toFloat()/2 else 3f, if(LiquidBounce.Darkmode) Color(255,255,255, 110+(wi*10)).rgb else  Color(0,0,0, 120+(wi*10)).rgb
+            xPosition.toFloat() - 0.5f,
+            yPosition.toFloat() - 0.5f + yOffset,
+            (xPosition + width).toFloat() + 0.5f,
+            (
+                    yPosition + height).toFloat() + 0.5f + yOffset,
+            if (image != null) width.toFloat() / 2 else 3f,
+            if (LiquidBounce.Darkmode) Color(255, 255, 255, 110 + (wi * 10)).rgb else Color(
+                0,
+                0,
+                0,
+                120 + (wi * 10)
+            ).rgb
         )
         RenderUtils.drawRoundedCornerRect(
-            xPosition.toFloat(), yPosition.toFloat() + yOffset, (xPosition + width).toFloat(), (
-                    yPosition + height).toFloat() + yOffset, if (image != null) width.toFloat()/2 else 3f,if(LiquidBounce.Darkmode) Color(255,255,255, 80).rgb else Color(0,0,0, 50).rgb
+            xPosition.toFloat(),
+            yPosition.toFloat() + yOffset,
+            (xPosition + width).toFloat(),
+            (
+                    yPosition + height).toFloat() + yOffset,
+            if (image != null) width.toFloat() / 2 else 3f,
+            if (LiquidBounce.Darkmode) Color(255, 255, 255, 80).rgb else Color(0, 0, 0, 50).rgb
         )
         GL11.glColor3f(2.55f, 2.55f, 2.55f)
         mouseDragged(mc, mouseX, mouseY)
@@ -134,31 +153,53 @@ class TestBtn : GuiButton {
             height / 2, height / 2
         )
         if (image != null) {
-            if(this.isMouseOver) {
+            if (this.isMouseOver) {
                 var font = FontLoaders.C12
                 RenderUtils.drawRoundedCornerRect(
-                    xPosition + width / 2 - (FontLoaders.C16.DisplayFontWidths(displayString,FontLoaders.C16)  / 2).toFloat() - 3,
+                    xPosition + width / 2 - (FontLoaders.C16.DisplayFontWidths(
+                        displayString,
+                        FontLoaders.C16
+                    ) / 2).toFloat() - 3,
                     yPosition.toFloat() - 0.5f + yOffset + height + 5,
-                    3 + xPosition + width / 2 + (FontLoaders.C16.DisplayFontWidths(displayString,FontLoaders.C16)  / 2).toFloat(),
+                    3 + xPosition + width / 2 + (FontLoaders.C16.DisplayFontWidths(
+                        displayString,
+                        FontLoaders.C16
+                    ) / 2).toFloat(),
                     (
-                            yPosition + font.height).toFloat() + 0.5f  + height + 5 + 8,
+                            yPosition + font.height).toFloat() + 0.5f + height + 5 + 8,
                     3f,
-                    if(LiquidBounce.Darkmode) Color(255, 255, 255, (150*percent).toInt()).rgb else Color(0, 0, 0, (150*percent).toInt()).rgb
+                    if (LiquidBounce.Darkmode) Color(255, 255, 255, (150 * percent).toInt()).rgb else Color(
+                        0,
+                        0,
+                        0,
+                        (150 * percent).toInt()
+                    ).rgb
                 )
                 FontLoaders.C16.DisplayFonts(
                     displayString,
-                    xPosition + width / 2 - (FontLoaders.C16.DisplayFontWidths(displayString,FontLoaders.C16) / 2).toFloat(),
+                    xPosition + width / 2 - (FontLoaders.C16.DisplayFontWidths(
+                        displayString,
+                        FontLoaders.C16
+                    ) / 2).toFloat(),
                     (
                             yPosition + font.height / 2 - 3).toFloat() + height + 5 + 3,
-                    if(LiquidBounce.Darkmode) Color(50, 50, 50, (254*percent).toInt()).rgb else Color(180, 180, 180, (254*percent).toInt()).rgb,FontLoaders.C16
+                    if (LiquidBounce.Darkmode) Color(50, 50, 50, (254 * percent).toInt()).rgb else Color(
+                        180,
+                        180,
+                        180,
+                        (254 * percent).toInt()
+                    ).rgb, FontLoaders.C16
                 )
             }
-        }else{
-            val font = FontLoaders.C16;
+        } else {
+            val font = FontLoaders.C16
             val s = font.DisplayFonts(
                 displayString,
-                xPosition + width / 2 - (font.DisplayFontWidths(displayString,font) / 2).toFloat(), (
-                        yPosition + height / 2 - 4).toFloat() + yOffset, if(LiquidBounce.Darkmode) Color(50, 50, 50, 255).rgb else  Color(180, 180, 180, 255).rgb,FontLoaders.C16
+                xPosition + width / 2 - (font.DisplayFontWidths(displayString, font) / 2).toFloat(),
+                (
+                        yPosition + height / 2 - 4).toFloat() + yOffset,
+                if (LiquidBounce.Darkmode) Color(50, 50, 50, 255).rgb else Color(180, 180, 180, 255).rgb,
+                FontLoaders.C16
             )
         }
         GL11.glPopAttrib()

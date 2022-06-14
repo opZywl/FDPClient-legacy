@@ -71,8 +71,20 @@ class Effects(
             }
 
             when (side.horizontal) {
-                Side.Horizontal.RIGHT -> fontRenderer.drawString(name, -stringWidth, y + if (side.vertical == Side.Vertical.UP) -fontRenderer.FONT_HEIGHT.toFloat() else 0F, potion.liquidColor, shadow.get())
-                 Side.Horizontal.LEFT, Side.Horizontal.MIDDLE -> fontRenderer.drawString(name, 0F, y + if (side.vertical == Side.Vertical.UP) -fontRenderer.FONT_HEIGHT.toFloat() else 0F, potion.liquidColor, shadow.get())
+                Side.Horizontal.RIGHT -> fontRenderer.drawString(
+                    name,
+                    -stringWidth,
+                    y + if (side.vertical == Side.Vertical.UP) -fontRenderer.FONT_HEIGHT.toFloat() else 0F,
+                    potion.liquidColor,
+                    shadow.get()
+                )
+                Side.Horizontal.LEFT, Side.Horizontal.MIDDLE -> fontRenderer.drawString(
+                    name,
+                    0F,
+                    y + if (side.vertical == Side.Vertical.UP) -fontRenderer.FONT_HEIGHT.toFloat() else 0F,
+                    potion.liquidColor,
+                    shadow.get()
+                )
             }
 
             when (side.vertical) {
@@ -86,7 +98,8 @@ class Effects(
         }
 
         if (y == 0F) {
-            y = if (side.vertical == Side.Vertical.UP) -fontRenderer.FONT_HEIGHT.toFloat() else fontRenderer.FONT_HEIGHT.toFloat()
+            y =
+                if (side.vertical == Side.Vertical.UP) -fontRenderer.FONT_HEIGHT.toFloat() else fontRenderer.FONT_HEIGHT.toFloat()
         }
 
         return Border(0F, 0F, width, y)

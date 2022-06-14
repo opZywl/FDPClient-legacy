@@ -72,14 +72,30 @@ class FallingPlayer(
             var raytracedBlock: BlockPos?
             val w = mc.thePlayer.width / 2f
             if (rayTrace(start, end).also { raytracedBlock = it } != null) return raytracedBlock
-            if (rayTrace(start.addVector(w.toDouble(), 0.0, w.toDouble()), end).also { raytracedBlock = it } != null) return raytracedBlock
-            if (rayTrace(start.addVector(-w.toDouble(), 0.0, w.toDouble()), end).also { raytracedBlock = it } != null) return raytracedBlock
-            if (rayTrace(start.addVector(w.toDouble(), 0.0, -w.toDouble()), end).also { raytracedBlock = it } != null) return raytracedBlock
-            if (rayTrace(start.addVector(-w.toDouble(), 0.0, -w.toDouble()), end).also { raytracedBlock = it } != null) return raytracedBlock
-            if (rayTrace(start.addVector(w.toDouble(), 0.0, (w / 2f).toDouble()), end).also { raytracedBlock = it } != null) return raytracedBlock
-            if (rayTrace(start.addVector(-w.toDouble(), 0.0, (w / 2f).toDouble()), end).also { raytracedBlock = it } != null) return raytracedBlock
-            if (rayTrace(start.addVector((w / 2f).toDouble(), 0.0, w.toDouble()), end).also { raytracedBlock = it } != null) return raytracedBlock
-            if (rayTrace(start.addVector((w / 2f).toDouble(), 0.0, -w.toDouble()), end).also { raytracedBlock = it } != null) return raytracedBlock
+            if (rayTrace(start.addVector(w.toDouble(), 0.0, w.toDouble()), end).also {
+                    raytracedBlock = it
+                } != null) return raytracedBlock
+            if (rayTrace(start.addVector(-w.toDouble(), 0.0, w.toDouble()), end).also {
+                    raytracedBlock = it
+                } != null) return raytracedBlock
+            if (rayTrace(start.addVector(w.toDouble(), 0.0, -w.toDouble()), end).also {
+                    raytracedBlock = it
+                } != null) return raytracedBlock
+            if (rayTrace(start.addVector(-w.toDouble(), 0.0, -w.toDouble()), end).also {
+                    raytracedBlock = it
+                } != null) return raytracedBlock
+            if (rayTrace(start.addVector(w.toDouble(), 0.0, (w / 2f).toDouble()), end).also {
+                    raytracedBlock = it
+                } != null) return raytracedBlock
+            if (rayTrace(start.addVector(-w.toDouble(), 0.0, (w / 2f).toDouble()), end).also {
+                    raytracedBlock = it
+                } != null) return raytracedBlock
+            if (rayTrace(start.addVector((w / 2f).toDouble(), 0.0, w.toDouble()), end).also {
+                    raytracedBlock = it
+                } != null) return raytracedBlock
+            if (rayTrace(start.addVector((w / 2f).toDouble(), 0.0, -w.toDouble()), end).also {
+                    raytracedBlock = it
+                } != null) return raytracedBlock
         }
         return null
     }

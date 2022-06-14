@@ -1,22 +1,19 @@
 package net.ccbluex.liquidbounce.font;
 
-import java.awt.Color;
-import java.awt.Font;
-import java.awt.FontMetrics;
-import java.awt.Graphics2D;
-import java.awt.RenderingHints;
-import java.awt.geom.Rectangle2D;
-import java.awt.image.BufferedImage;
 import net.minecraft.client.renderer.texture.DynamicTexture;
 import org.lwjgl.opengl.GL11;
 
+import java.awt.*;
+import java.awt.geom.Rectangle2D;
+import java.awt.image.BufferedImage;
+
 /* loaded from: LiquidBounce-b73.jar:net/ccbluex/liquidbounce/CFont.class */
 public class CFont {
+    private final float imgSize = 512.0f;
     protected Font font;
     protected boolean antiAlias;
     protected boolean fractionalMetrics;
     protected DynamicTexture tex;
-    private final float imgSize = 512.0f;
     protected CharData[] charData = new CharData[256];
     protected int fontHeight = -1;
     protected int charOffset = 0;
@@ -91,17 +88,17 @@ public class CFont {
         float renderSRCWidth = srcWidth / 512.0f;
         float renderSRCHeight = srcHeight / 512.0f;
         GL11.glTexCoord2f(renderSRCX + renderSRCWidth, renderSRCY);
-        GL11.glVertex2d((double) (x + width), (double) y);
+        GL11.glVertex2d(x + width, y);
         GL11.glTexCoord2f(renderSRCX, renderSRCY);
-        GL11.glVertex2d((double) x, (double) y);
+        GL11.glVertex2d(x, y);
         GL11.glTexCoord2f(renderSRCX, renderSRCY + renderSRCHeight);
-        GL11.glVertex2d((double) x, (double) (y + height));
+        GL11.glVertex2d(x, y + height);
         GL11.glTexCoord2f(renderSRCX, renderSRCY + renderSRCHeight);
-        GL11.glVertex2d((double) x, (double) (y + height));
+        GL11.glVertex2d(x, y + height);
         GL11.glTexCoord2f(renderSRCX + renderSRCWidth, renderSRCY + renderSRCHeight);
-        GL11.glVertex2d((double) (x + width), (double) (y + height));
+        GL11.glVertex2d(x + width, y + height);
         GL11.glTexCoord2f(renderSRCX + renderSRCWidth, renderSRCY);
-        GL11.glVertex2d((double) (x + width), (double) y);
+        GL11.glVertex2d(x + width, y);
     }
 
     public int getStringHeight(String text) {

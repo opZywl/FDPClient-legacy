@@ -19,7 +19,8 @@ object ItemUtils {
         for (i in 0 until itemStack.enchantmentTagList.tagCount()) {
             val tagCompound = itemStack.enchantmentTagList.getCompoundTagAt(i)
             if (tagCompound.hasKey("ench") && tagCompound.getShort("ench").toInt() == enchantment.effectId ||
-                tagCompound.hasKey("id") && tagCompound.getShort("id").toInt() == enchantment.effectId) {
+                tagCompound.hasKey("id") && tagCompound.getShort("id").toInt() == enchantment.effectId
+            ) {
                 return tagCompound.getShort("lvl").toInt()
             }
         }
@@ -45,11 +46,26 @@ object ItemUtils {
     ): Double {
         return (1.25 * getEnchantment(stack, Enchantment.sharpness)) +
                 (1.0 * getEnchantment(stack, Enchantment.fireAspect)) +
-                if (hasNBTGoal(stack, goal)) { nbtedPriority } else { 0f }
+                if (hasNBTGoal(stack, goal)) {
+                    nbtedPriority
+                } else {
+                    0f
+                }
     }
 
-    private val armorDamageReduceEnchantments = arrayOf(Enchant(Enchantment.protection, 0.06f), Enchant(Enchantment.projectileProtection, 0.032f), Enchant(Enchantment.fireProtection, 0.0585f), Enchant(Enchantment.blastProtection, 0.0304f))
-    private val otherArmorEnchantments = arrayOf(Enchant(Enchantment.featherFalling, 3.0f), Enchant(Enchantment.thorns, 1.0f), Enchant(Enchantment.respiration, 0.1f), Enchant(Enchantment.aquaAffinity, 0.05f), Enchant(Enchantment.unbreaking, 0.01f))
+    private val armorDamageReduceEnchantments = arrayOf(
+        Enchant(Enchantment.protection, 0.06f),
+        Enchant(Enchantment.projectileProtection, 0.032f),
+        Enchant(Enchantment.fireProtection, 0.0585f),
+        Enchant(Enchantment.blastProtection, 0.0304f)
+    )
+    private val otherArmorEnchantments = arrayOf(
+        Enchant(Enchantment.featherFalling, 3.0f),
+        Enchant(Enchantment.thorns, 1.0f),
+        Enchant(Enchantment.respiration, 0.1f),
+        Enchant(Enchantment.aquaAffinity, 0.05f),
+        Enchant(Enchantment.unbreaking, 0.01f)
+    )
 
     fun compareArmor(
         o1: ArmorPiece,
@@ -60,8 +76,30 @@ object ItemUtils {
         // For damage reduction it is better if it is smaller, so it has to be inverted
         // The decimal values have to be rounded since in double math equals is inaccurate
         // For example 1.03 - 0.41 = 0.6200000000000001 and (1.03 - 0.41) == 0.62 would be false
-        val compare = RegexUtils.round(getArmorThresholdedDamageReduction(o2.itemStack).toDouble() - if (hasNBTGoal(o2.itemStack, goal)) { nbtedPriority / 5f } else { 0f }, 3)
-            .compareTo(RegexUtils.round(getArmorThresholdedDamageReduction(o1.itemStack).toDouble() - if (hasNBTGoal(o1.itemStack, goal)) { nbtedPriority / 5f } else { 0f }, 3))
+        val compare = RegexUtils.round(
+            getArmorThresholdedDamageReduction(o2.itemStack).toDouble() - if (hasNBTGoal(
+                    o2.itemStack,
+                    goal
+                )
+            ) {
+                nbtedPriority / 5f
+            } else {
+                0f
+            }, 3
+        )
+            .compareTo(
+                RegexUtils.round(
+                    getArmorThresholdedDamageReduction(o1.itemStack).toDouble() - if (hasNBTGoal(
+                            o1.itemStack,
+                            goal
+                        )
+                    ) {
+                        nbtedPriority / 5f
+                    } else {
+                        0f
+                    }, 3
+                )
+            )
 
         // If both armor pieces have the exact same damage, compare enchantments
         if (compare == 0) {
@@ -78,7 +116,8 @@ object ItemUtils {
                 // Then durability...
                 val o1a = o1.itemStack.item as ItemArmor
                 val o2a = o2.itemStack.item as ItemArmor
-                val durabilityCmp = o1a.armorMaterial.getDurability(o1a.armorType).compareTo(o2a.armorMaterial.getDurability(o2a.armorType))
+                val durabilityCmp = o1a.armorMaterial.getDurability(o1a.armorType)
+                    .compareTo(o2a.armorMaterial.getDurability(o2a.armorType))
 
                 return if (durabilityCmp != 0) {
                     durabilityCmp
@@ -94,7 +133,10 @@ object ItemUtils {
 
     private fun getArmorThresholdedDamageReduction(itemStack: ItemStack): Float {
         val item = itemStack.item as ItemArmor
-        return getArmorDamageReduction(item.armorMaterial.getDamageReductionAmount(item.armorType), 0) * (1 - getArmorThresholdedEnchantmentDamageReduction(itemStack))
+        return getArmorDamageReduction(
+            item.armorMaterial.getDamageReductionAmount(item.armorType),
+            0
+        ) * (1 - getArmorThresholdedEnchantmentDamageReduction(itemStack))
     }
 
     private fun getArmorDamageReduction(defensePoints: Int, toughness: Int): Float {
@@ -104,7 +146,10 @@ object ItemUtils {
     private fun getArmorThresholdedEnchantmentDamageReduction(itemStack: ItemStack): Float {
         var sum = 0.0f
         for (i in armorDamageReduceEnchantments.indices) {
-            sum += getEnchantment(itemStack, armorDamageReduceEnchantments[i].enchantment) * armorDamageReduceEnchantments[i].factor
+            sum += getEnchantment(
+                itemStack,
+                armorDamageReduceEnchantments[i].enchantment
+            ) * armorDamageReduceEnchantments[i].factor
         }
         return sum
     }
@@ -129,7 +174,7 @@ object ItemUtils {
             } else if (goal == EnumNBTPriorityType.HAS_NAME) {
                 return display.hasKey("Name")
             } else if (goal == EnumNBTPriorityType.HAS_LORE) {
-                return display.hasKey("Lore") && display.getTagList("Lore", 8).tagCount()> 0
+                return display.hasKey("Lore") && display.getTagList("Lore", 8).tagCount() > 0
             }
         }
 

@@ -30,18 +30,53 @@ class BoostHypixelFly : FlyMode("BoostHypixel") {
         }
 
         repeat(10) { // Imagine flagging to NCP.
-            mc.netHandler.addToSendQueue(C04PacketPlayerPosition(mc.thePlayer.posX, mc.thePlayer.posY, mc.thePlayer.posZ, true))
+            mc.netHandler.addToSendQueue(
+                C04PacketPlayerPosition(
+                    mc.thePlayer.posX,
+                    mc.thePlayer.posY,
+                    mc.thePlayer.posZ,
+                    true
+                )
+            )
         }
 
         var fallDistance = 3.0125 // add 0.0125 to ensure we get the fall dmg
 
         while (fallDistance > 0) {
-            mc.netHandler.addToSendQueue(C04PacketPlayerPosition(mc.thePlayer.posX, mc.thePlayer.posY + 0.41999998688698, mc.thePlayer.posZ, false))
-            mc.netHandler.addToSendQueue(C04PacketPlayerPosition(mc.thePlayer.posX, mc.thePlayer.posY + 0.7531999805212, mc.thePlayer.posZ, false))
-            mc.netHandler.addToSendQueue(C04PacketPlayerPosition(mc.thePlayer.posX, mc.thePlayer.posY + 0.0000013579, mc.thePlayer.posZ, false))
+            mc.netHandler.addToSendQueue(
+                C04PacketPlayerPosition(
+                    mc.thePlayer.posX,
+                    mc.thePlayer.posY + 0.41999998688698,
+                    mc.thePlayer.posZ,
+                    false
+                )
+            )
+            mc.netHandler.addToSendQueue(
+                C04PacketPlayerPosition(
+                    mc.thePlayer.posX,
+                    mc.thePlayer.posY + 0.7531999805212,
+                    mc.thePlayer.posZ,
+                    false
+                )
+            )
+            mc.netHandler.addToSendQueue(
+                C04PacketPlayerPosition(
+                    mc.thePlayer.posX,
+                    mc.thePlayer.posY + 0.0000013579,
+                    mc.thePlayer.posZ,
+                    false
+                )
+            )
             fallDistance -= 0.7531999805212
         }
-        mc.netHandler.addToSendQueue(C04PacketPlayerPosition(mc.thePlayer.posX, mc.thePlayer.posY, mc.thePlayer.posZ, true))
+        mc.netHandler.addToSendQueue(
+            C04PacketPlayerPosition(
+                mc.thePlayer.posX,
+                mc.thePlayer.posY,
+                mc.thePlayer.posZ,
+                true
+            )
+        )
 
         mc.thePlayer.jump()
         mc.thePlayer.posY += 0.42 // Visual
@@ -78,8 +113,12 @@ class BoostHypixelFly : FlyMode("BoostHypixel") {
             return
         }
 
-        val amplifier = 1 + if (mc.thePlayer.isPotionActive(Potion.moveSpeed)) { 0.2 *
-                (mc.thePlayer.getActivePotionEffect(Potion.moveSpeed).amplifier + 1) } else { 0.0 }
+        val amplifier = 1 + if (mc.thePlayer.isPotionActive(Potion.moveSpeed)) {
+            0.2 *
+                    (mc.thePlayer.getActivePotionEffect(Potion.moveSpeed).amplifier + 1)
+        } else {
+            0.0
+        }
         val baseSpeed = 0.29 * amplifier
 
         when (boostState) {
@@ -92,7 +131,8 @@ class BoostHypixelFly : FlyMode("BoostHypixel") {
                 boostState = 3
             }
             3 -> {
-                moveSpeed = lastDistance - (if (mc.thePlayer.ticksExisted % 2 == 0) 0.0103 else 0.0123) * (lastDistance - baseSpeed)
+                moveSpeed =
+                    lastDistance - (if (mc.thePlayer.ticksExisted % 2 == 0) 0.0103 else 0.0123) * (lastDistance - baseSpeed)
                 boostState = 4
             }
             else -> {
@@ -111,7 +151,14 @@ class BoostHypixelFly : FlyMode("BoostHypixel") {
 
     override fun onBlockBB(event: BlockBBEvent) {
         if (event.block is BlockAir && event.y <= mc.thePlayer.posY) {
-            event.boundingBox = AxisAlignedBB.fromBounds(event.x.toDouble(), event.y.toDouble(), event.z.toDouble(), event.x + 1.0, mc.thePlayer.posY, event.z + 1.0)
+            event.boundingBox = AxisAlignedBB.fromBounds(
+                event.x.toDouble(),
+                event.y.toDouble(),
+                event.z.toDouble(),
+                event.x + 1.0,
+                mc.thePlayer.posY,
+                event.z + 1.0
+            )
         }
     }
 

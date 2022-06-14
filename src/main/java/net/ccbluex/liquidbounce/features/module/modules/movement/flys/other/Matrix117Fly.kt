@@ -29,13 +29,13 @@ class Matrix117Fly : FlyMode("Matrix1.17") {
 //        airCount = 0
         yChanged = false
         hasEmptySlot = false
-        for(i in 0..8) {
-            // find a empty inventory slot
-            if(mc.thePlayer.inventory.mainInventory[i] == null) {
+        for (i in 0..8) {
+            // find an empty inventory slot
+            if (mc.thePlayer.inventory.mainInventory[i] == null) {
                 hasEmptySlot = true
             }
         }
-        if(!hasEmptySlot) {
+        if (!hasEmptySlot) {
             fly.state = false
             ClientUtils.displayChatMessage("§8[§c§lMatrix1.17-§a§lFly§8] §aYou need to have an empty slot to fly.")
         }
@@ -48,40 +48,58 @@ class Matrix117Fly : FlyMode("Matrix1.17") {
     }
 
     override fun onMotion(event: MotionEvent) {
-        if(event.eventState == EventState.PRE && resetFallDistValue.get()) {
-            if(mc.thePlayer.posY < fly.launchY + 0.15 && mc.thePlayer.posY > fly.launchY + 0.05) {
+        if (event.eventState == EventState.PRE && resetFallDistValue.get()) {
+            if (mc.thePlayer.posY < fly.launchY + 0.15 && mc.thePlayer.posY > fly.launchY + 0.05) {
                 airCount++
-                if(airCount >= 3) {
-                    PacketUtils.sendPacketNoEvent(C03PacketPlayer.C06PacketPlayerPosLook(mc.thePlayer.posX, mc.thePlayer.posY, mc.thePlayer.posZ, mc.thePlayer.rotationYaw, mc.thePlayer.rotationPitch, true))
-                    mc.netHandler.addToSendQueue(C08PacketPlayerBlockPlacement(BlockPos(-1, -1, -1), -1, null, 0f, 0f, 0f))
+                if (airCount >= 3) {
+                    PacketUtils.sendPacketNoEvent(
+                        C03PacketPlayer.C06PacketPlayerPosLook(
+                            mc.thePlayer.posX,
+                            mc.thePlayer.posY,
+                            mc.thePlayer.posZ,
+                            mc.thePlayer.rotationYaw,
+                            mc.thePlayer.rotationPitch,
+                            true
+                        )
+                    )
+                    mc.netHandler.addToSendQueue(
+                        C08PacketPlayerBlockPlacement(
+                            BlockPos(-1, -1, -1),
+                            -1,
+                            null,
+                            0f,
+                            0f,
+                            0f
+                        )
+                    )
                 }
             }
         }
     }
 
     override fun onUpdate(event: UpdateEvent) {
-        if(yChanged) {
+        if (yChanged) {
             mc.thePlayer.motionX = 0.0
             mc.thePlayer.motionZ = 0.0
             mc.thePlayer.jumpMovementFactor = 0.0f
         }
-        for(i in 0..8) {
-            // find a empty inventory slot
-            if(mc.thePlayer.inventory.mainInventory[i] == null) {
+        for (i in 0..8) {
+            // find an empty inventory slot
+            if (mc.thePlayer.inventory.mainInventory[i] == null) {
                 mc.netHandler.addToSendQueue(C09PacketHeldItemChange(i))
                 break
             }
         }
-        if(!dontPlace || mc.thePlayer.posY + 1 > fly.launchY) {
+        if (!dontPlace || mc.thePlayer.posY + 1 > fly.launchY) {
             dontPlace = true
             mc.netHandler.addToSendQueue(C08PacketPlayerBlockPlacement(BlockPos(-1, -1, -1), -1, null, 0f, 0f, 0f))
         }
-        if(mc.thePlayer.onGround) {
+        if (mc.thePlayer.onGround) {
             if (!yChanged) {
-                if(mc.gameSettings.keyBindJump.pressed) {
+                if (mc.gameSettings.keyBindJump.pressed) {
                     yChanged = true
                     fly.launchY += 1
-                } else if(mc.gameSettings.keyBindSneak.pressed) {
+                } else if (mc.gameSettings.keyBindSneak.pressed) {
                     yChanged = true
                     fly.launchY -= 1
                 }
@@ -89,7 +107,7 @@ class Matrix117Fly : FlyMode("Matrix1.17") {
                 yChanged = false
             }
             mc.thePlayer.jump()
-            if(yChanged) {
+            if (yChanged) {
                 mc.thePlayer.motionX = 0.0
                 mc.thePlayer.motionZ = 0.0
             }
@@ -97,7 +115,7 @@ class Matrix117Fly : FlyMode("Matrix1.17") {
             mc.netHandler.addToSendQueue(C08PacketPlayerBlockPlacement(BlockPos(-1, -1, -1), -1, null, 0f, 0f, 0f))
         }
         mc.thePlayer.onGround = false
-        if(mc.thePlayer.motionY < 0) {
+        if (mc.thePlayer.motionY < 0) {
             mc.thePlayer.motionX *= 0.7
             mc.thePlayer.motionZ *= 0.7
         }
@@ -106,14 +124,21 @@ class Matrix117Fly : FlyMode("Matrix1.17") {
 
     override fun onPacket(event: PacketEvent) {
         val packet = event.packet
-        if(packet is C03PacketPlayer) {
+        if (packet is C03PacketPlayer) {
             packet.onGround = false
         }
     }
 
     override fun onBlockBB(event: BlockBBEvent) {
         if (event.block is BlockAir && event.y <= fly.launchY) {
-            event.boundingBox = AxisAlignedBB.fromBounds(event.x.toDouble(), event.y.toDouble(), event.z.toDouble(), event.x + 1.0, fly.launchY, event.z + 1.0)
+            event.boundingBox = AxisAlignedBB.fromBounds(
+                event.x.toDouble(),
+                event.y.toDouble(),
+                event.z.toDouble(),
+                event.x + 1.0,
+                fly.launchY,
+                event.z + 1.0
+            )
         }
     }
 }

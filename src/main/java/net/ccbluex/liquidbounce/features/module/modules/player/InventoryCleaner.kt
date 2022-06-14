@@ -56,7 +56,8 @@ class InventoryCleaner : Module() {
 
     private val invOpenValue = BoolValue("InvOpen", false)
     private val simulateInventory = BoolValue("SimulateInventory", true)
-    private val simulateDelayValue = IntegerValue("SimulateInventoryDelay", 0, 0, 1000).displayable { simulateInventory.get() }
+    private val simulateDelayValue =
+        IntegerValue("SimulateInventoryDelay", 0, 0, 1000).displayable { simulateInventory.get() }
     private val noMoveValue = BoolValue("NoMove", false)
     private val hotbarValue = BoolValue("Hotbar", true)
     private val randomSlotValue = BoolValue("RandomSlot", false)
@@ -65,15 +66,31 @@ class InventoryCleaner : Module() {
     private val armorValue = BoolValue("Armor", true)
     private val noCombatValue = BoolValue("NoCombat", false)
     private val itemDelayValue = IntegerValue("ItemDelay", 0, 0, 5000)
-    private val nbtGoalValue = ListValue("NBTGoal", ItemUtils.EnumNBTPriorityType.values().map { it.toString() }.toTypedArray(), "NONE")
+    private val nbtGoalValue =
+        ListValue("NBTGoal", ItemUtils.EnumNBTPriorityType.values().map { it.toString() }.toTypedArray(), "NONE")
     private val nbtItemNotGarbage = BoolValue("NBTItemNotGarbage", true).displayable { !nbtGoalValue.equals("NONE") }
-    private val nbtArmorPriority = FloatValue("NBTArmorPriority", 0f, 0f, 5f).displayable { !nbtGoalValue.equals("NONE") }
-    private val nbtWeaponPriority = FloatValue("NBTWeaponPriority", 0f, 0f, 5f).displayable { !nbtGoalValue.equals("NONE") }
+    private val nbtArmorPriority =
+        FloatValue("NBTArmorPriority", 0f, 0f, 5f).displayable { !nbtGoalValue.equals("NONE") }
+    private val nbtWeaponPriority =
+        FloatValue("NBTWeaponPriority", 0f, 0f, 5f).displayable { !nbtGoalValue.equals("NONE") }
     private val ignoreVehiclesValue = BoolValue("IgnoreVehicles", false)
     private val onlyPositivePotionValue = BoolValue("OnlyPositivePotion", false)
 //    private val ignoreDurabilityUnder = FloatValue("IgnoreDurabilityUnder", 0.3f, 0f, 1f)
 
-    private val items = arrayOf("None", "Ignore", "Sword", "Bow", "Pickaxe", "Axe", "Food", "Block", "Water", "Gapple", "Pearl", "Potion")
+    private val items = arrayOf(
+        "None",
+        "Ignore",
+        "Sword",
+        "Bow",
+        "Pickaxe",
+        "Axe",
+        "Food",
+        "Block",
+        "Water",
+        "Gapple",
+        "Pearl",
+        "Potion"
+    )
     private val sortSlot1Value = ListValue("SortSlot-1", items, "Sword").displayable { sortValue.get() }
     private val sortSlot2Value = ListValue("SortSlot-2", items, "Gapple").displayable { sortValue.get() }
     private val sortSlot3Value = ListValue("SortSlot-3", items, "Potion").displayable { sortValue.get() }
@@ -125,8 +142,9 @@ class InventoryCleaner : Module() {
     fun onUpdate(event: UpdateEvent) {
         if (noMoveValue.get() && MovementUtils.isMoving() ||
             mc.thePlayer.openContainer != null && mc.thePlayer.openContainer.windowId != 0 ||
-            (LiquidBounce.combatManager.inCombat && noCombatValue.get())) {
-            if(InventoryUtils.CLICK_TIMER.hasTimePassed(simulateDelayValue.get().toLong())) {
+            (LiquidBounce.combatManager.inCombat && noCombatValue.get())
+        ) {
+            if (InventoryUtils.CLICK_TIMER.hasTimePassed(simulateDelayValue.get().toLong())) {
                 invOpened = false
             }
             return
@@ -145,7 +163,13 @@ class InventoryCleaner : Module() {
                 val armorPiece = bestArmor[i] ?: continue
                 val armorSlot = 3 - i
                 val oldArmor: ItemStack? = mc.thePlayer.inventory.armorItemInSlot(armorSlot)
-                if (oldArmor == null || oldArmor.item !is ItemArmor || ItemUtils.compareArmor(ArmorPiece(oldArmor, -1), armorPiece, nbtArmorPriority.get(), goal) < 0) {
+                if (oldArmor == null || oldArmor.item !is ItemArmor || ItemUtils.compareArmor(
+                        ArmorPiece(oldArmor, -1),
+                        armorPiece,
+                        nbtArmorPriority.get(),
+                        goal
+                    ) < 0
+                ) {
                     if (oldArmor != null && move(8 - armorSlot, true)) {
                         return
                     }
@@ -165,7 +189,13 @@ class InventoryCleaner : Module() {
                         return
                     }
 
-                    mc.playerController.windowClick(0, if (bestItem < 9) bestItem + 36 else bestItem, index, 2, mc.thePlayer)
+                    mc.playerController.windowClick(
+                        0,
+                        if (bestItem < 9) bestItem + 36 else bestItem,
+                        index,
+                        2,
+                        mc.thePlayer
+                    )
 
                     delay = TimeUtils.randomDelay(minDelayValue.get(), maxDelayValue.get())
                     return
@@ -178,8 +208,8 @@ class InventoryCleaner : Module() {
                 .filter { !isUseful(it.value, it.key) }
                 .keys
 
-            val garbageItem = if(garbageItems.isNotEmpty()) {
-                if(randomSlotValue.get()) {
+            val garbageItem = if (garbageItems.isNotEmpty()) {
+                if (randomSlotValue.get()) {
                     // pick random one
                     garbageItems.toList()[RandomUtils.nextInt(0, garbageItems.size)]
                 } else {
@@ -202,7 +232,7 @@ class InventoryCleaner : Module() {
             }
         }
 
-        if(InventoryUtils.CLICK_TIMER.hasTimePassed(simulateDelayValue.get().toLong())) {
+        if (InventoryUtils.CLICK_TIMER.hasTimePassed(simulateDelayValue.get().toLong())) {
             invOpened = false
         }
     }
@@ -218,24 +248,31 @@ class InventoryCleaner : Module() {
             val item = itemStack.item
 
             if (item is ItemSword || item is ItemTool) {
-                if (slot >= 36 && findBetterItem(slot - 36, mc.thePlayer.inventory.getStackInSlot(slot - 36)) == slot - 36) {
+                if (slot >= 36 && findBetterItem(
+                        slot - 36,
+                        mc.thePlayer.inventory.getStackInSlot(slot - 36)
+                    ) == slot - 36
+                ) {
                     return true
                 }
 
                 for (i in 0..8) {
                     if (type(i).equals("sword", true) && item is ItemSword ||
                         type(i).equals("pickaxe", true) && item is ItemPickaxe ||
-                        type(i).equals("axe", true) && item is ItemAxe) {
+                        type(i).equals("axe", true) && item is ItemAxe
+                    ) {
                         if (findBetterItem(i, mc.thePlayer.inventory.getStackInSlot(i)) == null) {
                             return true
                         }
                     }
                 }
 
-                val damage = (itemStack.attributeModifiers["generic.attackDamage"].firstOrNull()?.amount ?: 0.0) + ItemUtils.getWeaponEnchantFactor(itemStack, nbtWeaponPriority.get(), goal)
+                val damage = (itemStack.attributeModifiers["generic.attackDamage"].firstOrNull()?.amount
+                    ?: 0.0) + ItemUtils.getWeaponEnchantFactor(itemStack, nbtWeaponPriority.get(), goal)
 
                 items(0, 45).none { (_, stack) ->
-                    stack != itemStack && stack.javaClass == itemStack.javaClass && damage <= (stack.attributeModifiers["generic.attackDamage"].firstOrNull()?.amount ?: 0.0) + ItemUtils.getWeaponEnchantFactor(stack, nbtWeaponPriority.get(), goal)
+                    stack != itemStack && stack.javaClass == itemStack.javaClass && damage <= (stack.attributeModifiers["generic.attackDamage"].firstOrNull()?.amount
+                        ?: 0.0) + ItemUtils.getWeaponEnchantFactor(stack, nbtWeaponPriority.get(), goal)
                 }
             } else if (item is ItemBow) {
                 val currPower = ItemUtils.getEnchantment(itemStack, Enchantment.power)
@@ -266,7 +303,10 @@ class InventoryCleaner : Module() {
                 (nbtItemNotGarbage.get() && ItemUtils.hasNBTGoal(itemStack, goal)) ||
                         item is ItemFood || itemStack.unlocalizedName == "item.arrow" ||
                         (item is ItemBlock && !InventoryUtils.isBlockListBlock(item)) ||
-                        item is ItemBed || (item is ItemPotion && (!onlyPositivePotionValue.get() || InventoryUtils.isPositivePotion(item, itemStack))) ||
+                        item is ItemBed || (item is ItemPotion && (!onlyPositivePotionValue.get() || InventoryUtils.isPositivePotion(
+                    item,
+                    itemStack
+                ))) ||
                         item is ItemEnderPearl || item is ItemBucket || ignoreVehiclesValue.get() && (item is ItemBoat || item is ItemMinecart)
             }
         } catch (ex: Exception) {
@@ -287,7 +327,16 @@ class InventoryCleaner : Module() {
 
         val bestArmor = arrayOfNulls<ArmorPiece>(4)
         for ((key, value) in armorPieces) {
-            bestArmor[key!!] = value.also { it.sortWith { armorPiece, armorPiece2 -> ItemUtils.compareArmor(armorPiece, armorPiece2, nbtArmorPriority.get(), goal) } }.lastOrNull()
+            bestArmor[key!!] = value.also {
+                it.sortWith { armorPiece, armorPiece2 ->
+                    ItemUtils.compareArmor(
+                        armorPiece,
+                        armorPiece2,
+                        nbtArmorPriority.get(),
+                        goal
+                    )
+                }
+            }.lastOrNull()
         }
 
         return bestArmor
@@ -316,10 +365,12 @@ class InventoryCleaner : Module() {
                         if (bestWeapon == -1) {
                             bestWeapon = index
                         } else {
-                            val currDamage = (itemStack.attributeModifiers["generic.attackDamage"].firstOrNull()?.amount ?: 0.0) + ItemUtils.getWeaponEnchantFactor(itemStack, nbtWeaponPriority.get(), goal)
+                            val currDamage = (itemStack.attributeModifiers["generic.attackDamage"].firstOrNull()?.amount
+                                ?: 0.0) + ItemUtils.getWeaponEnchantFactor(itemStack, nbtWeaponPriority.get(), goal)
 
                             val bestStack = mc.thePlayer.inventory.getStackInSlot(bestWeapon) ?: return@forEachIndexed
-                            val bestDamage = (bestStack.attributeModifiers["generic.attackDamage"].firstOrNull()?.amount ?: 0.0) + ItemUtils.getWeaponEnchantFactor(bestStack, nbtWeaponPriority.get(), goal)
+                            val bestDamage = (bestStack.attributeModifiers["generic.attackDamage"].firstOrNull()?.amount
+                                ?: 0.0) + ItemUtils.getWeaponEnchantFactor(bestStack, nbtWeaponPriority.get(), goal)
 
                             if (bestDamage < currDamage) {
                                 bestWeapon = index
@@ -374,7 +425,8 @@ class InventoryCleaner : Module() {
                     val item = stack?.item
 
                     if (item is ItemBlock && !InventoryUtils.BLOCK_BLACKLIST.contains(item.block) &&
-                        !type(index).equals("Block", ignoreCase = true)) {
+                        !type(index).equals("Block", ignoreCase = true)
+                    ) {
                         val replaceCurr = slotStack == null || slotStack.item !is ItemBlock
 
                         return if (replaceCurr) index else null
@@ -386,8 +438,13 @@ class InventoryCleaner : Module() {
                 mc.thePlayer.inventory.mainInventory.forEachIndexed { index, stack ->
                     val item = stack?.item
 
-                    if (item is ItemBucket && item.isFull == Blocks.flowing_water && !type(index).equals("Water", ignoreCase = true)) {
-                        val replaceCurr = slotStack == null || slotStack.item !is ItemBucket || (slotStack.item as ItemBucket).isFull != Blocks.flowing_water
+                    if (item is ItemBucket && item.isFull == Blocks.flowing_water && !type(index).equals(
+                            "Water",
+                            ignoreCase = true
+                        )
+                    ) {
+                        val replaceCurr =
+                            slotStack == null || slotStack.item !is ItemBucket || (slotStack.item as ItemBucket).isFull != Blocks.flowing_water
 
                         return if (replaceCurr) index else null
                     }
@@ -423,8 +480,10 @@ class InventoryCleaner : Module() {
                     val item = stack?.item
 
                     if ((item is ItemPotion && ItemPotion.isSplash(stack.itemDamage)) &&
-                        !type(index).equals("Potion", ignoreCase = true)) {
-                        val replaceCurr = slotStack == null || slotStack.item !is ItemPotion || !ItemPotion.isSplash(slotStack.itemDamage)
+                        !type(index).equals("Potion", ignoreCase = true)
+                    ) {
+                        val replaceCurr =
+                            slotStack == null || slotStack.item !is ItemPotion || !ItemPotion.isSplash(slotStack.itemDamage)
 
                         return if (replaceCurr) index else null
                     }
@@ -480,7 +539,13 @@ class InventoryCleaner : Module() {
             if (throwValue.get() && isArmorSlot) {
                 mc.playerController.windowClick(mc.thePlayer.inventoryContainer.windowId, item, 0, 4, mc.thePlayer)
             } else {
-                mc.playerController.windowClick(mc.thePlayer.inventoryContainer.windowId, if (isArmorSlot) item else if (item < 9) item + 36 else item, 0, 1, mc.thePlayer)
+                mc.playerController.windowClick(
+                    mc.thePlayer.inventoryContainer.windowId,
+                    if (isArmorSlot) item else if (item < 9) item + 36 else item,
+                    0,
+                    1,
+                    mc.thePlayer
+                )
             }
             delay = TimeUtils.randomDelay(minDelayValue.get(), maxDelayValue.get())
             return true

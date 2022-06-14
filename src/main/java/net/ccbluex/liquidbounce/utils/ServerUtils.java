@@ -15,7 +15,7 @@ public final class ServerUtils extends MinecraftInstance {
     public static ServerData serverData;
 
     public static void connectToLastServer() {
-        if(serverData == null)
+        if (serverData == null)
             return;
 
         mc.displayGuiScreen(new GuiConnecting(new GuiMultiplayer(LiquidBounce.mainMenu), mc, serverData));
@@ -28,7 +28,7 @@ public final class ServerUtils extends MinecraftInstance {
             serverIp = "SinglePlayer";
         } else if (mc.theWorld != null && mc.theWorld.isRemote) {
             final ServerData serverData = mc.getCurrentServerData();
-            if(serverData != null)
+            if (serverData != null)
                 serverIp = serverData.serverIP;
         }
 

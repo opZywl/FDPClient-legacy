@@ -1,12 +1,5 @@
 package net.ccbluex.liquidbounce.font;
 
-import java.awt.Color;
-import java.awt.Font;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
 import net.ccbluex.liquidbounce.ui.font.Fonts;
 import net.ccbluex.liquidbounce.ui.i18n.LanguageManager;
 import net.ccbluex.liquidbounce.utils.render.RenderUtils;
@@ -15,13 +8,19 @@ import net.minecraft.client.renderer.texture.DynamicTexture;
 import org.lwjgl.opengl.GL11;
 import org.spongepowered.asm.lib.Opcodes;
 
+import java.awt.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 /* loaded from: LiquidBounce-b73.jar:net/ccbluex/liquidbounce/CFontRenderer.class */
 public class CFontRenderer extends CFont {
+    private final int[] colorCode = new int[32];
+    private final String colorcodeIdentifiers = "0123456789abcdefklmnor";
     protected CFont.CharData[] boldChars = new CFont.CharData[256];
     protected CFont.CharData[] italicChars = new CFont.CharData[256];
     protected CFont.CharData[] boldItalicChars = new CFont.CharData[256];
-    private final int[] colorCode = new int[32];
-    private final String colorcodeIdentifiers = "0123456789abcdefklmnor";
     protected DynamicTexture texBold;
     protected DynamicTexture texItalic;
     protected DynamicTexture texItalicBold;
@@ -32,35 +31,9 @@ public class CFontRenderer extends CFont {
         setupBoldItalicIDs();
     }
 
-    public float drawStringWithShadow(String text, double x, double y, int color) {
-        return Math.max(drawString(text, x + 0.5d, y + 0.5d, color, true), drawString(text, x, y, color, false));
-    }
-
-    public float drawString(String text, float x, float y, int color) {
-        GlStateManager.color(1.0f, 1.0f, 1.0f);
-        RenderUtils.glColor(color);
-        return drawString(text, (double) x, (double) y, color, false);
-    }
-
-    public float drawCenteredString(String text, double x, double y, int color) {
-        GlStateManager.color(1.0f, 1.0f, 1.0f);
-        return drawString(text, (float) (x - ((double) ((float) (getStringWidth(text) / 2)))), (float) y, color);
-    }
-
-    public float drawCenteredStringWithShadow(String text, float x, float y, int color) {
-        return drawStringWithShadow(text, (double) (x - ((float) (getStringWidth(text) / 2))), (double) y, color);
-    }
-
-    public float drawCenteredStringWithShadow(String text, double x, double y, int color) {
-        return drawStringWithShadow(text, x - ((double) (getStringWidth(text) / 2)), y, color);
-    }
     public static boolean isChinese(char c) {
         String s = String.valueOf(c);
-        if(!"1234567890abcdefghijklmnopqrstuvwxyz!<>@#$%^&*()-_=+[]{}|\\/'\",.~`".contains(s.toLowerCase()))
-            return true;
-        else{
-            return false;
-        }
+        return !"1234567890abcdefghijklmnopqrstuvwxyz!<>@#$%^&*()-_=+[]{}|\\/'\",.~`".contains(s.toLowerCase());
     }
 
     public static boolean isContainChinese(String str) {
@@ -73,8 +46,8 @@ public class CFontRenderer extends CFont {
         String illegal = "`~!#%^&*=+\\|{};:'\",<>/?○●★☆☉♀♂※¤╬の〆";
         char isLegalChar = 't';
 
-        for(int i = 0; i < content.length(); ++i) {
-            for(int j = 0; j < illegal.length(); ++j) {
+        for (int i = 0; i < content.length(); ++i) {
+            for (int j = 0; j < illegal.length(); ++j) {
                 if (content.charAt(i) == illegal.charAt(j)) {
                     isLegalChar = content.charAt(i);
                     return isLegalChar;
@@ -84,73 +57,48 @@ public class CFontRenderer extends CFont {
 
         return isLegalChar;
     }
+
     public static int DisplayFontWidth(String str, CFontRenderer font) {
         str = LanguageManager.INSTANCE.get(LanguageManager.INSTANCE.replace(str));
-        int x=0;
-        for(int iF = 0; iF < str.length(); ++iF) {
+        int x = 0;
+        for (int iF = 0; iF < str.length(); ++iF) {
             String s = String.valueOf(str.toCharArray()[iF]);
             if (s.contains("§") && iF + 1 <= str.length()) {
                 iF++;
             } else if (!isChinese(s.charAt(0))) {
-                x += (float)font.getStringWidth(s);
+                x += (float) font.getStringWidth(s);
             } else {
-                x += (float)Fonts.font35.getStringWidth(s);
+                x += (float) Fonts.font35.getStringWidth(s);
             }
         }
-        return x+5;
+        return x + 5;
     }
 
-    public int DisplayFontWidths(CFontRenderer font,String str) {
-        return DisplayFontWidths(str,font);
+    public static float DisplayFont(CFontRenderer font, String str, float x, float y, int color) {
+        return DisplayFont(str, x, y, color, font);
     }
-    public int DisplayFontWidths(String str, CFontRenderer font) {
+
+    public static float DisplayFonts(CFontRenderer font, String str, float x, float y, int color) {
+        return DisplayFont(str, x, y, color, font);
+    }
+
+    public static float DisplayFont(String str, float x, float y, int color, boolean shadow, CFontRenderer font) {
         str = LanguageManager.INSTANCE.get(LanguageManager.INSTANCE.replace(str));
-        int x=0;
-        for(int iF = 0; iF < str.length(); ++iF) {
-            String s = String.valueOf(str.toCharArray()[iF]);
-            if (s.contains("§") && iF + 1 <= str.length()) {
-                iF++;
-            } else if (!isChinese(s.charAt(0))) {
-                x += (float)font.getStringWidth(s);
-            } else {
-                x += (float)Fonts.font35.getStringWidth(s);
-            }
-        }
-        return x+5;
-    }
-
-    public static float DisplayFont(CFontRenderer font,String str, float x, float y, int color) {
-        return DisplayFont(str,x,y,color,font);
-    }
-
-    public static float DisplayFonts(CFontRenderer font,String str, float x, float y, int color) {
-        return DisplayFont(str,x,y,color,font);
-    }
-
-    public float DisplayFont2(CFontRenderer font,String str, float x, float y, int color,boolean shadow) {
-        if(shadow)
-            return DisplayFont(str,x,y,color,shadow,font);
-        else{
-            return DisplayFont(str,x,y,color,font);
-        }
-    }
-    public static float DisplayFont(String str, float x, float y, int color,boolean shadow, CFontRenderer font) {
-        str = LanguageManager.INSTANCE.get(LanguageManager.INSTANCE.replace(str));
-        str=" "+str;
+        str = " " + str;
         //ClientUtils.INSTANCE.displayAlert(str);
-        for(int iF = 0; iF < str.length(); ++iF) {
+        for (int iF = 0; iF < str.length(); ++iF) {
             String s = String.valueOf(str.toCharArray()[iF]);
             if (s.contains("§") && iF + 1 <= str.length()) {
                 color = getColor(String.valueOf(str.toCharArray()[iF + 1]));
                 iF++;
             } else if (!isChinese(s.charAt(0))) {
-                font.drawString(s, x+0.5f, y+1.5f, new Color(0,0,0,100).getRGB());
-                font.drawString(s, x-0.5f, y+0.5f, color);
-                x += (float)font.getStringWidth(s);
+                font.drawString(s, x + 0.5f, y + 1.5f, new Color(0, 0, 0, 100).getRGB());
+                font.drawString(s, x - 0.5f, y + 0.5f, color);
+                x += (float) font.getStringWidth(s);
             } else {
-                Fonts.font35.drawString(s, x+1.5f, y+2, new Color(0,0,0,50).getRGB());
-                Fonts.font35.drawString(s, x+0.5f, y+1, color);
-                x += (float)Fonts.font35.getStringWidth(s);
+                Fonts.font35.drawString(s, x + 1.5f, y + 2, new Color(0, 0, 0, 50).getRGB());
+                Fonts.font35.drawString(s, x + 0.5f, y + 1, color);
+                x += (float) Fonts.font35.getStringWidth(s);
             }
         }
         return x;
@@ -159,44 +107,25 @@ public class CFontRenderer extends CFont {
 
     public static float DisplayFont(String str, float x, float y, int color, CFontRenderer font) {
         str = LanguageManager.INSTANCE.get(LanguageManager.INSTANCE.replace(str));
-        str=" "+str;
-        for(int iF = 0; iF < str.length(); ++iF) {
+        str = " " + str;
+        for (int iF = 0; iF < str.length(); ++iF) {
             String s = String.valueOf(str.toCharArray()[iF]);
             if (s.contains("§") && iF + 1 <= str.length()) {
                 color = getColor(String.valueOf(str.toCharArray()[iF + 1]));
                 iF++;
             } else if (!isChinese(s.charAt(0))) {
-                font.drawString(s, x-0.5f, y+1, color);
-                x += (float)font.getStringWidth(s);
-            } else{
-                Fonts.font35.drawString(s, x+0.5f, y+1, color);
-                x += (float)Fonts.font35.getStringWidth(s);
-            }
-        }
-        return x;
-    }
-
-    public float DisplayFonts(String str, float x, float y, int color, CFontRenderer font) {
-        str = LanguageManager.INSTANCE.get(LanguageManager.INSTANCE.replace(str));
-        str=" "+str;
-        for(int iF = 0; iF < str.length(); ++iF) {
-            String s = String.valueOf(str.toCharArray()[iF]);
-            if (s.contains("§") && iF + 1 <= str.length()) {
-                color = getColor(String.valueOf(str.toCharArray()[iF + 1]));
-                iF++;
-            } else if (!isChinese(s.charAt(0))) {
-                font.drawString(s, x-0.5f, y+1, color);
-                x += (float)font.getStringWidth(s);
-            } else{
-                Fonts.font35.drawString(s, x+0.5f, y+1, color);
-                x += (float)Fonts.font35.getStringWidth(s);
+                font.drawString(s, x - 0.5f, y + 1, color);
+                x += (float) font.getStringWidth(s);
+            } else {
+                Fonts.font35.drawString(s, x + 0.5f, y + 1, color);
+                x += (float) Fonts.font35.getStringWidth(s);
             }
         }
         return x;
     }
 
     public static int getColor(String str) {
-        switch(str.hashCode()) {
+        switch (str.hashCode()) {
             case 48:
                 if (str.equals("0")) {
                     return (new Color(0, 0, 0)).getRGB();
@@ -280,12 +209,83 @@ public class CFontRenderer extends CFont {
 
         return (new Color(255, 255, 255)).getRGB();
     }
+
+    public float drawStringWithShadow(String text, double x, double y, int color) {
+        return Math.max(drawString(text, x + 0.5d, y + 0.5d, color, true), drawString(text, x, y, color, false));
+    }
+
+    public float drawString(String text, float x, float y, int color) {
+        GlStateManager.color(1.0f, 1.0f, 1.0f);
+        RenderUtils.glColor(color);
+        return drawString(text, x, (double) y, color, false);
+    }
+
+    public float drawCenteredString(String text, double x, double y, int color) {
+        GlStateManager.color(1.0f, 1.0f, 1.0f);
+        return drawString(text, (float) (x - ((double) ((float) (getStringWidth(text) / 2)))), (float) y, color);
+    }
+
+    public float drawCenteredStringWithShadow(String text, float x, float y, int color) {
+        return drawStringWithShadow(text, x - ((float) (getStringWidth(text) / 2)), y, color);
+    }
+
+    public float drawCenteredStringWithShadow(String text, double x, double y, int color) {
+        return drawStringWithShadow(text, x - ((double) (getStringWidth(text) / 2)), y, color);
+    }
+
+    public int DisplayFontWidths(CFontRenderer font, String str) {
+        return DisplayFontWidths(str, font);
+    }
+
+    public int DisplayFontWidths(String str, CFontRenderer font) {
+        str = LanguageManager.INSTANCE.get(LanguageManager.INSTANCE.replace(str));
+        int x = 0;
+        for (int iF = 0; iF < str.length(); ++iF) {
+            String s = String.valueOf(str.toCharArray()[iF]);
+            if (s.contains("§") && iF + 1 <= str.length()) {
+                iF++;
+            } else if (!isChinese(s.charAt(0))) {
+                x += (float) font.getStringWidth(s);
+            } else {
+                x += (float) Fonts.font35.getStringWidth(s);
+            }
+        }
+        return x + 5;
+    }
+
+    public float DisplayFont2(CFontRenderer font, String str, float x, float y, int color, boolean shadow) {
+        if (shadow)
+            return DisplayFont(str, x, y, color, shadow, font);
+        else {
+            return DisplayFont(str, x, y, color, font);
+        }
+    }
+
+    public float DisplayFonts(String str, float x, float y, int color, CFontRenderer font) {
+        str = LanguageManager.INSTANCE.get(LanguageManager.INSTANCE.replace(str));
+        str = " " + str;
+        for (int iF = 0; iF < str.length(); ++iF) {
+            String s = String.valueOf(str.toCharArray()[iF]);
+            if (s.contains("§") && iF + 1 <= str.length()) {
+                color = getColor(String.valueOf(str.toCharArray()[iF + 1]));
+                iF++;
+            } else if (!isChinese(s.charAt(0))) {
+                font.drawString(s, x - 0.5f, y + 1, color);
+                x += (float) font.getStringWidth(s);
+            } else {
+                Fonts.font35.drawString(s, x + 0.5f, y + 1, color);
+                x += (float) Fonts.font35.getStringWidth(s);
+            }
+        }
+        return x;
+    }
     /* JADX WARN: Type inference failed for: r0v21, types: [double] */
     /* JADX WARN: Type inference failed for: r0v55, types: [double] */
 
     public float drawString(String text, float x, float y, int color, boolean shadow) {
-        return drawString(text,Double.valueOf(x),Double.valueOf(y),color,shadow);
+        return drawString(text, Double.valueOf(x), Double.valueOf(y), color, shadow);
     }
+
     public float drawString(String text, double x, double y, int color, boolean shadow) {
         GlStateManager.enableBlend();
         GlStateManager.disableBlend();
@@ -381,7 +381,7 @@ public class CFontRenderer extends CFont {
                     i++;
                 } else if (character < currentData.length && character >= 0) {
                     GL11.glBegin(4);
-                    drawChar(currentData, character, (float) c, (float) y2);
+                    drawChar(currentData, character, c, (float) y2);
                     GL11.glEnd();
                     if (strikethrough) {
                         drawLine(c, y2 + ((double) (currentData[character].height / 2)), (c + ((double) currentData[character].width)) - 8.0d, y2 + ((double) (currentData[character].height / 2)), 1.0f);
@@ -398,6 +398,7 @@ public class CFontRenderer extends CFont {
         }
         return ((float) c) / 2.0f;
     }
+
     public int drawStringi(String text, double x, double y, int color, boolean shadow) {
         GlStateManager.enableBlend();
         GlStateManager.disableBlend();
@@ -493,7 +494,7 @@ public class CFontRenderer extends CFont {
                     i++;
                 } else if (character < currentData.length && character >= 0) {
                     GL11.glBegin(4);
-                    drawChar(currentData, character, (float) c, (float) y2);
+                    drawChar(currentData, character, c, (float) y2);
                     GL11.glEnd();
                     if (strikethrough) {
                         drawLine(c, y2 + ((double) (currentData[character].height / 2)), (c + ((double) currentData[character].width)) - 8.0d, y2 + ((double) (currentData[character].height / 2)), 1.0f);
@@ -594,16 +595,16 @@ public class CFontRenderer extends CFont {
                         c = word.toCharArray()[i + 1];
                     }
                 }
-                if (((double) getStringWidth(String.valueOf(currentWord) + word + " ")) < width) {
-                    currentWord = String.valueOf(currentWord) + word + " ";
+                if (((double) getStringWidth(currentWord + word + " ")) < width) {
+                    currentWord = currentWord + word + " ";
                 } else {
                     finalWords.add(currentWord);
-                    currentWord = String.valueOf('\u00a7' + c) + word + " ";
+                    currentWord = '\u00a7' + c + word + " ";
                 }
             }
             if (currentWord.length() > 0) {
                 if (((double) getStringWidth(currentWord)) < width) {
-                    finalWords.add(String.valueOf('\u00a7' + c) + currentWord + " ");
+                    finalWords.add('\u00a7' + c + currentWord + " ");
                 } else {
                     for (String s : formatString(currentWord, width)) {
                         finalWords.add(s);
@@ -626,11 +627,11 @@ public class CFontRenderer extends CFont {
             if (c == '\u00a7' && i < chars.length - 1) {
                 lastColorCode = chars[i + 1];
             }
-            if (((double) getStringWidth(String.valueOf(currentWord) + c)) < width) {
-                currentWord = String.valueOf(currentWord) + c;
+            if (((double) getStringWidth(currentWord + c)) < width) {
+                currentWord = currentWord + c;
             } else {
                 finalWords.add(currentWord);
-                currentWord = String.valueOf(167 + lastColorCode) + String.valueOf(c);
+                currentWord = String.valueOf(167 + lastColorCode) + c;
             }
         }
         if (currentWord.length() > 0) {

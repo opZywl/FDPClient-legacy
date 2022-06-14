@@ -1,0 +1,28 @@
+diff a/src/main/java/net/ccbluex/liquidbounce/features/module/modules/movement/NoSlow.kt b/src/main/java/net/ccbluex/liquidbounce/features/module/modules/movement/NoSlow.kt	(rejected hunks)
+@@ -28,7 +27,11 @@ import kotlin.math.sqrt
+ 
+ @ModuleInfo(name = "NoSlow", category = ModuleCategory.MOVEMENT)
+ class NoSlow : Module() {
+-    private val modeValue = ListValue("PacketMode", arrayOf("Vanilla", "LiquidBounce", "Custom", "WatchDog", "Watchdog2", "NCP", "AAC", "AAC5", "Matrix", "Vulcan"), "Vanilla")
++    private val modeValue = ListValue(
++        "PacketMode",
++        arrayOf("Vanilla", "LiquidBounce", "Custom", "WatchDog", "Watchdog2", "NCP", "AAC", "AAC5", "Matrix", "Vulcan"),
++        "Vanilla"
++    )
+     private val blockForwardMultiplier = FloatValue("BlockForwardMultiplier", 1.0F, 0.2F, 1.0F)
+     private val blockStrafeMultiplier = FloatValue("BlockStrafeMultiplier", 1.0F, 0.2F, 1.0F)
+     private val consumeForwardMultiplier = FloatValue("ConsumeForwardMultiplier", 1.0F, 0.2F, 1.0F)
+@@ -226,10 +293,10 @@ class NoSlow : Module() {
+     fun onPacket(event: PacketEvent) {
+         val packet = event.packet
+ 
+-        if((modeValue.equals("Matrix") || modeValue.equals("Vulcan")) && nextTemp) {
+-            if((packet is C07PacketPlayerDigging || packet is C08PacketPlayerBlockPlacement) && isBlocking) {
++        if ((modeValue.equals("Matrix") || modeValue.equals("Vulcan")) && nextTemp) {
++            if ((packet is C07PacketPlayerDigging || packet is C08PacketPlayerBlockPlacement) && isBlocking) {
+                 event.cancelEvent()
+-            }else if (packet is C03PacketPlayer || packet is C0APacketAnimation || packet is C0BPacketEntityAction || packet is C02PacketUseEntity || packet is C07PacketPlayerDigging || packet is C08PacketPlayerBlockPlacement) {
++            } else if (packet is C03PacketPlayer || packet is C0APacketAnimation || packet is C0BPacketEntityAction || packet is C02PacketUseEntity || packet is C07PacketPlayerDigging || packet is C08PacketPlayerBlockPlacement) {
+                 if (modeValue.equals("Vulcan") && waitC03 && packet is C03PacketPlayer) {
+                     waitC03 = false
+                     return

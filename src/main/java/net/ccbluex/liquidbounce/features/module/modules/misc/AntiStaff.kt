@@ -63,27 +63,27 @@ class AntiStaff : Module() {
             "minemora" -> {
                 staffs = minemoraStaff
             }
-            
+
             "zonecraft" -> {
                 staffs = zonecraftStaff
             }
-            
+
             "hycraft" -> {
                 staffs = hycraftStaff
             }
-            
+
             "librecraft" -> {
                 staffs = librecraftStaff
             }
 
-            
+
         }
-            
+
         detected = false
     }
 
     @EventTarget
-    fun onPacket(event: PacketEvent){
+    fun onPacket(event: PacketEvent) {
         if (mc.theWorld == null || mc.thePlayer == null) return
 
         val packet = event.packet // smart convert

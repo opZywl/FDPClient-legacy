@@ -27,7 +27,7 @@ class Verus4Fly : FlyMode("Verus4") {
         if (mc.thePlayer.onGround && times < 5) {
             times++
             timer.reset()
-            if (times <5) {
+            if (times < 5) {
                 mc.thePlayer.jump()
                 MovementUtils.strafe(0.48F)
             }
@@ -52,7 +52,14 @@ class Verus4Fly : FlyMode("Verus4") {
 
     override fun onBlockBB(event: BlockBBEvent) {
         if (event.block is BlockAir && event.y <= fly.launchY) {
-            event.boundingBox = AxisAlignedBB.fromBounds(event.x.toDouble(), event.y.toDouble(), event.z.toDouble(), event.x + 1.0, fly.launchY, event.z + 1.0)
+            event.boundingBox = AxisAlignedBB.fromBounds(
+                event.x.toDouble(),
+                event.y.toDouble(),
+                event.z.toDouble(),
+                event.x + 1.0,
+                fly.launchY,
+                event.z + 1.0
+            )
         }
     }
 }

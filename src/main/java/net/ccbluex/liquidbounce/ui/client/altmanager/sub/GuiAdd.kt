@@ -44,7 +44,12 @@ class GuiAdd(private val prevGui: GuiAltManager) : GuiScreen() {
             drawCenteredString(mc.fontRendererObj, "§7%ui.alt.loginPassword%", width / 2 - 74, 91, 0xffffff)
         }
         "Add ms@ before your real username can login microsoft account without browser!".also {
-            mc.fontRendererObj.drawString(it, width - mc.fontRendererObj.getStringWidth(it), height - mc.fontRendererObj.FONT_HEIGHT, 0xffffff)
+            mc.fontRendererObj.drawString(
+                it,
+                width - mc.fontRendererObj.getStringWidth(it),
+                height - mc.fontRendererObj.FONT_HEIGHT,
+                0xffffff
+            )
         }
         super.drawScreen(mouseX, mouseY, partialTicks)
     }
@@ -58,7 +63,12 @@ class GuiAdd(private val prevGui: GuiAltManager) : GuiScreen() {
                     status = "§c%ui.alt.alreadyAdded%"
                     return
                 }
-                LiquidBounce.fileManager.accountsConfig.altManagerMinecraftAccounts.add(AccountSerializer.accountInstance(username.text, password.text))
+                LiquidBounce.fileManager.accountsConfig.altManagerMinecraftAccounts.add(
+                    AccountSerializer.accountInstance(
+                        username.text,
+                        password.text
+                    )
+                )
                 LiquidBounce.fileManager.saveConfig(LiquidBounce.fileManager.accountsConfig)
                 actionPerformed(buttonList.find { it.id == 0 }!!)
             }

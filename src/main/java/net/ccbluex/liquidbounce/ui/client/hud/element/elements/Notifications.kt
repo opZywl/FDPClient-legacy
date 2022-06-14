@@ -18,7 +18,6 @@ import net.ccbluex.liquidbounce.utils.render.EaseUtils
 import net.ccbluex.liquidbounce.utils.render.RenderUtils
 import net.ccbluex.liquidbounce.value.BoolValue
 import net.ccbluex.liquidbounce.value.IntegerValue
-import net.minecraft.client.gui.FontRenderer
 import org.lwjgl.opengl.GL11
 import java.awt.Color
 import kotlin.math.max
@@ -54,7 +53,19 @@ class Notifications(
         LiquidBounce.hud.notifications.map { it }.forEachIndexed { index, notify ->
             GL11.glPushMatrix()
 
-            if (notify.drawNotification(index, FontLoaders.C16, backGroundAlphaValue.get(), blurValue.get(), this.renderX.toFloat(), this.renderY.toFloat(), scale,ContentShadow.get(),TitleShadow.get(),MotionBlur.get())) {
+            if (notify.drawNotification(
+                    index,
+                    FontLoaders.C16,
+                    backGroundAlphaValue.get(),
+                    blurValue.get(),
+                    this.renderX.toFloat(),
+                    this.renderY.toFloat(),
+                    scale,
+                    ContentShadow.get(),
+                    TitleShadow.get(),
+                    MotionBlur.get()
+                )
+            ) {
                 LiquidBounce.hud.notifications.remove(notify)
             }
 
@@ -98,17 +109,30 @@ class Notification(
     /**
      * Draw notification
      */
-    fun drawNotification(index: Int, font: CFontRenderer, alpha: Int, blurRadius: Float, x: Float, y: Float, scale: Float,ContentShadow: Boolean,TitleShadow: Boolean,MotionBlur: Boolean): Boolean {
-        this.width = 100.coerceAtLeast(font.getStringWidth(content)
-            .coerceAtLeast(font.getStringWidth(title)) + 15)
-        val realY = -(index+1) * height
+    fun drawNotification(
+        index: Int,
+        font: CFontRenderer,
+        alpha: Int,
+        blurRadius: Float,
+        x: Float,
+        y: Float,
+        scale: Float,
+        ContentShadow: Boolean,
+        TitleShadow: Boolean,
+        MotionBlur: Boolean
+    ): Boolean {
+        this.width = 100.coerceAtLeast(
+            font.getStringWidth(content)
+                .coerceAtLeast(font.getStringWidth(title)) + 15
+        )
+        val realY = -(index + 1) * height
         val nowTime = System.currentTimeMillis()
         var transY = nowY.toDouble()
 
         // Y-Axis Animation
         if (nowY != realY) {
             var pct = (nowTime - animeYTime) / animeTime.toDouble()
-            if (pct> 1) {
+            if (pct > 1) {
                 nowY = realY
                 pct = 1.0
             } else {
@@ -123,7 +147,7 @@ class Notification(
         var pct = (nowTime - animeXTime) / animeTime.toDouble()
         when (fadeState) {
             FadeState.IN -> {
-                if (pct> 1) {
+                if (pct > 1) {
                     fadeState = FadeState.STAY
                     animeXTime = nowTime
                     pct = 1.0
@@ -133,14 +157,14 @@ class Notification(
 
             FadeState.STAY -> {
                 pct = 1.0
-                if ((nowTime - animeXTime)> time) {
+                if ((nowTime - animeXTime) > time) {
                     fadeState = FadeState.OUT
                     animeXTime = nowTime
                 }
             }
 
             FadeState.OUT -> {
-                if (pct> 1) {
+                if (pct > 1) {
                     fadeState = FadeState.END
                     animeXTime = nowTime
                     pct = 1.0
@@ -155,15 +179,21 @@ class Notification(
         val transX = width - (width * pct) - width
         GL11.glTranslated(transX, transY, 0.0)
         if (blurRadius != 0f) {
-            BlurUtils.draw(4 + (x + transX).toFloat() * scale, (y + transY).toFloat() * scale, (width * scale) , (height.toFloat()-5f) * scale, blurRadius)
+            BlurUtils.draw(
+                4 + (x + transX).toFloat() * scale,
+                (y + transY).toFloat() * scale,
+                (width * scale),
+                (height.toFloat() - 5f) * scale,
+                blurRadius
+            )
         }
 
         // draw notify
 //        GL11.glPushMatrix()
 //        GL11.glEnable(GL11.GL_SCISSOR_TEST)
 //        GL11.glScissor(width-(width*pct).toFloat(),0F, width.toFloat(),height.toFloat())
-        var colors=Color(type.renderColor.red,type.renderColor.green,type.renderColor.blue,alpha/3);
-        if(MotionBlur) {
+        var colors = Color(type.renderColor.red, type.renderColor.green, type.renderColor.blue, alpha / 3)
+        if (MotionBlur) {
             when (fadeState) {
                 FadeState.IN -> {
                     //RenderUtils.drawRoundedCornerRect(3F+1f, 0F, width.toFloat()+1f, height.toFloat()-5f,2f ,colors.rgb)
@@ -223,16 +253,23 @@ class Notification(
                     )
                 }
             }
-        }else{
-            RenderUtils.drawRoundedCornerRect(0F+3f, 0F, width.toFloat()+5f, height.toFloat()-5f,2f ,colors.rgb)
-            RenderUtils.drawRoundedCornerRect(0F+3f, 0F, width.toFloat()+5f, height.toFloat()-5f,2f ,colors.rgb)
+        } else {
+            RenderUtils.drawRoundedCornerRect(0F + 3f, 0F, width.toFloat() + 5f, height.toFloat() - 5f, 2f, colors.rgb)
+            RenderUtils.drawRoundedCornerRect(0F + 3f, 0F, width.toFloat() + 5f, height.toFloat() - 5f, 2f, colors.rgb)
         }
-        RenderUtils.drawRoundedCornerRect(0F+3f, 0F, width.toFloat()+5f, height.toFloat()-5f,2f ,colors.rgb)
-        RenderUtils.drawRoundedCornerRect(0F+3f, 0F, max(width - width * ((nowTime - displayTime) / (animeTime * 2F + time))+5f, 0F), height.toFloat()-5f,2f ,Color(0,0,0,26).rgb)
+        RenderUtils.drawRoundedCornerRect(0F + 3f, 0F, width.toFloat() + 5f, height.toFloat() - 5f, 2f, colors.rgb)
+        RenderUtils.drawRoundedCornerRect(
+            0F + 3f,
+            0F,
+            max(width - width * ((nowTime - displayTime) / (animeTime * 2F + time)) + 5f, 0F),
+            height.toFloat() - 5f,
+            2f,
+            Color(0, 0, 0, 26).rgb
+        )
         //RenderUtils.drawRoundedCornerRect(2F, 2F, width.toFloat()-2F, height.toFloat()-7F,1f ,Color(242,242,242, 100).rgb)
         //font.DisplayFont2(FontLoaders.C16,content, 4F, 9F, Color(31,41,55).rgb,true)
-        FontLoaders.C12.DisplayFont2(FontLoaders.C12,title, 4F, 3F, Color(31,41,55).rgb,TitleShadow)
-        font.DisplayFont2(font,content, 4F, 10F, Color(31,41,55).rgb,ContentShadow)
+        FontLoaders.C12.DisplayFont2(FontLoaders.C12, title, 4F, 3F, Color(31, 41, 55).rgb, TitleShadow)
+        font.DisplayFont2(font, content, 4F, 10F, Color(31, 41, 55).rgb, ContentShadow)
         return false
     }
 }

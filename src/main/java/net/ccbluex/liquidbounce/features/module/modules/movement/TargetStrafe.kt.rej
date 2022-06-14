@@ -1,0 +1,53 @@
+diff a/src/main/java/net/ccbluex/liquidbounce/features/module/modules/movement/TargetStrafe.kt b/src/main/java/net/ccbluex/liquidbounce/features/module/modules/movement/TargetStrafe.kt	(rejected hunks)
+@@ -12,19 +12,21 @@ import net.ccbluex.liquidbounce.features.module.Module
+ import net.ccbluex.liquidbounce.features.module.ModuleCategory
+ import net.ccbluex.liquidbounce.features.module.ModuleInfo
+ import net.ccbluex.liquidbounce.features.module.modules.combat.KillAura
+-import net.ccbluex.liquidbounce.features.module.modules.movement.speeds.ncp.OnGround
+ import net.ccbluex.liquidbounce.utils.PlayerUtils
+ import net.ccbluex.liquidbounce.utils.RotationUtils
+ import net.ccbluex.liquidbounce.value.BoolValue
+ import net.ccbluex.liquidbounce.value.FloatValue
+ import net.minecraft.entity.EntityLivingBase
+-import kotlin.math.*
++import kotlin.math.cos
++import kotlin.math.pow
++import kotlin.math.sin
++import kotlin.math.sqrt
+ 
+ 
+-@ModuleInfo(name = "TargetStrafe",  category = ModuleCategory.MOVEMENT)
++@ModuleInfo(name = "TargetStrafe", category = ModuleCategory.MOVEMENT)
+ class TargetStrafe : Module() {
+     private val thirdPersonViewValue = BoolValue("ThirdPersonView", false)
+-    private val ongroundValue = BoolValue("OnGround",true)
++    private val ongroundValue = BoolValue("OnGround", true)
+     private val radiusValue = FloatValue("Radius", 0.1f, 0.5f, 5.0f)
+     private val killAura = LiquidBounce.moduleManager[KillAura::class.java]
+     private var direction = -1
+@@ -35,9 +37,9 @@ class TargetStrafe : Module() {
+      */
+     @EventTarget
+     fun onMove(event: MoveEvent) {
+-       val fly = LiquidBounce.moduleManager.getModule(Fly::class.java) as Fly
+-       val speed = LiquidBounce.moduleManager.getModule(Speed::class.java) as Speed
+-       if(fly.state || speed.state || ongroundValue.get()) {
++        val fly = LiquidBounce.moduleManager.getModule(Fly::class.java) as Fly
++        val speed = LiquidBounce.moduleManager.getModule(Speed::class.java) as Speed
++        if (fly.state || speed.state || ongroundValue.get()) {
+             if (!canStrafe) return
+             var aroundVoid = false
+             for (x in -1..0) for (z in -1..0) if (isVoid(x, z)) aroundVoid = true
+@@ -82,9 +84,9 @@ class TargetStrafe : Module() {
+ 
+             event.x = asLast[0]
+             event.z = asLast[1]
+-           if (!thirdPersonViewValue.get()) return
+-           mc.gameSettings.thirdPersonView = if (canStrafe) 3 else 0
+-       }
++            if (!thirdPersonViewValue.get()) return
++            mc.gameSettings.thirdPersonView = if (canStrafe) 3 else 0
++        }
+     }
+ 
+     private val canStrafe: Boolean

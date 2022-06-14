@@ -30,7 +30,8 @@ class HealthWarn : Module() {
         if (mc.thePlayer.health <= healthValue.get()) {
             if (canWarn) {
                 LiquidBounce.hud.addNotification(
-                    Notification("HP Warning", "YOU ARE AT LOW HP!", NotifyType.ERROR, 3000))
+                    Notification("HP Warning", "YOU ARE AT LOW HP!", NotifyType.ERROR, 3000)
+                )
                 canWarn = false
             }
         } else {

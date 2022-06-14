@@ -27,43 +27,42 @@ import java.awt.*;
 public abstract class MixinGuiSlot {
 
     @Shadow
+    public int left;
+    @Shadow
+    public int top;
+    @Shadow
+    public int width;
+    @Shadow
+    public int right;
+    @Shadow
+    public int bottom;
+    @Shadow
+    public int height;
+    @Shadow
     protected boolean field_178041_q;
-
     @Shadow
     protected int mouseX;
-
     @Shadow
     protected int slotHeight;
-
     @Shadow
     protected int headerPadding;
-
     @Shadow
     protected int mouseY;
+    @Shadow
+    protected float amountScrolled;
+    @Shadow
+    protected boolean hasListHeader;
+    @Shadow
+    protected boolean showSelectionBox;
+    @Shadow
+    @Final
+    protected Minecraft mc;
 
     @Shadow
     protected abstract void drawBackground();
 
     @Shadow
     protected abstract void bindAmountScrolled();
-
-    @Shadow
-    public int left;
-
-    @Shadow
-    public int top;
-
-    @Shadow
-    public int width;
-
-    @Shadow
-    protected float amountScrolled;
-
-    @Shadow
-    protected boolean hasListHeader;
-
-    @Shadow
-    protected boolean showSelectionBox;
 
     @Shadow
     protected abstract void drawListHeader(int p_148129_1_, int p_148129_2_, Tessellator p_148129_3_);
@@ -73,19 +72,6 @@ public abstract class MixinGuiSlot {
 
     @Shadow
     protected abstract int getSize();
-
-    @Shadow
-    public int right;
-
-    @Shadow
-    public int bottom;
-
-    @Shadow
-    @Final
-    protected Minecraft mc;
-
-    @Shadow
-    public int height;
 
     @Shadow
     protected abstract int getContentHeight();
@@ -108,6 +94,7 @@ public abstract class MixinGuiSlot {
 
     @Shadow
     protected abstract boolean isSelected(int slotIndex);
+
     /**
      * @author XiGua
      */
@@ -137,10 +124,10 @@ public abstract class MixinGuiSlot {
                 float width = j1 - i1 + 3;
                 float height = l + 6;
 
-                RenderUtils.drawRoundedCornerRect(xPosition, yPosition, xPosition + width ,
-                        yPosition + height,radius, color);
-                RenderUtils.drawRoundedCornerRect(xPosition-0.3f, yPosition-0.3f, xPosition + width + 0.3f ,
-                        yPosition + height + 0.3f,radius-1, color);
+                RenderUtils.drawRoundedCornerRect(xPosition, yPosition, xPosition + width,
+                        yPosition + height, radius, color);
+                RenderUtils.drawRoundedCornerRect(xPosition - 0.3f, yPosition - 0.3f, xPosition + width + 0.3f,
+                        yPosition + height + 0.3f, radius - 1, color);
                 //GlStateManager.enableTexture2D();
             }
 
@@ -150,13 +137,12 @@ public abstract class MixinGuiSlot {
     }
 
 
-
     /**
      * @author CCBlueX
      */
     @Overwrite
     public void drawScreen(int mouseXIn, int mouseYIn, float p_148128_3_) {
-        if(this.field_178041_q) {
+        if (this.field_178041_q) {
             this.mouseX = mouseXIn;
             this.mouseY = mouseYIn;
             this.drawBackground();

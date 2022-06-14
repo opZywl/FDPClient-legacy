@@ -12,7 +12,6 @@ import net.ccbluex.liquidbounce.features.module.Module
 import net.ccbluex.liquidbounce.features.module.ModuleCategory
 import net.ccbluex.liquidbounce.features.module.ModuleInfo
 import net.ccbluex.liquidbounce.utils.misc.RandomUtils
-import net.ccbluex.liquidbounce.utils.timer.MSTimer
 import net.ccbluex.liquidbounce.utils.timer.TimeUtils
 import net.ccbluex.liquidbounce.value.BoolValue
 import net.ccbluex.liquidbounce.value.IntegerValue
@@ -52,7 +51,8 @@ class AutoClicker : Module() {
     fun onRender(event: Render3DEvent) {
         // Left click
         if (mc.gameSettings.keyBindAttack.isKeyDown && leftValue.get() &&
-            System.currentTimeMillis() - leftLastSwing >= leftDelay) {
+            System.currentTimeMillis() - leftLastSwing >= leftDelay
+        ) {
             KeyBinding.onTick(mc.gameSettings.keyBindAttack.keyCode) // Minecraft Click Handling
 
             leftLastSwing = System.currentTimeMillis()
@@ -61,7 +61,8 @@ class AutoClicker : Module() {
 
         // Right click
         if (mc.gameSettings.keyBindUseItem.isKeyDown && !mc.thePlayer.isUsingItem && rightValue.get() &&
-            System.currentTimeMillis() - rightLastSwing >= rightDelay) {
+            System.currentTimeMillis() - rightLastSwing >= rightDelay
+        ) {
             KeyBinding.onTick(mc.gameSettings.keyBindUseItem.keyCode) // Minecraft Click Handling
 
             rightLastSwing = System.currentTimeMillis()
@@ -72,10 +73,16 @@ class AutoClicker : Module() {
     @EventTarget
     fun onUpdate(event: UpdateEvent) {
         if (jitterValue.get() && (leftValue.get() && mc.gameSettings.keyBindAttack.isKeyDown || rightValue.get() && mc.gameSettings.keyBindUseItem.isKeyDown && !mc.thePlayer.isUsingItem)) {
-            if (Random.nextBoolean()) mc.thePlayer.rotationYaw += if (Random.nextBoolean()) -RandomUtils.nextFloat(0F, 1F) else RandomUtils.nextFloat(0F, 1F)
+            if (Random.nextBoolean()) mc.thePlayer.rotationYaw += if (Random.nextBoolean()) -RandomUtils.nextFloat(
+                0F,
+                1F
+            ) else RandomUtils.nextFloat(0F, 1F)
 
             if (Random.nextBoolean()) {
-                mc.thePlayer.rotationPitch += if (Random.nextBoolean()) -RandomUtils.nextFloat(0F, 1F) else RandomUtils.nextFloat(0F, 1F)
+                mc.thePlayer.rotationPitch += if (Random.nextBoolean()) -RandomUtils.nextFloat(
+                    0F,
+                    1F
+                ) else RandomUtils.nextFloat(0F, 1F)
 
                 // Make sure pitch is not going into unlegit values
                 if (mc.thePlayer.rotationPitch > 90)

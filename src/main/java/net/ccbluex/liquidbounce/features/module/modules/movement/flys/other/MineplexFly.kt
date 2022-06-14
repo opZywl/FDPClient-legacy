@@ -30,7 +30,14 @@ class MineplexFly : FlyMode("Mineplex") {
             }
             val blockPos = BlockPos(mc.thePlayer.posX, mc.thePlayer.entityBoundingBox.minY - 1, mc.thePlayer.posZ)
             val vec = Vec3(blockPos).addVector(0.4, 0.4, 0.4).add(Vec3(EnumFacing.UP.directionVec))
-            mc.playerController.onPlayerRightClick(mc.thePlayer, mc.theWorld, mc.thePlayer.inventory.getCurrentItem(), blockPos, EnumFacing.UP, Vec3(vec.xCoord * 0.4f, vec.yCoord * 0.4f, vec.zCoord * 0.4f))
+            mc.playerController.onPlayerRightClick(
+                mc.thePlayer,
+                mc.theWorld,
+                mc.thePlayer.inventory.getCurrentItem(),
+                blockPos,
+                EnumFacing.UP,
+                Vec3(vec.xCoord * 0.4f, vec.yCoord * 0.4f, vec.zCoord * 0.4f)
+            )
             MovementUtils.strafe(0.27f)
             mc.timer.timerSpeed = 1 + speedValue.get()
         } else {
@@ -50,7 +57,14 @@ class MineplexFly : FlyMode("Mineplex") {
 
     override fun onBlockBB(event: BlockBBEvent) {
         if (event.block is BlockAir && event.y <= mc.thePlayer.posY) {
-            event.boundingBox = AxisAlignedBB.fromBounds(event.x.toDouble(), event.y.toDouble(), event.z.toDouble(), event.x + 1.0, mc.thePlayer.posY, event.z + 1.0)
+            event.boundingBox = AxisAlignedBB.fromBounds(
+                event.x.toDouble(),
+                event.y.toDouble(),
+                event.z.toDouble(),
+                event.x + 1.0,
+                mc.thePlayer.posY,
+                event.z + 1.0
+            )
         }
     }
 

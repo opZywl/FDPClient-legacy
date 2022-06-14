@@ -30,7 +30,12 @@ class Chams : Module() {
         if (colorRainbowValue.get()) {
             RenderUtils.glColor(ColorUtils.rainbowWithAlpha(colorAlphaValue.get()))
         } else {
-            GL11.glColor4f(colorRedValue.get() / 255f, colorGreenValue.get() / 255f, colorBlueValue.get() / 255f, colorAlphaValue.get() / 255f)
+            GL11.glColor4f(
+                colorRedValue.get() / 255f,
+                colorGreenValue.get() / 255f,
+                colorBlueValue.get() / 255f,
+                colorAlphaValue.get() / 255f
+            )
         }
     }
 }

@@ -18,8 +18,19 @@ import javax.imageio.ImageIO;
 import java.io.IOException;
 import java.util.Iterator;
 
-@Mixin(targets="net.minecraftforge.fml.client.SplashProgress$3", remap=false)
+@Mixin(targets = "net.minecraftforge.fml.client.SplashProgress$3", remap = false)
 public abstract class MixinSplashProgressRunnable {
+
+    private static float getProgress() {
+        float progress = 0;
+        Iterator<ProgressManager.ProgressBar> it = ProgressManager.barIterator();
+        if (it.hasNext()) {
+            ProgressManager.ProgressBar bar = it.next();
+            progress = bar.getStep() / (float) bar.getSteps();
+        }
+
+        return progress;
+    }
 
     @Shadow(remap = false)
     protected abstract void setGL();
@@ -27,7 +38,7 @@ public abstract class MixinSplashProgressRunnable {
     @Shadow(remap = false)
     protected abstract void clearGL();
 
-    @Inject(method="run()V", at=@At(value="HEAD"), remap=false, cancellable=true)
+    @Inject(method = "run()V", at = @At(value = "HEAD"), remap = false, cancellable = true)
     private void run(CallbackInfo callbackInfo) {
         callbackInfo.cancel();
 
@@ -84,12 +95,12 @@ public abstract class MixinSplashProgressRunnable {
             float rectRadius = height * 0.025f;
             float progress = (float) animatedValue.sync(getProgress());
 
-            if(progress != 1f) {
+            if (progress != 1f) {
                 GL11.glColor4f(0f, 0f, 0f, 0.3f);
                 RenderUtils.drawRoundedCornerRect(rectX, rectY, rectX2, rectY2, rectRadius);
             }
 
-            if(progress != 0f) {
+            if (progress != 0f) {
                 GL11.glColor4f(1f, 1f, 1f, 1f);
                 RenderUtils.drawRoundedCornerRect(rectX, rectY, rectX + (width * 0.6f * progress), rectY2, rectRadius);
             }
@@ -106,16 +117,5 @@ public abstract class MixinSplashProgressRunnable {
 
         GL11.glDeleteTextures(tex);
         this.clearGL();
-    }
-
-    private static float getProgress() {
-        float progress = 0;
-        Iterator<ProgressManager.ProgressBar> it = ProgressManager.barIterator();
-        if (it.hasNext()) {
-            ProgressManager.ProgressBar bar = it.next();
-            progress = bar.getStep() / (float) bar.getSteps();
-        }
-
-        return progress;
     }
 }

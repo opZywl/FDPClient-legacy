@@ -26,10 +26,12 @@ class MineplexHop : SpeedMode("MineplexHop") {
                 mc.thePlayer.motionZ = 0.0
                 return
             }
-            MovementUtils.strafe(MovementUtils.getSpeed() * when (boost) {
-                0 -> 1.725f
-                else -> 1f
-            })
+            MovementUtils.strafe(
+                MovementUtils.getSpeed() * when (boost) {
+                    0 -> 1.725f
+                    else -> 1f
+                }
+            )
             boost++
         } else if (mc.thePlayer.onGround) {
             boost = 0
@@ -37,9 +39,9 @@ class MineplexHop : SpeedMode("MineplexHop") {
             jumped = true
         }
 
-        if (mc.thePlayer.fallDistance> 1.5) {
+        if (mc.thePlayer.fallDistance > 1.5) {
             mc.thePlayer.jumpMovementFactor = 0.01f
-        } else if (mc.thePlayer.fallDistance> 0) {
+        } else if (mc.thePlayer.fallDistance > 0) {
             mc.thePlayer.jumpMovementFactor = 0.0325f
             mc.thePlayer.motionY += 0.02
         } else {

@@ -98,10 +98,22 @@ open class Module : MinecraftInstance(), Listenable {
             if (!LiquidBounce.isStarting) {
                 if (value) {
                     Modules.playSound(true)
-                    LiquidBounce.hud.addNotification(Notification("%notify.module.title%", LanguageManager.getAndFormat("notify.module.enable", localizedName), NotifyType.SUCCESS))
+                    LiquidBounce.hud.addNotification(
+                        Notification(
+                            "%notify.module.title%",
+                            LanguageManager.getAndFormat("notify.module.enable", localizedName),
+                            NotifyType.SUCCESS
+                        )
+                    )
                 } else {
                     Modules.playSound(false)
-                    LiquidBounce.hud.addNotification(Notification("%notify.module.title%", LanguageManager.getAndFormat("notify.module.disable", localizedName), NotifyType.ERROR))
+                    LiquidBounce.hud.addNotification(
+                        Notification(
+                            "%notify.module.title%",
+                            LanguageManager.getAndFormat("notify.module.disable", localizedName),
+                            NotifyType.ERROR
+                        )
+                    )
                 }
             }
 
@@ -136,7 +148,13 @@ open class Module : MinecraftInstance(), Listenable {
         }
         set(value) {
             if (slideAnimation == null || (slideAnimation != null && slideAnimation!!.to != value.toDouble())) {
-                slideAnimation = Animation(EaseUtils.EnumEasingType.valueOf(HUD.arraylistXAxisAnimTypeValue.get()), EaseUtils.EnumEasingOrder.valueOf(HUD.arraylistXAxisAnimOrderValue.get()), field.toDouble(), value.toDouble(), HUD.arraylistXAxisAnimSpeedValue.get() * 30L).start()
+                slideAnimation = Animation(
+                    EaseUtils.EnumEasingType.valueOf(HUD.arraylistXAxisAnimTypeValue.get()),
+                    EaseUtils.EnumEasingOrder.valueOf(HUD.arraylistXAxisAnimOrderValue.get()),
+                    field.toDouble(),
+                    value.toDouble(),
+                    HUD.arraylistXAxisAnimSpeedValue.get() * 30L
+                ).start()
             }
         }
     var yPosAnimation: Animation? = null
@@ -152,7 +170,13 @@ open class Module : MinecraftInstance(), Listenable {
         }
         set(value) {
             if (yPosAnimation == null || (yPosAnimation != null && yPosAnimation!!.to != value.toDouble())) {
-                yPosAnimation = Animation(EaseUtils.EnumEasingType.valueOf(HUD.arraylistYAxisAnimTypeValue.get()), EaseUtils.EnumEasingOrder.valueOf(HUD.arraylistYAxisAnimOrderValue.get()), field.toDouble(), value.toDouble(), HUD.arraylistYAxisAnimSpeedValue.get() * 30L).start()
+                yPosAnimation = Animation(
+                    EaseUtils.EnumEasingType.valueOf(HUD.arraylistYAxisAnimTypeValue.get()),
+                    EaseUtils.EnumEasingOrder.valueOf(HUD.arraylistYAxisAnimOrderValue.get()),
+                    field.toDouble(),
+                    value.toDouble(),
+                    HUD.arraylistYAxisAnimSpeedValue.get() * 30L
+                ).start()
             }
         }
 

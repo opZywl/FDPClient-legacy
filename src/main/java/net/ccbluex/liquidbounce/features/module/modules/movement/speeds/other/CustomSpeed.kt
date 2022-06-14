@@ -19,7 +19,8 @@ class CustomSpeed : SpeedMode("Custom") {
     private val yValue = FloatValue("CustomY", 0f, 0f, 4f)
     private val upTimerValue = FloatValue("CustomUpTimer", 1f, 0.1f, 2f)
     private val downTimerValue = FloatValue("CustomDownTimer", 1f, 0.1f, 2f)
-    private val strafeValue = ListValue("CustomStrafe", arrayOf("Strafe", "Boost", "Plus", "PlusOnlyUp", "Non-Strafe"), "Boost")
+    private val strafeValue =
+        ListValue("CustomStrafe", arrayOf("Strafe", "Boost", "Plus", "PlusOnlyUp", "Non-Strafe"), "Boost")
     private val groundStay = IntegerValue("CustomGroundStay", 0, 0, 10)
     private val groundResetXZValue = BoolValue("CustomGroundResetXZ", false)
     private val resetXZValue = BoolValue("CustomResetXZ", false)
@@ -30,7 +31,11 @@ class CustomSpeed : SpeedMode("Custom") {
 
     override fun onPreMotion() {
         if (MovementUtils.isMoving()) {
-            mc.timer.timerSpeed = if (mc.thePlayer.motionY> 0) { upTimerValue.get() } else { downTimerValue.get() }
+            mc.timer.timerSpeed = if (mc.thePlayer.motionY > 0) {
+                upTimerValue.get()
+            } else {
+                downTimerValue.get()
+            }
 
             when {
                 mc.thePlayer.onGround -> {
@@ -53,7 +58,7 @@ class CustomSpeed : SpeedMode("Custom") {
                         "strafe" -> MovementUtils.strafe(speedValue.get())
                         "boost" -> MovementUtils.strafe()
                         "plus" -> MovementUtils.move(speedValue.get() * 0.1f)
-                        "plusonlyup" -> if (mc.thePlayer.motionY> 0) {
+                        "plusonlyup" -> if (mc.thePlayer.motionY > 0) {
                             MovementUtils.move(speedValue.get() * 0.1f)
                         } else {
                             MovementUtils.strafe()

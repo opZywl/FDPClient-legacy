@@ -1,4 +1,3 @@
-
 package net.ccbluex.liquidbounce.injection.forge.mixins.gui;
 
 import net.ccbluex.liquidbounce.LiquidBounce;
@@ -18,59 +17,49 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Mixin(GuiButton.class)
 public abstract class MixinGuiButton extends Gui {
 
-   @Shadow
-   public int xPosition;
+    @Final
+    @Shadow
+    protected static ResourceLocation buttonTextures;
+    protected final AbstractButtonRenderer buttonRenderer = LiquidBounce.moduleManager.getModule(HUD.class).getButtonRenderer((GuiButton) (Object) this);
+    @Shadow
+    public int xPosition;
+    @Shadow
+    public int yPosition;
+    @Shadow
+    public int width;
+    @Shadow
+    public int height;
+    @Shadow
+    public boolean hovered;
+    @Shadow
+    public boolean enabled;
+    @Shadow
+    public boolean visible;
+    @Shadow
+    public int packedFGColour;
+    @Shadow
+    public String displayString;
 
-   @Shadow
-   public int yPosition;
+    @Shadow
+    public abstract void mouseDragged(Minecraft mc, int mouseX, int mouseY);
 
-   @Shadow
-   public int width;
+    @Shadow
+    protected abstract int getHoverState(boolean p_getHoverState_1_);
 
-   @Shadow
-   public int height;
-
-   @Shadow
-   public boolean hovered;
-
-   @Shadow
-   public boolean enabled;
-
-   @Shadow
-   public boolean visible;
-
-   @Final
-   @Shadow
-   protected static ResourceLocation buttonTextures;
-
-   @Shadow
-   public abstract void mouseDragged(Minecraft mc, int mouseX, int mouseY);
-
-   @Shadow
-   protected abstract int getHoverState(boolean p_getHoverState_1_);
-
-   @Shadow
-   public int packedFGColour;
-
-   @Shadow
-   public String displayString;
-
-   protected final AbstractButtonRenderer buttonRenderer = LiquidBounce.moduleManager.getModule(HUD.class).getButtonRenderer((GuiButton)(Object)this);
-
-   /**
-    * @author liuli
-    */
-   @Inject(method = "drawButton", at = @At("HEAD"), cancellable = true)
-   public void drawButton(Minecraft mc, int mouseX, int mouseY, CallbackInfo ci) {
-      if(this.buttonRenderer != null) {
-         if(!visible) {
-            return;
-         }
-         this.hovered = mouseX >= this.xPosition && mouseY >= this.yPosition && mouseX < this.xPosition + this.width && mouseY < this.yPosition + this.height;
-         this.mouseDragged(mc, mouseX, mouseY);
-         buttonRenderer.render(mouseX, mouseY, mc);
-         buttonRenderer.drawButtonText(mc);
-         ci.cancel();
-      }
-   }
+    /**
+     * @author liuli
+     */
+    @Inject(method = "drawButton", at = @At("HEAD"), cancellable = true)
+    public void drawButton(Minecraft mc, int mouseX, int mouseY, CallbackInfo ci) {
+        if (this.buttonRenderer != null) {
+            if (!visible) {
+                return;
+            }
+            this.hovered = mouseX >= this.xPosition && mouseY >= this.yPosition && mouseX < this.xPosition + this.width && mouseY < this.yPosition + this.height;
+            this.mouseDragged(mc, mouseX, mouseY);
+            buttonRenderer.render(mouseX, mouseY, mc);
+            buttonRenderer.drawButtonText(mc);
+            ci.cancel();
+        }
+    }
 }

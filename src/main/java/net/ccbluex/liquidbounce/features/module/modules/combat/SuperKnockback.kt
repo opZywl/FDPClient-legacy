@@ -32,7 +32,8 @@ class SuperKnockback : Module() {
     fun onAttack(event: AttackEvent) {
         if (event.targetEntity is EntityLivingBase) {
             if (event.targetEntity.hurtTime > hurtTimeValue.get() || !timer.hasTimePassed(delayValue.get().toLong()) ||
-                (!MovementUtils.isMoving() && onlyMoveValue.get()) || (!mc.thePlayer.onGround && onlyGroundValue.get())) {
+                (!MovementUtils.isMoving() && onlyMoveValue.get()) || (!mc.thePlayer.onGround && onlyGroundValue.get())
+            ) {
                 return
             }
             when (modeValue.get().lowercase()) {
@@ -40,10 +41,30 @@ class SuperKnockback : Module() {
                     if (mc.thePlayer.isSprinting) {
                         mc.thePlayer.isSprinting = true
                     }
-                    mc.netHandler.addToSendQueue(C0BPacketEntityAction(mc.thePlayer, C0BPacketEntityAction.Action.STOP_SPRINTING))
-                    mc.netHandler.addToSendQueue(C0BPacketEntityAction(mc.thePlayer, C0BPacketEntityAction.Action.START_SPRINTING))
-                    mc.netHandler.addToSendQueue(C0BPacketEntityAction(mc.thePlayer, C0BPacketEntityAction.Action.STOP_SPRINTING))
-                    mc.netHandler.addToSendQueue(C0BPacketEntityAction(mc.thePlayer, C0BPacketEntityAction.Action.START_SPRINTING))
+                    mc.netHandler.addToSendQueue(
+                        C0BPacketEntityAction(
+                            mc.thePlayer,
+                            C0BPacketEntityAction.Action.STOP_SPRINTING
+                        )
+                    )
+                    mc.netHandler.addToSendQueue(
+                        C0BPacketEntityAction(
+                            mc.thePlayer,
+                            C0BPacketEntityAction.Action.START_SPRINTING
+                        )
+                    )
+                    mc.netHandler.addToSendQueue(
+                        C0BPacketEntityAction(
+                            mc.thePlayer,
+                            C0BPacketEntityAction.Action.STOP_SPRINTING
+                        )
+                    )
+                    mc.netHandler.addToSendQueue(
+                        C0BPacketEntityAction(
+                            mc.thePlayer,
+                            C0BPacketEntityAction.Action.START_SPRINTING
+                        )
+                    )
                     mc.thePlayer.serverSprintState = true
                 }
 
@@ -51,21 +72,37 @@ class SuperKnockback : Module() {
                     if (mc.thePlayer.isSprinting) {
                         mc.thePlayer.isSprinting = false
                     }
-                    mc.netHandler.addToSendQueue(C0BPacketEntityAction(mc.thePlayer, C0BPacketEntityAction.Action.START_SPRINTING))
+                    mc.netHandler.addToSendQueue(
+                        C0BPacketEntityAction(
+                            mc.thePlayer,
+                            C0BPacketEntityAction.Action.START_SPRINTING
+                        )
+                    )
                     mc.thePlayer.serverSprintState = true
                 }
                 "packet" -> {
                     if (mc.thePlayer.isSprinting) {
                         mc.thePlayer.isSprinting = true
                     }
-                    mc.netHandler.addToSendQueue(C0BPacketEntityAction(mc.thePlayer, C0BPacketEntityAction.Action.STOP_SPRINTING))
-                    mc.netHandler.addToSendQueue(C0BPacketEntityAction(mc.thePlayer, C0BPacketEntityAction.Action.START_SPRINTING))
+                    mc.netHandler.addToSendQueue(
+                        C0BPacketEntityAction(
+                            mc.thePlayer,
+                            C0BPacketEntityAction.Action.STOP_SPRINTING
+                        )
+                    )
+                    mc.netHandler.addToSendQueue(
+                        C0BPacketEntityAction(
+                            mc.thePlayer,
+                            C0BPacketEntityAction.Action.START_SPRINTING
+                        )
+                    )
                     mc.thePlayer.serverSprintState = true
                 }
             }
             timer.reset()
         }
     }
+
     override val tag: String
         get() = modeValue.get()
 }

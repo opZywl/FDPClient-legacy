@@ -13,8 +13,22 @@ class SpartanFly : FlyMode("Spartan") {
         mc.thePlayer.motionY = 0.0
         timer.update()
         if (timer.hasTimePassed(12)) {
-            mc.netHandler.addToSendQueue(C04PacketPlayerPosition(mc.thePlayer.posX, mc.thePlayer.posY + 8, mc.thePlayer.posZ, true))
-            mc.netHandler.addToSendQueue(C04PacketPlayerPosition(mc.thePlayer.posX, mc.thePlayer.posY - 8, mc.thePlayer.posZ, true))
+            mc.netHandler.addToSendQueue(
+                C04PacketPlayerPosition(
+                    mc.thePlayer.posX,
+                    mc.thePlayer.posY + 8,
+                    mc.thePlayer.posZ,
+                    true
+                )
+            )
+            mc.netHandler.addToSendQueue(
+                C04PacketPlayerPosition(
+                    mc.thePlayer.posX,
+                    mc.thePlayer.posY - 8,
+                    mc.thePlayer.posZ,
+                    true
+                )
+            )
             timer.reset()
         }
     }

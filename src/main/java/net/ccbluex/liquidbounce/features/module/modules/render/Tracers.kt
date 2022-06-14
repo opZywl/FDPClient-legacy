@@ -32,7 +32,8 @@ class Tracers : Module() {
     private val colorGreenValue = IntegerValue("G", 160, 0, 255).displayable { colorModeValue.equals("Custom") }
     private val colorBlueValue = IntegerValue("B", 255, 0, 255).displayable { colorModeValue.equals("Custom") }
     private val colorAlphaValue = IntegerValue("A", 150, 0, 255)
-    private val distanceMultplierValue = FloatValue("DistanceMultiplier", 5F, 0.1F, 10F).displayable { colorModeValue.equals("DistanceColor") }
+    private val distanceMultplierValue =
+        FloatValue("DistanceMultiplier", 5F, 0.1F, 10F).displayable { colorModeValue.equals("DistanceColor") }
     private val playerHeightValue = BoolValue("PlayerHeight", true)
     private val entityHeightValue = BoolValue("EntityHeight", true)
 
@@ -81,17 +82,23 @@ class Tracers : Module() {
         val z = (entity.lastTickPosZ + (entity.posZ - entity.lastTickPosZ) * mc.timer.renderPartialTicks -
                 mc.renderManager.renderPosZ)
         val eyeVector = Vec3(0.0, 0.0, 1.0)
-                .rotatePitch((-Math.toRadians(mc.thePlayer.rotationPitch.toDouble())).toFloat())
-                .rotateYaw((-Math.toRadians(mc.thePlayer.rotationYaw.toDouble())).toFloat())
+            .rotatePitch((-Math.toRadians(mc.thePlayer.rotationPitch.toDouble())).toFloat())
+            .rotateYaw((-Math.toRadians(mc.thePlayer.rotationYaw.toDouble())).toFloat())
 
         RenderUtils.glColor(color, colorAlphaValue.get())
 
         GL11.glBegin(GL11.GL_LINE_STRIP)
-        GL11.glVertex3d(eyeVector.xCoord,
-            if(playerHeightValue.get()) { mc.thePlayer.getEyeHeight().toDouble() } else { 0.0 } + eyeVector.yCoord,
-            eyeVector.zCoord)
+        GL11.glVertex3d(
+            eyeVector.xCoord,
+            if (playerHeightValue.get()) {
+                mc.thePlayer.getEyeHeight().toDouble()
+            } else {
+                0.0
+            } + eyeVector.yCoord,
+            eyeVector.zCoord
+        )
         GL11.glVertex3d(x, y, z)
-        if(entityHeightValue.get()) {
+        if (entityHeightValue.get()) {
             GL11.glVertex3d(x, y + entity.height, z)
         }
         GL11.glEnd()

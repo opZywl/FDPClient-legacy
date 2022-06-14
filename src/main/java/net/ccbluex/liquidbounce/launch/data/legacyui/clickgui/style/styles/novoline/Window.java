@@ -5,14 +5,12 @@ import com.google.common.collect.Lists;
 import net.ccbluex.liquidbounce.LiquidBounce;
 import net.ccbluex.liquidbounce.features.module.Module;
 import net.ccbluex.liquidbounce.features.module.ModuleCategory;
-import net.ccbluex.liquidbounce.ui.client.other.Limitation;
 import net.ccbluex.liquidbounce.ui.font.Fonts;
 import net.ccbluex.liquidbounce.ui.font.GameFontRenderer;
 import net.ccbluex.liquidbounce.utils.Translate;
 import net.ccbluex.liquidbounce.utils.render.RenderUtils;
 import net.minecraft.client.gui.Gui;
 import org.lwjgl.input.Mouse;
-import org.lwjgl.opengl.GL11;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -21,6 +19,8 @@ import java.util.ArrayList;
 public class Window {
     public final ModuleCategory category;
     public final ArrayList<Button> buttons = Lists.newArrayList();
+    public final int max;
+    final Translate translate = new Translate(0F, 0F);
     public boolean drag;
     public boolean extended;
     public int x;
@@ -28,12 +28,12 @@ public class Window {
     public float expand;
     public int dragX;
     public int dragY;
-    public final int max;
     public int scroll;
     public int scrollTo;
+    public float totalY;
     int allX;
-    final Translate translate = new Translate(0F, 0F);
-
+    int wheely;
+    boolean buttonanim;
     public Window(ModuleCategory category, int x, int y) {
         this.category = category;
         this.x = x;
@@ -50,9 +50,6 @@ public class Window {
             b2.setParent(this);
         }
     }
-    int wheely;
-    public float totalY;
-    boolean buttonanim;
 
     public void render(int mouseX, int mouseY) {
         boolean isOnPanel;

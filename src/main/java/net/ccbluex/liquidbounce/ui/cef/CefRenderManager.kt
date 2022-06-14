@@ -50,8 +50,8 @@ object CefRenderManager : Listenable {
     }
 
     fun initialize(progressHandler: IProgressHandler?) {
-        // data dir will created by CefAppBuilder
-        if(!cacheDir.exists()) {
+        // data dir will be created by CefAppBuilder
+        if (!cacheDir.exists()) {
             cacheDir.mkdirs()
         }
 
@@ -76,7 +76,14 @@ object CefRenderManager : Listenable {
             /**
              * cef query can be used to contact browser and client
              */
-            override fun onQuery(browser: CefBrowser, frame: CefFrame, queryId: Long, request: String, persistent: Boolean, callback: CefQueryCallback): Boolean {
+            override fun onQuery(
+                browser: CefBrowser,
+                frame: CefFrame,
+                queryId: Long,
+                request: String,
+                persistent: Boolean,
+                callback: CefQueryCallback
+            ): Boolean {
                 println("onQuery: $queryId $request")
                 callback.success("OK")
                 return super.onQuery(browser, frame, queryId, request, persistent, callback)
@@ -104,7 +111,7 @@ object CefRenderManager : Listenable {
     fun onRender2d(event: Render2DEvent) {
         cefApp.doMessageLoopWork(0L)
         browsers.forEach(CefBrowserCustom::mcefUpdate)
-        if(Minecraft.getMinecraft().currentScreen !is GuiChat) {
+        if (Minecraft.getMinecraft().currentScreen !is GuiChat) {
             FancyUiLaunchOption.render(false)
         }
     }

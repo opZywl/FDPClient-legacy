@@ -41,19 +41,26 @@ class AutoIgnore : Module() {
                 }
 
                 val vl = chatVL.getOrDefault(name, 0F)
-                if ((nowTime - chatTimes.getOrDefault(name, 0)) <minDelayValue.get()) {
+                if ((nowTime - chatTimes.getOrDefault(name, 0)) < minDelayValue.get()) {
                     chatVL[name] = vl + 1
                 } else {
-                    if (vl> 1) {
+                    if (vl > 1) {
                         chatVL[name] = vl - 0.5F
                     }
                 }
 
                 chatTimes[name] = System.currentTimeMillis()
 
-                if (chatVL[name]!!> vlValue.get()) {
+                if (chatVL[name]!! > vlValue.get()) {
                     mc.thePlayer.sendChatMessage("/ignorar add $name")
-                    LiquidBounce.hud.addNotification(Notification(this.name, "$name ignored for spamming...", NotifyType.INFO, time = 1500))
+                    LiquidBounce.hud.addNotification(
+                        Notification(
+                            this.name,
+                            "$name ignored for spamming...",
+                            NotifyType.INFO,
+                            time = 1500
+                        )
+                    )
                     blockedPlayer.add(name.lowercase())
                     event.cancelEvent()
                 }

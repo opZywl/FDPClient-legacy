@@ -46,10 +46,13 @@ class AuthBypass : Module() {
     private val timer = MSTimer()
     private val jsonParser = JsonParser()
 
-    private val brLangMap : HashMap<String, String> by lazy {
+    private val brLangMap: HashMap<String, String> by lazy {
         val map = HashMap<String, String>()
 
-        val localeJson = JsonParser().parse(AuthBypass::class.java.classLoader.getResourceAsStream("assets/minecraft/fdpclient/misc/item_names_in_pt_BR.json").reader(Charsets.UTF_8)).asJsonObject
+        val localeJson = JsonParser().parse(
+            AuthBypass::class.java.classLoader.getResourceAsStream("assets/minecraft/fdpclient/misc/item_names_in_pt_BR.json")
+                .reader(Charsets.UTF_8)
+        ).asJsonObject
 
         brLangMap.clear()
         for ((key, element) in localeJson.entrySet()) {
@@ -79,7 +82,7 @@ class AuthBypass : Module() {
 
     @EventTarget
     fun onPacket(event: PacketEvent) {
-        when(modeValue.get().lowercase()) {
+        when (modeValue.get().lowercase()) {
             "redesky" -> handleRedeSky(event)
             "remicraft" -> handleRemiCraft(event)
             "hycraft" -> handleHyCraft(event)
@@ -91,17 +94,17 @@ class AuthBypass : Module() {
         if (packet is S02PacketChat) {
             val component = packet.chatComponent
             val raw = component.unformattedText
-            if(raw.startsWith("/reg")) {
+            if (raw.startsWith("/reg")) {
                 val split = raw.split(" ").filter { it.isNotEmpty() }
-                captcha = if(!split.last().equals("pass", ignoreCase = true)) {
+                captcha = if (!split.last().equals("pass", ignoreCase = true)) {
                     split.last()
                 } else {
                     ""
                 }
             }
         } else if (packet is C01PacketChatMessage) {
-            if(captcha.isNotEmpty() && packet.message.startsWith("/reg")) {
-                packet.message = if(packet.message.endsWith(" ")) {
+            if (captcha.isNotEmpty() && packet.message.startsWith("/reg")) {
+                packet.message = if (packet.message.endsWith(" ")) {
                     packet.message + captcha
                 } else {
                     packet.message + " " + captcha
@@ -121,7 +124,10 @@ class AuthBypass : Module() {
             } else {
                 component.siblings.forEach { sib ->
                     val clickEvent = sib.chatStyle.chatClickEvent
-                    if(clickEvent != null && clickEvent.action == ClickEvent.Action.RUN_COMMAND && clickEvent.value.startsWith(".say")) {
+                    if (clickEvent != null && clickEvent.action == ClickEvent.Action.RUN_COMMAND && clickEvent.value.startsWith(
+                            ".say"
+                        )
+                    ) {
                         timer.reset()
                         packets.add(C01PacketChatMessage(clickEvent.value))
                     }
@@ -146,9 +152,11 @@ class AuthBypass : Module() {
                     if (itemName.contains("item.skull.char", ignoreCase = true)) {
                         val nbt = item.tagCompound ?: return
                         // val uuid=nbt.get<CompoundTag>("SkullOwner").get<CompoundTag>("Properties").get<ListTag>("textures").get<CompoundTag>(0).get<StringTag>("Value").value
-                        val data = getSkinURL(nbt.getCompoundTag("SkullOwner").getCompoundTag("Properties")
-                            .getTagList("textures", NBTTagCompound.NBT_TYPES.indexOf("COMPOUND"))
-                            .getCompoundTagAt(0).getString("Value"))
+                        val data = getSkinURL(
+                            nbt.getCompoundTag("SkullOwner").getCompoundTag("Properties")
+                                .getTagList("textures", NBTTagCompound.NBT_TYPES.indexOf("COMPOUND"))
+                                .getCompoundTagAt(0).getString("Value")
+                        )
                         if (skull == null) {
                             skull = data
                         } else if (skull != data) {
@@ -193,7 +201,8 @@ class AuthBypass : Module() {
         if (packet is S2DPacketOpenWindow) {
             val windowName = packet.windowTitle.unformattedText
             if (packet.slotCount == 27 && packet.guiId.contains("container", ignoreCase = true) &&
-                windowName.startsWith("Clique", ignoreCase = true)) {
+                windowName.startsWith("Clique", ignoreCase = true)
+            ) {
                 type = when {
                     windowName.contains("bloco", ignoreCase = true) -> "skull"
                     else -> {
