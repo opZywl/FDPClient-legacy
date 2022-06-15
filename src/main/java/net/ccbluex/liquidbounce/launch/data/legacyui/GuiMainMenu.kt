@@ -6,7 +6,6 @@
 package net.ccbluex.liquidbounce.launch.data.legacyui
 
 import net.ccbluex.liquidbounce.LiquidBounce
-import net.ccbluex.liquidbounce.features.module.modules.client.HUD.genshinImpactAnim
 import net.ccbluex.liquidbounce.font.FontLoaders
 import net.ccbluex.liquidbounce.ui.btn.TestBtn
 import net.ccbluex.liquidbounce.ui.client.GuiBackground
@@ -206,13 +205,7 @@ class GuiMainMenu : GuiScreen(), GuiYesNoCallback {
         val i = 0
         val defaultHeight1 = (this.height).toDouble()
         val defaultWidth1 = (this.width).toDouble()
-        if (genshinImpactAnim.get()) RenderUtils.drawImage(
-            LiquidBounce.venti,
-            defaultWidth1.toInt() - (0.6 * defaultWidth1).toInt(),
-            defaultHeight1.toInt() - (0.3 * defaultWidth1).toInt(),
-            (0.6 * defaultWidth1).toInt(),
-            (0.3 * defaultWidth1).toInt()
-        )
+
         FontLoaders.F40.drawCenteredString(
             LiquidBounce.CLIENT_NAME,
             this.width.toDouble() / 2,
@@ -226,7 +219,7 @@ class GuiMainMenu : GuiScreen(), GuiYesNoCallback {
 
 
         FontLoaders.F16.drawString(
-            "Made by UnlegitMC",
+            "Made by UnlegitMC TEAM",
             10f,
             this.height - 15f,
             Color(1, 1, 1, 170).rgb

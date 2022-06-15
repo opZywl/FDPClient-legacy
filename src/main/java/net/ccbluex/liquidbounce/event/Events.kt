@@ -149,6 +149,11 @@ class ScreenEvent(val guiScreen: GuiScreen?) : Event()
 class StepEvent(var stepHeight: Float, val eventState: EventState) : Event()
 
 /**
+ * Called when a text is going to be rendered
+ */
+class TextEvent(var text: String?) : Event()
+
+/**
  * tick... tack... tick... tack
  */
 class TickEvent : Event()
@@ -172,3 +177,15 @@ class ClickWindowEvent(val windowId: Int, val slotId: Int, val mouseButtonClicke
  * Called when update da model
  */
 class UpdateModelEvent(val player: EntityPlayer, val model: ModelPlayer) : Event()
+
+/**
+ * Called when entity is going to be rendered
+ */
+class RenderEntityEvent(
+    val entity: Entity,
+    val x: Double,
+    val y: Double,
+    val z: Double,
+    val entityYaw: Float,
+    val partialTicks: Float
+) : Event()
