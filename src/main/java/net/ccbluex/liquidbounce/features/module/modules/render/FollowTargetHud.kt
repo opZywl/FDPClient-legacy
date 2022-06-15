@@ -210,7 +210,7 @@ class FollowTargetHud : Module() {
                 
                 // text
                 fontRenderer.drawString(name, -30 + xChange.toInt(), 5, Color.WHITE.rgb)
-                fontRenderer.drawString("Health ${getHealth(entity)}", -30 + xChange.toInt(), 5 + font.FONT_HEIGHT, Color.WHITE.rgb)
+                fontRenderer.drawString("Health ${entity.health.toInt()}", -30 + xChange.toInt(), 5 + font.FONT_HEIGHT, Color.WHITE.rgb)
                 
                 // hp bar
                 drawRoundedCornerRect(-30f + xChange, (5 + font.FONT_HEIGHT * 2).toFloat(), -30f + xChange + healthPercent * 95f, 37f, 3f, ColorUtils.rainbow().rgb)
