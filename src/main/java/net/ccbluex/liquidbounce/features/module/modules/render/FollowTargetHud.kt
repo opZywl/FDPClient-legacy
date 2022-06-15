@@ -29,7 +29,7 @@ import kotlin.math.roundToInt
 
 @ModuleInfo(name = "FollowTargetHud", category = ModuleCategory.RENDER)
 class FollowTargetHud : Module() {
-    private val modeValue = ListValue("Mode", arrayOf("Juul", "Jello"), "Juul")
+    private val modeValue = ListValue("Mode", arrayOf("Juul", "Jello", "Material"), "Juul")
     private val fontValue = FontValue("Font", Fonts.font40)
     private val jelloColorValue = BoolValue("JelloHPColor", true).displayable { modeValue.equals("Jello") }
     private val jelloAlphaValue = IntegerValue("JelloAlpha", 170, 0, 255).displayable { modeValue.equals("Jello") }
@@ -128,19 +128,19 @@ class FollowTargetHud : Module() {
         // Enable blend
         enableGlCap(GL_BLEND)
         glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA)
+        
+        val name = entity.displayName.unformattedText
+        var healthPercent = entity.health / entity.maxHealth
+        // render hp bar
+        if (healthPercent> 1) {
+            healthPercent = 1F
+        }
 
         // Draw nametag
         when (modeValue.get().lowercase()) {
 
           
             "juul" -> {
-                // colors
-                val name = entity.displayName.unformattedText
-                var healthPercent = entity.health / entity.maxHealth
-                // render hp bar
-                if (healthPercent> 1) {
-                    healthPercent = 1F
-                }
 
                 // render bg
                 glScalef(-scale * 2, -scale * 2, scale * 2)
@@ -161,8 +161,19 @@ class FollowTargetHud : Module() {
                 drawRoundedCornerRect(-104f, 22f, -50f, 30f, 1f, Color(64, 64, 64, 255).rgb) 
                 drawRoundedCornerRect(-104f, 22f, -104f + (healthPercent * 54), 30f, 1f, Color.WHITE.rgb)
                 
-
-
+            }
+            
+            "material" -> {
+                glScalef(-scale * 2, -scale * 2, scale * 2)
+                
+                // render bg
+                drawRoundedCornerRect(-40f, 0f, 40f, 30f, 5f, Color(72, 72, 72, 220).rgb)
+                
+                // draw health bars
+                drawRoundedCornerRect(-35f, 7f, -35f + (healthPercent * 70) , 12f, 2f, Color(10, 250, 10, 255).rgb)
+                drawRoundedCornerRect(-35f, 17f, -35f + ((entity.totalArmorValue / 20F) * 70) , 22f, 2f, Color(10, 10, 250, 255).rgb)
+                
+                   
             }
 
             "jello" -> {
