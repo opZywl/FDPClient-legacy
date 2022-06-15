@@ -17,8 +17,10 @@ import net.ccbluex.liquidbounce.features.module.modules.player.HackerDetector
 import net.ccbluex.liquidbounce.ui.font.Fonts
 import net.ccbluex.liquidbounce.utils.EntityUtils
 import net.ccbluex.liquidbounce.utils.extensions.ping
+import net.ccbluex.liquidbounce.utils.extensions.*
 import net.ccbluex.liquidbounce.utils.render.ColorUtils
 import net.ccbluex.liquidbounce.utils.render.RenderUtils.*
+import net.minecraft.client.gui.ScaledResolution
 import net.ccbluex.liquidbounce.value.*
 import net.minecraft.client.renderer.GlStateManager.*
 import net.minecraft.entity.EntityLivingBase
@@ -180,10 +182,10 @@ class FollowTargetHud : Module() {
             
             "arris" -> {
                 
-                val hp = decimalFormat.format(easingHP)
+                val hp = healthPercent
                 val additionalWidth = font.getStringWidth("${entity.name}  $hp hp").coerceAtLeast(75)
-                RenderUtils.drawRoundedCornerRect(xChange, 0f, 45f + additionalWidth + xChange, 40f, 7f, Color(0, 0, 0, 110).rgb)
-                RenderUtils.drawHead(entity.skin, 5 + xChange.toInt(), 5, 30 + xChange.toInt(), 30)
+                drawRoundedCornerRect(xChange, 0f, 45f + additionalWidth + xChange, 40f, 7f, Color(0, 0, 0, 110).rgb)
+                drawHead(entity.skin, 5 + xChange.toInt(), 5, 30 + xChange.toInt(), 30)
 
                 // info text
                 font.drawString(entity.name, 40 + xChange.toInt(), 5, Color.WHITE.rgb)
@@ -193,8 +195,8 @@ class FollowTargetHud : Module() {
 
                 // hp bar
                 val yPos = 5 + font.FONT_HEIGHT + 3f
-                RenderUtils.drawRect(40f + xChange, yPos,     40 + xChange + (healthPercent) * additionalWidth, yPos + 4, Color.GREEN.rgb)
-                RenderUtils.drawRect(40f + xChange, yPos + 9, 40 + xChange + (entity.totalArmorValue / 20F) * additionalWidth, yPos + 13, Color(77, 128, 255).rgb)   
+                drawRect(40f + xChange, yPos,     40 + xChange + (healthPercent) * additionalWidth, yPos + 4, Color.GREEN.rgb)
+                drawRect(40f + xChange, yPos + 9, 40 + xChange + (entity.totalArmorValue / 20F) * additionalWidth, yPos + 13, Color(77, 128, 255).rgb)   
             }
             
             "FDP" -> {
@@ -204,14 +206,14 @@ class FollowTargetHud : Module() {
                 drawRoundedCornerRect(-70f, 0f, 70f, 40f, 5f, Color(0, 0, 0, 95).rgb)
                 
                 // draw head
-                RenderUtils.drawHead(entity.skin, -65 + xChange.toInt(), 5, -35 + xChange.toInt(), 35)
+                drawHead(entity.skin, -65 + xChange.toInt(), 5, -35 + xChange.toInt(), 35)
                 
                 // text
                 fontRenderer.drawString(name, -30 + xChange.toInt(), 5, Color.WHITE.rgb)
                 fontRenderer.drawString("Health ${getHealth(entity)}", -30 + xChange.toInt(), 5 + font.FONT_HEIGHT, Color.WHITE.rgb)
                 
                 // hp bar
-                RenderUtils.drawRoundedCornerRect(-30f + xChange, (5 + font.FONT_HEIGHT * 2).toFloat(), -30f + xChange + healthPercent * 95f, 37f, 3f, ColorUtils.rainbow().rgb)
+                drawRoundedCornerRect(-30f + xChange, (5 + font.FONT_HEIGHT * 2).toFloat(), -30f + xChange + healthPercent * 95f, 37f, 3f, ColorUtils.rainbow().rgb)
 
             }
 
