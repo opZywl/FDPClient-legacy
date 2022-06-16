@@ -7,7 +7,6 @@ package net.ccbluex.liquidbounce.features.module.modules.render
 
 import net.ccbluex.liquidbounce.event.EventTarget
 import net.ccbluex.liquidbounce.event.Render3DEvent
-import net.ccbluex.liquidbounce.event.UpdateModelEvent
 import net.ccbluex.liquidbounce.event.WorldEvent
 import net.ccbluex.liquidbounce.features.module.Module
 import net.ccbluex.liquidbounce.features.module.ModuleCategory
@@ -42,11 +41,6 @@ class Skeletal : Module() {
     @EventTarget
     fun onWorld(event: WorldEvent) {
         playerModelMap.clear()
-    }
-
-    @EventTarget
-    fun onModelUpdate(event: UpdateModelEvent) {
-        playerModelMap[event.player] = ClonedModelPlayer(event.model)
     }
 
     @EventTarget
