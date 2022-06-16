@@ -18,7 +18,7 @@ class MatrixDamage : FlyMode("MatrixDamage") {
     private var tick = 0
 
     override fun onEnable() {
-        ClientUtils.displayChatMessage("U need make some damage to boost fly : bow , snowball , eggs...")
+        ClientUtils.displayChatMessage("You need take damage to boost fly with bow , snowball , eggs, etc")
         can = false
         can2 = false
         damage = false
