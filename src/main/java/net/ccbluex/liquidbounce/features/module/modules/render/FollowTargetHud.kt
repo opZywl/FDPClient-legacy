@@ -76,6 +76,8 @@ class FollowTargetHud : Module() {
     }
 
     private fun renderNameTag(entity: EntityLivingBase, tag: String) {
+        xChange = translateX.get() * 20
+
         if (entity != LiquidBounce.combatManager.target && entity.getName() != entityKeep) {
             return
         } else if ( entity == LiquidBounce.combatManager.target) {
