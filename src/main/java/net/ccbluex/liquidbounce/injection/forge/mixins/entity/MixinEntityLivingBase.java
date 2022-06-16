@@ -70,7 +70,7 @@ public abstract class MixinEntityLivingBase extends MixinEntity {
      * @author CCBlueX
      */
     @Overwrite
-    protected void jump() {
+    protected void jump() { try {
         if (!this.equals(Minecraft.getMinecraft().thePlayer)) {
             return;
         }
@@ -97,7 +97,11 @@ public abstract class MixinEntityLivingBase extends MixinEntity {
             this.motionZ += MathHelper.cos(f) * 0.2F;
         }
 
-        this.isAirBorne = true;
+        this.isAirBorne = true; 
+        
+        } catch (final Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @Inject(method = "onLivingUpdate", at = @At("HEAD"))
