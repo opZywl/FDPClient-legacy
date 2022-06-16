@@ -232,7 +232,7 @@ public abstract class MixinEntityPlayerSP extends MixinAbstractClientPlayer {
      * @author CCBlueX
      */
     @Overwrite
-    public void onLivingUpdate() {
+    public void onLivingUpdate() { try {
         LiquidBounce.eventManager.callEvent(new UpdateEvent());
 
         if (this.sprintingTicksLeft > 0) {
@@ -392,6 +392,8 @@ public abstract class MixinEntityPlayerSP extends MixinAbstractClientPlayer {
         if (this.onGround && this.capabilities.isFlying && !this.mc.playerController.isSpectatorMode()) {
             this.capabilities.isFlying = false;
             this.sendPlayerAbilities();
+        } }catch (final Exception e) {
+            e.printStackTrace();
         }
     }
 
