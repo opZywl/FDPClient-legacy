@@ -4,6 +4,7 @@ import net.ccbluex.liquidbounce.event.PacketEvent
 import net.ccbluex.liquidbounce.event.UpdateEvent
 import net.ccbluex.liquidbounce.features.module.modules.movement.flys.FlyMode
 import net.ccbluex.liquidbounce.utils.ClientUtils
+import net.ccbluex.liquidbounce.value.BoolValue
 import net.minecraft.network.play.server.S12PacketEntityVelocity
 import kotlin.math.sin
 import kotlin.math.cos
