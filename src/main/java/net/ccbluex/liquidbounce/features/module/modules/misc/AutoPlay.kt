@@ -161,6 +161,7 @@ class AutoPlay : Module() {
                         queueAutoPlay {
                             mc.thePlayer.sendChatMessage("/play skywars-normal-solo")
                         }
+                    }
                 }
                 "hypixel" -> {
                     fun process(component: IChatComponent) {
