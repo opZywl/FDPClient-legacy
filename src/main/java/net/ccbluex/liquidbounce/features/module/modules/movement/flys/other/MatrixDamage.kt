@@ -6,6 +6,7 @@ import net.ccbluex.liquidbounce.features.module.modules.movement.flys.FlyMode
 import net.ccbluex.liquidbounce.utils.ClientUtils
 import net.ccbluex.liquidbounce.value.BoolValue
 import net.ccbluex.liquidbounce.value.FloatValue
+import net.ccbluex.liquidbounce.value.IntegerValue
 import net.minecraft.network.play.server.S12PacketEntityVelocity
 import kotlin.math.sin
 import kotlin.math.cos
@@ -16,6 +17,8 @@ class MatrixDamage : FlyMode("MatrixDamage") {
     
     private val warn = BoolValue("DamageWarn",true)
     private val speedBoost = FloatValue("BoostSpeed", 1.15f, 0f, 3f)
+    private val timer = FloatValue("Timer", 0.9f, 0f, 2f)
+    private val boostTicks = IntegerValue("BoostTicks", 27,10,40)
     
     private var can = false
     private var can2 = false
@@ -37,16 +40,17 @@ class MatrixDamage : FlyMode("MatrixDamage") {
     }
 
     override fun onUpdate(event: UpdateEvent) {
+        mc.timer.timerSpeed = timer.get()
         if(mc.thePlayer.ticksExisted == 9) {
             ya = true
         }
         if(can && can2) {
             val yaw = Math.toRadians(mc.thePlayer.rotationYaw.toDouble())
-            mc.thePlayer.motionX += (-sin(yaw) * (0.3 + (speedBoost.get().toDouble() / 10 ) + random() * 0.03) )
-            mc.thePlayer.motionZ += (cos(yaw) * (0.3 + (speedBoost.get().toDouble() / 10 ) + random() * 0.03))
+            mc.thePlayer.motionX += (-sin(yaw) * (0.3 + (speedBoost.get().toDouble() / 10 ) + Math.random() * 0.03) )
+            mc.thePlayer.motionZ += (cos(yaw) * (0.3 + (speedBoost.get().toDouble() / 10 ) + Math.andom() * 0.03))
             mc.thePlayer.motionY = motion
             tick++
-            if(tick>=27) {
+            if(tick>=boostTicks.get()) {
                 mc.timer.timerSpeed = 1.0f
                 can = false
                 can2 = false
