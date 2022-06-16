@@ -10,7 +10,6 @@ import net.ccbluex.liquidbounce.value.IntegerValue
 import net.minecraft.network.play.server.S12PacketEntityVelocity
 import kotlin.math.sin
 import kotlin.math.cos
-import kotlin.math.random
 
 
 class MatrixDamage : FlyMode("MatrixDamage") {
@@ -47,7 +46,7 @@ class MatrixDamage : FlyMode("MatrixDamage") {
         if(can && can2) {
             val yaw = Math.toRadians(mc.thePlayer.rotationYaw.toDouble())
             mc.thePlayer.motionX += (-sin(yaw) * (0.3 + (speedBoost.get().toDouble() / 10 ) + Math.random() * 0.03) )
-            mc.thePlayer.motionZ += (cos(yaw) * (0.3 + (speedBoost.get().toDouble() / 10 ) + Math.andom() * 0.03))
+            mc.thePlayer.motionZ += (cos(yaw) * (0.3 + (speedBoost.get().toDouble() / 10 ) + Math.random() * 0.03))
             mc.thePlayer.motionY = motion
             tick++
             if(tick>=boostTicks.get()) {
