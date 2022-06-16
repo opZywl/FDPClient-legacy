@@ -25,6 +25,7 @@ import kotlin.concurrent.schedule
 class AutoPlay : Module() {
 
     private val modeValue = ListValue("Server", arrayOf("RedeSky", "BlocksMC", "Minemora", "Hypixel", "Jartex", "Pika", "HyCraft"), "RedeSky")
+                                              
     private val delayValue = IntegerValue("JoinDelay", 3, 0, 7)
 
     private var clicking = false
@@ -156,6 +157,10 @@ class AutoPlay : Module() {
                             }
                         }
                     }
+                    if (text.contains(mc.getSession().username + " has been")) {
+                        queueAutoPlay {
+                            mc.thePlayer.sendChatMessage("/play skywars-normal-solo")
+                        }
                 }
                 "hypixel" -> {
                     fun process(component: IChatComponent) {
