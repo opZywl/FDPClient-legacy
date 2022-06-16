@@ -4,12 +4,16 @@ import net.ccbluex.liquidbounce.event.PacketEvent
 import net.ccbluex.liquidbounce.event.UpdateEvent
 import net.ccbluex.liquidbounce.features.module.modules.movement.flys.FlyMode
 import net.ccbluex.liquidbounce.utils.ClientUtils
+import net.ccbluex.liquidbounce.value.BoolValue
 import net.minecraft.network.play.server.S12PacketEntityVelocity
 import kotlin.math.sin
 import kotlin.math.cos
 
 
 class MatrixDamage : FlyMode("MatrixDamage") {
+    
+    private val warn = BoolValue("DamageWarn",true)
+    
     private var can = false
     private var can2 = false
     private var damage = false
@@ -18,7 +22,9 @@ class MatrixDamage : FlyMode("MatrixDamage") {
     private var tick = 0
 
     override fun onEnable() {
-        ClientUtils.displayChatMessage("U need make some damage to boost fly : bow , snowball , eggs...")
+        if (warn.get()) {
+            ClientUtils.displayChatMessage("[Matrix-fly] U need make some damage to boost fly : bow , snowball , eggs...")
+        }
         can = false
         can2 = false
         damage = false
