@@ -48,7 +48,7 @@ object LiquidBounce {
     var CLIENTTEXT = "Waiting..."
     var Darkmode = true
     const val COLORED_NAME = "§7[§b!§7] §b§lFDPCLIENT §c» "
-    const val CLIENT_CREATOR = "CCBlueX & UnlegitMC TEAM"
+    const val CLIENT_CREATOR = "CCBlueX & UnlegitMC TEAMS"
     const val CLIENT_WEBSITE = "FDPClient.Club"
     const val MINECRAFT_VERSION = "1.8.9"
     const val VERSIONTYPE = "Preview"
@@ -210,7 +210,6 @@ object LiquidBounce {
         }
         ClientUtils.setTitle("Loading script subscripts...");
         for (subscript in fileManager.subscriptsConfig.subscripts) {
-            //println(subscript.url+":"+subscript.name)
             Subscriptions.addSubscribes(ScriptSubscribe(subscript.url, subscript.name))
             scriptManager.disableScripts()
             scriptManager.unloadScripts()
@@ -235,13 +234,6 @@ object LiquidBounce {
 
             if (latest != gitInfo["git.commit.id.abbrev"]) {
                 ClientUtils.logInfo("New version available: $latest")
-
-                //val buttons = arrayOf(LanguageManager.get("ui.update.download"), LanguageManager.get("ui.update.dismiss"))
-                //val selection = JOptionPane.showOptionDialog(null, LanguageManager.getAndFormat("ui.update.released", latest), "Alert",
-                //JOptionPane.WARNING_MESSAGE, 0, null, buttons, buttons[0])
-                //if (selection == 0) {
-                //    MiscUtils.showURL("https://$CLIENT_WEBSITE")
-                //}
             } else {
                 ClientUtils.logInfo("No new version available")
             }
