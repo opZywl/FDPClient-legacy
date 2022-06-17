@@ -11,7 +11,7 @@ import net.minecraft.block.BlockAir
 import net.minecraft.network.play.client.C03PacketPlayer
 import net.minecraft.util.AxisAlignedBB
 
-class NewHypixelFly : FlyMode("NewHypixel") {
+class NewHypixelFly : FlyMode("NewHypixelFly") {
     private val boostValue = BoolValue("${valuePrefix}NewBoost", true)
     private val boostDelayValue = IntegerValue("${valuePrefix}NewBoostDelay", 1200, 0, 2000)
     private val boostTimerValue = FloatValue("${valuePrefix}NewBoostTimer", 1f, 0f, 5f)
@@ -27,10 +27,19 @@ class NewHypixelFly : FlyMode("NewHypixel") {
         }
 
         timer.update()
-        if (timer.hasTimePassed(5)) {
-            mc.thePlayer.setPosition(mc.thePlayer.posX, mc.thePlayer.posY + 1.5E-5, mc.thePlayer.posZ)
+        if (timer.hasTimePassed(10)) {
+            mc.thePlayer.jump()
+            mc.thePlayer.setPosition(mc.thePlayer.posX, mc.thePlayer.posY + 1E-5, mc.thePlayer.posZ)
             timer.reset()
         }
+    }
+
+    override fun onEnable() {
+        if (mc.thePlayer == null) return
+        val x = mc.thePlayer.posX
+        val y = mc.thePlayer.posY
+        val z = mc.thePlayer.posZ
+        if (mc.thePlayer.onGround) mc.thePlayer.setPosition(x, y + 0.1, z)
     }
 
     override fun onBlockBB(event: BlockBBEvent) {
