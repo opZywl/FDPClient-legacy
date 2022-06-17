@@ -38,8 +38,7 @@ import java.text.DecimalFormat
 class ESP : Module() {
     val modeValue = ListValue(
         "Mode",
-        arrayOf("Box", "OtherBox", "WireFrame", "2D", "Real2D", "CSGO", "CSGO-Old", "Outline", "ShaderOutline", "ShaderGlow", "Jello"),
-        "Jello"
+        arrayOf("Box", "OtherBox", "WireFrame", "2D", "Real2D", "CSGO", "CSGO-Old", "Outline", "ShaderOutline", "ShaderGlow"), "ShaderGlow"
     )
     private val outlineWidthValue = FloatValue("Outline-Width", 3f, 0.5f, 5f).displayable { modeValue.equals("Outline") }
     val wireframeWidthValue = FloatValue("WireFrame-Width", 2f, 0.5f, 5f).displayable { modeValue.equals("WireFrame") }
@@ -245,43 +244,50 @@ class ESP : Module() {
         val mode = modeValue.get().lowercase()
         val partialTicks = event.partialTicks
 
-        if (mode.equals("jello", ignoreCase = true)) {
-            val hurtingEntities = ArrayList<EntityLivingBase>()
-            var shader: FramebufferShader = GlowShader.GLOW_SHADER
-            var radius = 3f
-            var color = Color(120, 120, 120)
-            var hurtColor = Color(120, 0, 0)
-            var firstRun = true
+       // if (mode.equals("jello", ignoreCase = true)) {
+        {
+         //   val hurtingEntities = ArrayList<EntityLivingBase>()
+        //    var shader: FramebufferShader = GlowShader.GLOW_SHADER
+         //   var radius = 3f
+        //    var color = Color(120, 120, 120)
+        //    var hurtColor = Color(120, 0, 0)
+         //   var firstRun = true
 
-            for (i in 0..1) {
-                shader.startDraw(partialTicks)
-                for (entity in mc.theWorld.loadedEntityList) {
-                    if (EntityUtils.isSelected(entity, false)) {
-                        val entityLivingBase = entity as EntityLivingBase
-                        if (firstRun && entityLivingBase.hurtTime > 0) {
-                            hurtingEntities.add(entityLivingBase)
-                            continue
+         //   for (i in 0..1) {
+            {
+          //      shader.startDraw(partialTicks)
+                {
+                    {
+            //    for (entity in mc.theWorld.loadedEntityList) {
+              //      if (EntityUtils.isSelected(entity, false)) {
+                        //val entityLivingBase = entity as EntityLivingBase
+                        //if (firstRun && entityLivingBase.hurtTime > 0) {
+                        {
+                           // hurtingEntities.add(entityLivingBase)
+                           // continue
                         }
-                        mc.renderManager.renderEntityStatic(entity, partialTicks, true)
+                        //mc.renderManager.renderEntityStatic(entity, partialTicks, true)
                     }
                 }
-                shader.stopDraw(color, radius, 1f)
+               // shader.stopDraw(color, radius, 1f)
 
                 // hurt
-                if (hurtingEntities.size > 0) {
-                    shader.startDraw(partialTicks)
-                    for (entity in hurtingEntities) {
-                        mc.renderManager.renderEntityStatic(entity, partialTicks, true)
+               // if (hurtingEntities.size > 0) {
+                {
+                //    shader.startDraw(partialTicks)
+                //    for (entity in hurtingEntities) {
+                {
+                //        mc.renderManager.renderEntityStatic(entity, partialTicks, true)
                     }
-                    shader.stopDraw(hurtColor, radius, 1f)
+                   // shader.stopDraw(hurtColor, radius, 1f)
                 }
-                shader = OutlineShader.OUTLINE_SHADER
-                radius = 1.2f
-                color = Color(255, 255, 255, 170)
-                hurtColor = Color(255, 0, 0, 170)
-                firstRun = false
+               // shader = OutlineShader.OUTLINE_SHADER
+               // radius = 1.2f
+               // color = Color(255, 255, 255, 170)
+               // hurtColor = Color(255, 0, 0, 170)
+               // firstRun = false
             }
-            return
+           // return
         }
 
         // normal shader esp
