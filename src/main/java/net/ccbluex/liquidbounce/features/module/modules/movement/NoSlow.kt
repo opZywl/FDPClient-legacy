@@ -28,7 +28,7 @@ import kotlin.math.sqrt
 
 @ModuleInfo(name = "NoSlow", category = ModuleCategory.MOVEMENT)
 class NoSlow : Module() {
-    private val modeValue = ListValue("PacketMode", arrayOf("Vanilla", "LiquidBounce", "Custom", "WatchDog", "Watchdog2", "NCP", "AAC", "AAC4", "AAC5", "Matrix", "Vulcan","Medusa"), "Vanilla")
+    private val modeValue = ListValue("PacketMode", arrayOf("Vanilla", "NoPacket", "LiquidBounce", "Custom", "WatchDog", "Watchdog2", "NewHypixel", "NCP", "AAC", "AAC4", "AAC5", "Matrix", "Vulcan","Medusa"), "NoPacket")
     private val blockForwardMultiplier = FloatValue("BlockForwardMultiplier", 1.0F, 0.2F, 1.0F)
     private val blockStrafeMultiplier = FloatValue("BlockStrafeMultiplier", 1.0F, 0.2F, 1.0F)
     private val consumeForwardMultiplier = FloatValue("ConsumeForwardMultiplier", 1.0F, 0.2F, 1.0F)
@@ -148,6 +148,10 @@ class NoSlow : Module() {
 
                 "ncp" -> {
                     sendPacket(event, true, true, false, 0, false)
+                }
+                
+                "NewHypixel" -> {
+                    sendPacket(event, true, false, true, 8, false)
                 }
 
                 "watchdog2" -> {
