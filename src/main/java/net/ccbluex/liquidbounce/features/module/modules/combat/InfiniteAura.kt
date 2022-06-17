@@ -149,6 +149,10 @@ class InfiniteAura : Module() {
         return true
     }
 
+        if (packet is S08PacketPlayerPosLook) {
+            event.cancelEvent()
+        }
+    
     @EventTarget
     fun onPacket(event: PacketEvent) {
         if (event.packet is S08PacketPlayerPosLook) {
