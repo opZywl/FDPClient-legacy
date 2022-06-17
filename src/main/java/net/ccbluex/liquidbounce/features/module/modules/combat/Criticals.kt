@@ -155,7 +155,7 @@ class Criticals : Module() {
                     sendCriticalPacket(ground = false)
                 }
                 
-                 "blocksmc" -> {
+                "blocksmc" -> {
                     sendCriticalPacket(yOffset = 0.0825080378093, ground = false)
                     sendCriticalPacket(yOffset = 0.0215634532004, ground = false)
                     sendCriticalPacket(yOffset = 0.1040220332227, ground = false)
