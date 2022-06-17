@@ -21,7 +21,7 @@ import net.minecraft.entity.EntityLivingBase
 
 @ModuleInfo(name = "TargetStrafe",  category = ModuleCategory.MOVEMENT)
 class TargetStrafe : Module() {
-    private val thirdPersonViewValue = BoolValue("ThirdPersonView", false)
+    //private val thirdPersonViewValue = BoolValue("ThirdPersonView", false)
     private val ongroundValue = BoolValue("OnGround",true)
     private val radiusValue = FloatValue("Radius", 0.1f, 0.5f, 5.0f)
     private var direction = -1.0
@@ -62,8 +62,8 @@ class TargetStrafe : Module() {
             isEnabled = true
         }else {
             isEnabled = false
-            if (!thirdPersonViewValue.get()) return
-            mc.gameSettings.thirdPersonView = 3
+            //if (!thirdPersonViewValue.get()) return
+            //mc.gameSettings.thirdPersonView = 3
         }
     }
 
