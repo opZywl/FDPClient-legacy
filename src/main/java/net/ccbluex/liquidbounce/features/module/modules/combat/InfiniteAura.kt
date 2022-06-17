@@ -152,6 +152,7 @@ class InfiniteAura : Module() {
     @EventTarget
     fun onPacket(event: PacketEvent) {
         if (event.packet is S08PacketPlayerPosLook) {
+            event.cancelEvent()
             timer.reset()
         }
         val isMovePacket = (event.packet is C04PacketPlayerPosition || event.packet is C03PacketPlayer.C06PacketPlayerPosLook)
