@@ -43,11 +43,11 @@ object LiquidBounce {
 
 
     // Client information
-    const val CLIENT_NAME = "FDPCLIENT"
+    const val CLIENT_NAME = "FDPClient"
 
     var CLIENTTEXT = "Waiting..."
     var Darkmode = true
-    const val COLORED_NAME = "§7[§b!§7] §b§lFDPCLIENT §c» "
+    const val COLORED_NAME = "§7§l[§b§l!§7§l] §b§lFDPCLIENT §c§l» §l"
     const val CLIENT_CREATOR = "CCBlueX & UnlegitMC TEAM"
     const val CLIENT_WEBSITE = "FDPClient.Club"
     const val MINECRAFT_VERSION = "1.8.9"
@@ -267,6 +267,7 @@ object LiquidBounce {
     fun stopClient() {
         if (!isStarting && !isLoadingConfig) {
             ClientUtils.logInfo("Shutting down $CLIENT_NAME $CLIENT_VERSION!")
+            ClientUtils.setTitle("Shutting down $CLIENT_NAME")
 
             // Call client shutdown
             eventManager.callEvent(ClientShutdownEvent())
