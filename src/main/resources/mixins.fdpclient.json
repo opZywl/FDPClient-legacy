@@ -21,6 +21,8 @@
     "entity.MixinEntityPlayer",
     "entity.MixinEntityPlayerSP",
     "entity.MixinPlayerControllerMP",
+    "entity.MixinWorld",
+    "entity.MixinWorldClient",
     "gui.MixinGuiButton",
     "gui.MixinGuiButtonExt",
     "gui.MixinGuiChat",
