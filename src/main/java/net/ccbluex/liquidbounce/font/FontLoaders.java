@@ -6,6 +6,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.util.ResourceLocation;
 
 /* loaded from: LiquidBounce-b73.jar:net/ccbluex/liquidbounce/FontLoaders.class */
+/* XiGuahehe Very Skidddddddddddddddddddddddddddddddddddddddddddddddddddddddddd */
 public abstract class FontLoaders {
     public static CFontRenderer F14 = new CFontRenderer(getFont(14), true, true);
     public static CFontRenderer F16 = new CFontRenderer(getFont(16), true, true);
@@ -17,6 +18,12 @@ public abstract class FontLoaders {
     public static CFontRenderer F30 = new CFontRenderer(getFont(30), true, true);
     public static CFontRenderer F40 = new CFontRenderer(getFont(40), true, true);
     public static CFontRenderer F50 = new CFontRenderer(getFont(50), true, true);
+    public static CFontRenderer C12 = new CFontRenderer(getmisans(12), true, true);
+    public static CFontRenderer C14 = new CFontRenderer(getmisans(14), true, true);
+    public static CFontRenderer C16 = new CFontRenderer(getmisans(16), true, true);
+    public static CFontRenderer C18 = new CFontRenderer(getmisans(18), true, true);
+    public static CFontRenderer C20 = new CFontRenderer(getmisans(20), true, true);
+    public static CFontRenderer C22 = new CFontRenderer(getmisans(22), true, true);
     public static CFontRenderer C12 = new CFontRenderer(getComfortaa(12), true, true);
     public static CFontRenderer C14 = new CFontRenderer(getComfortaa(14), true, true);
     public static CFontRenderer C16 = new CFontRenderer(getComfortaa(16), true, true);
@@ -43,6 +50,18 @@ public abstract class FontLoaders {
     }
 
     public static Font getComfortaa(int size) {
+        Font font;
+        try {
+            font = Font.createFont(0, Minecraft.getMinecraft().getResourceManager().getResource(new ResourceLocation("fdpclient/font/misans.ttf")).getInputStream()).deriveFont(0, (float) size);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            System.out.println("Error loading font");
+            font = new Font("default", 0, size);
+        }
+        return font;
+    }
+    
+    public static Font getmisans(int size) {
         Font font;
         try {
             font = Font.createFont(0, Minecraft.getMinecraft().getResourceManager().getResource(new ResourceLocation("fdpclient/font/misans.ttf")).getInputStream()).deriveFont(0, (float) size);
