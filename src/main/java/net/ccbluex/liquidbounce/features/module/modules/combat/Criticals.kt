@@ -34,6 +34,7 @@ class Criticals : Module() {
             "Packet",
             "NCPPacket",
             "MiPacket",
+            "Matrix",
             "Blocksmc",
             "Hypixel",
             "Hypixel2",
@@ -155,7 +156,13 @@ class Criticals : Module() {
                     sendCriticalPacket(ground = false)
                 }
                 
-                 "blocksmc" -> {
+                "matrix" -> {
+                    if (mc.thePlayer.motionX == 0.0 && mc.thePlayer.motionZ == 0.0) {
+                        mc.thePlayer.motionY = 0.20
+                    }
+                }
+                
+                "blocksmc" -> {
                     sendCriticalPacket(yOffset = 0.0825080378093, ground = false)
                     sendCriticalPacket(yOffset = 0.0215634532004, ground = false)
                     sendCriticalPacket(yOffset = 0.1040220332227, ground = false)
@@ -480,7 +487,7 @@ class Criticals : Module() {
         }
         if (packet is S0BPacketAnimation && debugValue.get()) {
             if (packet.animationType == 4 && packet.entityID == target) {
-                alert("Debug CRIT")
+                alert("Criticals S0BPacket")
             }
         }
     }
