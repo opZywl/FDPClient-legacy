@@ -24,8 +24,8 @@ class GuiBackground(val prevGui: GuiScreen) : GuiScreen() {
 
     companion object {
         var enabled = true
-        var particles = false
-        var blur = false
+        var particles = true
+        var blur = true
     }
 
     private lateinit var enabledButton: GuiButton
@@ -50,12 +50,15 @@ class GuiBackground(val prevGui: GuiScreen) : GuiScreen() {
         buttonList.add(nextButton)
         animatedButton = GuiButton(8, width / 2 - 100, height / 4 + 40 + 25 * 3, "")
         buttonList.add(animatedButton)
-
+        //UI Particles
         particlesButton = GuiButton(2, width / 2 - 100, height / 4 + 40 + 25 * 4, "")
+        
         buttonList.add(particlesButton)
+        //UI BackGround change
         buttonList.add(GuiButton(3, width / 2 - 100, height / 4 + 40 + 25 * 5, 98, 20, "%ui.background.change%"))
+        //UI BackGround reset
         buttonList.add(GuiButton(4, width / 2 + 2, height / 4 + 40 + 25 * 5, 98, 20, "%ui.background.reset%"))
-
+        //UI Back
         buttonList.add(GuiButton(0, width / 2 - 100, height / 4 + 40 + 25 * 6 + 10, "%ui.back%"))
 
         updateButtons()
