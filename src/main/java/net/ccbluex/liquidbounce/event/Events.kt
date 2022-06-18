@@ -152,6 +152,11 @@ class StepEvent(var stepHeight: Float, val eventState: EventState) : Event()
 class TickEvent : Event()
 
 /**
+ * tick2... tack2... tick2... tack2
+ */
+class Tick2Event : Event()
+
+/**
  * Called when minecraft player will be updated
  */
 class UpdateEvent : Event()
