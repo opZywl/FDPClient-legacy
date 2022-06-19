@@ -135,4 +135,6 @@ object ChestAura : Module() {
         clickedBlocks.clear()
         underClick = false
     }
+    override val tag: String?
+        get() = delayValue.get()
 }
