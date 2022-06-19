@@ -39,5 +39,5 @@ class Timer : Module() {
         mc.timer.timerSpeed = 1F
     }
     override val tag: String?
-        get() = speedValue.get()
+        get() = "${speedValue.get()}"
 }
