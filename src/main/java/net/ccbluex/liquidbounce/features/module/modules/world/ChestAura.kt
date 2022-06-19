@@ -136,5 +136,5 @@ object ChestAura : Module() {
         underClick = false
     }
     override val tag: String?
-        get() = delayValue.get()
+        get() = "${delayValue.get()}"
 }
