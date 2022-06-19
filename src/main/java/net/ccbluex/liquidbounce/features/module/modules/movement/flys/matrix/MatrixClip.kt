@@ -16,12 +16,15 @@ import kotlin.math.cos
 
 
 class MatrixClip : FlyMode("MatrixClip") {
-    private val clipMode = ListValue("${valuePrefix}BypassMode", arrayOf("Clip1","Clip2","Clip3"), "Clip2")
-    private val yclip = FloatValue("${valuePrefix}YClip", 10f, 5f, 20f)
+    private val clipMode = ListValue("${valuePrefix}BypassMode", arrayOf("Clip1","Clip2","Clip3","Custom"), "Clip2")
+    private val yclip = FloatValue("${valuePrefix}YClip", 10f, 5f, 20f).displayable { !clipMode.equals("Custom") }
+    private val customyclip = FloatValue("${valuePrefix}Custom-YClip", 10f, 5f, 20f).displayable { clipMode.equals("Custom") }
+    private val customblinktime = IntegerValue("${valuePrefix}Custom-BlinkTime", 1000, 500, 2000).displayable { clipMode.equals("Custom") }
+    private val customcliptime = IntegerValue("${valuePrefix}Custom-ClipTime", 909, 500, 2000).displayable { clipMode.equals("Custom") }
     private val packets = LinkedBlockingQueue<Packet<INetHandlerPlayServer>>()
     private val timer = MSTimer()
     private val timer2 = MSTimer()
-    
+
     private var blinkTime = 0
     private var clipTime = 0
     private var disableLogger = false
@@ -32,18 +35,22 @@ class MatrixClip : FlyMode("MatrixClip") {
     }
 
     override fun onUpdate(event: UpdateEvent) {
-        when (clipMode.get().lowercase()) {
-            "clip1" -> {
+        when (clipMode.get()) {
+            "Clip1" -> {
                 blinkTime = 736
                 clipTime = 909
             }
-            "clip2" -> {
+            "Clip2" -> {
                 blinkTime = 1000
                 clipTime = 909
             }
-            "clip3" -> {
+            "Clip3" -> {
                 blinkTime = 909
                 clipTime = 1000
+            }
+            "Custom" -> {
+                blinkTime = customblinktime.get()
+                clipTime = customcliptime.get()
             }
         }
         mc.thePlayer.motionY = 0.0
@@ -63,11 +70,12 @@ class MatrixClip : FlyMode("MatrixClip") {
         }
         if(timer2.hasTimePassed((clipTime.toLong()))) {
             timer2.reset()
-            mc.thePlayer.setPosition(mc.thePlayer.posX , mc.thePlayer.posY + yclip.get(), mc.thePlayer.posZ)
+            if(clipMode.get() == "Custom") {
+                mc.thePlayer.setPosition(mc.thePlayer.posX , mc.thePlayer.posY + customyclip.get(), mc.thePlayer.posZ)
+            } else {
+                mc.thePlayer.setPosition(mc.thePlayer.posX , mc.thePlayer.posY + yclip.get(), mc.thePlayer.posZ)
+            }
         }
-    }
-
-    override fun onDisable() {
     }
 
     override fun onPacket(event: PacketEvent) {
