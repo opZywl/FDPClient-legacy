@@ -38,7 +38,7 @@ class Velocity : Module() {
     private val horizontalValue = FloatValue("Horizontal", 0F, -2F, 2F)
     private val verticalValue = FloatValue("Vertical", 0F, -2F, 2F)
     private val velocityTickValue = IntegerValue("VelocityTick", 1, 0, 10).displayable { modeValue.equals("Tick") || modeValue.equals("OldSpartan")}
-    private val modeValue = ListValue("Mode", arrayOf("Simple", "Tick", "Vanilla", "AACPush", "AACZero", "AAC4Reduce", "AAC5Reduce",
+    private val modeValue = ListValue("Mode", arrayOf("Simple", "Tick", "Cancel", "Vanilla", "AACPush", "AACZero", "AAC4Reduce", "AAC5Reduce",
                                                       "Redesky1", "Redesky2",
                                                       "AAC5.2.0", "AAC5.2.0Combat",
                                                       "MatrixReduce", "MatrixSimple", "MatrixReverse",
@@ -129,6 +129,10 @@ class Velocity : Module() {
         if (noFireValue.get() && mc.thePlayer.isBurning) return
 
         when (modeValue.get().lowercase()) {
+            "cancel" -> {
+                event.cancelEvent()
+            }
+            
             "tick" -> {
                 if(velocityTick > velocityTickValue.get()) {
                     if(mc.thePlayer.motionY > 0) mc.thePlayer.motionY = 0.0
