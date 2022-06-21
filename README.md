@@ -1,13 +1,7 @@
-# FDPClient
-[![State-of-the-art Shitcode](https://img.shields.io/static/v1?label=State-of-the-art&message=Shitcode&color=7B5804)](https://github.com/trekhleb/state-of-the-art-shitcode)
-![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/UnlegitMC/FDPClient)
-![GitHub lines of code](https://tokei.rs/b1/github/UnlegitMC/FDPClient)
-[![Maintainability](https://api.codeclimate.com/v1/badges/a41ae7bde63c143e426a/maintainability)](https://codeclimate.com/github/UnlegitMC/FDPClient/maintainability)
-![Minecraft](https://img.shields.io/badge/game-Minecraft-brightgreen)  
+# FDSkid Client
 A free mixin-based injection shitty skidded hacked-client for Minecraft using Minecraft Forge based on LiquidBounce.
 
 Website: no
-
 Discord: no
 
 ## Issues
@@ -22,10 +16,9 @@ You are allowed to
 
 this project entirely or partially for free and even commercially. However, please consider the following:
 
-- **You must disclose the source code of your modified work and the source code you took from this project. This means you are not allowed to use code from this project (even partially) in a closed-source (or even obfuscated) application.**
-- **Your modified application must also be licensed under the GPL** 
-
-Do the above and uninstall this client.
+- ~~**You must disclose the source code of your modified work and the source code you took from this project. This means you are not allowed to use code from this project (even partially) in a closed-source (or even obfuscated) application.**
+- ~~**Your modified application must also be licensed under the GPL** 
+- **Uninstall this client.**
 
 ## Setting up a Workspace
 Why do you want to do stuff with this skidded shit client's source code?
@@ -49,7 +42,7 @@ mc.shutdown();
 ~~~
 
 ### Skid codes
-We don't fucking care lololol
+We don't fucking care.
 
 ### Useless features
 We love useless features so we won't remove them.
