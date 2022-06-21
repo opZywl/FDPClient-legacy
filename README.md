@@ -1,9 +1,6 @@
 # FDSkid Client
 A free mixin-based injection shitty skidded hacked-client for Minecraft using Minecraft Forge based on LiquidBounce.
 
-Website: no
-Discord: no
-
 ## Issues
 If you notice any bugs or missing features, we don't fucking care.
 ## License
