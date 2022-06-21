@@ -7,7 +7,7 @@
 A free mixin-based injection shitty skidded hacked-client for Minecraft using Minecraft Forge based on LiquidBounce.
 
 Website: no
-Latest: no   
+
 Discord: no
 
 ## Issues
