@@ -1,4 +1,4 @@
-# FDSkid Client
+# FDPClient (totally not skidded)
 A free mixin-based injection shitty skidded hacked-client for Minecraft using Minecraft Forge based on LiquidBounce.
 
 ## Issues
@@ -26,7 +26,12 @@ Mixins can be used to modify classes at runtime before they are loaded. FDPClien
 
 ## Contributing
 We aren't welcome for your contributing.
-
+## Skidded from:
+- Rise
+- LiquidSense
+- GKing's codes
+- Dortware
+- LiquidBounce Scripts
 #### Kotlin features
 Usage of kotlin features and help enhance the code readability    
 kotlin feature examples
