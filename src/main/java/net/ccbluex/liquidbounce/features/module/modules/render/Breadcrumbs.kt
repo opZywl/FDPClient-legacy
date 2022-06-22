@@ -27,7 +27,7 @@ import java.awt.Color
 
 @ModuleInfo(name = "Breadcrumbs", category = ModuleCategory.RENDER)
 class Breadcrumbs : Module() {
-    private val typeValue = ListValue("Type", arrayOf("Line", "Rect", "Sphere"), "Line")
+    private val typeValue = ListValue("Type", arrayOf("Line", "Rect", "Sphere", "Rise"), "Rise")
     private val colorRedValue = IntegerValue("R", 255, 0, 255).displayable { !colorRainbowValue.get() }
     private val colorGreenValue = IntegerValue("G", 255, 0, 255).displayable { !colorRainbowValue.get() }
     private val colorBlueValue = IntegerValue("B", 255, 0, 255).displayable { !colorRainbowValue.get() }
@@ -39,7 +39,7 @@ class Breadcrumbs : Module() {
     private val fadeTimeValue = IntegerValue("FadeTime", 5, 1, 20)
     private val precisionValue = IntegerValue("Precision", 1, 1, 20)
     private val lineWidthValue = IntegerValue("LineWidth", 1, 1, 10).displayable { typeValue.equals("Line") }
-    private val sphereScaleValue = FloatValue("SphereScale", 1f, 0.1f, 2f).displayable { typeValue.equals("Sphere") }
+    private val sphereScaleValue = FloatValue("SphereScale", 1f, 0.1f, 2f).displayable { typeValue.equals("Sphere") || typeValue.equals("Rise") }
 
     private val points = mutableMapOf<Int, MutableList<BreadcrumbPoint>>()
 
@@ -96,7 +96,9 @@ class Breadcrumbs : Module() {
                     }
                     pct
                 } else { 1f } * colorAlpha
-                RenderUtils.glColor(point.color, alpha)
+                if (!typeValue.equals("Rise")) {
+                    RenderUtils.glColor(point.color, alpha)
+                }
                 when(typeValue.get().lowercase()) {
                     "line" -> GL11.glVertex3d(point.x - renderPosX, point.y - renderPosY, point.z - renderPosZ)
                     "rect" -> {
@@ -116,6 +118,28 @@ class Breadcrumbs : Module() {
                         GL11.glPushMatrix()
                         GL11.glTranslated(point.x - renderPosX, point.y - renderPosY, point.z - renderPosZ)
                         GL11.glScalef(sphereScaleValue.get(), sphereScaleValue.get(), sphereScaleValue.get())
+                        GL11.glCallList(sphereList)
+                        GL11.glPopMatrix()
+                    }
+                    "rise" -> {
+                        RenderUtils.glColor(point.color, 30)
+                        GL11.glPushMatrix()
+                        GL11.glTranslated(point.x - renderPosX, point.y - renderPosY, point.z - renderPosZ)
+                        GL11.glScalef(sphereScaleValue.get(), sphereScaleValue.get(), sphereScaleValue.get())
+                        GL11.glCallList(sphereList)
+                        GL11.glPopMatrix()
+
+                        RenderUtils.glColor(point.color, 40)
+                        GL11.glPushMatrix()
+                        GL11.glTranslated(point.x - renderPosX, point.y - renderPosY, point.z - renderPosZ)
+                        GL11.glScalef(sphereScaleValue.get() * 0.65f, sphereScaleValue.get() * 0.65f, sphereScaleValue.get() * 0.65f)
+                        GL11.glCallList(sphereList)
+                        GL11.glPopMatrix()
+
+                        RenderUtils.glColor(point.color, 255)
+                        GL11.glPushMatrix()
+                        GL11.glTranslated(point.x - renderPosX, point.y - renderPosY, point.z - renderPosZ)
+                        GL11.glScalef(sphereScaleValue.get() * 0.33f, sphereScaleValue.get() * 0.33f, sphereScaleValue.get() * 0.33f)
                         GL11.glCallList(sphereList)
                         GL11.glPopMatrix()
                     }
