@@ -48,3 +48,4 @@ We don't fucking care.
 
 ### Useless features
 We love useless features so we won't remove them.
+### Stop using FDPClient and use LiquidBounce with scripts.
