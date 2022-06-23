@@ -33,6 +33,7 @@ class Criticals : Module() {
         arrayOf(
             "Packet",
             "NCPPacket",
+            "NCPMotion",
             "MiPacket",
             "Blocksmc",
             "Hypixel",
@@ -148,6 +149,11 @@ class Criticals : Module() {
                     sendCriticalPacket(yOffset = 0.11, ground = false)
                     sendCriticalPacket(yOffset = 0.1100013579, ground = false)
                     sendCriticalPacket(yOffset = 0.0000013579, ground = false)
+                }
+                "ncpmotion" -> {
+                    sendCriticalPacket(yOffset = 0.42, ground = false)
+                    sendCriticalPacket(yOffset = 0.222, ground = false)
+                    sendCriticalPacket(yOffset = 0.0, ground = true)
                 }
 
                 "mipacket" -> {
