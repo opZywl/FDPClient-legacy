@@ -33,11 +33,11 @@ import kotlin.math.roundToInt
 @ModuleInfo(name = "NameTags", category = ModuleCategory.RENDER)
 class NameTags : Module() {
     private val modeValue = ListValue("Mode", arrayOf("Simple", "Liquid", "Jello"), "Simple")
-    private val healthValue = BoolValue("Health", true)
-    private val pingValue = BoolValue("Ping", true)
-    private val healthBarValue = BoolValue("Bar", true)
-    private val distanceValue = BoolValue("Distance", false)
-    private val armorValue = BoolValue("Armor", true)
+    private val healthValue = BoolValue("Health", true).displayable { modeValue.equals("Liquid") }
+    private val pingValue = BoolValue("Ping", true).displayable { modeValue.equals("Liquid") }
+    private val healthBarValue = BoolValue("Bar", true).displayable { modeValue.equals("Liquid") }
+    private val distanceValue = BoolValue("Distance", false).displayable { modeValue.equals("Liquid") }
+    private val armorValue = BoolValue("Armor", true).displayable { modeValue.equals("Liquid") }
     private val potionValue = BoolValue("Potions", true)
     private val clearNamesValue = BoolValue("ClearNames", true)
     private val fontValue = FontValue("Font", Fonts.font40)
