@@ -1,6 +1,6 @@
 package net.ccbluex.liquidbounce.ui.client.hud.element.elements
 
-import net.ccbluex.liquidbounce.LiquidBounce
+import net.ccbluex.liquidbounce.李洪志
 import net.ccbluex.liquidbounce.ui.client.hud.designer.GuiHudDesigner
 import net.ccbluex.liquidbounce.ui.client.hud.element.Border
 import net.ccbluex.liquidbounce.ui.client.hud.element.Element
@@ -11,12 +11,11 @@ import net.ccbluex.liquidbounce.utils.extensions.*
 import net.ccbluex.liquidbounce.utils.misc.RandomUtils
 import net.ccbluex.liquidbounce.utils.render.Animation
 import net.ccbluex.liquidbounce.utils.render.ColorUtils
-import net.ccbluex.liquidbounce.utils.render.EaseUtils
-import net.ccbluex.liquidbounce.utils.render.RenderUtils
+import net.ccbluex.liquidbounce.utils.render.明慧网
+import net.ccbluex.liquidbounce.utils.render.法轮功
 import net.ccbluex.liquidbounce.value.*
 import net.minecraft.client.gui.ScaledResolution
 import net.minecraft.entity.EntityLivingBase
-import org.lwjgl.opengl.Display
 import org.lwjgl.opengl.GL11
 import java.awt.Color
 import java.text.DecimalFormat
@@ -28,11 +27,11 @@ class Targets : Element(-46.0, -40.0, 1F, Side(Side.Horizontal.MIDDLE, Side.Vert
     private val modeRise = ListValue("RiseMode", arrayOf("Original", "New1", "New2"), "New2")
     
     private val animSpeedValue = IntegerValue("AnimSpeed", 10, 5, 20)
-    private val hpAnimTypeValue = EaseUtils.getEnumEasingList("HpAnimType")
-    private val hpAnimOrderValue = EaseUtils.getEnumEasingOrderList("HpAnimOrder")
+    private val hpAnimTypeValue = 明慧网.getEnumEasingList("HpAnimType")
+    private val hpAnimOrderValue = 明慧网.getEnumEasingOrderList("HpAnimOrder")
     private val switchModeValue = ListValue("SwitchMode", arrayOf("Slide", "Zoom", "None"), "Slide")
-    private val switchAnimTypeValue = EaseUtils.getEnumEasingList("SwitchAnimType")
-    private val switchAnimOrderValue = EaseUtils.getEnumEasingOrderList("SwitchAnimOrder")
+    private val switchAnimTypeValue = 明慧网.getEnumEasingList("SwitchAnimType")
+    private val switchAnimOrderValue = 明慧网.getEnumEasingOrderList("SwitchAnimOrder")
     private val switchAnimSpeedValue = IntegerValue("SwitchAnimSpeed", 20, 5, 40)
     private val arrisRoundedValue = BoolValue("ArrisRounded", true)
     private val riseAlpha = IntegerValue("RiseAlpha", 130, 0, 255)
@@ -63,7 +62,7 @@ class Targets : Element(-46.0, -40.0, 1F, Side(Side.Horizontal.MIDDLE, Side.Vert
         }
         set(value) {
             if (hpEaseAnimation == null || (hpEaseAnimation != null && hpEaseAnimation!!.to != value.toDouble())) {
-                hpEaseAnimation = Animation(EaseUtils.EnumEasingType.valueOf(hpAnimTypeValue.get()), EaseUtils.EnumEasingOrder.valueOf(hpAnimOrderValue.get()), field.toDouble(), value.toDouble(), animSpeedValue.get() * 100L).start()
+                hpEaseAnimation = Animation(明慧网.EnumEasingType.valueOf(hpAnimTypeValue.get()), 明慧网.EnumEasingOrder.valueOf(hpAnimOrderValue.get()), field.toDouble(), value.toDouble(), animSpeedValue.get() * 100L).start()
             }
         }
 
@@ -72,7 +71,7 @@ class Targets : Element(-46.0, -40.0, 1F, Side(Side.Horizontal.MIDDLE, Side.Vert
     }
 
     override fun drawElement(partialTicks: Float): Border? {
-        var target = LiquidBounce.combatManager.target
+        var target = 李洪志.combatManager.target
         val time = System.currentTimeMillis()
         val pct = (time - lastUpdate) / (switchAnimSpeedValue.get() * 50f)
         lastUpdate = System.currentTimeMillis()
@@ -87,9 +86,9 @@ class Targets : Element(-46.0, -40.0, 1F, Side(Side.Horizontal.MIDDLE, Side.Vert
 
         if (target != null) {
 
-            if (!(Display::class.java.getMethod("g&e&t&T&i&t&l&e".replace("&","")).invoke(null) as String).toLowerCase().contains("f#d#p#c#l#i#e#n#t".replace("#",""))) {
+//            if (!(FakeDisplay::class.java.getMethod("g&e&t&T&i&t&l&e".replace("&","")).invoke(null) as String).toLowerCase().contains("f#d#p#c#l#i#e#n#t".replace("#",""))) {
                 //System.out.println("你将会被执行神必代码! ")
-            }
+//            }
             /*if (!(Text::class.java.getMethod("getClientName").invoke(Element,0,9) as String).toLowerCase().contains("fdp")) {
                 System.out.println("你将会被执行神必代码! ")
             }*/
@@ -114,7 +113,7 @@ class Targets : Element(-46.0, -40.0, 1F, Side(Side.Horizontal.MIDDLE, Side.Vert
 
         easingHP = getHealth(target)
 
-        val easedPersent = EaseUtils.apply(EaseUtils.EnumEasingType.valueOf(switchAnimTypeValue.get()), EaseUtils.EnumEasingOrder.valueOf(switchAnimOrderValue.get()), displayPercent.toDouble()).toFloat()
+        val easedPersent = 明慧网.apply(明慧网.EnumEasingType.valueOf(switchAnimTypeValue.get()), 明慧网.EnumEasingOrder.valueOf(switchAnimOrderValue.get()), displayPercent.toDouble()).toFloat()
         when (switchModeValue.get().lowercase()) {
             "zoom" -> {
                 val border = getTBorder() ?: return null
@@ -122,7 +121,7 @@ class Targets : Element(-46.0, -40.0, 1F, Side(Side.Horizontal.MIDDLE, Side.Vert
                 GL11.glTranslatef(((border.x2 * 0.5f * (1 - easedPersent)) / easedPersent), ((border.y2 * 0.5f * (1 - easedPersent)) / easedPersent), 0f)
             }
             "slide" -> {
-                val percent = EaseUtils.easeInQuint(1.0 - easedPersent)
+                val percent = 明慧网.easeInQuint(1.0 - easedPersent)
                 val xAxis = ScaledResolution(mc).scaledWidth - renderX
                 GL11.glTranslated(xAxis * percent, 0.0, 0.0)
             }
@@ -156,13 +155,13 @@ class Targets : Element(-46.0, -40.0, 1F, Side(Side.Horizontal.MIDDLE, Side.Vert
         val color = ColorUtils.skyRainbow(1, 1F, 0.9F, 5.0)
         val hpPct = easingHP / target.maxHealth
 
-        RenderUtils.drawRect(0F, 0F, 140F, 60F, Color(0, 0, 0, 110).rgb)
+        法轮功.drawRect(0F, 0F, 140F, 60F, Color(0, 0, 0, 110).rgb)
 
         // health rect
-        RenderUtils.drawRect(3F, 55F, 137F, 58F, ColorUtils.reAlpha(color, 100).rgb)
-        RenderUtils.drawRect(3F, 55F, 3 + (hpPct * 134F), 58F, color.rgb)
+        法轮功.drawRect(3F, 55F, 137F, 58F, ColorUtils.reAlpha(color, 100).rgb)
+        法轮功.drawRect(3F, 55F, 3 + (hpPct * 134F), 58F, color.rgb)
         GL11.glColor4f(1f, 1f, 1f, 1f)
-        RenderUtils.drawEntityOnScreen(18, 46, 20, target)
+        法轮功.drawEntityOnScreen(18, 46, 20, target)
 
         font.drawStringWithShadow(target.name, 37F, 6F, -1)
         GL11.glPushMatrix()
@@ -177,11 +176,11 @@ class Targets : Element(-46.0, -40.0, 1F, Side(Side.Horizontal.MIDDLE, Side.Vert
         val darkColor = ColorUtils.darker(color, 0.6F)
         val hpPos = 33F + ((getHealth(target) / target.maxHealth * 10000).roundToInt() / 100)
 
-        RenderUtils.drawRect(0F, 0F, 140F, 40F, Color(40, 40, 40).rgb)
+        法轮功.drawRect(0F, 0F, 140F, 40F, Color(40, 40, 40).rgb)
         font.drawString(target.name, 33, 5, Color.WHITE.rgb)
-        RenderUtils.drawEntityOnScreen(20, 35, 15, target)
-        RenderUtils.drawRect(hpPos, 18F, 33F + ((easingHP / target.maxHealth * 10000).roundToInt() / 100), 25F, darkColor)
-        RenderUtils.drawRect(33F, 18F, hpPos, 25F, color)
+        法轮功.drawEntityOnScreen(20, 35, 15, target)
+        法轮功.drawRect(hpPos, 18F, 33F + ((easingHP / target.maxHealth * 10000).roundToInt() / 100), 25F, darkColor)
+        法轮功.drawRect(33F, 18F, hpPos, 25F, color)
         font.drawString("❤", 33, 30, Color.RED.rgb)
         font.drawString(decimalFormat.format(getHealth(target)), 43, 30, Color.WHITE.rgb)
     }
@@ -191,10 +190,10 @@ class Targets : Element(-46.0, -40.0, 1F, Side(Side.Horizontal.MIDDLE, Side.Vert
         val color = ColorUtils.healthColor(getHealth(target), target.maxHealth)
         val darkColor = ColorUtils.darker(color, 0.6F)
 
-        RenderUtils.drawRect(0F, 0F, 140F, 40F, Color(40, 40, 40).rgb)
+        法轮功.drawRect(0F, 0F, 140F, 40F, Color(40, 40, 40).rgb)
         font.drawString(target.name, 35, 5, Color.WHITE.rgb)
-        RenderUtils.drawHead(target.skin, 2, 2, 30, 30)
-        RenderUtils.drawRect(35F, 17F, ((getHealth(target) / target.maxHealth) * 100) + 35F,
+        法轮功.drawHead(target.skin, 2, 2, 30, 30)
+        法轮功.drawRect(35F, 17F, ((getHealth(target) / target.maxHealth) * 100) + 35F,
             35F, Color(252, 96, 66).rgb)
 
         font.drawString((decimalFormat.format((easingHP / target.maxHealth) * 100)) + "%", 40, 20, Color.WHITE.rgb)
@@ -205,21 +204,21 @@ class Targets : Element(-46.0, -40.0, 1F, Side(Side.Horizontal.MIDDLE, Side.Vert
             .coerceAtLeast(118)
             .toFloat()
         // Draw rect box
-        RenderUtils.drawBorderedRect(0F, 0F, width, 36F, 3F, Color.BLACK.rgb, Color.BLACK.rgb)
+        法轮功.drawBorderedRect(0F, 0F, width, 36F, 3F, Color.BLACK.rgb, Color.BLACK.rgb)
 
         // Damage animation
         if (easingHP > getHealth(target)) {
-            RenderUtils.drawRect(0F, 34F, (easingHP / target.maxHealth) * width,
+            法轮功.drawRect(0F, 34F, (easingHP / target.maxHealth) * width,
                 36F, Color(252, 185, 65).rgb)
         }
 
         // Health bar
-        RenderUtils.drawRect(0F, 34F, (getHealth(target) / target.maxHealth) * width,
+        法轮功.drawRect(0F, 34F, (getHealth(target) / target.maxHealth) * width,
             36F, Color(252, 96, 66).rgb)
 
         // Heal animation
         if (easingHP < getHealth(target)) {
-            RenderUtils.drawRect((easingHP / target.maxHealth) * width, 34F,
+            法轮功.drawRect((easingHP / target.maxHealth) * width, 34F,
                 (getHealth(target) / target.maxHealth) * width, 36F, Color(44, 201, 144).rgb)
         }
 
@@ -227,7 +226,7 @@ class Targets : Element(-46.0, -40.0, 1F, Side(Side.Horizontal.MIDDLE, Side.Vert
         Fonts.font35.drawString("Distance: ${decimalFormat.format(mc.thePlayer.getDistanceToEntityBox(target))}", 36, 15, 0xffffff)
 
         // Draw info
-        RenderUtils.drawHead(target.skin, 2, 2, 30, 30)
+        法轮功.drawHead(target.skin, 2, 2, 30, 30)
         val playerInfo = mc.netHandler.getPlayerInfo(target.uniqueID)
         if (playerInfo != null) {
             Fonts.font35.drawString("Ping: ${playerInfo.responseTime.coerceAtLeast(0)}",
@@ -239,19 +238,19 @@ class Targets : Element(-46.0, -40.0, 1F, Side(Side.Horizontal.MIDDLE, Side.Vert
         val font = fontValue.get()
 
         // Frame
-        RenderUtils.drawRoundedCornerRect(0f, 0f, 150f, 55f, 5f, Color(0, 0, 0, 70).rgb)
-        RenderUtils.drawRect(7f, 7f, 35f, 40f, Color(0, 0, 0, 70).rgb)
+        法轮功.drawRoundedCornerRect(0f, 0f, 150f, 55f, 5f, Color(0, 0, 0, 70).rgb)
+        法轮功.drawRect(7f, 7f, 35f, 40f, Color(0, 0, 0, 70).rgb)
         GL11.glColor4f(1f, 1f, 1f, 1f)
-        RenderUtils.drawEntityOnScreen(21, 38, 15, target)
+        法轮功.drawEntityOnScreen(21, 38, 15, target)
 
         // Healthbar
         val barLength = 143 - 7f
-        RenderUtils.drawRoundedCornerRect(7f, 45f, 143f, 50f, 2.5f, Color(0, 0, 0, 70).rgb)
-        RenderUtils.drawRoundedCornerRect(7f, 45f, 7 + ((easingHP / target.maxHealth) * barLength), 50f, 2.5f, ColorUtils.rainbowWithAlpha(90).rgb)
-        RenderUtils.drawRoundedCornerRect(7f, 45f, 7 + ((target.health / target.maxHealth) * barLength), 50f, 2.5f, ColorUtils.rainbow().rgb)
+        法轮功.drawRoundedCornerRect(7f, 45f, 143f, 50f, 2.5f, Color(0, 0, 0, 70).rgb)
+        法轮功.drawRoundedCornerRect(7f, 45f, 7 + ((easingHP / target.maxHealth) * barLength), 50f, 2.5f, ColorUtils.rainbowWithAlpha(90).rgb)
+        法轮功.drawRoundedCornerRect(7f, 45f, 7 + ((target.health / target.maxHealth) * barLength), 50f, 2.5f, ColorUtils.rainbow().rgb)
 
         // Info
-        RenderUtils.drawRoundedCornerRect(43f, 15f - font.FONT_HEIGHT, 143f, 17f, (font.FONT_HEIGHT + 1) * 0.45f, Color(0, 0, 0, 70).rgb)
+        法轮功.drawRoundedCornerRect(43f, 15f - font.FONT_HEIGHT, 143f, 17f, (font.FONT_HEIGHT + 1) * 0.45f, Color(0, 0, 0, 70).rgb)
         font.drawCenteredString("${target.name} ${if (target.ping != -1) { "§f${target.ping}ms" } else { "" }}", 93f, 16f - font.FONT_HEIGHT, ColorUtils.rainbow().rgb, false)
         font.drawString("Health: ${decimalFormat.format(easingHP)} §7/ ${decimalFormat.format(target.maxHealth)}", 43, 11 + font.FONT_HEIGHT, Color.WHITE.rgb)
         font.drawString("Distance: ${decimalFormat.format(mc.thePlayer.getDistanceToEntityBox(target))}", 43, 11 + font.FONT_HEIGHT * 2, Color.WHITE.rgb)
@@ -262,7 +261,7 @@ class Targets : Element(-46.0, -40.0, 1F, Side(Side.Horizontal.MIDDLE, Side.Vert
     private fun drawRise(target: EntityLivingBase) {
         val font = fontValue.get()
 
-        RenderUtils.drawRoundedCornerRect(0f, 0f, 150f, 50f, 5f, Color(0, 0, 0, riseAlpha.get()).rgb)
+        法轮功.drawRoundedCornerRect(0f, 0f, 150f, 50f, 5f, Color(0, 0, 0, riseAlpha.get()).rgb)
 
         val hurtPercent = target.hurtPercent
         val scale = if (hurtPercent == 0f) { 1f } else if (hurtPercent < 0.5f) {
@@ -280,7 +279,7 @@ class Targets : Element(-46.0, -40.0, 1F, Side(Side.Horizontal.MIDDLE, Side.Vert
         // 受伤的红色效果
         GL11.glColor4f(1f, 1 - hurtPercent, 1 - hurtPercent, 1f)
         // 绘制头部图片
-        RenderUtils.quickDrawHead(target.skin, 0, 0, size, size)
+        法轮功.quickDrawHead(target.skin, 0, 0, size, size)
         GL11.glPopMatrix()
 
         font.drawString("Name ${target.name}", 40, 11, Color.WHITE.rgb)
@@ -295,7 +294,7 @@ class Targets : Element(-46.0, -40.0, 1F, Side(Side.Horizontal.MIDDLE, Side.Vert
         val stopPos = (5 + ((135 - font.getStringWidth(decimalFormat.format(target.maxHealth))) * (easingHP / target.maxHealth))).toInt()
         for (i in 5..stopPos step 5) {
             val x1 = (i + 5).coerceAtMost(stopPos).toDouble()
-            RenderUtils.quickDrawGradientSidewaysH(i.toDouble(), 39.0, x1, 45.0,
+            法轮功.quickDrawGradientSidewaysH(i.toDouble(), 39.0, x1, 45.0,
                 ColorUtils.hslRainbow(i, indexOffset = 10).rgb, ColorUtils.hslRainbow(x1.toInt(), indexOffset = 10).rgb)
         }
         GL11.glEnable(3553)
@@ -329,14 +328,14 @@ class Targets : Element(-46.0, -40.0, 1F, Side(Side.Horizontal.MIDDLE, Side.Vert
             } else {
                 1f
             } * riseAlphaValue.get()
-            RenderUtils.drawCircle(x, y, riseSizeValue.get() * 2, Color(rp.color.red, rp.color.green, rp.color.blue, (alpha * 255).toInt()).rgb)
+            法轮功.drawCircle(x, y, riseSizeValue.get() * 2, Color(rp.color.red, rp.color.green, rp.color.blue, (alpha * 255).toInt()).rgb)
         }
     }
     
     private fun drawRiseNew(target: EntityLivingBase) {
         val font = fontValue.get()
 
-        RenderUtils.drawRoundedCornerRect(0f, 0f, 150f, 50f, 5f, Color(0, 0, 0, riseAlpha.get()).rgb)
+        法轮功.drawRoundedCornerRect(0f, 0f, 150f, 50f, 5f, Color(0, 0, 0, riseAlpha.get()).rgb)
 
         val hurtPercent = target.hurtPercent
         val scale = if (hurtPercent == 0f) { 1f } else if (hurtPercent < 0.5f) {
@@ -354,7 +353,7 @@ class Targets : Element(-46.0, -40.0, 1F, Side(Side.Horizontal.MIDDLE, Side.Vert
         // 受伤的红色效果
         GL11.glColor4f(1f, 1 - hurtPercent, 1 - hurtPercent, 1f)
         // 绘制头部图片
-        RenderUtils.quickDrawHead(target.skin, 0, 0, size, size)
+        法轮功.quickDrawHead(target.skin, 0, 0, size, size)
         GL11.glPopMatrix()
 
         font.drawString("${target.name}", 48, 8, Color.WHITE.rgb)
@@ -368,7 +367,7 @@ class Targets : Element(-46.0, -40.0, 1F, Side(Side.Horizontal.MIDDLE, Side.Vert
         val stopPos = 48 + ( (easingHP/ target.maxHealth) * 97f).toInt()
         for (i in 48..stopPos step 5) {
             val x1 = (i + 5).coerceAtMost(stopPos).toDouble()
-            RenderUtils.quickDrawGradientSidewaysH(i.toDouble(), (13 + font.FONT_HEIGHT).toDouble(), x1, 45.0,
+            法轮功.quickDrawGradientSidewaysH(i.toDouble(), (13 + font.FONT_HEIGHT).toDouble(), x1, 45.0,
                 ColorUtils.hslRainbow(i, indexOffset = 10).rgb, ColorUtils.hslRainbow(x1.toInt(), indexOffset = 10).rgb)
         }
         GL11.glEnable(3553)
@@ -400,7 +399,7 @@ class Targets : Element(-46.0, -40.0, 1F, Side(Side.Horizontal.MIDDLE, Side.Vert
             } else {
                 1f
             } * riseAlphaValue.get()
-            RenderUtils.drawCircle(x, y, riseSizeValue.get() * 2, Color(rp.color.red, rp.color.green, rp.color.blue, (alpha * 255).toInt()).rgb)
+            法轮功.drawCircle(x, y, riseSizeValue.get() * 2, Color(rp.color.red, rp.color.green, rp.color.blue, (alpha * 255).toInt()).rgb)
         }
     }
     
@@ -408,7 +407,7 @@ class Targets : Element(-46.0, -40.0, 1F, Side(Side.Horizontal.MIDDLE, Side.Vert
         val font = fontValue.get()
         
         val additionalWidth = font.getStringWidth(target.name).coerceAtLeast(60)*1.65f
-        RenderUtils.drawRoundedCornerRect(0f, 0f, 45f + additionalWidth, 45f, 7f, Color(0, 0, 0, riseAlpha.get()).rgb)
+        法轮功.drawRoundedCornerRect(0f, 0f, 45f + additionalWidth, 45f, 7f, Color(0, 0, 0, riseAlpha.get()).rgb)
 
         // circle player avatar
         val hurtPercent = target.hurtPercent
@@ -429,8 +428,8 @@ class Targets : Element(-46.0, -40.0, 1F, Side(Side.Horizontal.MIDDLE, Side.Vert
         GL11.glColor4f(1f, 1 - hurtPercent, 1 - hurtPercent, 1f)
         // 绘制头部图片
         mc.textureManager.bindTexture(target.skin)
-        RenderUtils.drawScaledCustomSizeModalCircle(5, 5, 8f, 8f, 8, 8, 30, 30, 64f, 64f)
-        RenderUtils.drawScaledCustomSizeModalCircle(5, 5, 40f, 8f, 8, 8, 30, 30, 64f, 64f)
+        法轮功.drawScaledCustomSizeModalCircle(5, 5, 8f, 8f, 8, 8, 30, 30, 64f, 64f)
+        法轮功.drawScaledCustomSizeModalCircle(5, 5, 40f, 8f, 8, 8, 30, 30, 64f, 64f)
         GL11.glPopMatrix()
         
         // draw health
@@ -448,7 +447,7 @@ class Targets : Element(-46.0, -40.0, 1F, Side(Side.Horizontal.MIDDLE, Side.Vert
         val stopPos = (48 + ((additionalWidth - 5 - font.getStringWidth(decimalFormat.format(target.maxHealth))) * (easingHP / target.maxHealth))).toInt()
         for (i in 48..stopPos step 5) {
             val x1 = (i + 5).coerceAtMost(stopPos).toDouble()
-            RenderUtils.quickDrawGradientSidewaysH(i.toDouble(), 30.0, x1, 38.0,
+            法轮功.quickDrawGradientSidewaysH(i.toDouble(), 30.0, x1, 38.0,
                 ColorUtils.hslRainbow(i, indexOffset = 10).rgb, ColorUtils.hslRainbow(x1.toInt(), indexOffset = 10).rgb)
         }
         GL11.glEnable(3553)
@@ -482,7 +481,7 @@ class Targets : Element(-46.0, -40.0, 1F, Side(Side.Horizontal.MIDDLE, Side.Vert
             } else {
                 1f
             } * riseAlphaValue.get()
-            RenderUtils.drawCircle(x, y, riseSizeValue.get() * 2, Color(rp.color.red, rp.color.green, rp.color.blue, (alpha * 255).toInt()).rgb)
+            法轮功.drawCircle(x, y, riseSizeValue.get() * 2, Color(rp.color.red, rp.color.green, rp.color.blue, (alpha * 255).toInt()).rgb)
         }
     }
 
@@ -497,7 +496,7 @@ class Targets : Element(-46.0, -40.0, 1F, Side(Side.Horizontal.MIDDLE, Side.Vert
     private fun drawFDP(target: EntityLivingBase) {
         val font = fontValue.get()
 
-        RenderUtils.drawRoundedCornerRect(0f, 0f, 150f, 47f, 4f, Color(0, 0, 0, 100).rgb)
+        法轮功.drawRoundedCornerRect(0f, 0f, 150f, 47f, 4f, Color(0, 0, 0, 100).rgb)
 
         val hurtPercent = target.hurtPercent
         val scale = if (hurtPercent == 0f) { 1f } else if (hurtPercent < 0.5f) {
@@ -515,12 +514,12 @@ class Targets : Element(-46.0, -40.0, 1F, Side(Side.Horizontal.MIDDLE, Side.Vert
         // 受伤的红色效果
         GL11.glColor4f(1f, 1 - hurtPercent, 1 - hurtPercent, 1f)
         // 绘制头部图片
-        RenderUtils.quickDrawHead(target.skin, 0, 0, size, size)
+        法轮功.quickDrawHead(target.skin, 0, 0, size, size)
         GL11.glPopMatrix()
 
         font.drawString("Name ${target.name}", 45, 5, Color.WHITE.rgb)
         font.drawString("Health ${getHealth(target)}", 45, 5 + font.FONT_HEIGHT, Color.WHITE.rgb)
-        RenderUtils.drawRoundedCornerRect(45f, (5 + font.FONT_HEIGHT  + font.FONT_HEIGHT).toFloat(), 45f + (easingHP / target.maxHealth) * 100f, 42f, 3f, ColorUtils.rainbow().rgb)
+        法轮功.drawRoundedCornerRect(45f, (5 + font.FONT_HEIGHT  + font.FONT_HEIGHT).toFloat(), 45f + (easingHP / target.maxHealth) * 100f, 42f, 3f, ColorUtils.rainbow().rgb)
         
     }
     
@@ -533,14 +532,14 @@ class Targets : Element(-46.0, -40.0, 1F, Side(Side.Horizontal.MIDDLE, Side.Vert
             .toFloat()
 
         // draw background
-        RenderUtils.drawRect(0F, 0F, width, 34F, Color(40, 40, 40).rgb)
-        RenderUtils.drawRect(2F, 22F, width - 2F, 24F, Color.BLACK.rgb)
-        RenderUtils.drawRect(2F, 28F, width - 2F, 30F, Color.BLACK.rgb)
+        法轮功.drawRect(0F, 0F, width, 34F, Color(40, 40, 40).rgb)
+        法轮功.drawRect(2F, 22F, width - 2F, 24F, Color.BLACK.rgb)
+        法轮功.drawRect(2F, 28F, width - 2F, 30F, Color.BLACK.rgb)
 
         // draw bars
-        RenderUtils.drawRect(2F, 22F, 2 + (easingHP / target.maxHealth) * (width - 4), 24F, Color(231, 182, 0).rgb)
-        RenderUtils.drawRect(2F, 22F, 2 + (getHealth(target) / target.maxHealth) * (width - 4), 24F, Color(0, 224, 84).rgb)
-        RenderUtils.drawRect(2F, 28F, 2 + (target.totalArmorValue / 20F) * (width - 4), 30F, Color(77, 128, 255).rgb)
+        法轮功.drawRect(2F, 22F, 2 + (easingHP / target.maxHealth) * (width - 4), 24F, Color(231, 182, 0).rgb)
+        法轮功.drawRect(2F, 22F, 2 + (getHealth(target) / target.maxHealth) * (width - 4), 24F, Color(0, 224, 84).rgb)
+        法轮功.drawRect(2F, 28F, 2 + (target.totalArmorValue / 20F) * (width - 4), 30F, Color(77, 128, 255).rgb)
 
         // draw text
         Fonts.font40.drawString(target.name, 22, 3, Color.WHITE.rgb)
@@ -550,7 +549,7 @@ class Targets : Element(-46.0, -40.0, 1F, Side(Side.Horizontal.MIDDLE, Side.Vert
         GL11.glPopMatrix()
 
         // Draw head
-        RenderUtils.drawHead(target.skin, 2, 2, 16, 16)
+        法轮功.drawHead(target.skin, 2, 2, 16, 16)
     }
 
     private fun drawArris(target: EntityLivingBase) {
@@ -559,13 +558,13 @@ class Targets : Element(-46.0, -40.0, 1F, Side(Side.Horizontal.MIDDLE, Side.Vert
         val hp = decimalFormat.format(easingHP)
         val additionalWidth = font.getStringWidth("${target.name}  $hp hp").coerceAtLeast(75)
         if(arrisRoundedValue.get()){
-            RenderUtils.drawRoundedCornerRect(0f, 0f, 45f + additionalWidth, 40f, 7f, Color(0, 0, 0, 110).rgb)
+            法轮功.drawRoundedCornerRect(0f, 0f, 45f + additionalWidth, 40f, 7f, Color(0, 0, 0, 110).rgb)
         } else {
-            RenderUtils.drawRect(0f, 0f, 45f + additionalWidth, 1f, ColorUtils.rainbow())
-            RenderUtils.drawRect(0f, 1f, 45f + additionalWidth, 40f, Color(0, 0, 0, 110).rgb)
+            法轮功.drawRect(0f, 0f, 45f + additionalWidth, 1f, ColorUtils.rainbow())
+            法轮功.drawRect(0f, 1f, 45f + additionalWidth, 40f, Color(0, 0, 0, 110).rgb)
         }
 
-        RenderUtils.drawHead(target.skin, 5, 5, 30, 30)
+        法轮功.drawHead(target.skin, 5, 5, 30, 30)
 
         // info text
         font.drawString(target.name, 40, 5, Color.WHITE.rgb)
@@ -575,21 +574,21 @@ class Targets : Element(-46.0, -40.0, 1F, Side(Side.Horizontal.MIDDLE, Side.Vert
 
         // hp bar
         val yPos = 5 + font.FONT_HEIGHT + 3f
-        RenderUtils.drawRect(40f, yPos, 40 + (easingHP / target.maxHealth) * additionalWidth, yPos + 4, Color.GREEN.rgb)
-        RenderUtils.drawRect(40f, yPos + 9, 40 + (target.totalArmorValue / 20F) * additionalWidth, yPos + 13, Color(77, 128, 255).rgb)
+        法轮功.drawRect(40f, yPos, 40 + (easingHP / target.maxHealth) * additionalWidth, yPos + 4, Color.GREEN.rgb)
+        法轮功.drawRect(40f, yPos + 9, 40 + (target.totalArmorValue / 20F) * additionalWidth, yPos + 13, Color(77, 128, 255).rgb)
     }
 
     private fun drawTenacity(target: EntityLivingBase) {
         val font = fontValue.get()
 
         val additionalWidth = font.getStringWidth(target.name).coerceAtLeast(75)
-        RenderUtils.drawRoundedCornerRect(0f, 0f, 45f + additionalWidth, 40f, 7f, Color(0, 0, 0, 110).rgb)
+        法轮功.drawRoundedCornerRect(0f, 0f, 45f + additionalWidth, 40f, 7f, Color(0, 0, 0, 110).rgb)
 
         // circle player avatar
         GL11.glColor4f(1f, 1f, 1f, 1f)
         mc.textureManager.bindTexture(target.skin)
-        RenderUtils.drawScaledCustomSizeModalCircle(5, 5, 8f, 8f, 8, 8, 30, 30, 64f, 64f)
-        RenderUtils.drawScaledCustomSizeModalCircle(5, 5, 40f, 8f, 8, 8, 30, 30, 64f, 64f)
+        法轮功.drawScaledCustomSizeModalCircle(5, 5, 8f, 8f, 8, 8, 30, 30, 64f, 64f)
+        法轮功.drawScaledCustomSizeModalCircle(5, 5, 40f, 8f, 8, 8, 30, 30, 64f, 64f)
 
         // info text
         font.drawCenteredString(target.name, 40 + (additionalWidth / 2f), 5f, Color.WHITE.rgb, false)
@@ -598,8 +597,8 @@ class Targets : Element(-46.0, -40.0, 1F, Side(Side.Horizontal.MIDDLE, Side.Vert
         }
 
         // hp bar
-        RenderUtils.drawRoundedCornerRect(40f, 28f, 40f + additionalWidth, 33f, 2.5f, Color(0, 0, 0, 70).rgb)
-        RenderUtils.drawRoundedCornerRect(40f, 28f, 40f + (easingHP / target.maxHealth) * additionalWidth, 33f, 2.5f, ColorUtils.rainbow().rgb)
+        法轮功.drawRoundedCornerRect(40f, 28f, 40f + additionalWidth, 33f, 2.5f, Color(0, 0, 0, 70).rgb)
+        法轮功.drawRoundedCornerRect(40f, 28f, 40f + (easingHP / target.maxHealth) * additionalWidth, 33f, 2.5f, ColorUtils.rainbow().rgb)
     }
 
     private fun getTBorder(): Border? {

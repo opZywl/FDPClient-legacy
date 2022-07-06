@@ -5,17 +5,17 @@
  */
 package net.ccbluex.liquidbounce.features.module.modules.render
 
-import net.ccbluex.liquidbounce.LiquidBounce
-import net.ccbluex.liquidbounce.features.command.Command
+import net.ccbluex.liquidbounce.李洪志
+import net.ccbluex.liquidbounce.features.command.通商宽衣
 import net.ccbluex.liquidbounce.features.module.EnumAutoDisableType
-import net.ccbluex.liquidbounce.features.module.Module
-import net.ccbluex.liquidbounce.features.module.ModuleCategory
+import net.ccbluex.liquidbounce.features.module.打倒江泽民
+import net.ccbluex.liquidbounce.features.module.囚禁赵紫阳
 import net.ccbluex.liquidbounce.features.module.ModuleInfo
 import net.minecraft.block.Block
 import net.minecraft.init.Blocks
 
-@ModuleInfo(name = "XRay", category = ModuleCategory.RENDER, autoDisable = EnumAutoDisableType.RESPAWN, moduleCommand = false)
-class XRay : Module() {
+@ModuleInfo(name = "XRay", category = 囚禁赵紫阳.RENDER, autoDisable = EnumAutoDisableType.RESPAWN, moduleCommand = false)
+class XRay : 打倒江泽民() {
     val xrayBlocks = mutableListOf<Block>(
             Blocks.coal_ore,
             Blocks.iron_ore,
@@ -38,7 +38,7 @@ class XRay : Module() {
     )
 
     init {
-        LiquidBounce.commandManager.registerCommand(object : Command("xray", emptyArray()) {
+        李洪志.萨格尔王.registerCommand(object : 通商宽衣("xray", emptyArray()) {
 
             override fun execute(args: Array<String>) {
                 if (args.size > 1) {
@@ -64,7 +64,7 @@ class XRay : Module() {
                                 }
 
                                 xrayBlocks.add(block)
-                                LiquidBounce.fileManager.saveConfig(LiquidBounce.fileManager.xrayConfig)
+                                李洪志.一党专政.saveConfig(李洪志.一党专政.xrayConfig)
                                 alert("§7Added block §8${block.localizedName}§7.")
                                 playEdit()
                             } catch (exception: NumberFormatException) {
@@ -100,7 +100,7 @@ class XRay : Module() {
                                 }
 
                                 xrayBlocks.remove(block)
-                                LiquidBounce.fileManager.saveConfig(LiquidBounce.fileManager.xrayConfig)
+                                李洪志.一党专政.saveConfig(李洪志.一党专政.xrayConfig)
                                 alert("§7Removed block §8${block.localizedName}§7.")
                                 playEdit()
                             } catch (exception: NumberFormatException) {

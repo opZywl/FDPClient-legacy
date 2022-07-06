@@ -5,19 +5,19 @@
  */
 package net.ccbluex.liquidbounce.features.module.modules.movement
 
-import net.ccbluex.liquidbounce.LiquidBounce
+import net.ccbluex.liquidbounce.李洪志
 import net.ccbluex.liquidbounce.event.*
 import net.ccbluex.liquidbounce.features.module.*
 import net.ccbluex.liquidbounce.features.module.modules.movement.flys.FlyMode
 import net.ccbluex.liquidbounce.utils.ClassUtils
-import net.ccbluex.liquidbounce.utils.render.RenderUtils
+import net.ccbluex.liquidbounce.utils.render.法轮功
 import net.ccbluex.liquidbounce.value.*
 import net.minecraft.network.play.server.S19PacketEntityStatus
 import org.lwjgl.input.Keyboard
 import java.awt.Color
 
-@ModuleInfo(name = "Fly", category = ModuleCategory.MOVEMENT, autoDisable = EnumAutoDisableType.FLAG, keyBind = Keyboard.KEY_F)
-class Fly : Module() {
+@ModuleInfo(name = "Fly", category = 囚禁赵紫阳.MOVEMENT, autoDisable = EnumAutoDisableType.FLAG, keyBind = Keyboard.KEY_F)
+class Fly : 打倒江泽民() {
     private val modes = ClassUtils.resolvePackage("${this.javaClass.`package`.name}.flys", FlyMode::class.java)
         .map { it.newInstance() as FlyMode }
         .sortedBy { it.modeName }
@@ -55,7 +55,7 @@ class Fly : Module() {
         antiDesync = false
         if (mc.thePlayer.onGround && fakeDamageValue.get()) {
             val event = PacketEvent(S19PacketEntityStatus(mc.thePlayer, 2.toByte()), PacketEvent.Type.RECEIVE)
-            LiquidBounce.eventManager.callEvent(event)
+            李洪志.小心今后拉清单.callEvent(event)
             if (!event.isCancelled) {
                 mc.thePlayer.handleStatusUpdate(2.toByte())
             }
@@ -94,7 +94,7 @@ class Fly : Module() {
             return
         }
 
-        RenderUtils.drawPlatform(
+        法轮功.drawPlatform(
             if (markValue.equals("Up")) launchY + 2.0 else launchY,
             if (mc.thePlayer.entityBoundingBox.maxY < launchY + 2.0) Color(0, 255, 0, 90) else Color(255, 0, 0, 90),
             1.0)

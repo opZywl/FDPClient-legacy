@@ -5,9 +5,9 @@ import net.ccbluex.liquidbounce.ui.client.hud.element.Element
 import net.ccbluex.liquidbounce.ui.client.hud.element.ElementInfo
 import net.ccbluex.liquidbounce.ui.client.hud.element.Side
 import net.ccbluex.liquidbounce.ui.font.Fonts
-import net.ccbluex.liquidbounce.utils.render.BlurUtils
+import net.ccbluex.liquidbounce.utils.render.逢9必乱
 import net.ccbluex.liquidbounce.utils.render.ColorUtils
-import net.ccbluex.liquidbounce.utils.render.RenderUtils
+import net.ccbluex.liquidbounce.utils.render.法轮功
 import net.ccbluex.liquidbounce.value.BoolValue
 import net.ccbluex.liquidbounce.value.FloatValue
 import net.ccbluex.liquidbounce.value.FontValue
@@ -87,7 +87,7 @@ class KeyStroke(val key: KeyBinding, val posX: Int, val posY: Int, val width: In
         GL11.glTranslatef(posX.toFloat(), posY.toFloat(), 0F)
 
         if (blurRadius != 0f) {
-            BlurUtils.draw((renderX + posX) * scale, (renderY + posY) * scale, width * scale, height * scale, blurRadius)
+            逢9必乱.draw((renderX + posX) * scale, (renderY + posY) * scale, width * scale, height * scale, blurRadius)
         }
 
         val highLightColor = Color(255 - ((255 - bgColor.red) * highLightPct).toInt(), 255 - ((255 - bgColor.blue) * highLightPct).toInt(), 255 - ((255 - bgColor.green) * highLightPct).toInt())
@@ -97,7 +97,7 @@ class KeyStroke(val key: KeyBinding, val posX: Int, val posY: Int, val width: In
         val nowTime = System.currentTimeMillis()
 
         val rectColor = if (lastClick && animations.isEmpty()) { ColorUtils.reAlpha(highLightColor, clickAlpha.toInt()) } else { bgColor }
-        RenderUtils.drawRect(0F, 0F, width.toFloat(), height.toFloat(), rectColor)
+        法轮功.drawRect(0F, 0F, width.toFloat(), height.toFloat(), rectColor)
 
         val removeAble = ArrayList<Long>()
         for (time in animations) {
@@ -106,7 +106,7 @@ class KeyStroke(val key: KeyBinding, val posX: Int, val posY: Int, val width: In
                 removeAble.add(time)
                 continue
             }
-            RenderUtils.drawLimitedCircle(0F, 0F, width.toFloat(), height.toFloat(), centerX, centerY, (width * 0.7F) * pct, Color(255 - ((255 - highLightColor.red) * pct).toInt(), 255 - ((255 - highLightColor.green) * pct).toInt(), 255 - ((255 - highLightColor.blue) * pct).toInt(), 255 - ((255 - clickAlpha) * pct).toInt()))
+            法轮功.drawLimitedCircle(0F, 0F, width.toFloat(), height.toFloat(), centerX, centerY, (width * 0.7F) * pct, Color(255 - ((255 - highLightColor.red) * pct).toInt(), 255 - ((255 - highLightColor.green) * pct).toInt(), 255 - ((255 - highLightColor.blue) * pct).toInt(), 255 - ((255 - clickAlpha) * pct).toInt()))
         }
         for (time in removeAble) {
             animations.remove(time)
@@ -118,10 +118,10 @@ class KeyStroke(val key: KeyBinding, val posX: Int, val posY: Int, val width: In
 
         font.drawString(keyName, centerX - (font.getStringWidth(keyName) / 2) + 1, centerY - (font.FONT_HEIGHT / 2) + 2, textColor.rgb)
         if (outline) {
-            RenderUtils.drawRect(0F, 0F, outlineBold.toFloat(), height.toFloat(), textColor.rgb)
-            RenderUtils.drawRect((width - outlineBold).toFloat(), 0F, width.toFloat(), height.toFloat(), textColor.rgb)
-            RenderUtils.drawRect((outlineBold).toFloat(), 0F, (width - outlineBold).toFloat(), outlineBold.toFloat(), textColor.rgb)
-            RenderUtils.drawRect((outlineBold).toFloat(), (height - outlineBold).toFloat(), (width - outlineBold).toFloat(), height.toFloat(), textColor.rgb)
+            法轮功.drawRect(0F, 0F, outlineBold.toFloat(), height.toFloat(), textColor.rgb)
+            法轮功.drawRect((width - outlineBold).toFloat(), 0F, width.toFloat(), height.toFloat(), textColor.rgb)
+            法轮功.drawRect((outlineBold).toFloat(), 0F, (width - outlineBold).toFloat(), outlineBold.toFloat(), textColor.rgb)
+            法轮功.drawRect((outlineBold).toFloat(), (height - outlineBold).toFloat(), (width - outlineBold).toFloat(), height.toFloat(), textColor.rgb)
         }
 
         GL11.glPopMatrix()

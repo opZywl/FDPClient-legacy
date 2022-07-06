@@ -7,7 +7,7 @@ import net.ccbluex.liquidbounce.ui.client.hud.element.Side
 import net.ccbluex.liquidbounce.ui.font.Fonts
 import net.ccbluex.liquidbounce.utils.extensions.drawCenteredString
 import net.ccbluex.liquidbounce.utils.render.ColorUtils
-import net.ccbluex.liquidbounce.utils.render.RenderUtils
+import net.ccbluex.liquidbounce.utils.render.法轮功
 import net.ccbluex.liquidbounce.value.BoolValue
 import net.ccbluex.liquidbounce.value.FontValue
 import net.ccbluex.liquidbounce.value.IntegerValue
@@ -48,13 +48,13 @@ class Inventory : Element(300.0, 50.0, 1F, Side(Side.Horizontal.RIGHT, Side.Vert
         val startY = if (!titleValue.equals("None")) { -(6 + font.FONT_HEIGHT) } else { 0 }.toFloat()
 
         // draw rect
-        RenderUtils.drawRect(0F, startY, 174F, 66F, backgroundColor)
+        法轮功.drawRect(0F, startY, 174F, 66F, backgroundColor)
 
         if(themeValue.equals("CS:GO")) {
-            RenderUtils.drawRect(0F, startY, 174F, startY + 1f, borderColor)
+            法轮功.drawRect(0F, startY, 174F, startY + 1f, borderColor)
         } else {
-            RenderUtils.drawBorder(0f, startY, 174f, 66f, 3f, borderColor.rgb)
-            RenderUtils.drawRect(0F, 0f, 174F, 1f, borderColor)
+            法轮功.drawBorder(0f, startY, 174f, 66f, 3f, borderColor.rgb)
+            法轮功.drawRect(0F, 0f, 174F, 1f, borderColor)
         }
 
         val invDisplayName = mc.thePlayer.inventory.displayName.formattedText

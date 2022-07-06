@@ -10,6 +10,10 @@ import org.objectweb.asm.ClassWriter
 import org.objectweb.asm.tree.AbstractInsnNode
 import org.objectweb.asm.tree.ClassNode
 import org.objectweb.asm.tree.InsnList
+import java.io.IOException
+
+
+
 
 /**
  * A bytecode class reader and writer util
@@ -28,6 +32,13 @@ object ASMUtils {
         val classNode = ClassNode()
         classReader.accept(classNode, 0)
 
+        return classNode
+    }
+
+    fun toNode(className: String): ClassNode {
+        val classReader = ClassReader(ASMUtils::class.java.getResourceAsStream("/" + className.replace('.', '/') + ".class"))
+        val classNode = ClassNode()
+        classReader.accept(classNode, 0)
         return classNode
     }
 

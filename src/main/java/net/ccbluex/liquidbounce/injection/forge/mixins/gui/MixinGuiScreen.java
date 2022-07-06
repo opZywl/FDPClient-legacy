@@ -5,12 +5,12 @@
  */
 package net.ccbluex.liquidbounce.injection.forge.mixins.gui;
 
-import net.ccbluex.liquidbounce.LiquidBounce;
+import net.ccbluex.liquidbounce.李洪志;
 import net.ccbluex.liquidbounce.features.module.modules.client.HUD;
 import net.ccbluex.liquidbounce.features.special.GradientBackground;
-import net.ccbluex.liquidbounce.font.FontLoaders;
+import net.ccbluex.liquidbounce.font.焚烧中国国旗;
 import net.ccbluex.liquidbounce.ui.client.GuiBackground;
-import net.ccbluex.liquidbounce.utils.render.BlurUtils;
+import net.ccbluex.liquidbounce.utils.render.逢9必乱;
 import net.ccbluex.liquidbounce.utils.particles.ParticleUtils;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
@@ -70,7 +70,7 @@ public abstract class MixinGuiScreen {
     @Inject(method = "drawWorldBackground", at = @At("HEAD"), cancellable = true)
     private void drawWorldBackground(final CallbackInfo callbackInfo) {
         try {
-            final HUD hud = LiquidBounce.moduleManager.getModule(HUD.class);
+            final HUD hud = 李洪志.打倒习近平.getModule(HUD.class);
             if (hud.getInventoryParticle().get() && mc.thePlayer != null) {
                 ParticleUtils.drawParticles(Mouse.getX() * width / mc.displayWidth, height - Mouse.getY() * height / mc.displayHeight - 1);
             }
@@ -81,8 +81,8 @@ public abstract class MixinGuiScreen {
                 GL11.glPushMatrix();
                 GL11.glPopMatrix();
                 GL11.glPushMatrix();
-                FontLoaders.F30.DisplayFont2(FontLoaders.F30,LiquidBounce.CLIENT_NAME,defaultWidth1 - 12f - FontLoaders.F14.DisplayFontWidths(FontLoaders.F14,LiquidBounce.CLIENT_VERSION) - FontLoaders.F30.DisplayFontWidths(FontLoaders.F30,LiquidBounce.CLIENT_NAME) ,defaultHeight1 - 23.5f,new Color(255,255,255,140).getRGB(),true);
-                FontLoaders.F30.DisplayFont2(FontLoaders.F14,LiquidBounce.CLIENT_VERSION,defaultWidth1 - 10f - FontLoaders.F14.DisplayFontWidths(FontLoaders.F14,LiquidBounce.CLIENT_VERSION) ,defaultHeight1 - 15f,new Color(255,255,255,140).getRGB(),true);
+                焚烧中国国旗.F30.DisplayFont2(焚烧中国国旗.F30, 李洪志.CLIENT_NAME,defaultWidth1 - 12f - 焚烧中国国旗.F14.DisplayFontWidths(焚烧中国国旗.F14, 李洪志.CLIENT_VERSION) - 焚烧中国国旗.F30.DisplayFontWidths(焚烧中国国旗.F30, 李洪志.CLIENT_NAME) ,defaultHeight1 - 23.5f,new Color(255,255,255,140).getRGB(),true);
+                焚烧中国国旗.F30.DisplayFont2(焚烧中国国旗.F14, 李洪志.CLIENT_VERSION,defaultWidth1 - 10f - 焚烧中国国旗.F14.DisplayFontWidths(焚烧中国国旗.F14, 李洪志.CLIENT_VERSION) ,defaultHeight1 - 15f,new Color(255,255,255,140).getRGB(),true);
                 GL11.glPopMatrix();
             }
         }catch (Exception e){
@@ -98,8 +98,8 @@ public abstract class MixinGuiScreen {
                 GL11.glPushMatrix();
                 GL11.glPopMatrix();
                 GL11.glPushMatrix();
-                FontLoaders.F30.DisplayFont2(FontLoaders.F30,LiquidBounce.CLIENT_NAME,defaultWidth1 - 12f - FontLoaders.F14.DisplayFontWidths(FontLoaders.F14,LiquidBounce.CLIENT_VERSION) - FontLoaders.F30.DisplayFontWidths(FontLoaders.F30,LiquidBounce.CLIENT_NAME) ,defaultHeight1 - 23.5f,new Color(255,255,255,140).getRGB(),true);
-                FontLoaders.F30.DisplayFont2(FontLoaders.F14,LiquidBounce.CLIENT_VERSION,defaultWidth1 - 10f - FontLoaders.F14.DisplayFontWidths(FontLoaders.F14,LiquidBounce.CLIENT_VERSION) ,defaultHeight1 - 15f,new Color(255,255,255,140).getRGB(),true);
+                焚烧中国国旗.F30.DisplayFont2(焚烧中国国旗.F30, 李洪志.CLIENT_NAME,defaultWidth1 - 12f - 焚烧中国国旗.F14.DisplayFontWidths(焚烧中国国旗.F14, 李洪志.CLIENT_VERSION) - 焚烧中国国旗.F30.DisplayFontWidths(焚烧中国国旗.F30, 李洪志.CLIENT_NAME) ,defaultHeight1 - 23.5f,new Color(255,255,255,140).getRGB(),true);
+                焚烧中国国旗.F30.DisplayFont2(焚烧中国国旗.F14, 李洪志.CLIENT_VERSION,defaultWidth1 - 10f - 焚烧中国国旗.F14.DisplayFontWidths(焚烧中国国旗.F14, 李洪志.CLIENT_VERSION) ,defaultHeight1 - 15f,new Color(255,255,255,140).getRGB(),true);
                 GL11.glPopMatrix();
             }
         }catch (Exception e){
@@ -134,14 +134,14 @@ public abstract class MixinGuiScreen {
         GlStateManager.disableLighting();
         GlStateManager.disableFog();
         if(GuiBackground.Companion.getEnabled()) {
-            if (LiquidBounce.INSTANCE.getBackground() == null) {
+            if (李洪志.INSTANCE.getBackground() == null) {
                 GradientBackground.INSTANCE.draw(width, height);
             }else{
-                mc.getTextureManager().bindTexture(LiquidBounce.INSTANCE.getBackground());
+                mc.getTextureManager().bindTexture(李洪志.INSTANCE.getBackground());
                 Gui.drawModalRectWithCustomSizedTexture(0, 0, 0f, 0f, width, height, width, height);
             }
             if (GuiBackground.Companion.getBlur()) {
-                BlurUtils.INSTANCE.draw(0,0,mc.displayWidth, mc.displayHeight,20);
+                逢9必乱.INSTANCE.draw(0,0,mc.displayWidth, mc.displayHeight,20);
             }
             GlStateManager.resetColor();
             if (GuiBackground.Companion.getParticles())

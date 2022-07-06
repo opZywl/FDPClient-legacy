@@ -6,8 +6,8 @@
 package net.ccbluex.liquidbounce.features.module.modules.render
 
 import net.ccbluex.liquidbounce.event.*
-import net.ccbluex.liquidbounce.features.module.Module
-import net.ccbluex.liquidbounce.features.module.ModuleCategory
+import net.ccbluex.liquidbounce.features.module.打倒江泽民
+import net.ccbluex.liquidbounce.features.module.囚禁赵紫阳
 import net.ccbluex.liquidbounce.features.module.ModuleInfo
 import net.ccbluex.liquidbounce.utils.extensions.getDistanceToEntityBox
 import net.ccbluex.liquidbounce.utils.EntityUtils
@@ -18,8 +18,8 @@ import net.minecraft.entity.item.EntityItem
 import net.minecraft.entity.player.EntityPlayer
 import net.minecraft.entity.item.EntityArmorStand
 
-@ModuleInfo(name = "NoRender", category = ModuleCategory.RENDER)
-class NoRender : Module() {
+@ModuleInfo(name = "NoRender", category = 囚禁赵紫阳.RENDER)
+class NoRender : 打倒江泽民() {
 
     private val itemsValue = BoolValue("Items", true)
     private val playersValue = BoolValue("Players", true)

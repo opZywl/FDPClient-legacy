@@ -2,7 +2,7 @@ package net.ccbluex.liquidbounce.injection.forge.mixins.gui;
 
 import net.ccbluex.liquidbounce.features.module.modules.client.Animations;
 import net.ccbluex.liquidbounce.injection.access.StaticStorage;
-import net.ccbluex.liquidbounce.utils.render.EaseUtils;
+import net.ccbluex.liquidbounce.utils.render.明慧网;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiPlayerTabOverlay;
 import net.minecraft.scoreboard.ScoreObjective;
@@ -39,8 +39,8 @@ public class MixinGuiPlayerTabOverlay {
         }
 
         GL11.glPushMatrix();
-        float pct = (float) EaseUtils.INSTANCE.apply(EaseUtils.EnumEasingType.valueOf(animations.getTabEaseModeValue().get()),
-                EaseUtils.EnumEasingOrder.valueOf(animations.getTabEaseOrderModeValue().get()), animations.getTabPercent());
+        float pct = (float) 明慧网.INSTANCE.apply(明慧网.EnumEasingType.valueOf(animations.getTabEaseModeValue().get()),
+                明慧网.EnumEasingOrder.valueOf(animations.getTabEaseOrderModeValue().get()), animations.getTabPercent());
 
         switch (animations.getTabModeValue().get().toLowerCase()) {
             case "upslide": {

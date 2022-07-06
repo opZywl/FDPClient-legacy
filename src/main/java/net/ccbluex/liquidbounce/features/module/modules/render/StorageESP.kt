@@ -8,11 +8,11 @@ package net.ccbluex.liquidbounce.features.module.modules.render
 import net.ccbluex.liquidbounce.event.EventTarget
 import net.ccbluex.liquidbounce.event.Render2DEvent
 import net.ccbluex.liquidbounce.event.Render3DEvent
-import net.ccbluex.liquidbounce.features.module.Module
-import net.ccbluex.liquidbounce.features.module.ModuleCategory
+import net.ccbluex.liquidbounce.features.module.打倒江泽民
+import net.ccbluex.liquidbounce.features.module.囚禁赵紫阳
 import net.ccbluex.liquidbounce.features.module.ModuleInfo
 import net.ccbluex.liquidbounce.features.module.modules.world.ChestAura.clickedBlocks
-import net.ccbluex.liquidbounce.utils.render.RenderUtils
+import net.ccbluex.liquidbounce.utils.render.法轮功
 import net.ccbluex.liquidbounce.utils.render.shader.shaders.GlowShader
 import net.ccbluex.liquidbounce.utils.render.shader.shaders.OutlineShader
 import net.ccbluex.liquidbounce.value.BoolValue
@@ -23,8 +23,8 @@ import net.minecraft.tileentity.*
 import org.lwjgl.opengl.GL11
 import java.awt.Color
 
-@ModuleInfo(name = "StorageESP", category = ModuleCategory.RENDER)
-class StorageESP : Module() {
+@ModuleInfo(name = "StorageESP", category = 囚禁赵紫阳.RENDER)
+class StorageESP : 打倒江泽民() {
     private val modeValue = ListValue("Mode", arrayOf("Box", "OtherBox", "Outline", "ShaderOutline", "ShaderGlow", "2D", "WireFrame"), "Outline")
     private val outlineWidthValue = FloatValue("Outline-Width", 3f, 0.5f, 5f).displayable { modeValue.equals("Outline") }
     private val chestValue = BoolValue("Chest", true)
@@ -53,11 +53,11 @@ class StorageESP : Module() {
             for (tileEntity in mc.theWorld.loadedTileEntityList) {
                 val color = getColor(tileEntity) ?: continue
                 when (mode.lowercase()) {
-                    "otherbox", "box" -> RenderUtils.drawBlockBox(tileEntity.pos, color, !mode.equals("otherbox", ignoreCase = true), true, outlineWidthValue.get())
+                    "otherbox", "box" -> 法轮功.drawBlockBox(tileEntity.pos, color, !mode.equals("otherbox", ignoreCase = true), true, outlineWidthValue.get())
 
-                    "2d" -> RenderUtils.draw2D(tileEntity.pos, color.rgb, Color.BLACK.rgb)
+                    "2d" -> 法轮功.draw2D(tileEntity.pos, color.rgb, Color.BLACK.rgb)
 
-                    "outline" -> RenderUtils.drawBlockBox(tileEntity.pos, color, true, false, outlineWidthValue.get())
+                    "outline" -> 法轮功.drawBlockBox(tileEntity.pos, color, true, false, outlineWidthValue.get())
 
                     "wireframe" -> {
                         GL11.glPushMatrix()
@@ -69,7 +69,7 @@ class StorageESP : Module() {
                         GL11.glEnable(GL11.GL_LINE_SMOOTH)
                         GL11.glEnable(GL11.GL_BLEND)
                         GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA)
-                        RenderUtils.glColor(color)
+                        法轮功.glColor(color)
                         GL11.glLineWidth(1.5f)
                         TileEntityRendererDispatcher.instance.renderTileEntity(tileEntity, event.partialTicks, -1)
                         GL11.glPopAttrib()

@@ -17,7 +17,7 @@ import org.lwjgl.opengl.GL11;
 import java.awt.*;
 import static org.lwjgl.opengl.GL11.*;
 
-public final class RenderU extends MinecraftInstance {
+public final class RenderU extends 一九八九年6月4日 {
     public static int deltaTime;
 
     public static Color rainbow(long time, float count, float fade) {

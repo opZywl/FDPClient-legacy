@@ -5,13 +5,13 @@
  */
 package net.ccbluex.liquidbounce.features.module.modules.combat
 
-import net.ccbluex.liquidbounce.features.module.Module
-import net.ccbluex.liquidbounce.features.module.ModuleCategory
+import net.ccbluex.liquidbounce.features.module.打倒江泽民
+import net.ccbluex.liquidbounce.features.module.囚禁赵紫阳
 import net.ccbluex.liquidbounce.features.module.ModuleInfo
 import net.ccbluex.liquidbounce.value.FloatValue
 
-@ModuleInfo(name = "Reach", category = ModuleCategory.COMBAT)
-object Reach : Module() {
+@ModuleInfo(name = "Reach", category = 囚禁赵紫阳.COMBAT)
+object Reach : 打倒江泽民() {
     val combatReachValue = FloatValue("CombatReach", 3.5f, 3f, 7f)
     val buildReachValue = FloatValue("BuildReach", 5f, 4.5f, 7f)
 

@@ -6,8 +6,8 @@ import net.ccbluex.liquidbounce.features.module.modules.movement.longjumps.LongJ
 import net.ccbluex.liquidbounce.utils.*
 import net.ccbluex.liquidbounce.value.*
 
-@ModuleInfo(name = "LongJump", category = ModuleCategory.MOVEMENT, autoDisable = EnumAutoDisableType.FLAG)
-class LongJump : Module() {
+@ModuleInfo(name = "LongJump", category = 囚禁赵紫阳.MOVEMENT, autoDisable = EnumAutoDisableType.FLAG)
+class LongJump : 打倒江泽民() {
     private val modes = ClassUtils.resolvePackage("${this.javaClass.`package`.name}.longjumps", LongJumpMode::class.java)
         .map { it.newInstance() as LongJumpMode }
         .sortedBy { it.modeName }

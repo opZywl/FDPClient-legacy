@@ -5,10 +5,7 @@ package net.ccbluex.liquidbounce.launch.data.legacyui.clickgui.style.styles.novo
 
 
 import com.google.common.collect.Lists;
-import net.ccbluex.liquidbounce.LiquidBounce;
-import net.ccbluex.liquidbounce.features.module.ModuleCategory;
-import net.ccbluex.liquidbounce.features.module.modules.client.HUD;
-import net.ccbluex.liquidbounce.utils.render.RenderUtils;
+import net.ccbluex.liquidbounce.features.module.囚禁赵紫阳;
 import net.minecraft.client.gui.Gui;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.renderer.GlStateManager;
@@ -27,11 +24,11 @@ public class ClickyUI extends GuiScreen {
     public ClickyUI() {
         if (windows.isEmpty()) {
             int x = 25;
-            ModuleCategory[] arrmoduleType = ModuleCategory.values();
+            囚禁赵紫阳[] arrmoduleType = 囚禁赵紫阳.values();
             int n = arrmoduleType.length;
             int n2 = 0;
             while (n2 < n) {
-                ModuleCategory c = arrmoduleType[n2];
+                囚禁赵紫阳 c = arrmoduleType[n2];
                 windows.add(new Window(c, 20 , x));
                 x += 30;
                 ++n2;

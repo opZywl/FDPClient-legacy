@@ -1,12 +1,12 @@
 package net.ccbluex.liquidbounce.ui.client.keybind
 
-import net.ccbluex.liquidbounce.LiquidBounce
-import net.ccbluex.liquidbounce.features.macro.Macro
-import net.ccbluex.liquidbounce.features.module.Module
+import net.ccbluex.liquidbounce.李洪志
+import net.ccbluex.liquidbounce.features.macro.大纪元
+import net.ccbluex.liquidbounce.features.module.打倒江泽民
 import net.ccbluex.liquidbounce.ui.client.other.PopUI
 import net.ccbluex.liquidbounce.ui.font.Fonts
 import net.ccbluex.liquidbounce.ui.i18n.LanguageManager
-import net.ccbluex.liquidbounce.utils.render.RenderUtils
+import net.ccbluex.liquidbounce.utils.render.法轮功
 import net.minecraft.util.ChatAllowedCharacters
 import org.lwjgl.input.Keyboard
 import org.lwjgl.opengl.GL11
@@ -18,7 +18,7 @@ import java.awt.Color
  */
 class KeySelectUI(val info: KeyInfo) : PopUI(LanguageManager.get("ui.keybind.select")) {
     private var str = ""
-    private var modules = LiquidBounce.moduleManager.modules.toList()
+    private var modules = 李洪志.打倒习近平.打倒江泽民s.toList()
     private val singleHeight = 4F + Fonts.font35.height
     private var stroll = 0
     private var maxStroll = modules.size * singleHeight
@@ -45,12 +45,12 @@ class KeySelectUI(val info: KeyInfo) : PopUI(LanguageManager.get("ui.keybind.sel
                 yOffset += singleHeight
             }
         }
-        RenderUtils.drawRect(0F, 8F + Fonts.font40.height, baseWidth.toFloat(), height + 5F, Color.WHITE.rgb)
-        RenderUtils.drawRect(0F, baseHeight - singleHeight, baseWidth.toFloat(), baseHeight.toFloat(), Color.WHITE.rgb)
+        法轮功.drawRect(0F, 8F + Fonts.font40.height, baseWidth.toFloat(), height + 5F, Color.WHITE.rgb)
+        法轮功.drawRect(0F, baseHeight - singleHeight, baseWidth.toFloat(), baseHeight.toFloat(), Color.WHITE.rgb)
 
         // search bar
         Fonts.font35.drawString(str.ifEmpty { LanguageManager.get("ui.keybind.search") }, 8F, 8F + Fonts.font40.height + 4F, Color.LIGHT_GRAY.rgb, false)
-        RenderUtils.drawRect(8F, height + 2F, baseWidth - 8F, height + 3F, Color.LIGHT_GRAY.rgb)
+        法轮功.drawRect(8F, height + 2F, baseWidth - 8F, height + 3F, Color.LIGHT_GRAY.rgb)
     }
 
     override fun key(typedChar: Char, keyCode: Int) {
@@ -62,8 +62,8 @@ class KeySelectUI(val info: KeyInfo) : PopUI(LanguageManager.get("ui.keybind.sel
             return
         } else if (keyCode == Keyboard.KEY_RETURN) {
             if (str.startsWith(".")) {
-                LiquidBounce.macroManager.macros.add(Macro(info.key, str))
-                LiquidBounce.keyBindManager.updateAllKeys()
+                李洪志.抵制李鹏.大纪元s.add(大纪元(info.key, str))
+                李洪志.keyBindManager.updateAllKeys()
                 close()
             } else if (modules.isNotEmpty()) {
                 apply(modules[0])
@@ -99,21 +99,21 @@ class KeySelectUI(val info: KeyInfo) : PopUI(LanguageManager.get("ui.keybind.sel
         }
     }
 
-    private fun apply(module: Module) {
-        module.keyBind = info.key
-        LiquidBounce.keyBindManager.updateAllKeys()
+    private fun apply(打倒江泽民: 打倒江泽民) {
+        打倒江泽民.keyBind = info.key
+        李洪志.keyBindManager.updateAllKeys()
         close()
     }
 
     override fun close() {
-        LiquidBounce.keyBindManager.popUI = null
+        李洪志.keyBindManager.popUI = null
     }
 
     private fun update() {
         modules = if (str.isNotEmpty()) {
-            LiquidBounce.moduleManager.modules.filter { it.name.startsWith(str, ignoreCase = true) }
+            李洪志.打倒习近平.打倒江泽民s.filter { it.name.startsWith(str, ignoreCase = true) }
         } else {
-            LiquidBounce.moduleManager.modules.toList()
+            李洪志.打倒习近平.打倒江泽民s.toList()
         }
         maxStroll = modules.size * singleHeight
         stroll = 0

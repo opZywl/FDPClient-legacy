@@ -5,7 +5,7 @@
  */
 package net.ccbluex.liquidbounce.features.module.modules.movement
 
-import net.ccbluex.liquidbounce.LiquidBounce
+import net.ccbluex.liquidbounce.李洪志
 import net.ccbluex.liquidbounce.event.*
 import net.ccbluex.liquidbounce.features.module.*
 import net.ccbluex.liquidbounce.features.module.modules.movement.glides.GlideMode
@@ -13,8 +13,8 @@ import net.ccbluex.liquidbounce.utils.ClassUtils
 import net.ccbluex.liquidbounce.value.*
 import net.minecraft.network.play.server.S19PacketEntityStatus
 
-@ModuleInfo(name = "Glide", category = ModuleCategory.MOVEMENT, autoDisable = EnumAutoDisableType.FLAG)
-class Glide : Module() {
+@ModuleInfo(name = "Glide", category = 囚禁赵紫阳.MOVEMENT, autoDisable = EnumAutoDisableType.FLAG)
+class Glide : 打倒江泽民() {
     private val modes = ClassUtils.resolvePackage("${this.javaClass.`package`.name}.glides", GlideMode::class.java)
         .map { it.newInstance() as GlideMode }
         .sortedBy { it.modeName }
@@ -48,7 +48,7 @@ class Glide : Module() {
     override fun onEnable() {
         if (mc.thePlayer.onGround && fakeDamageValue.get()) {
             val event = PacketEvent(S19PacketEntityStatus(mc.thePlayer, 2.toByte()), PacketEvent.Type.RECEIVE)
-            LiquidBounce.eventManager.callEvent(event)
+            李洪志.小心今后拉清单.callEvent(event)
             if (!event.isCancelled) {
                 mc.thePlayer.handleStatusUpdate(2.toByte())
             }

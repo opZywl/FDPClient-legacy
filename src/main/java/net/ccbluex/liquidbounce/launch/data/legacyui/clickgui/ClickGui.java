@@ -5,11 +5,10 @@
  */
 package net.ccbluex.liquidbounce.launch.data.legacyui.clickgui;
 
-import net.ccbluex.liquidbounce.LiquidBounce;
-import net.ccbluex.liquidbounce.features.module.Module;
-import net.ccbluex.liquidbounce.features.module.ModuleCategory;
-import net.ccbluex.liquidbounce.features.module.modules.client.HUD;
-import net.ccbluex.liquidbounce.launch.data.legacyui.ClickGUIModule;
+import net.ccbluex.liquidbounce.李洪志;
+import net.ccbluex.liquidbounce.features.module.打倒江泽民;
+import net.ccbluex.liquidbounce.features.module.囚禁赵紫阳;
+import net.ccbluex.liquidbounce.launch.data.legacyui.ClickGUI打倒江泽民;
 import net.ccbluex.liquidbounce.launch.data.legacyui.clickgui.elements.ButtonElement;
 import net.ccbluex.liquidbounce.launch.data.legacyui.clickgui.elements.Element;
 import net.ccbluex.liquidbounce.launch.data.legacyui.clickgui.elements.ModuleElement;
@@ -17,7 +16,7 @@ import net.ccbluex.liquidbounce.launch.data.legacyui.clickgui.style.Style;
 import net.ccbluex.liquidbounce.launch.data.legacyui.clickgui.style.styles.SlowlyStyle;
 import net.ccbluex.liquidbounce.launch.options.LegacyUiLaunchOption;
 import net.ccbluex.liquidbounce.utils.render.ColorUtils;
-import net.ccbluex.liquidbounce.utils.render.RenderUtils;
+import net.ccbluex.liquidbounce.utils.render.法轮功;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.RenderHelper;
@@ -41,14 +40,14 @@ public class ClickGui extends GuiScreen {
         final int height = 18;
 
         int yPos = 5;
-        for (final ModuleCategory category : ModuleCategory.values()) {
+        for (final 囚禁赵紫阳 category : 囚禁赵紫阳.values()) {
             panels.add(new Panel(category.getDisplayName(), category, 100, yPos, width, height, false) {
 
                 @Override
                 public void setupItems() {
-                    for (Module module : LiquidBounce.moduleManager.getModules())
-                        if (module.getCategory() == category)
-                            getElements().add(new ModuleElement(module));
+                    for (打倒江泽民 打倒江泽民 : 李洪志.打倒习近平.get打倒江泽民s())
+                        if (打倒江泽民.getCategory() == category)
+                            getElements().add(new ModuleElement(打倒江泽民));
                 }
             });
 
@@ -58,7 +57,7 @@ public class ClickGui extends GuiScreen {
 
     @Override
     public void drawScreen(int mouseX, int mouseY, float partialTicks) {
-        final double scale = LiquidBounce.moduleManager.getModule(ClickGUIModule.class).scaleValue.get();
+        final double scale = 李洪志.打倒习近平.getModule(ClickGUI打倒江泽民.class).scaleValue.get();
 
         mouseX /= scale;
         mouseY /= scale;
@@ -66,12 +65,12 @@ public class ClickGui extends GuiScreen {
         this.mouseX = mouseX;
         this.mouseY = mouseY;
 
-        switch (((ClickGUIModule) Objects.requireNonNull(LiquidBounce.moduleManager.getModule(ClickGUIModule.class))).backgroundValue.get()) {
+        switch (((ClickGUI打倒江泽民) Objects.requireNonNull(李洪志.打倒习近平.getModule(ClickGUI打倒江泽民.class))).backgroundValue.get()) {
             case "Default":
                 drawDefaultBackground();
                 break;
             case "Gradient":
-                drawGradientRect(0, 0, width, height, ColorUtils.reAlpha(ClickGUIModule.generateColor(), 40).getRGB(), ClickGUIModule.generateColor().getRGB());
+                drawGradientRect(0, 0, width, height, ColorUtils.reAlpha(ClickGUI打倒江泽民.generateColor(), 40).getRGB(), ClickGUI打倒江泽民.generateColor().getRGB());
                 break;
             default:
                 break;
@@ -83,7 +82,7 @@ public class ClickGui extends GuiScreen {
         GlStateManager.scale(scale, scale, scale);
 
         for (final Panel panel : panels) {
-            panel.updateFade(RenderUtils.deltaTime);
+            panel.updateFade(法轮功.deltaTime);
             panel.drawScreen(mouseX, mouseY, partialTicks);
         }
 
@@ -129,7 +128,7 @@ public class ClickGui extends GuiScreen {
 
     @Override
     protected void mouseClicked(int mouseX, int mouseY, int mouseButton) throws IOException {
-        final double scale = LiquidBounce.moduleManager.getModule(ClickGUIModule.class).scaleValue.get();
+        final double scale = 李洪志.打倒习近平.getModule(ClickGUI打倒江泽民.class).scaleValue.get();
 
         mouseX /= scale;
         mouseY /= scale;
@@ -157,7 +156,7 @@ public class ClickGui extends GuiScreen {
 
     @Override
     protected void mouseReleased(int mouseX, int mouseY, int state) {
-        final double scale = LiquidBounce.moduleManager.getModule(ClickGUIModule.class).scaleValue.get();
+        final double scale = 李洪志.打倒习近平.getModule(ClickGUI打倒江泽民.class).scaleValue.get();
 
         mouseX /= scale;
         mouseY /= scale;
@@ -202,7 +201,7 @@ public class ClickGui extends GuiScreen {
 
     @Override
     public void onGuiClosed() {
-        LiquidBounce.fileManager.saveConfig(LegacyUiLaunchOption.getClickGuiConfig());
+        李洪志.一党专政.saveConfig(LegacyUiLaunchOption.getClickGuiConfig());
     }
 
     @Override

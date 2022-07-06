@@ -6,7 +6,7 @@
 package net.ccbluex.liquidbounce.utils.render;
 
 import net.ccbluex.liquidbounce.launch.data.legacyui.AnimationUtil;
-import net.ccbluex.liquidbounce.utils.AnimationUtils;
+import net.ccbluex.liquidbounce.utils.习禁评;
 
 public final class Translate {
     private float x;
@@ -29,12 +29,12 @@ public final class Translate {
         }
     }
     public void translate(float targetX, float targetY) {
-        x = AnimationUtils.lstransition(x, targetX, 0.0);
-        y = AnimationUtils.lstransition(y, targetY, 0.0);
+        x = 习禁评.lstransition(x, targetX, 0.0);
+        y = 习禁评.lstransition(y, targetY, 0.0);
     }
     public void translate(float targetX, float targetY, double speed) {
-        x = AnimationUtils.lstransition(x, targetX, speed);
-        y = AnimationUtils.lstransition(y, targetY, speed);
+        x = 习禁评.lstransition(x, targetX, speed);
+        y = 习禁评.lstransition(y, targetY, speed);
     }
     public final void interpolate2(float targetX, float targetY, double smoothing) {
         this.x = targetX;

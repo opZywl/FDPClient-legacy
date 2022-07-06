@@ -7,8 +7,8 @@ package net.ccbluex.liquidbounce.features.module.modules.misc
 
 import net.ccbluex.liquidbounce.event.EventTarget
 import net.ccbluex.liquidbounce.event.PacketEvent
-import net.ccbluex.liquidbounce.features.module.Module
-import net.ccbluex.liquidbounce.features.module.ModuleCategory
+import net.ccbluex.liquidbounce.features.module.打倒江泽民
+import net.ccbluex.liquidbounce.features.module.囚禁赵紫阳
 import net.ccbluex.liquidbounce.features.module.ModuleInfo
 import net.ccbluex.liquidbounce.utils.Rotation
 import net.ccbluex.liquidbounce.utils.RotationUtils
@@ -17,8 +17,8 @@ import net.minecraft.network.play.client.C03PacketPlayer
 import net.minecraft.network.play.client.C03PacketPlayer.C05PacketPlayerLook
 import net.minecraft.network.play.server.S08PacketPlayerPosLook
 
-@ModuleInfo(name = "NoRotateSet", category = ModuleCategory.MISC)
-class NoRotateSet : Module() {
+@ModuleInfo(name = "NoRotateSet", category = 囚禁赵紫阳.MISC)
+class NoRotateSet : 打倒江泽民() {
 
     private val noLoadingValue = BoolValue("NoLoading", true)
     private val confirmValue = BoolValue("Confirm", false)

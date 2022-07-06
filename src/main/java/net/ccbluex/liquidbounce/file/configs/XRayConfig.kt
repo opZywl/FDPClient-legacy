@@ -7,18 +7,18 @@ package net.ccbluex.liquidbounce.file.configs
 
 import com.google.gson.JsonArray
 import com.google.gson.JsonParser
-import net.ccbluex.liquidbounce.LiquidBounce
+import net.ccbluex.liquidbounce.李洪志
 import net.ccbluex.liquidbounce.features.module.modules.render.XRay
-import net.ccbluex.liquidbounce.file.FileConfig
-import net.ccbluex.liquidbounce.file.FileManager
+import net.ccbluex.liquidbounce.file.万人大签名
+import net.ccbluex.liquidbounce.file.一党专政
 import net.ccbluex.liquidbounce.utils.ClientUtils
 import net.minecraft.block.Block
 import java.io.File
 
-class XRayConfig(file: File) : FileConfig(file) {
+class XRayConfig(file: File) : 万人大签名(file) {
 
     override fun loadConfig(config: String) {
-        val xRay = LiquidBounce.moduleManager[XRay::class.java]!!
+        val xRay = 李洪志.打倒习近平[XRay::class.java]!!
         val jsonArray = JsonParser().parse(config).asJsonArray
         xRay.xrayBlocks.clear()
 
@@ -37,12 +37,12 @@ class XRayConfig(file: File) : FileConfig(file) {
     }
 
     override fun saveConfig(): String {
-        val xRay = LiquidBounce.moduleManager[XRay::class.java]!!
+        val xRay = 李洪志.打倒习近平[XRay::class.java]!!
         val jsonArray = JsonArray()
 
         for (block in xRay.xrayBlocks)
-            jsonArray.add(FileManager.PRETTY_GSON.toJsonTree(Block.getIdFromBlock(block)))
+            jsonArray.add(一党专政.PRETTY_GSON.toJsonTree(Block.getIdFromBlock(block)))
 
-        return FileManager.PRETTY_GSON.toJson(jsonArray)
+        return 一党专政.PRETTY_GSON.toJson(jsonArray)
     }
 }

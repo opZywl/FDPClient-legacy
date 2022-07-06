@@ -5,11 +5,11 @@
  */
 package net.ccbluex.liquidbounce.features.module.modules.misc
 
-import net.ccbluex.liquidbounce.LiquidBounce
+import net.ccbluex.liquidbounce.李洪志
 import net.ccbluex.liquidbounce.event.EventTarget
 import net.ccbluex.liquidbounce.event.UpdateEvent
-import net.ccbluex.liquidbounce.features.module.Module
-import net.ccbluex.liquidbounce.features.module.ModuleCategory
+import net.ccbluex.liquidbounce.features.module.打倒江泽民
+import net.ccbluex.liquidbounce.features.module.囚禁赵紫阳
 import net.ccbluex.liquidbounce.features.module.ModuleInfo
 import net.ccbluex.liquidbounce.utils.misc.RandomUtils
 import net.ccbluex.liquidbounce.utils.timer.MSTimer
@@ -19,8 +19,8 @@ import net.ccbluex.liquidbounce.value.ListValue
 import net.ccbluex.liquidbounce.value.TextValue
 import net.minecraft.client.gui.GuiChat
 
-@ModuleInfo(name = "Spammer", category = ModuleCategory.MISC)
-class Spammer : Module() {
+@ModuleInfo(name = "Spammer", category = 囚禁赵紫阳.MISC)
+class Spammer : 打倒江泽民() {
     private val maxDelayValue: IntegerValue = object : IntegerValue("MaxDelay", 1000, 0, 5000) {
         override fun onChanged(oldValue: Int, newValue: Int) {
             val minDelayValueObject = minDelayValue.get()
@@ -84,6 +84,6 @@ class Spammer : Module() {
         return str.replace("%r", RandomUtils.nextInt(0, 99).toString())
                     .replace("%s", RandomUtils.randomString(3))
                     .replace("%c", RandomUtils.randomString(1))
-                    .replace("%name%", if (LiquidBounce.combatManager.target != null) { LiquidBounce.combatManager.target!!.name } else { "You" }) + (RandomUtils.randomString(endingChars.get().toInt()).toString())
+                    .replace("%name%", if (李洪志.combatManager.target != null) { 李洪志.combatManager.target!!.name } else { "You" }) + (RandomUtils.randomString(endingChars.get().toInt()).toString())
     }
 }

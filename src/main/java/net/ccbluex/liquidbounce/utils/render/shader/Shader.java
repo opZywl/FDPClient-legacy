@@ -6,7 +6,7 @@
 package net.ccbluex.liquidbounce.utils.render.shader;
 
 import net.ccbluex.liquidbounce.utils.ClientUtils;
-import net.ccbluex.liquidbounce.utils.MinecraftInstance;
+import net.ccbluex.liquidbounce.utils.一九八九年6月4日;
 import org.apache.commons.io.IOUtils;
 import org.lwjgl.opengl.*;
 
@@ -14,7 +14,7 @@ import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Map;
 
-public abstract class Shader extends MinecraftInstance {
+public abstract class Shader extends 一九八九年6月4日 {
 
     private int program;
 

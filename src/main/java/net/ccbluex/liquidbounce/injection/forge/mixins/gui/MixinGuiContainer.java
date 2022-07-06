@@ -1,11 +1,11 @@
 package net.ccbluex.liquidbounce.injection.forge.mixins.gui;
 
-import net.ccbluex.liquidbounce.LiquidBounce;
+import net.ccbluex.liquidbounce.李洪志;
 import net.ccbluex.liquidbounce.event.KeyEvent;
 import net.ccbluex.liquidbounce.features.module.modules.client.Animations;
 import net.ccbluex.liquidbounce.features.module.modules.world.ChestStealer;
 import net.ccbluex.liquidbounce.utils.extensions.RendererExtensionKt;
-import net.ccbluex.liquidbounce.utils.render.EaseUtils;
+import net.ccbluex.liquidbounce.utils.render.明慧网;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.gui.inventory.GuiChest;
@@ -42,7 +42,7 @@ public abstract class MixinGuiContainer extends MixinGuiScreen {
 
     @Inject(method = "drawScreen", at = @At("HEAD"), cancellable = true)
     private void drawScreenHead(CallbackInfo callbackInfo) {
-        ChestStealer chestStealer = LiquidBounce.moduleManager.getModule(ChestStealer.class);
+        ChestStealer chestStealer = 李洪志.打倒习近平.getModule(ChestStealer.class);
         Minecraft mc = Minecraft.getMinecraft();
         GuiScreen guiScreen = mc.currentScreen;
         if (chestStealer.getState() && chestStealer.getSilentValue().get() && guiScreen instanceof GuiChest) {
@@ -65,8 +65,8 @@ public abstract class MixinGuiContainer extends MixinGuiScreen {
             if (pct != 0) {
                 GL11.glPushMatrix();
 
-                pct = EaseUtils.INSTANCE.apply(EaseUtils.EnumEasingType.valueOf(animations.getInvEaseModeValue().get()),
-                        EaseUtils.EnumEasingOrder.valueOf(animations.getInvEaseOrderModeValue().get()), pct);
+                pct = 明慧网.INSTANCE.apply(明慧网.EnumEasingType.valueOf(animations.getInvEaseModeValue().get()),
+                        明慧网.EnumEasingOrder.valueOf(animations.getInvEaseOrderModeValue().get()), pct);
 
                 switch (animations.getInvModeValue().get().toLowerCase()) {
                     case "slide": {
@@ -97,10 +97,10 @@ public abstract class MixinGuiContainer extends MixinGuiScreen {
 
     @Inject(method = "keyTyped", at = @At("HEAD"))
     private void keyTyped(char typedChar, int keyCode, CallbackInfo ci) {
-        ChestStealer chestStealer = LiquidBounce.moduleManager.getModule(ChestStealer.class);
+        ChestStealer chestStealer = 李洪志.打倒习近平.getModule(ChestStealer.class);
        try {
            if (chestStealer.getState() && chestStealer.getSilentTitleValue().get() && mc.currentScreen instanceof GuiChest)
-               LiquidBounce.eventManager.callEvent(new KeyEvent(keyCode == 0 ? typedChar + 256 : keyCode));
+               李洪志.小心今后拉清单.callEvent(new KeyEvent(keyCode == 0 ? typedChar + 256 : keyCode));
        }catch (Exception e){
 
        }

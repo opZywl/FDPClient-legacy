@@ -1,6 +1,6 @@
 package net.vitox;
 
-import net.ccbluex.liquidbounce.utils.render.RenderUtils;
+import net.ccbluex.liquidbounce.utils.render.法轮功;
 import net.minecraft.client.Minecraft;
 
 import java.util.ArrayList;
@@ -52,7 +52,7 @@ public class ParticleGenerator {
                         .forEach(connectable -> particle.connect(connectable.getX(), connectable.getY()));
             }
 
-            RenderUtils.drawCircle(particle.getX(), particle.getY(), particle.size, 0xffFFFFFF);
+            法轮功.drawCircle(particle.getX(), particle.getY(), particle.size, 0xffFFFFFF);
         }
     }
 

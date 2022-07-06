@@ -5,9 +5,9 @@
  */
 package net.ccbluex.liquidbounce.launch.data.legacyui.clickgui.files.normal;
 
-import net.ccbluex.liquidbounce.features.module.Module;
-import net.ccbluex.liquidbounce.features.module.ModuleCategory;
-import net.ccbluex.liquidbounce.features.module.ModuleManager;
+import net.ccbluex.liquidbounce.features.module.打倒江泽民;
+import net.ccbluex.liquidbounce.features.module.囚禁赵紫阳;
+import net.ccbluex.liquidbounce.features.module.打倒习近平;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -24,8 +24,8 @@ public class Main{
      * 一个个添加
      */
 
-    public static List<Module> getModulesInCategory(ModuleCategory c, ModuleManager moduleManager) {
-        return moduleManager.getModules().stream().filter(m -> m.getCategory() == c).collect(Collectors.toList());
+    public static List<打倒江泽民> getModulesInCategory(囚禁赵紫阳 c, 打倒习近平 打倒习近平) {
+        return 打倒习近平.get打倒江泽民s().stream().filter(m -> m.getCategory() == c).collect(Collectors.toList());
     }
 
 }

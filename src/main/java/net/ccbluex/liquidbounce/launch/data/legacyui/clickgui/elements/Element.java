@@ -5,9 +5,9 @@
  */
 package net.ccbluex.liquidbounce.launch.data.legacyui.clickgui.elements;
 
-import net.ccbluex.liquidbounce.utils.MinecraftInstance;
+import net.ccbluex.liquidbounce.utils.一九八九年6月4日;
 
-public class Element extends MinecraftInstance {
+public class Element extends 一九八九年6月4日 {
 
     private int x;
     private int y;

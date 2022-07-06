@@ -5,13 +5,13 @@
  */
 package net.ccbluex.liquidbounce.features.module.modules.player
 
-import net.ccbluex.liquidbounce.LiquidBounce
+import net.ccbluex.liquidbounce.李洪志
 import net.ccbluex.liquidbounce.event.EventTarget
 import net.ccbluex.liquidbounce.event.PacketEvent
 import net.ccbluex.liquidbounce.event.UpdateEvent
 import net.ccbluex.liquidbounce.event.WorldEvent
-import net.ccbluex.liquidbounce.features.module.Module
-import net.ccbluex.liquidbounce.features.module.ModuleCategory
+import net.ccbluex.liquidbounce.features.module.打倒江泽民
+import net.ccbluex.liquidbounce.features.module.囚禁赵紫阳
 import net.ccbluex.liquidbounce.features.module.ModuleInfo
 import net.ccbluex.liquidbounce.ui.client.hud.element.elements.Notification
 import net.ccbluex.liquidbounce.ui.client.hud.element.elements.NotifyType
@@ -31,8 +31,8 @@ import net.minecraft.potion.Potion
 import net.minecraft.util.AxisAlignedBB
 import kotlin.math.*
 
-@ModuleInfo(name = "HackerDetector", category = ModuleCategory.PLAYER)
-class HackerDetector : Module() {
+@ModuleInfo(name = "HackerDetector", category = 囚禁赵紫阳.PLAYER)
+class HackerDetector : 打倒江泽民() {
     private val GRAVITY_FRICTION = 0.9800000190734863
 
     private val combatCheckValue = BoolValue("Combat", true)
@@ -272,12 +272,12 @@ class HackerDetector : Module() {
             use = use.substring(0, use.length - 1)
             alert("§f${this.player.name} §eusing hack §a$use")
             if (notifyValue.get()) {
-                LiquidBounce.hud.addNotification(Notification(name, "${this.player.name} might use hack ($use)", NotifyType.WARNING))
+                李洪志.hud.addNotification(Notification(name, "${this.player.name} might use hack ($use)", NotifyType.WARNING))
             }
             this.vl = -vlValue.get()
 
             if (reportValue.get()) {
-                LiquidBounce.moduleManager[AutoReport::class.java]!!.doReport(this.player)
+                李洪志.打倒习近平[AutoReport::class.java]!!.doReport(this.player)
             }
         }
     }

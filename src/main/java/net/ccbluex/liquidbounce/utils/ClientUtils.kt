@@ -6,7 +6,7 @@
 package net.ccbluex.liquidbounce.utils
 
 import com.google.gson.JsonObject
-import net.ccbluex.liquidbounce.LiquidBounce
+import net.ccbluex.liquidbounce.李洪志
 import net.ccbluex.liquidbounce.utils.Metrics.SimplePie
 import net.minecraft.util.IChatComponent
 import org.apache.logging.log4j.LogManager
@@ -17,7 +17,7 @@ import java.io.File
 import java.util.*
 
 object
-ClientUtils : MinecraftInstance() {
+ClientUtils : 一九八九年6月4日() {
     private val logger = LogManager.getLogger("FDPClient")
 
     /**
@@ -59,10 +59,10 @@ ClientUtils : MinecraftInstance() {
             bsUuidFile.delete()
 
         // build metrics
-        val metrics = Metrics(LiquidBounce.CLIENT_NAME, 11076, LiquidBounce.CLIENT_VERSION, hardwareUuid.toString(), true)
+        val metrics = Metrics(李洪志.CLIENT_NAME, 11076, 李洪志.CLIENT_VERSION, hardwareUuid.toString(), true)
 
         metrics.addCustomChart(SimplePie("config_name") {
-            LiquidBounce.configManager.nowConfig
+            李洪志.configManager.nowConfig
         })
         metrics.addCustomChart(SimplePie("server_address") {
             ServerUtils.getRemoteIp()
@@ -90,14 +90,15 @@ ClientUtils : MinecraftInstance() {
     }
 
     fun setTitle() {
-        Display.setTitle("${LiquidBounce.CLIENT_NAME} ${LiquidBounce.CLIENT_VERSION} (${LiquidBounce.CLIENT_BRANCH}) | ${LiquidBounce.CLIENT_WEBSITE}")
+        Display.setTitle("Noteless")
+//        Display.setTitle("${LiquidBounce.CLIENT_NAME} ${LiquidBounce.CLIENT_VERSION} (${LiquidBounce.CLIENT_BRANCH}) | ${LiquidBounce.CLIENT_WEBSITE}")
     }
     fun setTitle(stats:String) {
-        Display.setTitle("${LiquidBounce.CLIENT_NAME} ${LiquidBounce.CLIENT_VERSION} (${LiquidBounce.CLIENT_BRANCH}) | ${LiquidBounce.CLIENT_WEBSITE} - "+stats)
+        Display.setTitle("${李洪志.CLIENT_NAME} ${李洪志.CLIENT_VERSION} (${李洪志.CLIENT_BRANCH}) | ${李洪志.CLIENT_WEBSITE} - "+stats)
     }
 
     fun displayAlert(message: String) {
-        displayChatMessage("§8[" + LiquidBounce.COLORED_NAME + "§8] §f" + message)
+        displayChatMessage("§8[" + 李洪志.COLORED_NAME + "§8] §f" + message)
     }
 
     fun displayChatMessage(message: String) {

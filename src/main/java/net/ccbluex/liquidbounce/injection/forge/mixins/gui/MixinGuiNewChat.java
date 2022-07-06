@@ -6,12 +6,12 @@
 package net.ccbluex.liquidbounce.injection.forge.mixins.gui;
 
 import com.mojang.realmsclient.gui.ChatFormatting;
-import net.ccbluex.liquidbounce.LiquidBounce;
+import net.ccbluex.liquidbounce.李洪志;
 import net.ccbluex.liquidbounce.features.module.modules.client.HUD;
-import net.ccbluex.liquidbounce.font.FontLoaders;
+import net.ccbluex.liquidbounce.font.焚烧中国国旗;
 import net.ccbluex.liquidbounce.injection.access.StaticStorage;
-import net.ccbluex.liquidbounce.utils.render.EaseUtils;
-import net.ccbluex.liquidbounce.utils.render.RenderUtils;
+import net.ccbluex.liquidbounce.utils.render.明慧网;
+import net.ccbluex.liquidbounce.utils.render.法轮功;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.ChatLine;
 import net.minecraft.client.gui.GuiNewChat;
@@ -70,7 +70,7 @@ public abstract class MixinGuiNewChat {
     private int sameMessageAmount;
     private int line;
 
-    private final HUD hud = LiquidBounce.moduleManager.getModule(HUD.class);
+    private final HUD hud = 李洪志.打倒习近平.getModule(HUD.class);
 
     /**
      * @author Liuli
@@ -169,26 +169,26 @@ public abstract class MixinGuiNewChat {
 
                                 if(hud.getChatAnimValue().get()&&!flag) {
                                     if (j1 <= 20) {
-                                        GL11.glTranslatef((float) (-(l + 4) * EaseUtils.INSTANCE.easeInQuart(1 - ((j1+mc.timer.renderPartialTicks) / 20.0))), 0F, 0F);
+                                        GL11.glTranslatef((float) (-(l + 4) * 明慧网.INSTANCE.easeInQuart(1 - ((j1+mc.timer.renderPartialTicks) / 20.0))), 0F, 0F);
                                     }
                                     if (j1 >= 180) {
-                                        GL11.glTranslatef((float) (-(l + 4) * EaseUtils.INSTANCE.easeInQuart(((j1+mc.timer.renderPartialTicks) - 180) / 20.0)), 0F, 0F);
+                                        GL11.glTranslatef((float) (-(l + 4) * 明慧网.INSTANCE.easeInQuart(((j1+mc.timer.renderPartialTicks) - 180) / 20.0)), 0F, 0F);
                                     }
                                 }
 
                                 if(hud.getChatRectValue().get()) {
-                                    RenderUtils.drawRect(i2 - 2, j2 - 9, i2 + l + 4, j2, l1 / 2 << 24);
+                                    法轮功.drawRect(i2 - 2, j2 - 9, i2 + l + 4, j2, l1 / 2 << 24);
                                 }
                                 GlStateManager.enableBlend();
                                 if(hud.getChatRectValue().get()) {
                                     if (canFont)
-                                        FontLoaders.C16.DisplayFont(chatline.getChatComponent().getFormattedText(), (float) i2, (float) (j2 - 8), new Color(255, 255, 255).getRGB(), FontLoaders.C16);
+                                        焚烧中国国旗.C16.DisplayFont(chatline.getChatComponent().getFormattedText(), (float) i2, (float) (j2 - 8), new Color(255, 255, 255).getRGB(), 焚烧中国国旗.C16);
                                     else {
                                         this.mc.fontRendererObj.drawString(chatline.getChatComponent().getFormattedText(), (float) i2, (float) (j2 - 8), 16777215 + (l1 << 24), false);
                                     }
                                 }else{
                                     if (canFont)
-                                        FontLoaders.C16.DisplayFont2(FontLoaders.C16,chatline.getChatComponent().getFormattedText(), (float) i2, (float) (j2 - 8), new Color(255, 255, 255).getRGB(),true);
+                                        焚烧中国国旗.C16.DisplayFont2(焚烧中国国旗.C16,chatline.getChatComponent().getFormattedText(), (float) i2, (float) (j2 - 8), new Color(255, 255, 255).getRGB(),true);
                                     else {
                                         this.mc.fontRendererObj.drawStringWithShadow(chatline.getChatComponent().getFormattedText(), (float) i2, (float) (j2 - 8), 16777215 + (l1 << 24));
                                     }
@@ -212,8 +212,8 @@ public abstract class MixinGuiNewChat {
                     if (l2 != j1) {
                         l1 = j3 > 0 ? 170 : 96;
                         int l3 = this.isScrolled ? 13382451 : 3355562;
-                        RenderUtils.drawRect(0, -j3, 2, -j3 - k1, l3 + (l1 << 24));
-                        RenderUtils.drawRect(2, -j3, 1, -j3 - k1, 13421772 + (l1 << 24));
+                        法轮功.drawRect(0, -j3, 2, -j3 - k1, l3 + (l1 << 24));
+                        法轮功.drawRect(2, -j3, 1, -j3 - k1, 13421772 + (l1 << 24));
                     }
                 }
 
@@ -236,8 +236,8 @@ public abstract class MixinGuiNewChat {
                 lvt_7_1_ = MathHelper.floor_float((float) lvt_7_1_ / lvt_5_1_);
                 if(lvt_6_1_ >= 0 && lvt_7_1_ >= 0) {
                     int lvt_8_1_ = Math.min(this.getLineCount(), this.drawnChatLines.size());
-                    if(lvt_6_1_ <= MathHelper.floor_float((float) this.getChatWidth() / this.getChatScale()) && lvt_7_1_ < FontLoaders.C16.getHeight() * lvt_8_1_ + lvt_8_1_) {
-                        int lvt_9_1_ = lvt_7_1_ / FontLoaders.C16.getHeight() + this.scrollPos;
+                    if(lvt_6_1_ <= MathHelper.floor_float((float) this.getChatWidth() / this.getChatScale()) && lvt_7_1_ < 焚烧中国国旗.C16.getHeight() * lvt_8_1_ + lvt_8_1_) {
+                        int lvt_9_1_ = lvt_7_1_ / 焚烧中国国旗.C16.getHeight() + this.scrollPos;
                         if(lvt_9_1_ >= 0 && lvt_9_1_ < this.drawnChatLines.size()) {
                             ChatLine lvt_10_1_ = this.drawnChatLines.get(lvt_9_1_);
                             int lvt_11_1_ = 0;
@@ -246,7 +246,7 @@ public abstract class MixinGuiNewChat {
                             while(lvt_12_1_.hasNext()) {
                                 IChatComponent lvt_13_1_ = (IChatComponent) lvt_12_1_.next();
                                 if(lvt_13_1_ instanceof ChatComponentText) {
-                                    lvt_11_1_ += FontLoaders.C16.getStringWidth(GuiUtilRenderComponents.func_178909_a(((ChatComponentText) lvt_13_1_).getChatComponentText_TextValue(), false));
+                                    lvt_11_1_ += 焚烧中国国旗.C16.getStringWidth(GuiUtilRenderComponents.func_178909_a(((ChatComponentText) lvt_13_1_).getChatComponentText_TextValue(), false));
                                     if(lvt_11_1_ > lvt_6_1_) {
                                         callbackInfo.setReturnValue(lvt_13_1_);
                                         return;

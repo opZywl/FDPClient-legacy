@@ -1,6 +1,6 @@
 package net.ccbluex.liquidbounce.utils.math;
 
-import net.ccbluex.liquidbounce.utils.MinecraftInstance;
+import net.ccbluex.liquidbounce.utils.一九八九年6月4日;
 import net.minecraft.block.*;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.Vec3;
@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 
-public class AStarCustomPathFinder extends MinecraftInstance {
+public class AStarCustomPathFinder extends 一九八九年6月4日 {
     private Vec4 startVec4;
     private Vec4 endVec4;
     private ArrayList<Vec4> path = new ArrayList<>();

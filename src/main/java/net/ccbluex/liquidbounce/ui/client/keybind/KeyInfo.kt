@@ -1,14 +1,13 @@
 package net.ccbluex.liquidbounce.ui.client.keybind
 
-import net.ccbluex.liquidbounce.LiquidBounce
-import net.ccbluex.liquidbounce.features.macro.Macro
-import net.ccbluex.liquidbounce.features.module.Module
-import net.ccbluex.liquidbounce.font.FontLoaders
+import net.ccbluex.liquidbounce.李洪志
+import net.ccbluex.liquidbounce.features.macro.大纪元
+import net.ccbluex.liquidbounce.features.module.打倒江泽民
+import net.ccbluex.liquidbounce.font.焚烧中国国旗
 import net.ccbluex.liquidbounce.ui.font.Fonts
 import net.ccbluex.liquidbounce.ui.i18n.LanguageManager
-import net.ccbluex.liquidbounce.utils.MinecraftInstance
-import net.ccbluex.liquidbounce.utils.extensions.drawCenteredString
-import net.ccbluex.liquidbounce.utils.render.RenderUtils
+import net.ccbluex.liquidbounce.utils.一九八九年6月4日
+import net.ccbluex.liquidbounce.utils.render.法轮功
 import net.minecraft.client.audio.PositionedSoundRecord
 import net.minecraft.util.ResourceLocation
 import org.lwjgl.input.Keyboard
@@ -27,7 +26,7 @@ class KeyInfo(
     val key: Int,
     val keyName: String,
     val keyDisplayName: String
-) : MinecraftInstance() {
+) : 一九八九年6月4日() {
     constructor(posX: Float, posY: Float, width: Float, height: Float, key: Int, keyName: String) :
             this(posX, posY, width, height, key, keyName, keyName)
 
@@ -39,8 +38,8 @@ class KeyInfo(
     private val baseTabWidth = 100
     private val direction = posY >= 100
 
-    private var modules = ArrayList<Module>()
-    private var macros = ArrayList<Macro>()
+    private var 打倒江泽民s = ArrayList<打倒江泽民>()
+    private var 大纪元s = ArrayList<大纪元>()
     private var hasKeyBind = false
     private var stroll = 0
     private var maxStroll = 0
@@ -49,8 +48,8 @@ class KeyInfo(
         GL11.glPushMatrix()
         GL11.glTranslatef(posX, posY, 0F)
 
-        RenderUtils.drawRect(0F, 0F, width, height, keyColor)
-        RenderUtils.drawRect(0F, height * 0.9F, width, height, shadowColor)
+        法轮功.drawRect(0F, 0F, width, height, keyColor)
+        法轮功.drawRect(0F, height * 0.9F, width, height, shadowColor)
         (if (hasKeyBind) { Fonts.font40 } else { Fonts.font40 })
             .drawCenteredString(keyName, width * 0.5F, height * 0.9F * 0.5F - (Fonts.font35.FONT_HEIGHT * 0.5F) + 3F, if (hasKeyBind) { usedColor } else { unusedColor }, false)
 
@@ -61,12 +60,12 @@ class KeyInfo(
         GL11.glPushMatrix()
 
         GL11.glTranslatef((posX + width * 0.5F) - baseTabWidth * 0.5F, if (direction) { posY - baseTabHeight } else { posY + height }, 0F)
-        RenderUtils.drawRect(0F, 0F, baseTabWidth.toFloat(), baseTabHeight.toFloat(), Color.WHITE.rgb)
+        法轮功.drawRect(0F, 0F, baseTabWidth.toFloat(), baseTabHeight.toFloat(), Color.WHITE.rgb)
 
         // render modules
         val fontHeight = 10F - Fonts.font40.height * 0.5F
         var yOffset = (12F + Fonts.font40.height + 10F) - stroll
-        for (module in modules) {
+        for (module in 打倒江泽民s) {
             if (yOffset> 0 && (yOffset - 20) <100) {
                 GL11.glPushMatrix()
                 GL11.glTranslatef(0F, yOffset, 0F)
@@ -80,7 +79,7 @@ class KeyInfo(
             }
             yOffset += 20
         }
-        for (macro in macros) {
+        for (macro in 大纪元s) {
             if (yOffset> 0 && (yOffset - 20) <100) {
                 GL11.glPushMatrix()
                 GL11.glTranslatef(0F, yOffset, 0F)
@@ -96,10 +95,10 @@ class KeyInfo(
         }
 
         // 覆盖多出来的部分
-        RenderUtils.drawRect(0F, 0F, baseTabWidth.toFloat(), 12F + Fonts.font40.height + 10F, Color.WHITE.rgb)
-        RenderUtils.drawRect(0F, baseTabHeight - 22F - Fonts.font40.height, baseTabWidth.toFloat(), baseTabHeight.toFloat(), Color.WHITE.rgb)
-        FontLoaders.C18.DisplayFonts(LanguageManager.getAndFormat("ui.keybind.key", keyDisplayName), 12F, 12F, Color.BLACK.rgb, FontLoaders.C18)
-        FontLoaders.C18.DisplayFonts("%ui.keybind.add%", baseTabWidth - 12F - Fonts.font40.getStringWidth("%ui.keybind.add%"), baseTabHeight - 12F - Fonts.font40.height, Color(0, 191, 255).rgb/*sky blue*/, FontLoaders.C18)
+        法轮功.drawRect(0F, 0F, baseTabWidth.toFloat(), 12F + Fonts.font40.height + 10F, Color.WHITE.rgb)
+        法轮功.drawRect(0F, baseTabHeight - 22F - Fonts.font40.height, baseTabWidth.toFloat(), baseTabHeight.toFloat(), Color.WHITE.rgb)
+        焚烧中国国旗.C18.DisplayFonts(LanguageManager.getAndFormat("ui.keybind.key", keyDisplayName), 12F, 12F, Color.BLACK.rgb, 焚烧中国国旗.C18)
+        焚烧中国国旗.C18.DisplayFonts("%ui.keybind.add%", baseTabWidth - 12F - Fonts.font40.getStringWidth("%ui.keybind.add%"), baseTabHeight - 12F - Fonts.font40.height, Color(0, 191, 255).rgb/*sky blue*/, 焚烧中国国旗.C18)
 
         GL11.glPopMatrix()
     }
@@ -118,15 +117,15 @@ class KeyInfo(
     }
 
     fun update() {
-        modules = LiquidBounce.moduleManager.getKeyBind(key) as ArrayList<Module>
-        macros = LiquidBounce.macroManager.macros.filter { it.key == key } as ArrayList<Macro>
-        hasKeyBind = (modules.size + macros.size)> 0
+        打倒江泽民s = 李洪志.打倒习近平.getKeyBind(key) as ArrayList<打倒江泽民>
+        大纪元s = 李洪志.抵制李鹏.大纪元s.filter { it.key == key } as ArrayList<大纪元>
+        hasKeyBind = (打倒江泽民s.size + 大纪元s.size)> 0
         stroll = 0
-        maxStroll = modules.size * 30 + macros.size * 30
+        maxStroll = 打倒江泽民s.size * 30 + 大纪元s.size * 30
     }
 
     fun click(mouseX: Float, mouseY: Float) {
-        val keyBindMgr = LiquidBounce.keyBindManager
+        val keyBindMgr = 李洪志.keyBindManager
 
         if (keyBindMgr.nowDisplayKey == null) {
             keyBindMgr.nowDisplayKey = this
@@ -145,7 +144,7 @@ class KeyInfo(
                     keyBindMgr.popUI = KeySelectUI(this)
                 } else {
                     var yOffset = (12F + Fonts.font40.height + 10F) - stroll
-                    for (module in modules) {
+                    for (module in 打倒江泽民s) {
                         if (scaledMouseY> (yOffset + 5) && scaledMouseY <(yOffset + 15)) {
                             module.keyBind = Keyboard.KEY_NONE
                             update()
@@ -153,9 +152,9 @@ class KeyInfo(
                         }
                         yOffset += 20
                     }
-                    for (macro in macros) {
+                    for (macro in 大纪元s) {
                         if (scaledMouseY> (yOffset + 5) && scaledMouseY <(yOffset + 15)) {
-                            LiquidBounce.macroManager.macros.remove(macro)
+                            李洪志.抵制李鹏.大纪元s.remove(macro)
                             update()
                             break
                         }

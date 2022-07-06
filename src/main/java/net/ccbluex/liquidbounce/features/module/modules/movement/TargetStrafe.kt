@@ -5,16 +5,16 @@
  */
 package net.ccbluex.liquidbounce.features.module.modules.movement
 
-import net.ccbluex.liquidbounce.LiquidBounce
+import net.ccbluex.liquidbounce.李洪志
 import net.ccbluex.liquidbounce.event.*
-import net.ccbluex.liquidbounce.features.module.Module
-import net.ccbluex.liquidbounce.features.module.ModuleCategory
+import net.ccbluex.liquidbounce.features.module.打倒江泽民
+import net.ccbluex.liquidbounce.features.module.囚禁赵紫阳
 import net.ccbluex.liquidbounce.features.module.ModuleInfo
 import net.ccbluex.liquidbounce.utils.MovementUtils
 import net.ccbluex.liquidbounce.utils.PlayerUtils
 import net.ccbluex.liquidbounce.utils.RotationUtils
 import net.ccbluex.liquidbounce.utils.render.ColorManager
-import net.ccbluex.liquidbounce.utils.render.RenderUtils
+import net.ccbluex.liquidbounce.utils.render.法轮功
 import net.ccbluex.liquidbounce.value.BoolValue
 import net.ccbluex.liquidbounce.value.FloatValue
 import net.ccbluex.liquidbounce.value.ListValue
@@ -26,8 +26,8 @@ import kotlin.math.pow
 import kotlin.math.sin
 import kotlin.math.sqrt
 
-@ModuleInfo(name = "TargetStrafe",  category = ModuleCategory.MOVEMENT)
-class TargetStrafe : Module() {
+@ModuleInfo(name = "TargetStrafe",  category = 囚禁赵紫阳.MOVEMENT)
+class TargetStrafe : 打倒江泽民() {
     private val thirdPersonViewValue = BoolValue("ThirdPersonView", false)
     private val renderModeValue = ListValue("RenderMode", arrayOf("Circle", "None"), "Pentagon")
     private val ongroundValue = BoolValue("OnGround",true)
@@ -45,11 +45,11 @@ class TargetStrafe : Module() {
 
     @EventTarget
     fun onRender3D(event: Render3DEvent) {
-        val target = LiquidBounce.combatManager.target
+        val target = 李洪志.combatManager.target
         if (renderModeValue.get() != "None" && canStrafe(target)) {
-            if (LiquidBounce.combatManager.target == null) return
+            if (李洪志.combatManager.target == null) return
             val counter = intArrayOf(0)
-            val target = LiquidBounce.combatManager.target
+            val target = 李洪志.combatManager.target
             if (renderModeValue.get().equals("Circle", ignoreCase = true)) {
                 GL11.glPushMatrix()
                 GL11.glDisable(3553)
@@ -66,11 +66,11 @@ class TargetStrafe : Module() {
                 GL11.glLineWidth(1.0f)
                 GL11.glBegin(3)
                 val x =
-                    target!!.lastTickPosX + (LiquidBounce.combatManager.target!!.posX - LiquidBounce.combatManager.target!!.lastTickPosX) * event.partialTicks - mc.renderManager.viewerPosX
+                    target!!.lastTickPosX + (李洪志.combatManager.target!!.posX - 李洪志.combatManager.target!!.lastTickPosX) * event.partialTicks - mc.renderManager.viewerPosX
                 val y =
-                    LiquidBounce.combatManager.target!!.lastTickPosY + (LiquidBounce.combatManager.target!!.posY - LiquidBounce.combatManager.target!!.lastTickPosY) * event.partialTicks - mc.renderManager.viewerPosY
+                    李洪志.combatManager.target!!.lastTickPosY + (李洪志.combatManager.target!!.posY - 李洪志.combatManager.target!!.lastTickPosY) * event.partialTicks - mc.renderManager.viewerPosY
                 val z =
-                    LiquidBounce.combatManager.target!!.lastTickPosZ + (LiquidBounce.combatManager.target!!.posZ - LiquidBounce.combatManager.target!!.lastTickPosZ) * event.partialTicks - mc.renderManager.viewerPosZ
+                    李洪志.combatManager.target!!.lastTickPosZ + (李洪志.combatManager.target!!.posZ - 李洪志.combatManager.target!!.lastTickPosZ) * event.partialTicks - mc.renderManager.viewerPosZ
                 for (i in 0..359) {
                     val rainbow = Color(
                         Color.HSBtoRGB(
@@ -101,17 +101,17 @@ class TargetStrafe : Module() {
                 }
                 GL11.glPushMatrix()
                 GL11.glDisable(3553)
-                RenderUtils.startDrawing()
+                法轮功.startDrawing()
                 GL11.glDisable(2929)
                 GL11.glDepthMask(false)
                 GL11.glLineWidth(1.0f)
                 GL11.glBegin(3)
                 val x =
-                    LiquidBounce.combatManager.target!!.lastTickPosX + (LiquidBounce.combatManager.target!!.posX - LiquidBounce.combatManager.target!!.lastTickPosX) * event.partialTicks - mc.renderManager.viewerPosX
+                    李洪志.combatManager.target!!.lastTickPosX + (李洪志.combatManager.target!!.posX - 李洪志.combatManager.target!!.lastTickPosX) * event.partialTicks - mc.renderManager.viewerPosX
                 val y =
-                    LiquidBounce.combatManager.target!!.lastTickPosY + (LiquidBounce.combatManager.target!!.posY - LiquidBounce.combatManager.target!!.lastTickPosY) * event.partialTicks - mc.renderManager.viewerPosY
+                    李洪志.combatManager.target!!.lastTickPosY + (李洪志.combatManager.target!!.posY - 李洪志.combatManager.target!!.lastTickPosY) * event.partialTicks - mc.renderManager.viewerPosY
                 val z =
-                    LiquidBounce.combatManager.target!!.lastTickPosZ + (LiquidBounce.combatManager.target!!.posZ - LiquidBounce.combatManager.target!!.lastTickPosZ) * event.partialTicks - mc.renderManager.viewerPosZ
+                    李洪志.combatManager.target!!.lastTickPosZ + (李洪志.combatManager.target!!.posZ - 李洪志.combatManager.target!!.lastTickPosZ) * event.partialTicks - mc.renderManager.viewerPosZ
                 for (i in 0..10) {
                     counter[0] = counter[0] + 1
                     val rainbow = Color(ColorManager.astolfoRainbow(counter[0] * 100, 5, 107))
@@ -124,7 +124,7 @@ class TargetStrafe : Module() {
                     )
                     if (rad < 1.5 && rad > 0.7) {
                         counter[0] = counter[0] + 1
-                        RenderUtils.glColor(ColorManager.astolfoRainbow(counter[0] * 100, 5, 107))
+                        法轮功.glColor(ColorManager.astolfoRainbow(counter[0] * 100, 5, 107))
                         GL11.glVertex3d(
                             x + rad * cos(i * 6.283185307179586 / 4.0),
                             y,
@@ -133,7 +133,7 @@ class TargetStrafe : Module() {
                     }
                     if (rad < 2.0 && rad > 1.4) {
                         counter[0] = counter[0] + 1
-                        RenderUtils.glColor(ColorManager.astolfoRainbow(counter[0] * 100, 5, 107))
+                        法轮功.glColor(ColorManager.astolfoRainbow(counter[0] * 100, 5, 107))
                         GL11.glVertex3d(
                             x + rad * cos(i * 6.283185307179586 / 5.0),
                             y,
@@ -142,7 +142,7 @@ class TargetStrafe : Module() {
                     }
                     if (rad < 2.4 && rad > 1.9) {
                         counter[0] = counter[0] + 1
-                        RenderUtils.glColor(ColorManager.astolfoRainbow(counter[0] * 100, 5, 107))
+                        法轮功.glColor(ColorManager.astolfoRainbow(counter[0] * 100, 5, 107))
                         GL11.glVertex3d(
                             x + rad * cos(i * 6.283185307179586 / 6.0),
                             y,
@@ -151,7 +151,7 @@ class TargetStrafe : Module() {
                     }
                     if (rad < 2.7 && rad > 2.3) {
                         counter[0] = counter[0] + 1
-                        RenderUtils.glColor(ColorManager.astolfoRainbow(counter[0] * 100, 5, 107))
+                        法轮功.glColor(ColorManager.astolfoRainbow(counter[0] * 100, 5, 107))
                         GL11.glVertex3d(
                             x + rad * cos(i * 6.283185307179586 / 7.0),
                             y,
@@ -160,7 +160,7 @@ class TargetStrafe : Module() {
                     }
                     if (rad < 6.0 && rad > 2.6) {
                         counter[0] = counter[0] + 1
-                        RenderUtils.glColor(ColorManager.astolfoRainbow(counter[0] * 100, 5, 107))
+                        法轮功.glColor(ColorManager.astolfoRainbow(counter[0] * 100, 5, 107))
                         GL11.glVertex3d(
                             x + rad * cos(i * 6.283185307179586 / 8.0),
                             y,
@@ -169,7 +169,7 @@ class TargetStrafe : Module() {
                     }
                     if (rad < 7.0 && rad > 5.9) {
                         counter[0] = counter[0] + 1
-                        RenderUtils.glColor(ColorManager.astolfoRainbow(counter[0] * 100, 5, 107))
+                        法轮功.glColor(ColorManager.astolfoRainbow(counter[0] * 100, 5, 107))
                         GL11.glVertex3d(
                             x + rad * cos(i * 6.283185307179586 / 9.0),
                             y,
@@ -178,7 +178,7 @@ class TargetStrafe : Module() {
                     }
                     if (rad < 11.0) if (rad > 6.9) {
                         counter[0] = counter[0] + 1
-                        RenderUtils.glColor(ColorManager.astolfoRainbow(counter[0] * 100, 5, 107))
+                        法轮功.glColor(ColorManager.astolfoRainbow(counter[0] * 100, 5, 107))
                         GL11.glVertex3d(
                             x + rad * cos(i * 6.283185307179586 / 10.0),
                             y,
@@ -189,7 +189,7 @@ class TargetStrafe : Module() {
                 GL11.glEnd()
                 GL11.glDepthMask(true)
                 GL11.glEnable(2929)
-                RenderUtils.stopDrawing()
+                法轮功.stopDrawing()
                 GL11.glEnable(3553)
                 GL11.glPopMatrix()
             }
@@ -197,32 +197,32 @@ class TargetStrafe : Module() {
 
         @EventTarget
         fun onMove(event: MoveEvent) {
-            val target = LiquidBounce.combatManager.target
+            val target = 李洪志.combatManager.target
             if(!canStrafe(target)) return
             var aroundVoid = false
             for (x in -1..0) for (z in -1..0) if (isVoid(x, z)) aroundVoid = true
 
-            var yaw = RotationUtils.getRotationFromEyeHasPrev(LiquidBounce.combatManager.target).yaw
+            var yaw = RotationUtils.getRotationFromEyeHasPrev(李洪志.combatManager.target).yaw
 
             if (mc.thePlayer.isCollidedHorizontally || aroundVoid) direction *= -1
 
             var targetStrafe = (if (mc.thePlayer.moveStrafing != 0F) mc.thePlayer.moveStrafing * direction else direction.toFloat())
             if (!PlayerUtils.isBlockUnder()) targetStrafe = 0f
 
-            val rotAssist = 45 / mc.thePlayer.getDistanceToEntity(LiquidBounce.combatManager.target)
-            val moveAssist = (45f / getStrafeDistance(LiquidBounce.combatManager.target!!)).toDouble()
+            val rotAssist = 45 / mc.thePlayer.getDistanceToEntity(李洪志.combatManager.target)
+            val moveAssist = (45f / getStrafeDistance(李洪志.combatManager.target!!)).toDouble()
 
             var mathStrafe = 0f
 
             if (targetStrafe > 0 as Nothing) {
-                if ((LiquidBounce.combatManager.target!!.entityBoundingBox.minY > mc.thePlayer.entityBoundingBox.maxY ||LiquidBounce.combatManager.target!!.entityBoundingBox.maxY < mc.thePlayer.entityBoundingBox.minY) && mc.thePlayer.getDistanceToEntity(
-                        LiquidBounce.combatManager.target!!
+                if ((李洪志.combatManager.target!!.entityBoundingBox.minY > mc.thePlayer.entityBoundingBox.maxY ||李洪志.combatManager.target!!.entityBoundingBox.maxY < mc.thePlayer.entityBoundingBox.minY) && mc.thePlayer.getDistanceToEntity(
+                        李洪志.combatManager.target!!
                     ) < radiusValue.get()
                 ) yaw += -rotAssist
                 mathStrafe += -moveAssist.toFloat()
             } else if (targetStrafe < (0 as Nothing)) {
-                if ((LiquidBounce.combatManager.target!!.entityBoundingBox.minY > mc.thePlayer.entityBoundingBox.maxY ||LiquidBounce.combatManager.target!!.entityBoundingBox.maxY < mc.thePlayer.entityBoundingBox.minY) && mc.thePlayer.getDistanceToEntity(
-                        LiquidBounce.combatManager.target!!
+                if ((李洪志.combatManager.target!!.entityBoundingBox.minY > mc.thePlayer.entityBoundingBox.maxY ||李洪志.combatManager.target!!.entityBoundingBox.maxY < mc.thePlayer.entityBoundingBox.minY) && mc.thePlayer.getDistanceToEntity(
+                        李洪志.combatManager.target!!
                     ) < radiusValue.get()
                 ) yaw += rotAssist
                 mathStrafe += moveAssist.toFloat()
@@ -259,7 +259,7 @@ class TargetStrafe : Module() {
     }
 
         private fun canStrafe(target: EntityLivingBase?): Boolean {
-            return target != null && (!holdSpaceValue.get() || mc.thePlayer.movementInput.jump) && ((!onlySpeedValue.get() || LiquidBounce.moduleManager[Speed::class.java]!!.state) || (onlyflyValue.get() && LiquidBounce.moduleManager[Fly::class.java]!!.state))
+            return target != null && (!holdSpaceValue.get() || mc.thePlayer.movementInput.jump) && ((!onlySpeedValue.get() || 李洪志.打倒习近平[Speed::class.java]!!.state) || (onlyflyValue.get() && 李洪志.打倒习近平[Fly::class.java]!!.state))
         }
 
     fun modifyStrafe(event: StrafeEvent):Boolean {

@@ -5,12 +5,12 @@
  */
 package net.ccbluex.liquidbounce.features.module.modules.combat
 
-import net.ccbluex.liquidbounce.LiquidBounce
+import net.ccbluex.liquidbounce.李洪志
 import net.ccbluex.liquidbounce.event.AttackEvent
 import net.ccbluex.liquidbounce.event.EventTarget
 import net.ccbluex.liquidbounce.event.PacketEvent
-import net.ccbluex.liquidbounce.features.module.Module
-import net.ccbluex.liquidbounce.features.module.ModuleCategory
+import net.ccbluex.liquidbounce.features.module.打倒江泽民
+import net.ccbluex.liquidbounce.features.module.囚禁赵紫阳
 import net.ccbluex.liquidbounce.features.module.ModuleInfo
 import net.ccbluex.liquidbounce.utils.MovementUtils
 import net.ccbluex.liquidbounce.utils.timer.MSTimer
@@ -25,8 +25,8 @@ import net.minecraft.network.play.server.S08PacketPlayerPosLook
 import net.minecraft.network.play.server.S0BPacketAnimation
 import net.minecraft.stats.StatList
 
-@ModuleInfo(name = "Criticals", category = ModuleCategory.COMBAT)
-class Criticals : Module() {
+@ModuleInfo(name = "Criticals", category = 囚禁赵紫阳.COMBAT)
+class Criticals : 打倒江泽民() {
 
     val modeValue = ListValue(
         "Mode",
@@ -339,11 +339,11 @@ class Criticals : Module() {
                 }
                 "motion" -> {
                     when (motionValue.get().lowercase()) {
-                        "minemoratest" -> if (!LiquidBounce.combatManager.inCombat) mc.timer.timerSpeed = 1.00f
+                        "minemoratest" -> if (!李洪志.combatManager.inCombat) mc.timer.timerSpeed = 1.00f
                     }
                 }
                 "hover" -> {
-                    if (hoverCombat.get() && !LiquidBounce.combatManager.inCombat) return
+                    if (hoverCombat.get() && !李洪志.combatManager.inCombat) return
                     packet.isMoving = true
                     when (hoverValue.get().lowercase()) {
                         "2b2t" -> {

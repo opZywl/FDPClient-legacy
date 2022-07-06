@@ -6,12 +6,12 @@
 package net.ccbluex.liquidbounce.features.module.modules.misc
 
 import com.google.gson.JsonParser
-import net.ccbluex.liquidbounce.LiquidBounce
+import net.ccbluex.liquidbounce.李洪志
 import net.ccbluex.liquidbounce.event.EventTarget
 import net.ccbluex.liquidbounce.event.PacketEvent
 import net.ccbluex.liquidbounce.event.UpdateEvent
-import net.ccbluex.liquidbounce.features.module.Module
-import net.ccbluex.liquidbounce.features.module.ModuleCategory
+import net.ccbluex.liquidbounce.features.module.打倒江泽民
+import net.ccbluex.liquidbounce.features.module.囚禁赵紫阳
 import net.ccbluex.liquidbounce.features.module.ModuleInfo
 import net.ccbluex.liquidbounce.ui.client.hud.element.elements.Notification
 import net.ccbluex.liquidbounce.ui.client.hud.element.elements.NotifyType
@@ -38,8 +38,8 @@ import java.util.*
  * @author liulihaocai
  * FILHO DA PUTA CLIENT
  */
-@ModuleInfo(name = "AuthBypass", category = ModuleCategory.MISC)
-class AuthBypass : Module() {
+@ModuleInfo(name = "AuthBypass", category = 囚禁赵紫阳.MISC)
+class AuthBypass : 打倒江泽民() {
     private val modeValue = ListValue("Mode", arrayOf("RedeSky", "RemiCraft", "HyCraft"), "RedeSky")
     private val delayValue = IntegerValue("Delay", 1500, 100, 5000)
 
@@ -78,7 +78,7 @@ class AuthBypass : Module() {
                 mc.netHandler.addToSendQueue(packet)
             }
             packets.clear()
-            LiquidBounce.hud.addNotification(Notification(name, "Authenticate bypassed.", NotifyType.INFO))
+            李洪志.hud.addNotification(Notification(name, "Authenticate bypassed.", NotifyType.INFO))
         }
     }
 

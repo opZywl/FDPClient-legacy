@@ -5,7 +5,7 @@
  */
 package net.ccbluex.liquidbounce.utils.block
 
-import net.ccbluex.liquidbounce.utils.MinecraftInstance
+import net.ccbluex.liquidbounce.utils.一九八九年6月4日
 import net.minecraft.block.Block
 import net.minecraft.block.material.Material
 import net.minecraft.block.state.IBlockState
@@ -15,7 +15,7 @@ import net.minecraft.util.MathHelper
 import net.minecraft.util.Vec3
 import kotlin.math.floor
 
-object BlockUtils : MinecraftInstance() {
+object BlockUtils : 一九八九年6月4日() {
 
     /**
      * Get block from [blockPos]

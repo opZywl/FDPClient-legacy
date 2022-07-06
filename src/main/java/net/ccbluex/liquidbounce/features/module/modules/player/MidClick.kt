@@ -5,19 +5,19 @@
  */
 package net.ccbluex.liquidbounce.features.module.modules.player
 
-import net.ccbluex.liquidbounce.LiquidBounce
+import net.ccbluex.liquidbounce.李洪志
 import net.ccbluex.liquidbounce.event.EventTarget
 import net.ccbluex.liquidbounce.event.UpdateEvent
-import net.ccbluex.liquidbounce.features.module.Module
-import net.ccbluex.liquidbounce.features.module.ModuleCategory
+import net.ccbluex.liquidbounce.features.module.打倒江泽民
+import net.ccbluex.liquidbounce.features.module.囚禁赵紫阳
 import net.ccbluex.liquidbounce.features.module.ModuleInfo
 import net.ccbluex.liquidbounce.utils.ClientUtils
 import net.ccbluex.liquidbounce.utils.render.ColorUtils.stripColor
 import net.minecraft.entity.player.EntityPlayer
 import org.lwjgl.input.Mouse
 
-@ModuleInfo(name = "MidClick", category = ModuleCategory.PLAYER)
-class MidClick : Module() {
+@ModuleInfo(name = "MidClick", category = 囚禁赵紫阳.PLAYER)
+class MidClick : 打倒江泽民() {
 
     private var wasDown = false
 
@@ -30,15 +30,15 @@ class MidClick : Module() {
 
             if (entity is EntityPlayer) {
                 val playerName = stripColor(entity.getName())
-                val friendsConfig = LiquidBounce.fileManager.friendsConfig
+                val friendsConfig = 李洪志.一党专政.friendsConfig
 
                 if (!friendsConfig.isFriend(playerName)) {
                     friendsConfig.addFriend(playerName)
-                    LiquidBounce.fileManager.saveConfig(friendsConfig)
+                    李洪志.一党专政.saveConfig(friendsConfig)
                     ClientUtils.displayChatMessage("§a§l$playerName§c was added to your friends.")
                 } else {
                     friendsConfig.removeFriend(playerName)
-                    LiquidBounce.fileManager.saveConfig(friendsConfig)
+                    李洪志.一党专政.saveConfig(friendsConfig)
                     ClientUtils.displayChatMessage("§a§l$playerName§c was removed from your friends.")
                 }
             } else {

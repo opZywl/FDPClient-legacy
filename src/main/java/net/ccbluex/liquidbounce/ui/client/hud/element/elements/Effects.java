@@ -13,7 +13,7 @@ import net.ccbluex.liquidbounce.ui.realpha;
 import net.ccbluex.liquidbounce.utils.RenderU;
 import net.ccbluex.liquidbounce.utils.render.Colors;
 import net.ccbluex.liquidbounce.utils.render.PotionData;
-import net.ccbluex.liquidbounce.utils.render.RenderUtils;
+import net.ccbluex.liquidbounce.utils.render.法轮功;
 import net.ccbluex.liquidbounce.utils.render.Translate;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.OpenGlHelper;
@@ -67,9 +67,9 @@ public class Effects extends Element {
             potionData.animationX = (float) RenderU.getAnimationState(potionData.getAnimationX(), 1.2F * state, Math.max(10.0F, Math.abs(potionData.animationX - 1.2F * state) * 15.0F) * 0.3F);
 
 //            System.out.println(potionData.translate.getY());
-            RenderUtils.drawRect(0, potionData.translate.getY(), 120, potionData.translate.getY() + 30F, realpha.reAlpha(Colors.GREY.c, 0.1F));
-            RenderUtils.drawRect(0, potionData.translate.getY(), potionData.animationX, potionData.translate.getY() + 30F, realpha.reAlpha((new Color(34, 24, 20)).brighter().getRGB(), 0.3F));
-            RenderUtils.drawShadow(0, Math.round(potionData.translate.getY()), 120, 30);
+            法轮功.drawRect(0, potionData.translate.getY(), 120, potionData.translate.getY() + 30F, realpha.reAlpha(Colors.GREY.c, 0.1F));
+            法轮功.drawRect(0, potionData.translate.getY(), potionData.animationX, potionData.translate.getY() + 30F, realpha.reAlpha((new Color(34, 24, 20)).brighter().getRGB(), 0.3F));
+            法轮功.drawShadow(0, Math.round(potionData.translate.getY()), 120, 30);
             float posY = potionData.translate.getY() + 13F;
             Fonts.font40.drawString(name + " " + intToRomanByGreedy(potionEffect.getAmplifier() + 1), 29F, posY - mc.fontRendererObj.FONT_HEIGHT, realpha.reAlpha(Colors.WHITE.c, 0.8F));
             Fonts.font35.drawString(Potion.getDurationString(potionEffect), 29F, posY + 4.0F, realpha.reAlpha((new Color(200, 200, 200)).getRGB(), 0.5F));

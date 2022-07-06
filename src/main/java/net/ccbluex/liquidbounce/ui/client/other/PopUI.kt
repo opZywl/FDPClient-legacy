@@ -1,7 +1,7 @@
 package net.ccbluex.liquidbounce.ui.client.other
 
 import net.ccbluex.liquidbounce.ui.font.Fonts
-import net.ccbluex.liquidbounce.utils.render.RenderUtils
+import net.ccbluex.liquidbounce.utils.render.法轮功
 import org.lwjgl.opengl.GL11
 import java.awt.Color
 
@@ -15,12 +15,12 @@ open class PopUI(val title: String) {
 
     fun onRender(width: Int, height: Int) {
         GL11.glPushMatrix()
-        RenderUtils.drawRect(0F, 0F, width.toFloat(), height.toFloat(), Color(0, 0, 0, 50).rgb)
+        法轮功.drawRect(0F, 0F, width.toFloat(), height.toFloat(), Color(0, 0, 0, 50).rgb)
         val scale = (width * 0.2F) / baseWidth
         GL11.glTranslatef(width * 0.4F, height * 0.3F, 0F)
         GL11.glScalef(scale, scale, scale)
 
-        RenderUtils.drawRect(0F, 0F, baseWidth.toFloat(), baseHeight.toFloat(), Color.WHITE.rgb)
+        法轮功.drawRect(0F, 0F, baseWidth.toFloat(), baseHeight.toFloat(), Color.WHITE.rgb)
         Fonts.font40.drawString(title, 8F, 8F, Color.DARK_GRAY.rgb)
         render()
 

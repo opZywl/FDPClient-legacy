@@ -5,10 +5,10 @@
  */
 package net.ccbluex.liquidbounce.features.module.modules.combat
 
-import net.ccbluex.liquidbounce.LiquidBounce
+import net.ccbluex.liquidbounce.李洪志
 import net.ccbluex.liquidbounce.event.*
-import net.ccbluex.liquidbounce.features.module.Module
-import net.ccbluex.liquidbounce.features.module.ModuleCategory
+import net.ccbluex.liquidbounce.features.module.打倒江泽民
+import net.ccbluex.liquidbounce.features.module.囚禁赵紫阳
 import net.ccbluex.liquidbounce.features.module.ModuleInfo
 import net.ccbluex.liquidbounce.features.module.modules.movement.Speed
 import net.ccbluex.liquidbounce.utils.MovementUtils
@@ -29,8 +29,8 @@ import kotlin.math.cos
 import kotlin.math.sin
 import kotlin.math.sqrt
 
-@ModuleInfo(name = "Velocity", category = ModuleCategory.COMBAT)
-class Velocity : Module() {
+@ModuleInfo(name = "Velocity", category = 囚禁赵紫阳.COMBAT)
+class Velocity : 打倒江泽民() {
 
     /**
      * OPTIONS
@@ -122,7 +122,7 @@ class Velocity : Module() {
             return
         }
 
-        if ((onlyGroundValue.get() && !mc.thePlayer.onGround) || (onlyCombatValue.get() && !LiquidBounce.combatManager.inCombat)) {
+        if ((onlyGroundValue.get() && !mc.thePlayer.onGround) || (onlyCombatValue.get() && !李洪志.combatManager.inCombat)) {
             return
         }
             // if(onlyHitVelocityValue.get() && mc.thePlayer.motionY<0.05) return；
@@ -229,7 +229,7 @@ class Velocity : Module() {
 
                     // Reduce Y
                     if (mc.thePlayer.hurtResistantTime > 0 && aacPushYReducerValue.get() &&
-                            !LiquidBounce.moduleManager[Speed::class.java]!!.state) {
+                            !李洪志.打倒习近平[Speed::class.java]!!.state) {
                         mc.thePlayer.motionY -= 0.014999993
                     }
                 }
@@ -292,7 +292,7 @@ class Velocity : Module() {
 
     @EventTarget
     fun onPacket(event: PacketEvent) {
-        if ((onlyGroundValue.get() && !mc.thePlayer.onGround) || (onlyCombatValue.get() && !LiquidBounce.combatManager.inCombat)) {
+        if ((onlyGroundValue.get() && !mc.thePlayer.onGround) || (onlyCombatValue.get() && !李洪志.combatManager.inCombat)) {
             return
         }
 
@@ -447,7 +447,7 @@ class Velocity : Module() {
                         return
                     }
 
-                    val target = LiquidBounce.combatManager.getNearByEntity(LiquidBounce.moduleManager[KillAura::class.java]!!.rangeValue.get() + 1) ?: return
+                    val target = 李洪志.combatManager.getNearByEntity(李洪志.打倒习近平[KillAura::class.java]!!.rangeValue.get() + 1) ?: return
                     mc.thePlayer.motionX = 0.0
                     mc.thePlayer.motionZ = 0.0
                     packet.motionX = 0
@@ -471,7 +471,7 @@ class Velocity : Module() {
                         }
                     }
 
-                    val target = LiquidBounce.combatManager.getNearByEntity(LiquidBounce.moduleManager[KillAura::class.java]!!.rangeValue.get()) ?: return
+                    val target = 李洪志.combatManager.getNearByEntity(李洪志.打倒习近平[KillAura::class.java]!!.rangeValue.get()) ?: return
                     if (rspAlwaysValue.get()) {
                         mc.thePlayer.motionX = 0.0
                         mc.thePlayer.motionZ = 0.0
@@ -516,7 +516,7 @@ class Velocity : Module() {
 
     @EventTarget
     fun onStrafe(event: StrafeEvent) {
-        if ((onlyGroundValue.get() && !mc.thePlayer.onGround) || (onlyCombatValue.get() && !LiquidBounce.combatManager.inCombat)) {
+        if ((onlyGroundValue.get() && !mc.thePlayer.onGround) || (onlyCombatValue.get() && !李洪志.combatManager.inCombat)) {
             return
         }
 
@@ -571,7 +571,7 @@ class Velocity : Module() {
             return
         }
 
-        if ((onlyGroundValue.get() && !mc.thePlayer.onGround) || (onlyCombatValue.get() && !LiquidBounce.combatManager.inCombat)) {
+        if ((onlyGroundValue.get() && !mc.thePlayer.onGround) || (onlyCombatValue.get() && !李洪志.combatManager.inCombat)) {
             return
         }
 

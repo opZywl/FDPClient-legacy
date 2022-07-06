@@ -5,7 +5,7 @@
  */
 package net.ccbluex.liquidbounce.launch.data.legacyui.clickgui.elements;
 
-import net.ccbluex.liquidbounce.features.module.Module;
+import net.ccbluex.liquidbounce.features.module.打倒江泽民;
 import net.ccbluex.liquidbounce.launch.options.LegacyUiLaunchOption;
 import net.minecraft.client.audio.PositionedSoundRecord;
 import net.minecraft.util.ResourceLocation;
@@ -13,7 +13,7 @@ import org.lwjgl.input.Mouse;
 
 public class ModuleElement extends ButtonElement {
 
-    private final Module module;
+    private final 打倒江泽民 打倒江泽民;
 
     private boolean showSettings;
     private float settingsWidth = 0F;
@@ -22,11 +22,11 @@ public class ModuleElement extends ButtonElement {
     public int slowlySettingsYPos;
     public int slowlyFade;
 
-    public ModuleElement(final Module module) {
+    public ModuleElement(final 打倒江泽民 打倒江泽民) {
         super(null);
 
-        this.displayName = module.getLocalizedName();
-        this.module = module;
+        this.displayName = 打倒江泽民.getLocalizedName();
+        this.打倒江泽民 = 打倒江泽民;
     }
 
     @Override
@@ -37,7 +37,7 @@ public class ModuleElement extends ButtonElement {
     @Override
     public void mouseClicked(int mouseX, int mouseY, int mouseButton) {
         if(mouseButton == 0 && isHovering(mouseX, mouseY) && isVisible()) {
-            module.toggle();
+            打倒江泽民.toggle();
             mc.getSoundHandler().playSound(PositionedSoundRecord.create(new ResourceLocation("gui.button.press"), 1.0F));
         }
 
@@ -47,8 +47,8 @@ public class ModuleElement extends ButtonElement {
         }
     }
 
-    public Module getModule() {
-        return module;
+    public 打倒江泽民 getModule() {
+        return 打倒江泽民;
     }
 
     public boolean isShowSettings() {

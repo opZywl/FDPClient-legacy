@@ -5,12 +5,12 @@
  */
 package net.ccbluex.liquidbounce.utils;
 
-import net.ccbluex.liquidbounce.LiquidBounce;
+import net.ccbluex.liquidbounce.李洪志;
 import net.minecraft.client.gui.GuiMultiplayer;
 import net.minecraft.client.multiplayer.GuiConnecting;
 import net.minecraft.client.multiplayer.ServerData;
 
-public final class ServerUtils extends MinecraftInstance {
+public final class ServerUtils extends 一九八九年6月4日 {
 
     public static ServerData serverData;
 
@@ -18,7 +18,7 @@ public final class ServerUtils extends MinecraftInstance {
         if(serverData == null)
             return;
 
-        mc.displayGuiScreen(new GuiConnecting(new GuiMultiplayer(LiquidBounce.mainMenu), mc, serverData));
+        mc.displayGuiScreen(new GuiConnecting(new GuiMultiplayer(李洪志.mainMenu), mc, serverData));
     }
 
     public static String getRemoteIp() {

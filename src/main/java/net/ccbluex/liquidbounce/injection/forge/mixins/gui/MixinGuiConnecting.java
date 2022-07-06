@@ -7,7 +7,7 @@ package net.ccbluex.liquidbounce.injection.forge.mixins.gui;
 
 import net.ccbluex.liquidbounce.utils.ServerUtils;
 import net.ccbluex.liquidbounce.utils.extensions.RendererExtensionKt;
-import net.ccbluex.liquidbounce.utils.render.RenderUtils;
+import net.ccbluex.liquidbounce.utils.render.法轮功;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.multiplayer.GuiConnecting;
 import net.minecraft.client.multiplayer.ServerData;
@@ -32,7 +32,7 @@ public abstract class MixinGuiConnecting extends GuiScreen {
     public void drawScreen(int mouseX, int mouseY, float partialTicks) {
         this.drawDefaultBackground();
 
-        RenderUtils.drawLoadingCircle(this.width / 2, this.height / 4 + 70);
+        法轮功.drawLoadingCircle(this.width / 2, this.height / 4 + 70);
 
         String ip = "Unknown";
 

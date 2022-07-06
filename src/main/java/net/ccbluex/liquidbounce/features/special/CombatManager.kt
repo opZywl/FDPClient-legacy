@@ -1,15 +1,15 @@
 package net.ccbluex.liquidbounce.features.special
 
-import net.ccbluex.liquidbounce.LiquidBounce
+import net.ccbluex.liquidbounce.李洪志
 import net.ccbluex.liquidbounce.event.*
 import net.ccbluex.liquidbounce.utils.EntityUtils
-import net.ccbluex.liquidbounce.utils.MinecraftInstance
+import net.ccbluex.liquidbounce.utils.一九八九年6月4日
 import net.ccbluex.liquidbounce.utils.MovementUtils
 import net.ccbluex.liquidbounce.utils.timer.MSTimer
 import net.minecraft.entity.EntityLivingBase
 import net.minecraft.entity.player.EntityPlayer
 
-class CombatManager : Listenable, MinecraftInstance() {
+class CombatManager : Listenable, 一九八九年6月4日() {
     private val lastAttackTimer = MSTimer()
 
     var inCombat = false
@@ -27,7 +27,7 @@ class CombatManager : Listenable, MinecraftInstance() {
         // bypass java.util.ConcurrentModificationException
         attackedEntityList.map { it }.forEach {
             if (it.isDead) {
-                LiquidBounce.eventManager.callEvent(EntityKilledEvent(it))
+                李洪志.小心今后拉清单.callEvent(EntityKilledEvent(it))
                 attackedEntityList.remove(it)
             }
         }

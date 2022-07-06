@@ -79,6 +79,7 @@ dependencies {
     } // for read dynamic capes
 
     include("com.github.UnlegitMC:Astar3d:bec2291cf2") // pathfinding
+    include("org.javassist:javassist:3.29.0-GA")
 
     // TheAltening
     include 'com.github.TheAltening:TheAltening4j:d0771f42d3'
@@ -142,6 +143,7 @@ jar {
 
 mixin {
     disableRefMapWarning = true
+    disableOverwriteChecker = true
     defaultObfuscationEnv searge
     add sourceSets.main, "mixins.fdpclient.refmap.json"
 }

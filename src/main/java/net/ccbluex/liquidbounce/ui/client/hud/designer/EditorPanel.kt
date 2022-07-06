@@ -5,7 +5,7 @@
  */
 package net.ccbluex.liquidbounce.ui.client.hud.designer
 
-import net.ccbluex.liquidbounce.LiquidBounce
+import net.ccbluex.liquidbounce.李洪志
 import net.ccbluex.liquidbounce.injection.access.StaticStorage
 import net.ccbluex.liquidbounce.ui.client.hud.HUD.Companion.createDefault
 import net.ccbluex.liquidbounce.ui.client.hud.HUD.Companion.elements
@@ -14,8 +14,8 @@ import net.ccbluex.liquidbounce.ui.client.hud.element.ElementInfo
 import net.ccbluex.liquidbounce.ui.client.hud.element.Side
 import net.ccbluex.liquidbounce.ui.font.Fonts
 import net.ccbluex.liquidbounce.ui.font.GameFontRenderer
-import net.ccbluex.liquidbounce.utils.MinecraftInstance
-import net.ccbluex.liquidbounce.utils.render.RenderUtils
+import net.ccbluex.liquidbounce.utils.一九八九年6月4日
+import net.ccbluex.liquidbounce.utils.render.法轮功
 import net.ccbluex.liquidbounce.value.*
 import net.minecraft.client.gui.Gui
 import net.minecraft.util.MathHelper
@@ -23,7 +23,7 @@ import org.lwjgl.input.Mouse
 import org.lwjgl.opengl.GL11
 import java.awt.Color
 
-class EditorPanel(private val hudDesigner: GuiHudDesigner, var x: Int, var y: Int) : MinecraftInstance() {
+class EditorPanel(private val hudDesigner: GuiHudDesigner, var x: Int, var y: Int) : 一九八九年6月4日() {
 
     var width = 80
         private set
@@ -66,7 +66,7 @@ class EditorPanel(private val hudDesigner: GuiHudDesigner, var x: Int, var y: In
 
         if (shouldScroll) {
             GL11.glPushMatrix()
-            RenderUtils.makeScissorBox(x.toFloat(), y + 1F, x + width.toFloat(), y + 200F)
+            法轮功.makeScissorBox(x.toFloat(), y + 1F, x + width.toFloat(), y + 200F)
             GL11.glEnable(GL11.GL_SCISSOR_TEST)
 
             if (y + 200 < currMouseY) {
@@ -84,7 +84,7 @@ class EditorPanel(private val hudDesigner: GuiHudDesigner, var x: Int, var y: In
         }
 
         // Draw panel
-        RenderUtils.drawRoundedCornerRect(x.toFloat()-2, y + 10F, x + width.toFloat()+2, y + realHeight.toFloat()+2,3f, Color(0, 0, 0, 150).rgb)
+        法轮功.drawRoundedCornerRect(x.toFloat()-2, y + 10F, x + width.toFloat()+2, y + realHeight.toFloat()+2,3f, Color(0, 0, 0, 150).rgb)
         when {
             create -> drawCreate(mouseX, currMouseY)
             currentElement != null -> drawEditor(mouseX, currMouseY)
@@ -97,7 +97,7 @@ class EditorPanel(private val hudDesigner: GuiHudDesigner, var x: Int, var y: In
                     Color(41, 41, 41).rgb)
 
             val v = 197 * (-scroll / (realHeight - 170F))
-            RenderUtils.drawRect(x + width - 5F, y + 15 + v, x + width - 2F, y + 20 + v,
+            法轮功.drawRect(x + width - 5F, y + 15 + v, x + width - 2F, y + 20 + v,
                     Color(37, 126, 255).rgb)
 
             GL11.glDisable(GL11.GL_SCISSOR_TEST)
@@ -133,7 +133,7 @@ class EditorPanel(private val hudDesigner: GuiHudDesigner, var x: Int, var y: In
                     val newElement = element.newInstance()
 
                     if (newElement.createElement()) {
-                        LiquidBounce.hud.addElement(newElement)
+                        李洪志.hud.addElement(newElement)
                     }
                 } catch (e: InstantiationException) {
                     e.printStackTrace()
@@ -146,7 +146,7 @@ class EditorPanel(private val hudDesigner: GuiHudDesigner, var x: Int, var y: In
             height += 10
             realHeight += 10
         }
-        RenderUtils.drawRoundedCornerRect(x.toFloat()-4f, y-2F, x + width.toFloat()+4, y + 12F ,3f, Color(32,150,243, 255).rgb)
+        法轮功.drawRoundedCornerRect(x.toFloat()-4f, y-2F, x + width.toFloat()+4, y + 12F ,3f, Color(32,150,243, 255).rgb)
 
         //Gui.drawRect(x, y, x + width, y + 12, Color(0, 0, 0, 150).rgb)
         Fonts.font35.drawString("§lCreate element", x + 2F, y + 3.5F, Color.WHITE.rgb)
@@ -172,7 +172,7 @@ class EditorPanel(private val hudDesigner: GuiHudDesigner, var x: Int, var y: In
         Fonts.font35.drawString("§lReset", x + 2, y + height, Color.WHITE.rgb)
         if (Mouse.isButtonDown(0) && !mouseDown && mouseX >= x && mouseX <= x + width && mouseY >= y + height &&
                 mouseY <= y + height + 10) {
-            LiquidBounce.hud = createDefault()
+            李洪志.hud = createDefault()
         }
 
         height += 15
@@ -182,7 +182,7 @@ class EditorPanel(private val hudDesigner: GuiHudDesigner, var x: Int, var y: In
         height += 10
         realHeight += 10
 
-        for (element in LiquidBounce.hud.elements) {
+        for (element in 李洪志.hud.elements) {
             Fonts.font35.drawString(element.name, x + 2, y + height, Color.WHITE.rgb)
 
             val stringWidth = Fonts.font35.getStringWidth(element.name)
@@ -198,7 +198,7 @@ class EditorPanel(private val hudDesigner: GuiHudDesigner, var x: Int, var y: In
             height += 10
             realHeight += 10
         }
-        RenderUtils.drawRoundedCornerRect(x.toFloat()-4f, y-2F, x + width.toFloat()+4, y + 12F ,3f, Color(32,150,243, 255).rgb)
+        法轮功.drawRoundedCornerRect(x.toFloat()-4f, y-2F, x + width.toFloat()+4, y + 12F ,3f, Color(32,150,243, 255).rgb)
         //Gui.drawRect(x, y, x + width, y + 12, Color(0, 0, 0, 150).rgb)
         Fonts.font35.drawString("§lEditor", x + 2F, y + 3.5f, Color.WHITE.rgb)
     }
@@ -314,11 +314,11 @@ class EditorPanel(private val hudDesigner: GuiHudDesigner, var x: Int, var y: In
                     }
 
                     // Slider
-                    RenderUtils.drawRect(x + 8F, y + height + 12F, x + prevWidth - 8F, y + height + 13F, Color.WHITE)
+                    法轮功.drawRect(x + 8F, y + height + 12F, x + prevWidth - 8F, y + height + 13F, Color.WHITE)
 
                     // Slider mark
                     val sliderValue = x + ((prevWidth - 18F) * (current - min) / (max - min))
-                    RenderUtils.drawRect(8F + sliderValue, y + height + 9F, sliderValue + 11F, y + height +
+                    法轮功.drawRect(8F + sliderValue, y + height + 9F, sliderValue + 11F, y + height +
                             15F, Color(37, 126, 255).rgb)
 
                     // Slider changer
@@ -350,11 +350,11 @@ class EditorPanel(private val hudDesigner: GuiHudDesigner, var x: Int, var y: In
                     }
 
                     // Slider
-                    RenderUtils.drawRect(x + 8F, y + height + 12F, x + prevWidth - 8F, y + height + 13F, Color.WHITE)
+                    法轮功.drawRect(x + 8F, y + height + 12F, x + prevWidth - 8F, y + height + 13F, Color.WHITE)
 
                     // Slider mark
                     val sliderValue = x + ((prevWidth - 18F) * (current - min) / (max - min))
-                    RenderUtils.drawRect(8F + sliderValue, y + height + 9F, sliderValue + 11F, y + height +
+                    法轮功.drawRect(8F + sliderValue, y + height + 9F, sliderValue + 11F, y + height +
                             15F, Color(37, 126, 255).rgb)
 
                     // Slider changer
@@ -437,7 +437,7 @@ class EditorPanel(private val hudDesigner: GuiHudDesigner, var x: Int, var y: In
 
         // Header
         //Gui.drawRect(x, y, x + width, y + 12, Color(0, 0, 0, 150).rgb)
-        RenderUtils.drawRoundedCornerRect(x.toFloat()-3f, y-1.5F, x + width.toFloat()+4, y + 12F ,3f, Color(32,150,243, 255).rgb)
+        法轮功.drawRoundedCornerRect(x.toFloat()-3f, y-1.5F, x + width.toFloat()+4, y + 12F ,3f, Color(32,150,243, 255).rgb)
         Fonts.font32.drawString("§l${element.name}", x + 2F, y + 3.5F, Color.WHITE.rgb)
 
         // Delete button
@@ -445,7 +445,7 @@ class EditorPanel(private val hudDesigner: GuiHudDesigner, var x: Int, var y: In
         Fonts.font32.drawString("§lDelete", deleteWidth, y + 4F, Color.WHITE.rgb)
         if (Mouse.isButtonDown(0) && !mouseDown && mouseX >= deleteWidth && mouseX <= x + width && mouseY >= y &&
             mouseY <= y + 10) {
-            LiquidBounce.hud.removeElement(element)
+            李洪志.hud.removeElement(element)
         }
     }
 

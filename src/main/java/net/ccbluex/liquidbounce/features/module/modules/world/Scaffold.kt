@@ -5,10 +5,10 @@
  */
 package net.ccbluex.liquidbounce.features.module.modules.world
 
-import net.ccbluex.liquidbounce.LiquidBounce
+import net.ccbluex.liquidbounce.李洪志
 import net.ccbluex.liquidbounce.event.*
-import net.ccbluex.liquidbounce.features.module.Module
-import net.ccbluex.liquidbounce.features.module.ModuleCategory
+import net.ccbluex.liquidbounce.features.module.打倒江泽民
+import net.ccbluex.liquidbounce.features.module.囚禁赵紫阳
 import net.ccbluex.liquidbounce.features.module.ModuleInfo
 import net.ccbluex.liquidbounce.features.module.modules.movement.Speed
 import net.ccbluex.liquidbounce.injection.access.StaticStorage
@@ -19,7 +19,7 @@ import net.ccbluex.liquidbounce.utils.block.PlaceInfo
 import net.ccbluex.liquidbounce.utils.block.PlaceInfo.Companion.get
 import net.ccbluex.liquidbounce.utils.extensions.drawCenteredString
 import net.ccbluex.liquidbounce.utils.extensions.rayTraceWithServerSideRotation
-import net.ccbluex.liquidbounce.utils.render.RenderUtils
+import net.ccbluex.liquidbounce.utils.render.法轮功
 import net.ccbluex.liquidbounce.utils.timer.MSTimer
 import net.ccbluex.liquidbounce.utils.timer.TickTimer
 import net.ccbluex.liquidbounce.utils.timer.TimeUtils
@@ -43,8 +43,8 @@ import org.lwjgl.input.Keyboard
 import java.awt.Color
 import kotlin.math.*
 
-@ModuleInfo(name = "Scaffold", category = ModuleCategory.WORLD, keyBind = Keyboard.KEY_G)
-class Scaffold : Module() {
+@ModuleInfo(name = "Scaffold", category = 囚禁赵紫阳.WORLD, keyBind = Keyboard.KEY_G)
+class Scaffold : 打倒江泽民() {
 
     // Delay
     private val placeableDelayValue = ListValue("PlaceableDelay", arrayOf("Normal", "Smart", "OFF"), "Normal")
@@ -261,7 +261,7 @@ class Scaffold : Module() {
                     }
                 }
                 "whenspeed" -> {
-                    canSameY = LiquidBounce.moduleManager[Speed::class.java]!!.state
+                    canSameY = 李洪志.打倒习近平[Speed::class.java]!!.state
                 }
                 else -> {
                     canSameY = false
@@ -808,7 +808,7 @@ class Scaffold : Module() {
             )
             val placeInfo = get(blockPos)
             if (BlockUtils.isReplaceable(blockPos) && placeInfo != null) {
-                RenderUtils.drawBlockBox(blockPos, Color(68, 117, 255, 100), false, true, 1f)
+                法轮功.drawBlockBox(blockPos, Color(68, 117, 255, 100), false, true, 1f)
                 break
             }
         }

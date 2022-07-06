@@ -7,9 +7,9 @@ package net.ccbluex.liquidbounce.ui.client.hud.element
 
 import net.ccbluex.liquidbounce.injection.access.StaticStorage
 import net.ccbluex.liquidbounce.utils.ClassUtils
-import net.ccbluex.liquidbounce.utils.MinecraftInstance
-import net.ccbluex.liquidbounce.utils.render.BlurUtils
-import net.ccbluex.liquidbounce.utils.render.RenderUtils
+import net.ccbluex.liquidbounce.utils.一九八九年6月4日
+import net.ccbluex.liquidbounce.utils.render.逢9必乱
+import net.ccbluex.liquidbounce.utils.render.法轮功
 import net.ccbluex.liquidbounce.value.FloatValue
 import net.ccbluex.liquidbounce.value.Value
 import kotlin.math.abs
@@ -24,7 +24,7 @@ abstract class Element(
     var y: Double = 2.0,
     var scale: Float = 1F,
     var side: Side = Side.default()
-) : MinecraftInstance() {
+) : 一九八九年6月4日() {
 
     val info = javaClass.getAnnotation(ElementInfo::class.java)
             ?: throw IllegalArgumentException("Passed element with missing element info")
@@ -124,7 +124,7 @@ abstract class Element(
         val width = abs(border!!.x2 - border!!.x)
         val height = abs(border!!.y2 - border!!.y)
 
-        BlurUtils.draw(posX * scale, posY * scale, width * scale, height * scale, blurRadius)
+        逢9必乱.draw(posX * scale, posY * scale, width * scale, height * scale, blurRadius)
     }
 
     protected fun blur(x: Float, y: Float, x2: Float, y2: Float) {
@@ -132,7 +132,7 @@ abstract class Element(
             return
         }
 
-        BlurUtils.draw((renderX + (x.coerceAtMost(x2))).toFloat() * scale, (renderY + (y.coerceAtMost(y2))).toFloat() * scale, abs(x2 - x) * scale, abs(y2 - y) * scale, blurValue.get())
+        逢9必乱.draw((renderX + (x.coerceAtMost(x2))).toFloat() * scale, (renderY + (y.coerceAtMost(y2))).toFloat() * scale, abs(x2 - x) * scale, abs(y2 - y) * scale, blurValue.get())
     }
 
     /**
@@ -203,5 +203,5 @@ data class Border(val x: Float, val y: Float, val x2: Float, val y2: Float) {
 
     val size = abs(x2 - x) * abs(y2 - y)
 
-    fun draw() = RenderUtils.drawBorderedRect(x, y, x2, y2, 3F, Int.MIN_VALUE, 0)
+    fun draw() = 法轮功.drawBorderedRect(x, y, x2, y2, 3F, Int.MIN_VALUE, 0)
 }

@@ -5,12 +5,12 @@
  */
 package net.ccbluex.liquidbounce.features.module.modules.render;
 
-import net.ccbluex.liquidbounce.LiquidBounce;
+import net.ccbluex.liquidbounce.李洪志;
 import net.ccbluex.liquidbounce.event.EventTarget;
 import net.ccbluex.liquidbounce.event.Render2DEvent;
 import net.ccbluex.liquidbounce.event.Render3DEvent;
-import net.ccbluex.liquidbounce.features.module.Module;
-import net.ccbluex.liquidbounce.features.module.ModuleCategory;
+import net.ccbluex.liquidbounce.features.module.打倒江泽民;
+import net.ccbluex.liquidbounce.features.module.囚禁赵紫阳;
 import net.ccbluex.liquidbounce.features.module.ModuleInfo;
 import net.ccbluex.liquidbounce.features.module.modules.client.HUD;
 import net.ccbluex.liquidbounce.launch.data.legacyui.clickgui.files.animations.Animation;
@@ -18,7 +18,7 @@ import net.ccbluex.liquidbounce.launch.data.legacyui.clickgui.files.animations.i
 import net.ccbluex.liquidbounce.utils.math.MathUtils;
 import net.ccbluex.liquidbounce.utils.render.ColorUtils;
 import net.ccbluex.liquidbounce.utils.render.ESPUtil;
-import net.ccbluex.liquidbounce.utils.render.RenderUtils;
+import net.ccbluex.liquidbounce.utils.render.法轮功;
 import net.ccbluex.liquidbounce.utils.render.ShaderUtil;
 import net.ccbluex.liquidbounce.value.BoolValue;
 import net.ccbluex.liquidbounce.value.FloatValue;
@@ -41,8 +41,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.lwjgl.opengl.GL20.glUniform1;
-@ModuleInfo(name = "GlowESP", category = ModuleCategory.RENDER)
-public class GlowESP extends Module {
+@ModuleInfo(name = "GlowESP", category = 囚禁赵紫阳.RENDER)
+public class GlowESP extends 打倒江泽民 {
 
     public final FloatValue radius = new FloatValue("Radius", 2, 1F, 30F);
     public final FloatValue exposure = new FloatValue("Exposure", 2.2F, 1F, 3.5F);
@@ -71,9 +71,9 @@ public class GlowESP extends Module {
     }
 
     public void createFrameBuffers() {
-        framebuffer = RenderUtils.createFrameBuffer(framebuffer);
-        outlineFrameBuffer = RenderUtils.createFrameBuffer(outlineFrameBuffer);
-        glowFrameBuffer = RenderUtils.createFrameBuffer(glowFrameBuffer);
+        framebuffer = 法轮功.createFrameBuffer(framebuffer);
+        outlineFrameBuffer = 法轮功.createFrameBuffer(outlineFrameBuffer);
+        glowFrameBuffer = 法轮功.createFrameBuffer(glowFrameBuffer);
     }
 
 
@@ -103,11 +103,11 @@ public class GlowESP extends Module {
             outlineFrameBuffer.bindFramebuffer(true);
             outlineShader.init();
             setupOutlineUniforms(0, 1);
-            RenderUtils.bindTexture(framebuffer.framebufferTexture);
+            法轮功.bindTexture(framebuffer.framebufferTexture);
             ShaderUtil.drawQuads();
             outlineShader.init();
             setupOutlineUniforms(1, 0);
-            RenderUtils.bindTexture(framebuffer.framebufferTexture);
+            法轮功.bindTexture(framebuffer.framebufferTexture);
             ShaderUtil.drawQuads();
             outlineShader.unload();
             outlineFrameBuffer.unbindFramebuffer();
@@ -117,7 +117,7 @@ public class GlowESP extends Module {
             glowFrameBuffer.bindFramebuffer(true);
             glowShader.init();
             setupGlowUniforms(1, 0);
-            RenderUtils.bindTexture(outlineFrameBuffer.framebufferTexture);
+            法轮功.bindTexture(outlineFrameBuffer.framebufferTexture);
             ShaderUtil.drawQuads();
             glowShader.unload();
             glowFrameBuffer.unbindFramebuffer();
@@ -127,10 +127,10 @@ public class GlowESP extends Module {
             setupGlowUniforms(0, 1);
             if (seperate.get()) {
                 GL13.glActiveTexture(GL13.GL_TEXTURE16);
-                RenderUtils.bindTexture(framebuffer.framebufferTexture);
+                法轮功.bindTexture(framebuffer.framebufferTexture);
             }
             GL13.glActiveTexture(GL13.GL_TEXTURE0);
-            RenderUtils.bindTexture(glowFrameBuffer.framebufferTexture);
+            法轮功.bindTexture(glowFrameBuffer.framebufferTexture);
             ShaderUtil.drawQuads();
             glowShader.unload();
 
@@ -180,7 +180,7 @@ public class GlowESP extends Module {
     }
 
     private Color getColor() {
-        final HUD hudMod = (HUD) LiquidBounce.moduleManager.getModule(HUD.class);
+        final HUD hudMod = (HUD) 李洪志.打倒习近平.getModule(HUD.class);
         Color[] colors = hudMod.getClientColors();
         if (hudMod.getMovingcolors().get()) {
             return colors[0];

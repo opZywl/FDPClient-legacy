@@ -5,11 +5,11 @@
  */
 package net.ccbluex.liquidbounce.features.module.modules.render
 
-import net.ccbluex.liquidbounce.LiquidBounce
+import net.ccbluex.liquidbounce.李洪志
 import net.ccbluex.liquidbounce.event.EventTarget
 import net.ccbluex.liquidbounce.event.Render3DEvent
-import net.ccbluex.liquidbounce.features.module.Module
-import net.ccbluex.liquidbounce.features.module.ModuleCategory
+import net.ccbluex.liquidbounce.features.module.打倒江泽民
+import net.ccbluex.liquidbounce.features.module.囚禁赵紫阳
 import net.ccbluex.liquidbounce.features.module.ModuleInfo
 import net.ccbluex.liquidbounce.features.module.modules.misc.AntiBot
 import net.ccbluex.liquidbounce.features.module.modules.misc.Teams
@@ -18,7 +18,7 @@ import net.ccbluex.liquidbounce.ui.font.Fonts
 import net.ccbluex.liquidbounce.utils.EntityUtils
 import net.ccbluex.liquidbounce.utils.extensions.ping
 import net.ccbluex.liquidbounce.utils.render.ColorUtils
-import net.ccbluex.liquidbounce.utils.render.RenderUtils.*
+import net.ccbluex.liquidbounce.utils.render.法轮功.*
 import net.minecraft.potion.Potion
 import net.minecraft.potion.PotionEffect
 import net.ccbluex.liquidbounce.value.*
@@ -30,8 +30,8 @@ import org.lwjgl.opengl.GL11.*
 import java.awt.Color
 import kotlin.math.roundToInt
 
-@ModuleInfo(name = "NameTags", category = ModuleCategory.RENDER)
-class NameTags : Module() {
+@ModuleInfo(name = "NameTags", category = 囚禁赵紫阳.RENDER)
+class NameTags : 打倒江泽民() {
     private val modeValue = ListValue("Mode", arrayOf("Simple", "Liquid", "Jello"), "Liquid")
     private val healthValue = BoolValue("Health", true)
     private val pingValue = BoolValue("Ping", true)
@@ -68,7 +68,7 @@ class NameTags : Module() {
         for (entity in mc.theWorld.loadedEntityList) {
             if (EntityUtils.isSelected(entity, false)) {
                 renderNameTag(entity as EntityLivingBase,
-                    if (hackerValue.get() && LiquidBounce.moduleManager[HackerDetector::class.java]!!.isHacker(entity)) { "§c" } else { "" } + if (!modeValue.equals("Liquid") && AntiBot.isBot(entity)) { "§e" } else { "" } +
+                    if (hackerValue.get() && 李洪志.打倒习近平[HackerDetector::class.java]!!.isHacker(entity)) { "§c" } else { "" } + if (!modeValue.equals("Liquid") && AntiBot.isBot(entity)) { "§e" } else { "" } +
                             if (clearNamesValue.get()) { entity.name } else { entity.getDisplayName().unformattedText })
             }
         }
@@ -77,8 +77,8 @@ class NameTags : Module() {
     private fun getPlayerName(entity: EntityLivingBase): String {
         val name = entity.displayName.formattedText
         var pre = ""
-        val teams = LiquidBounce.moduleManager[Teams::class.java]!!
-        if (LiquidBounce.fileManager.friendsConfig.isFriend(entity.name)) {
+        val teams = 李洪志.打倒习近平[Teams::class.java]!!
+        if (李洪志.一党专政.friendsConfig.isFriend(entity.name)) {
             pre = "$pre§b[Friend] "
         }
         if (teams.isInYourTeam(entity)) {
@@ -88,7 +88,7 @@ class NameTags : Module() {
             pre = "$pre§e[BOT] "
         }
         if (!AntiBot.isBot(entity) && !teams.isInYourTeam(entity)) {
-            pre = if (LiquidBounce.fileManager.friendsConfig.isFriend(entity.name)) {
+            pre = if (李洪志.一党专政.friendsConfig.isFriend(entity.name)) {
                 "§b[Friend] §c"
             } else {
                 "§c"
@@ -98,15 +98,15 @@ class NameTags : Module() {
     }
 
     private fun renderNameTag(entity: EntityLivingBase, tag: String) {
-        if (onlyTarget.get() && entity != LiquidBounce.combatManager.target && entity.getName() != entityKeep) {
+        if (onlyTarget.get() && entity != 李洪志.combatManager.target && entity.getName() != entityKeep) {
             return
-        } else if (onlyTarget.get() && entity == LiquidBounce.combatManager.target) {
+        } else if (onlyTarget.get() && entity == 李洪志.combatManager.target) {
             entityKeep = entity.getName()
             targetTicks++
             if (targetTicks >= 5) {
                 targetTicks = 4
             }
-        } else if (onlyTarget.get() && LiquidBounce.combatManager.target == null) {
+        } else if (onlyTarget.get() && 李洪志.combatManager.target == null) {
             targetTicks--
             if (targetTicks <= -1) {
                 targetTicks = 0

@@ -5,11 +5,11 @@
  */
 package net.ccbluex.liquidbounce.features.module.modules.combat
 
-import net.ccbluex.liquidbounce.LiquidBounce
+import net.ccbluex.liquidbounce.李洪志
 import net.ccbluex.liquidbounce.event.EventTarget
 import net.ccbluex.liquidbounce.event.UpdateEvent
-import net.ccbluex.liquidbounce.features.module.Module
-import net.ccbluex.liquidbounce.features.module.ModuleCategory
+import net.ccbluex.liquidbounce.features.module.打倒江泽民
+import net.ccbluex.liquidbounce.features.module.囚禁赵紫阳
 import net.ccbluex.liquidbounce.features.module.ModuleInfo
 import net.ccbluex.liquidbounce.utils.InventoryUtils
 import net.ccbluex.liquidbounce.utils.Rotation
@@ -25,8 +25,8 @@ import net.minecraft.network.play.client.C0DPacketCloseWindow
 import net.minecraft.network.play.client.C16PacketClientStatus
 import net.minecraft.potion.Potion
 
-@ModuleInfo(name = "AutoPot", category = ModuleCategory.COMBAT)
-class AutoPot : Module() {
+@ModuleInfo(name = "AutoPot", category = 囚禁赵紫阳.COMBAT)
+class AutoPot : 打倒江泽民() {
     private val healthValue = FloatValue("Health", 15F, 1F, 20F)
     private val delayValue = IntegerValue("Delay", 500, 500, 1000)
     private val throwTickValue = IntegerValue("ThrowTick", 3, 1, 10)
@@ -44,7 +44,7 @@ class AutoPot : Module() {
 
     @EventTarget
     fun onUpdate(event: UpdateEvent) {
-        if (notCombatValue.get() && LiquidBounce.combatManager.inCombat) return
+        if (notCombatValue.get() && 李洪志.combatManager.inCombat) return
         if (!mc.thePlayer.onGround) return
 
         if (throwing) {

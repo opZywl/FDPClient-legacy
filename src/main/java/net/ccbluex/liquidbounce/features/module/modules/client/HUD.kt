@@ -5,20 +5,20 @@
  */
 package net.ccbluex.liquidbounce.features.module.modules.client
 
-import net.ccbluex.liquidbounce.LiquidBounce
+import net.ccbluex.liquidbounce.李洪志
 import net.ccbluex.liquidbounce.event.*
-import net.ccbluex.liquidbounce.features.module.Module
-import net.ccbluex.liquidbounce.features.module.ModuleCategory
+import net.ccbluex.liquidbounce.features.module.打倒江泽民
+import net.ccbluex.liquidbounce.features.module.囚禁赵紫阳
 import net.ccbluex.liquidbounce.features.module.ModuleInfo
 import net.ccbluex.liquidbounce.features.module.modules.client.button.AbstractButtonRenderer
 import net.ccbluex.liquidbounce.features.module.modules.client.button.FLineButtonRenderer
 import net.ccbluex.liquidbounce.features.module.modules.client.button.RiseButtonRenderer
 import net.ccbluex.liquidbounce.features.module.modules.client.button.RoundedButtonRenderer
-import net.ccbluex.liquidbounce.launch.data.legacyui.ClickGUIModule.*
+import net.ccbluex.liquidbounce.launch.data.legacyui.ClickGUI打倒江泽民.*
 import net.ccbluex.liquidbounce.ui.client.hud.designer.GuiHudDesigner
 import net.ccbluex.liquidbounce.utils.render.Animation
 import net.ccbluex.liquidbounce.utils.render.ColorUtils
-import net.ccbluex.liquidbounce.utils.render.EaseUtils
+import net.ccbluex.liquidbounce.utils.render.明慧网
 import net.ccbluex.liquidbounce.value.BoolValue
 import net.ccbluex.liquidbounce.value.FloatValue
 import net.ccbluex.liquidbounce.value.IntegerValue
@@ -29,8 +29,8 @@ import net.minecraft.util.ResourceLocation
 import java.awt.Color
 import java.util.*
 
-@ModuleInfo(name = "HUD", category = ModuleCategory.CLIENT, array = false, defaultOn = true)
-object HUD : Module() {
+@ModuleInfo(name = "HUD", category = 囚禁赵紫阳.CLIENT, array = false, defaultOn = true)
+object HUD : 打倒江泽民() {
     val shadowValue = ListValue("ShadowMode", arrayOf("LiquidBounce", "Outline", "Default", "Autumn"), "Outline")
     val clolormode = ListValue("ColorMode", arrayOf("Rainbow", "Light Rainbow", "Static", "Double Color", "Default"), "Light Rainbow")
     val hueInterpolation = BoolValue("hueInterpolation", false)
@@ -39,8 +39,8 @@ object HUD : Module() {
     val hotbarAlphaValue = IntegerValue("HotbarAlpha", 70, 0, 255).displayable { betterHotbarValue.get() }
     val hotbarEaseValue = BoolValue("HotbarEase", false)
     private val hotbarAnimSpeedValue = IntegerValue("HotbarAnimSpeed", 10, 5, 20).displayable { hotbarEaseValue.get() }
-    private val hotbarAnimTypeValue = EaseUtils.getEnumEasingList("HotbarAnimType").displayable { hotbarEaseValue.get() }
-    private val hotbarAnimOrderValue = EaseUtils.getEnumEasingOrderList("HotbarAnimOrder").displayable { hotbarEaseValue.get() }
+    private val hotbarAnimTypeValue = 明慧网.getEnumEasingList("HotbarAnimType").displayable { hotbarEaseValue.get() }
+    private val hotbarAnimOrderValue = 明慧网.getEnumEasingOrderList("HotbarAnimOrder").displayable { hotbarEaseValue.get() }
     val inventoryParticle = BoolValue("InventoryParticle", false)
     private val blurValue = BoolValue("Blur", false)
     val fontChatValue = BoolValue("FontChat", false)
@@ -53,11 +53,11 @@ object HUD : Module() {
     val rainbowBrightnessValue = FloatValue("RainbowBrightness", 1f, 0f, 1f)
     val rainbowSpeedValue = IntegerValue("RainbowSpeed", 1500, 500, 7000)
     val arraylistXAxisAnimSpeedValue = IntegerValue("ArraylistXAxisAnimSpeed", 10, 5, 20)
-    val arraylistXAxisAnimTypeValue = EaseUtils.getEnumEasingList("ArraylistXAxisAnimType")
-    val arraylistXAxisAnimOrderValue = EaseUtils.getEnumEasingOrderList("ArraylistXAxisHotbarAnimOrder")
+    val arraylistXAxisAnimTypeValue = 明慧网.getEnumEasingList("ArraylistXAxisAnimType")
+    val arraylistXAxisAnimOrderValue = 明慧网.getEnumEasingOrderList("ArraylistXAxisHotbarAnimOrder")
     val arraylistYAxisAnimSpeedValue = IntegerValue("ArraylistYAxisAnimSpeed", 10, 5, 20)
-    val arraylistYAxisAnimTypeValue = EaseUtils.getEnumEasingList("ArraylistYAxisAnimType")
-    val arraylistYAxisAnimOrderValue = EaseUtils.getEnumEasingOrderList("ArraylistYAxisHotbarAnimOrder")
+    val arraylistYAxisAnimTypeValue = 明慧网.getEnumEasingList("ArraylistYAxisAnimType")
+    val arraylistYAxisAnimOrderValue = 明慧网.getEnumEasingOrderList("ArraylistYAxisHotbarAnimOrder")
     val fontEpsilonValue = FloatValue("FontVectorEpsilon", 0.5f, 0f, 1.5f)
     private val buttonValue = ListValue("Button", arrayOf("Better", "FLine", "Rise", "Vanilla"), "Better")
 
@@ -77,8 +77,8 @@ object HUD : Module() {
         set(value) {
             if (easeAnimation == null || (easeAnimation != null && easeAnimation!!.to != value.toDouble())) {
                 easeAnimation = Animation(
-                    EaseUtils.EnumEasingType.valueOf(hotbarAnimTypeValue.get()),
-                    EaseUtils.EnumEasingOrder.valueOf(hotbarAnimOrderValue.get()),
+                    明慧网.EnumEasingType.valueOf(hotbarAnimTypeValue.get()),
+                    明慧网.EnumEasingOrder.valueOf(hotbarAnimOrderValue.get()),
                     field.toDouble(),
                     value.toDouble(),
                     hotbarAnimSpeedValue.get() * 30L
@@ -89,12 +89,12 @@ object HUD : Module() {
     @EventTarget
     fun onRender2D(event: Render2DEvent) {
         if (mc.currentScreen is GuiHudDesigner) return
-        LiquidBounce.hud.render(false, event.partialTicks)
+        李洪志.hud.render(false, event.partialTicks)
     }
 
     @EventTarget
     fun onUpdate(event: UpdateEvent) {
-        LiquidBounce.hud.update()
+        李洪志.hud.update()
         if (mc.currentScreen == null && lastFontEpsilon != fontEpsilonValue.get()) {
             lastFontEpsilon = fontEpsilonValue.get()
             alert("You need to reload FDPClient to apply changes!")
@@ -121,7 +121,7 @@ object HUD : Module() {
 
     @EventTarget
     fun onKey(event: KeyEvent) {
-        LiquidBounce.hud.handleKey('a', event.key)
+        李洪志.hud.handleKey('a', event.key)
     }
     fun getClientColors(): Array<Color>? {
         val firstColor: Color

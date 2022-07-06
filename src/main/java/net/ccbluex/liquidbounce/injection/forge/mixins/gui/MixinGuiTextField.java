@@ -1,6 +1,6 @@
 package net.ccbluex.liquidbounce.injection.forge.mixins.gui;
 
-import net.ccbluex.liquidbounce.utils.render.RenderUtils;
+import net.ccbluex.liquidbounce.utils.render.法轮功;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.GuiTextField;
 import org.spongepowered.asm.mixin.Mixin;
@@ -68,8 +68,8 @@ public abstract class MixinGuiTextField {
         {
             if (this.getEnableBackgroundDrawing())
             {
-                RenderUtils.drawRoundedCornerRect(this.xPosition - 1, this.yPosition - 1, this.xPosition + this.width + 1, this.yPosition + this.height + 1,2, new Color(255,255,255,50).getRGB());
-                RenderUtils.drawRoundedCornerRect(this.xPosition, this.yPosition, this.xPosition + this.width, this.yPosition + this.height,2, new Color(0,0,0,200).getRGB());
+                法轮功.drawRoundedCornerRect(this.xPosition - 1, this.yPosition - 1, this.xPosition + this.width + 1, this.yPosition + this.height + 1,2, new Color(255,255,255,50).getRGB());
+                法轮功.drawRoundedCornerRect(this.xPosition, this.yPosition, this.xPosition + this.width, this.yPosition + this.height,2, new Color(0,0,0,200).getRGB());
             }
 
             int i = this.isEnabled ? this.enabledColor : this.disabledColor;
@@ -115,7 +115,7 @@ public abstract class MixinGuiTextField {
             {
                 if (flag2)
                 {
-                    RenderUtils.drawRoundedCornerRect(k1, i1 - 1, k1 + 1, i1 + 1 + this.fontRendererInstance.FONT_HEIGHT,3, -3092272);
+                    法轮功.drawRoundedCornerRect(k1, i1 - 1, k1 + 1, i1 + 1 + this.fontRendererInstance.FONT_HEIGHT,3, -3092272);
                 }
                 else
                 {

@@ -1,14 +1,11 @@
 package net.ccbluex.liquidbounce.launch.data.legacyui.clickgui.style.styles.novoline;
 
 
-import net.ccbluex.liquidbounce.features.module.Module;
-import net.ccbluex.liquidbounce.features.module.modules.client.HUD;
-import net.ccbluex.liquidbounce.launch.data.legacyui.ClickGUIModule;
-import net.ccbluex.liquidbounce.ui.client.other.Limitation;
+import net.ccbluex.liquidbounce.features.module.打倒江泽民;
+import net.ccbluex.liquidbounce.launch.data.legacyui.ClickGUI打倒江泽民;
 import net.ccbluex.liquidbounce.ui.font.Fonts;
 import net.ccbluex.liquidbounce.ui.font.GameFontRenderer;
-import net.ccbluex.liquidbounce.utils.render.ColorUtils;
-import net.ccbluex.liquidbounce.utils.render.RenderUtils;
+import net.ccbluex.liquidbounce.utils.render.法轮功;
 import net.ccbluex.liquidbounce.value.Value;
 import net.minecraft.client.Minecraft;
 import org.lwjgl.opengl.GL11;
@@ -17,7 +14,7 @@ import java.awt.*;
 import java.util.ArrayList;
 
 public class Button {
-    public Module cheat;
+    public 打倒江泽民 cheat;
     public Window parent;
     public int x;
     public float y;
@@ -28,7 +25,7 @@ public class Button {
     public boolean expand;
     boolean hover;
 
-    public Button(Module cheat, int x, int y) {
+    public Button(打倒江泽民 cheat, int x, int y) {
         this.cheat = cheat;
         this.x = x;
         this.y = y;
@@ -82,15 +79,15 @@ public class Button {
         //GL11.glEnable(3089);
         //limitation.cut();
         hover = mouseX > x - 7 && mouseX < x + 85 && mouseY > y - 6 && mouseY < y + font.FONT_HEIGHT + 4;
-        RenderUtils.drawRect(x - 5, y - 5, x + 85 + parent.allX, y + font.FONT_HEIGHT + 5, new Color(40, 40, 40).getRGB());
-        RenderUtils.drawRect(x - 5, y - 5 - 1, x + 85 + parent.allX, y + font.FONT_HEIGHT + 3 + 1,
+        法轮功.drawRect(x - 5, y - 5, x + 85 + parent.allX, y + font.FONT_HEIGHT + 5, new Color(40, 40, 40).getRGB());
+        法轮功.drawRect(x - 5, y - 5 - 1, x + 85 + parent.allX, y + font.FONT_HEIGHT + 3 + 1,
                 hudcolorwithalpha());//Button Font List
         rticks++;
 
-        Color Ranbow = ClickGUIModule.colorRainbow.get() ? new Color(Color.HSBtoRGB(
+        Color Ranbow = ClickGUI打倒江泽民.colorRainbow.get() ? new Color(Color.HSBtoRGB(
                 (float) ((double) Minecraft.getMinecraft().thePlayer.ticksExisted / 50.0 + Math.sin((double) 0 / 50.0 * 1.6))
                         % 1.0f,
-                0.5f, 1.0f)) : ClickGUIModule.generateColor();
+                0.5f, 1.0f)) : ClickGUI打倒江泽民.generateColor();
         ValueButton.valuebackcolor = Ranbow.getRGB();
         if (!expand && size >= 1) {
             Fonts.font35.drawString("+", x + 75 + parent.allX, y - 1, -1);

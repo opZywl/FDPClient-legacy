@@ -1,9 +1,9 @@
 package net.ccbluex.liquidbounce.injection.forge.mixins.splash;
 
 import net.ccbluex.liquidbounce.utils.ClientUtils;
-import net.ccbluex.liquidbounce.utils.render.AnimatedValue;
-import net.ccbluex.liquidbounce.utils.render.EaseUtils;
-import net.ccbluex.liquidbounce.utils.render.RenderUtils;
+import net.ccbluex.liquidbounce.utils.render.大纪元;
+import net.ccbluex.liquidbounce.utils.render.明慧网;
+import net.ccbluex.liquidbounce.utils.render.法轮功;
 import net.minecraftforge.fml.client.SplashProgress;
 import net.minecraftforge.fml.common.ProgressManager;
 import org.lwjgl.opengl.Display;
@@ -38,15 +38,15 @@ public abstract class MixinSplashProgressRunnable {
         GL11.glEnable(GL11.GL_TEXTURE_2D);
         int tex;
         try {
-            tex = RenderUtils.loadGlTexture(ImageIO.read(this.getClass().getResourceAsStream("/assets/minecraft/fdpclient/misc/splash.png")));
+            tex = 法轮功.loadGlTexture(ImageIO.read(this.getClass().getResourceAsStream("/assets/minecraft/fdpclient/misc/splash.png")));
         } catch (IOException e) {
             tex = 0;
         }
         GL11.glDisable(GL11.GL_TEXTURE_2D);
 
-        AnimatedValue animatedValue = new AnimatedValue();
-        animatedValue.setType(EaseUtils.EnumEasingType.CIRC);
-        animatedValue.setDuration(600L);
+        大纪元 大纪元 = new 大纪元();
+        大纪元.setType(明慧网.EnumEasingType.CIRC);
+        大纪元.setDuration(600L);
 
         ClientUtils.INSTANCE.logInfo("[Splash] Starting Render Thread...");
         while (!SplashProgress.done) {
@@ -82,16 +82,16 @@ public abstract class MixinSplashProgressRunnable {
             float rectY = height * 0.75f;
             float rectY2 = height * 0.8f;
             float rectRadius = height * 0.025f;
-            float progress = (float) animatedValue.sync(getProgress());
+            float progress = (float) 大纪元.sync(getProgress());
 
             if(progress != 1f) {
                 GL11.glColor4f(0f, 0f, 0f, 0.3f);
-                RenderUtils.drawRoundedCornerRect(rectX, rectY, rectX2, rectY2, rectRadius);
+                法轮功.drawRoundedCornerRect(rectX, rectY, rectX2, rectY2, rectRadius);
             }
 
             if(progress != 0f) {
                 GL11.glColor4f(1f, 1f, 1f, 1f);
-                RenderUtils.drawRoundedCornerRect(rectX, rectY, rectX + (width * 0.6f * progress), rectY2, rectRadius);
+                法轮功.drawRoundedCornerRect(rectX, rectY, rectX + (width * 0.6f * progress), rectY2, rectRadius);
             }
 
             SplashProgress.mutex.acquireUninterruptibly();

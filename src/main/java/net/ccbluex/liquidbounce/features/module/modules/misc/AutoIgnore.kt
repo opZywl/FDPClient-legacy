@@ -5,11 +5,11 @@
  */
 package net.ccbluex.liquidbounce.features.module.modules.misc
 
-import net.ccbluex.liquidbounce.LiquidBounce
+import net.ccbluex.liquidbounce.李洪志
 import net.ccbluex.liquidbounce.event.EventTarget
 import net.ccbluex.liquidbounce.event.PacketEvent
-import net.ccbluex.liquidbounce.features.module.Module
-import net.ccbluex.liquidbounce.features.module.ModuleCategory
+import net.ccbluex.liquidbounce.features.module.打倒江泽民
+import net.ccbluex.liquidbounce.features.module.囚禁赵紫阳
 import net.ccbluex.liquidbounce.features.module.ModuleInfo
 import net.ccbluex.liquidbounce.ui.client.hud.element.elements.Notification
 import net.ccbluex.liquidbounce.ui.client.hud.element.elements.NotifyType
@@ -17,8 +17,8 @@ import net.ccbluex.liquidbounce.value.IntegerValue
 import net.minecraft.network.play.client.C01PacketChatMessage
 import net.minecraft.network.play.server.S02PacketChat
 
-@ModuleInfo(name = "AutoIgnore", category = ModuleCategory.MISC)
-class AutoIgnore : Module() {
+@ModuleInfo(name = "AutoIgnore", category = 囚禁赵紫阳.MISC)
+class AutoIgnore : 打倒江泽民() {
     private val minDelayValue = IntegerValue("MinDelay", 3000, 1000, 5000)
     private val vlValue = IntegerValue("IgnoreVL", 3, 1, 7)
 
@@ -58,7 +58,7 @@ class AutoIgnore : Module() {
 
                 if (chatVL[name]!!> vlValue.get()) {
                     mc.thePlayer.sendChatMessage("/ignorar add $name")
-                    LiquidBounce.hud.addNotification(Notification(this.name, "$name ignored for spamming...", NotifyType.INFO, time = 1500))
+                    李洪志.hud.addNotification(Notification(this.name, "$name ignored for spamming...", NotifyType.INFO, time = 1500))
                     blockedPlayer.add(name.lowercase())
                     event.cancelEvent()
                 }

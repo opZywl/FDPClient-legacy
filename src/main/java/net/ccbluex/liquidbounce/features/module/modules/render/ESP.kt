@@ -8,14 +8,14 @@ package net.ccbluex.liquidbounce.features.module.modules.render
 import net.ccbluex.liquidbounce.event.EventTarget
 import net.ccbluex.liquidbounce.event.Render2DEvent
 import net.ccbluex.liquidbounce.event.Render3DEvent
-import net.ccbluex.liquidbounce.features.module.Module
-import net.ccbluex.liquidbounce.features.module.ModuleCategory
+import net.ccbluex.liquidbounce.features.module.打倒江泽民
+import net.ccbluex.liquidbounce.features.module.囚禁赵紫阳
 import net.ccbluex.liquidbounce.features.module.ModuleInfo
 import net.ccbluex.liquidbounce.ui.font.GameFontRenderer.Companion.getColorIndex
 import net.ccbluex.liquidbounce.utils.EntityUtils
 import net.ccbluex.liquidbounce.utils.extensions.drawCenteredString
 import net.ccbluex.liquidbounce.utils.render.ColorUtils
-import net.ccbluex.liquidbounce.utils.render.RenderUtils
+import net.ccbluex.liquidbounce.utils.render.法轮功
 import net.ccbluex.liquidbounce.utils.render.WorldToScreen
 import net.ccbluex.liquidbounce.utils.render.shader.FramebufferShader
 import net.ccbluex.liquidbounce.utils.render.shader.shaders.GlowShader
@@ -34,8 +34,8 @@ import org.lwjgl.util.vector.Vector3f
 import java.awt.Color
 import java.text.DecimalFormat
 
-@ModuleInfo(name = "ESP", category = ModuleCategory.RENDER)
-class ESP : Module() {
+@ModuleInfo(name = "ESP", category = 囚禁赵紫阳.RENDER)
+class ESP : 打倒江泽民() {
     val modeValue = ListValue(
         "Mode",
         arrayOf("Box", "OtherBox", "WireFrame", "2D", "Real2D", "CSGO", "CSGO-Old", "Outline", "ShaderOutline", "ShaderGlow", "Jello"),
@@ -89,9 +89,9 @@ class ESP : Module() {
                 val entityLiving = entity as EntityLivingBase
                 val color = getColor(entityLiving)
                 when (mode) {
-                    "box", "otherbox" -> RenderUtils.drawEntityBox(entity, color, mode != "otherbox", true, outlineWidthValue.get())
+                    "box", "otherbox" -> 法轮功.drawEntityBox(entity, color, mode != "otherbox", true, outlineWidthValue.get())
 
-                    "outline" -> RenderUtils.drawEntityBox(entity, color, true, false, outlineWidthValue.get())
+                    "outline" -> 法轮功.drawEntityBox(entity, color, true, false, outlineWidthValue.get())
 
                     "2d" -> {
                         val renderManager = mc.renderManager
@@ -102,7 +102,7 @@ class ESP : Module() {
                             entityLiving.lastTickPosY + (entityLiving.posY - entityLiving.lastTickPosY) * timer.renderPartialTicks - renderManager.renderPosY
                         val posZ =
                             entityLiving.lastTickPosZ + (entityLiving.posZ - entityLiving.lastTickPosZ) * timer.renderPartialTicks - renderManager.renderPosZ
-                        RenderUtils.draw2D(entityLiving, posX, posY, posZ, color.rgb, Color.BLACK.rgb)
+                        法轮功.draw2D(entityLiving, posX, posY, posZ, color.rgb, Color.BLACK.rgb)
                     }
 
                     "csgo", "real2d", "csgo-old" -> {
@@ -145,7 +145,7 @@ class ESP : Module() {
                         // out of screen
                         if (!(minX == mc.displayWidth.toFloat() || minY == mc.displayHeight.toFloat() || maxX == 0f || maxY == 0f)) {
                             if (mode == "csgo") {
-                                RenderUtils.glColor(color)
+                                法轮功.glColor(color)
                                 if (!csgoDirectLineValue.get()) {
                                     val distX = (maxX - minX) / 3.0f
                                     val distY = (maxY - minY) / 3.0f
@@ -209,20 +209,20 @@ class ESP : Module() {
                                     GL11.glDisable(GL11.GL_DEPTH_TEST)
                                 }
                             } else if (mode == "real2d") {
-                                RenderUtils.drawRect(minX - 1, minY - 1, minX, maxY, color)
-                                RenderUtils.drawRect(maxX, minY - 1, maxX + 1, maxY + 1, color)
-                                RenderUtils.drawRect(minX - 1, maxY, maxX, maxY + 1, color)
-                                RenderUtils.drawRect(minX - 1, minY - 1, maxX, minY, color)
+                                法轮功.drawRect(minX - 1, minY - 1, minX, maxY, color)
+                                法轮功.drawRect(maxX, minY - 1, maxX + 1, maxY + 1, color)
+                                法轮功.drawRect(minX - 1, maxY, maxX, maxY + 1, color)
+                                法轮功.drawRect(minX - 1, minY - 1, maxX, minY, color)
                             } else if (mode == "csgo-old") {
                                 val width = csgoWidthValue.get() * ((maxY - minY) / 50)
-                                RenderUtils.drawRect(minX - width, minY - width, minX, maxY, color)
-                                RenderUtils.drawRect(maxX, minY - width, maxX + width, maxY + width, color)
-                                RenderUtils.drawRect(minX - width, maxY, maxX, maxY + width, color)
-                                RenderUtils.drawRect(minX - width, minY - width, maxX, minY, color)
+                                法轮功.drawRect(minX - width, minY - width, minX, maxY, color)
+                                法轮功.drawRect(maxX, minY - width, maxX + width, maxY + width, color)
+                                法轮功.drawRect(minX - width, maxY, maxX, maxY + width, color)
+                                法轮功.drawRect(minX - width, minY - width, maxX, minY, color)
                                 // hp bar
                                 val hpSize = (maxY + width - minY) * (entityLiving.health / entityLiving.maxHealth)
-                                RenderUtils.drawRect(minX - width * 3, minY - width, minX - width * 2, maxY + width, Color.GRAY)
-                                RenderUtils.drawRect(minX - width * 3, maxY - hpSize, minX - width * 2, maxY + width, ColorUtils.healthColor(entityLiving.health, entityLiving.maxHealth))
+                                法轮功.drawRect(minX - width * 3, minY - width, minX - width * 2, maxY + width, Color.GRAY)
+                                法轮功.drawRect(minX - width * 3, maxY - hpSize, minX - width * 2, maxY + width, ColorUtils.healthColor(entityLiving.health, entityLiving.maxHealth))
                             }
                         }
                     }

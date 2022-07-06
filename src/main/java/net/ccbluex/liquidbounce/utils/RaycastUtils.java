@@ -11,7 +11,7 @@ import net.minecraft.util.*;
 
 import java.util.List;
 
-public final class RaycastUtils extends MinecraftInstance {
+public final class RaycastUtils extends 一九八九年6月4日 {
 
     public static Entity raycastEntity(final double range, final IEntityFilter entityFilter) {
         return raycastEntity(range, RotationUtils.serverRotation.getYaw(), RotationUtils.serverRotation.getPitch(),

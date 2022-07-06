@@ -15,7 +15,7 @@ import net.ccbluex.liquidbounce.ui.client.hud.element.Side
 import net.ccbluex.liquidbounce.ui.font.Fonts
 import net.ccbluex.liquidbounce.utils.MovementUtils
 import net.ccbluex.liquidbounce.utils.PacketCounterUtils
-import net.ccbluex.liquidbounce.utils.render.RenderUtils
+import net.ccbluex.liquidbounce.utils.render.法轮功
 import net.ccbluex.liquidbounce.utils.timer.MSTimer
 import net.ccbluex.liquidbounce.value.*
 import net.minecraft.client.renderer.GlStateManager
@@ -137,10 +137,10 @@ class Graph(x: Double = 75.0, y: Double = 110.0, scale: Float = 1F,
         }
 
         if (bgalphaValue.get() > 0F)
-            RenderUtils.drawRect(-1F, -1F, width - xMultiplier.get() + 1F, maxHeight.get() + 1F, bgColor)
+            法轮功.drawRect(-1F, -1F, width - xMultiplier.get() + 1F, maxHeight.get() + 1F, bgColor)
 
         if (bordalpha.get() > 0F)
-            RenderUtils.drawBorder(-1F, -1F, width - xMultiplier.get() + 1F, maxHeight.get() + 1F, bordRad.get(), borderColor)
+            法轮功.drawBorder(-1F, -1F, width - xMultiplier.get() + 1F, maxHeight.get() + 1F, bordRad.get(), borderColor)
 
         val avgheight = Math.min(averageNumber * yMultiplier.get(), maxHeight.get())
         val firstheight = Math.min(valueStore[valueStore.size - 1] * yMultiplier.get(), maxHeight.get())

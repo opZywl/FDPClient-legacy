@@ -34,6 +34,8 @@ public class OptimizeTransformer implements IClassTransformer {
 
     @Override
     public byte[] transform(String name, String transformedName, byte[] basicClass) {
+        if(name.startsWith("org.lwjgl"))
+            System.out.println(transformedName);
         if(transformedName.startsWith("net.minecraft") && basicClass != null && !transformMap.containsKey(transformedName)) {
             try {
                 final ClassNode classNode = ASMUtils.INSTANCE.toClassNode(basicClass);

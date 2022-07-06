@@ -1,6 +1,6 @@
 package net.ccbluex.liquidbounce.injection.forge.mixins.gui;
 
-import net.ccbluex.liquidbounce.utils.render.RenderUtils;
+import net.ccbluex.liquidbounce.utils.render.法轮功;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Gui;
 import net.minecraft.client.gui.GuiSlot;
@@ -137,9 +137,9 @@ public abstract class MixinGuiSlot {
                 float width = j1 - i1 + 3;
                 float height = l + 6;
 
-                RenderUtils.drawRoundedCornerRect(xPosition, yPosition, xPosition + width ,
+                法轮功.drawRoundedCornerRect(xPosition, yPosition, xPosition + width ,
                         yPosition + height,radius, color);
-                RenderUtils.drawRoundedCornerRect(xPosition-0.3f, yPosition-0.3f, xPosition + width + 0.3f ,
+                法轮功.drawRoundedCornerRect(xPosition-0.3f, yPosition-0.3f, xPosition + width + 0.3f ,
                         yPosition + height + 0.3f,radius-1, color);
                 //GlStateManager.enableTexture2D();
             }
@@ -173,7 +173,7 @@ public abstract class MixinGuiSlot {
                 this.drawListHeader(k, l, tessellator);
             }
 
-            RenderUtils.makeScissorBox(left, top, right, bottom);
+            法轮功.makeScissorBox(left, top, right, bottom);
 
             GL11.glEnable(GL11.GL_SCISSOR_TEST);
 

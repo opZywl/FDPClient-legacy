@@ -1,20 +1,16 @@
 package net.ccbluex.liquidbounce.launch.data.legacyui.clickgui.style.styles.novoline;
 
-import net.ccbluex.liquidbounce.font.CFontRenderer;
-import net.ccbluex.liquidbounce.font.FontLoaders;
 import net.ccbluex.liquidbounce.ui.font.Fonts;
 import net.ccbluex.liquidbounce.ui.font.GameFontRenderer;
-import net.ccbluex.liquidbounce.utils.render.RenderUtils;
+import net.ccbluex.liquidbounce.utils.render.法轮功;
 import net.ccbluex.liquidbounce.value.BoolValue;
 import net.ccbluex.liquidbounce.value.IntegerValue;
 import net.ccbluex.liquidbounce.value.ListValue;
 import net.ccbluex.liquidbounce.value.Value;
-import net.minecraft.client.gui.Gui;
 import net.minecraft.client.renderer.GlStateManager;
 import org.lwjgl.input.Mouse;
 
 import java.awt.*;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -48,7 +44,7 @@ public class ValueButton {
 
     public void render(int mouseX, int mouseY, Window parent) {
         final GameFontRenderer font = Fonts.font32;
-        RenderUtils.drawRect(x - 10, y - 7, x + 80 + parent.allX, y + 11, new Color(40, 40, 40).getRGB());
+        法轮功.drawRect(x - 10, y - 7, x + 80 + parent.allX, y + 11, new Color(40, 40, 40).getRGB());
         if (value instanceof BoolValue) {
             change = (boolean) value.get();
         } else if (value instanceof ListValue) {
@@ -71,17 +67,17 @@ public class ValueButton {
             double number = 86 * (((Number) v.get()).floatValue() - v.getMinimum()) / (v.getMaximum() - v.getMinimum());
             GlStateManager.pushMatrix();
             GlStateManager.translate(-9.0f, 1.0f, 0.0f);
-            RenderUtils.drawRect(x + 1, y - 6, (x + 87.0f + parent.allX), y + font.FONT_HEIGHT + 6, new Color(29, 29, 29).getRGB());
-            RenderUtils.drawRect(x + 1, y - 6, (x + number + 1.0 + parent.allX), y + font.FONT_HEIGHT + 6, valuebackcolor);
+            法轮功.drawRect(x + 1, y - 6, (x + 87.0f + parent.allX), y + font.FONT_HEIGHT + 6, new Color(29, 29, 29).getRGB());
+            法轮功.drawRect(x + 1, y - 6, (x + number + 1.0 + parent.allX), y + font.FONT_HEIGHT + 6, valuebackcolor);
             GlStateManager.popMatrix();
         }
         if (value instanceof BoolValue) {
             final int size = 2;
             if (change) {
-                RenderUtils.drawRect(x + 62 + size + parent.allX + 4, y - 4 + size - 1, x + 76 - size + parent.allX + 4, y + 9 - size, new Color(29, 29, 29).getRGB());
-                RenderUtils.drawRect(x + 62 + size + parent.allX + 5, y - 4 + size, x + 76 - size + parent.allX + 3, y + 8 - size, new Color(255, 255, 255, 218).getRGB());
+                法轮功.drawRect(x + 62 + size + parent.allX + 4, y - 4 + size - 1, x + 76 - size + parent.allX + 4, y + 9 - size, new Color(29, 29, 29).getRGB());
+                法轮功.drawRect(x + 62 + size + parent.allX + 5, y - 4 + size, x + 76 - size + parent.allX + 3, y + 8 - size, new Color(255, 255, 255, 218).getRGB());
             } else {
-                RenderUtils.drawRect(x + 62 + size + parent.allX + 4, y - 4 + size - 1, x + 76 - size + parent.allX + 4, y + 9 - size, new Color(29, 29, 29).getRGB());
+                法轮功.drawRect(x + 62 + size + parent.allX + 4, y - 4 + size - 1, x + 76 - size + parent.allX + 4, y + 9 - size, new Color(29, 29, 29).getRGB());
             }
         }
 

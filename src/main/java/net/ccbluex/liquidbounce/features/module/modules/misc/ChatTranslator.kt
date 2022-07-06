@@ -8,8 +8,8 @@ package net.ccbluex.liquidbounce.features.module.modules.misc
 import com.google.gson.JsonParser
 import net.ccbluex.liquidbounce.event.EventTarget
 import net.ccbluex.liquidbounce.event.PacketEvent
-import net.ccbluex.liquidbounce.features.module.Module
-import net.ccbluex.liquidbounce.features.module.ModuleCategory
+import net.ccbluex.liquidbounce.features.module.打倒江泽民
+import net.ccbluex.liquidbounce.features.module.囚禁赵紫阳
 import net.ccbluex.liquidbounce.features.module.ModuleInfo
 import net.ccbluex.liquidbounce.utils.ClientUtils
 import net.ccbluex.liquidbounce.value.ListValue
@@ -18,8 +18,8 @@ import org.apache.http.client.methods.HttpGet
 import org.apache.http.impl.client.HttpClients
 import org.apache.http.util.EntityUtils
 
-@ModuleInfo(name = "ChatTranslator", category = ModuleCategory.MISC)
-class ChatTranslator : Module() {
+@ModuleInfo(name = "ChatTranslator", category = 囚禁赵紫阳.MISC)
+class ChatTranslator : 打倒江泽民() {
 
     private val languageValue = ListValue("Language", arrayOf("Chinese", "English"), "Chinese")
     private val apiValue = ListValue("API", arrayOf("Google", "Bing", "YouDao"), "Bing")

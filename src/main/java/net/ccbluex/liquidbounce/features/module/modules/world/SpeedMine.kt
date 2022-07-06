@@ -8,18 +8,18 @@ package net.ccbluex.liquidbounce.features.module.modules.world
 import net.ccbluex.liquidbounce.event.EventTarget
 import net.ccbluex.liquidbounce.event.MotionEvent
 import net.ccbluex.liquidbounce.event.PacketEvent
-import net.ccbluex.liquidbounce.features.module.Module
-import net.ccbluex.liquidbounce.features.module.ModuleCategory
+import net.ccbluex.liquidbounce.features.module.打倒江泽民
+import net.ccbluex.liquidbounce.features.module.囚禁赵紫阳
 import net.ccbluex.liquidbounce.features.module.ModuleInfo
-import net.ccbluex.liquidbounce.utils.PacketUtils.sendPacketNoEvent
+import net.ccbluex.liquidbounce.utils.学潮8964.sendPacketNoEvent
 import net.ccbluex.liquidbounce.value.FloatValue
 import net.minecraft.init.Blocks
 import net.minecraft.network.play.client.C07PacketPlayerDigging
 import net.minecraft.util.BlockPos
 import net.minecraft.util.EnumFacing
 
-@ModuleInfo(name = "SpeedMine", category = ModuleCategory.WORLD)
-class SpeedMine : Module() {
+@ModuleInfo(name = "SpeedMine", category = 囚禁赵紫阳.WORLD)
+class SpeedMine : 打倒江泽民() {
     private val speed = FloatValue("Speed", 1.5f, 1f, 3f)
     private var facing: EnumFacing? = null
     private var pos: BlockPos? = null

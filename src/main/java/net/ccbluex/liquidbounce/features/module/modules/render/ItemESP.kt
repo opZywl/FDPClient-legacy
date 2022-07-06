@@ -8,12 +8,12 @@ package net.ccbluex.liquidbounce.features.module.modules.render
 import net.ccbluex.liquidbounce.event.EventTarget
 import net.ccbluex.liquidbounce.event.Render2DEvent
 import net.ccbluex.liquidbounce.event.Render3DEvent
-import net.ccbluex.liquidbounce.features.module.Module
-import net.ccbluex.liquidbounce.features.module.ModuleCategory
+import net.ccbluex.liquidbounce.features.module.打倒江泽民
+import net.ccbluex.liquidbounce.features.module.囚禁赵紫阳
 import net.ccbluex.liquidbounce.features.module.ModuleInfo
 import net.ccbluex.liquidbounce.utils.Colors
 import net.ccbluex.liquidbounce.utils.render.ColorUtils.rainbow
-import net.ccbluex.liquidbounce.utils.render.RenderUtils
+import net.ccbluex.liquidbounce.utils.render.法轮功
 import net.ccbluex.liquidbounce.utils.render.shader.shaders.GlowShader
 import net.ccbluex.liquidbounce.utils.render.shader.shaders.OutlineShader
 import net.ccbluex.liquidbounce.value.BoolValue
@@ -28,8 +28,8 @@ import org.lwjgl.opengl.GL11
 import java.awt.Color
 import kotlin.math.roundToInt
 
-@ModuleInfo(name = "ItemESP", category = ModuleCategory.RENDER)
-class ItemESP : Module() {
+@ModuleInfo(name = "ItemESP", category = 囚禁赵紫阳.RENDER)
+class ItemESP : 打倒江泽民() {
     private val entityConvertedPointsMap: MutableMap<EntityItem, DoubleArray> = HashMap()
     private val modeValue = ListValue("Mode", arrayOf("Box", "OtherBox", "Outline", "Exhibition", "LightBox", "ShaderOutline", "ShaderGlow"), "Box")
     private val outlineWidth = FloatValue("Outline-Width", 3f, 0.5f, 5f).displayable { modeValue.equals("Outline") }
@@ -48,9 +48,9 @@ class ItemESP : Module() {
         for (entity in mc.theWorld.loadedEntityList) {
             if (!(entity is EntityItem || entity is EntityArrow)) continue
             when (modeValue.get().lowercase()) {
-                "box" -> RenderUtils.drawEntityBox(entity, color, true, true, outlineWidth.get())
-                "otherbox" -> RenderUtils.drawEntityBox(entity, color, false, true, outlineWidth.get())
-                "outline" -> RenderUtils.drawEntityBox(entity, color, true, false, outlineWidth.get())
+                "box" -> 法轮功.drawEntityBox(entity, color, true, true, outlineWidth.get())
+                "otherbox" -> 法轮功.drawEntityBox(entity, color, false, true, outlineWidth.get())
+                "outline" -> 法轮功.drawEntityBox(entity, color, true, false, outlineWidth.get())
             }
         }
 
@@ -67,9 +67,9 @@ class ItemESP : Module() {
                 GL11.glDisable(3553)
                 GL11.glDisable(2929)
                 GL11.glDepthMask(false)
-                RenderUtils.drawOutlinedBoundingBox(AxisAlignedBB(x - .2, y - 0.3, z - .2, x + .2, y - 0.4, z + .2))
+                法轮功.drawOutlinedBoundingBox(AxisAlignedBB(x - .2, y - 0.3, z - .2, x + .2, y - 0.4, z + .2))
                 GL11.glColor4f(1f, 1f, 1f, 0.15f)
-                RenderUtils.drawBoundingBox(AxisAlignedBB(x - .2, y - 0.3, z - .2, x + .2, y - 0.4, z + .2))
+                法轮功.drawBoundingBox(AxisAlignedBB(x - .2, y - 0.3, z - .2, x + .2, y - 0.4, z + .2))
                 GL11.glEnable(3553)
                 GL11.glEnable(2929)
                 GL11.glDepthMask(true)
@@ -90,8 +90,8 @@ class ItemESP : Module() {
                     -mc.renderManager.viewerPosZ + 0.36
                     val topY: Double
                     y = y + (ent.height + 0.15).also { topY = it }
-                    val convertedPoints = RenderUtils.convertTo2D(x, y, z)
-                    val convertedPoints2 = RenderUtils.convertTo2D(x - 0.36, y, z - 0.36)
+                    val convertedPoints = 法轮功.convertTo2D(x, y, z)
+                    val convertedPoints2 = 法轮功.convertTo2D(x - 0.36, y, z - 0.36)
                     val xd = 0.0
                     assert(convertedPoints2 != null)
                     if (convertedPoints2!![2] < 0.0 || convertedPoints2[2] >= 1.0) continue
@@ -99,27 +99,27 @@ class ItemESP : Module() {
                             - 0.36)
                     z = (ent.lastTickPosZ + (ent.posZ - ent.lastTickPosZ) * pTicks - mc.renderManager.viewerPosZ
                             - 0.36)
-                    val convertedPointsBottom = RenderUtils.convertTo2D(x, y, z)
+                    val convertedPointsBottom = 法轮功.convertTo2D(x, y, z)
                     y = (ent.lastTickPosY + (ent.posY - ent.lastTickPosY) * pTicks - mc.renderManager.viewerPosY
                             - 0.05)
-                    val convertedPointsx = RenderUtils.convertTo2D(x, y, z)
+                    val convertedPointsx = 法轮功.convertTo2D(x, y, z)
                     x = (ent.lastTickPosX + (ent.posX - ent.lastTickPosX) * pTicks - mc.renderManager.viewerPosX
                             - 0.36)
                     z = (ent.lastTickPosZ + (ent.posZ - ent.lastTickPosZ) * pTicks - mc.renderManager.viewerPosZ
                             + 0.36)
-                    val convertedPointsTop1 = RenderUtils.convertTo2D(x, topY, z)
-                    val convertedPointsx2 = RenderUtils.convertTo2D(x, y, z)
+                    val convertedPointsTop1 = 法轮功.convertTo2D(x, topY, z)
+                    val convertedPointsx2 = 法轮功.convertTo2D(x, y, z)
                     x = (ent.lastTickPosX + (ent.posX - ent.lastTickPosX) * pTicks - mc.renderManager.viewerPosX
                             + 0.36)
                     z = (ent.lastTickPosZ + (ent.posZ - ent.lastTickPosZ) * pTicks - mc.renderManager.viewerPosZ
                             + 0.36)
-                    val convertedPointsz = RenderUtils.convertTo2D(x, y, z)
+                    val convertedPointsz = 法轮功.convertTo2D(x, y, z)
                     x = (ent.lastTickPosX + (ent.posX - ent.lastTickPosX) * pTicks - mc.renderManager.viewerPosX
                             + 0.36)
                     z = (ent.lastTickPosZ + (ent.posZ - ent.lastTickPosZ) * pTicks - mc.renderManager.viewerPosZ
                             - 0.36)
-                    val convertedPointsTop2 = RenderUtils.convertTo2D(x, topY, z)
-                    val convertedPointsz2 = RenderUtils.convertTo2D(x, y, z)
+                    val convertedPointsTop2 = 法轮功.convertTo2D(x, topY, z)
+                    val convertedPointsz2 = 法轮功.convertTo2D(x, y, z)
                     assert(convertedPoints != null)
                     assert(convertedPointsx != null)
                     assert(convertedPointsTop1 != null)
@@ -244,7 +244,7 @@ class ItemESP : Module() {
                             }
                             ++n
                         }
-                        RenderUtils.rectangleBordered(
+                        法轮功.rectangleBordered(
                             x + 0.5,
                             y + 0.5,
                             endx - 0.5,
@@ -253,7 +253,7 @@ class ItemESP : Module() {
                             Colors.getColor(0, 0, 0, 0),
                             Color(255, 255, 255).rgb
                         )
-                        RenderUtils.rectangleBordered(
+                        法轮功.rectangleBordered(
                             x - 0.5,
                             y - 0.5,
                             endx + 0.5,
@@ -262,7 +262,7 @@ class ItemESP : Module() {
                             Colors.getColor(0, 0),
                             Colors.getColor(0, 150)
                         )
-                        RenderUtils.rectangleBordered(
+                        法轮功.rectangleBordered(
                             x + 1.5,
                             y + 1.5,
                             endx - 1.5,
@@ -274,18 +274,18 @@ class ItemESP : Module() {
                         val health = 20f
                         val progress = health / 20f
                         val difference = y - endy + 0.5
-                        RenderUtils.rectangleBordered(
+                        法轮功.rectangleBordered(
                             x - 6.5, y - 0.5, x - 2.5,
                             endy, 1.0, Color(30, 255, 30).rgb,
                             Colors.getColor(0, 150)
                         )
                         //RenderUtils.rectangle((x - 5.5), (endy - 1.0), (x - 3.5),
                         //         healthLocation,  customColor.getRGB());
-                        RenderUtils.rectangle(x - 5.5, endy - 1.0, x - 3.5, endy + difference, Color(30, 255, 30).rgb)
+                        法轮功.rectangle(x - 5.5, endy - 1.0, x - 3.5, endy + difference, Color(30, 255, 30).rgb)
                         if (-difference > 50.0) {
                             for (i in 1..9) {
                                 val dThing = difference / 10.0 * i
-                                RenderUtils.rectangle(
+                                法轮功.rectangle(
                                     x - 6.5, endy - 0.5 + dThing,
                                     x - 2.5, endy - 0.5 + dThing - 1.0,
                                     Colors.getColor(0)
@@ -306,7 +306,7 @@ class ItemESP : Module() {
             GL11.glScalef(1.0f, 1.0f, 1.0f)
             GL11.glColor4f(1.0f, 1.0f, 1.0f, 1.0f)
             GlStateManager.popMatrix()
-            RenderUtils.rectangle(0.0, 0.0, 0.0, 0.0, -1)
+            法轮功.rectangle(0.0, 0.0, 0.0, 0.0, -1)
         }
         if (modeValue.get().equals("ShaderOutline", ignoreCase = true)) {
             OutlineShader.OUTLINE_SHADER.startDraw(event.partialTicks)

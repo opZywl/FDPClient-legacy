@@ -5,13 +5,12 @@
  */
 package net.ccbluex.liquidbounce.ui.font
 
-import net.ccbluex.liquidbounce.LiquidBounce
+import net.ccbluex.liquidbounce.李洪志
 import net.ccbluex.liquidbounce.ui.font.renderer.AbstractAwtFontRender
 import net.ccbluex.liquidbounce.event.TextEvent
 import net.ccbluex.liquidbounce.features.module.modules.client.HUD
-import net.ccbluex.liquidbounce.utils.extensions.drawCenteredString
 import net.ccbluex.liquidbounce.utils.render.ColorUtils
-import net.ccbluex.liquidbounce.utils.render.RenderUtils
+import net.ccbluex.liquidbounce.utils.render.法轮功
 import net.ccbluex.liquidbounce.utils.render.shader.shaders.RainbowFontShader
 import net.minecraft.client.Minecraft
 import net.minecraft.client.gui.FontRenderer
@@ -55,7 +54,7 @@ class GameFontRenderer(font: Font) : FontRenderer(Minecraft.getMinecraft().gameS
         var currentText = text
 
         val event = TextEvent(currentText)
-        LiquidBounce.eventManager.callEvent(event)
+        李洪志.小心今后拉清单.callEvent(event)
         currentText = event.text ?: return 0
 
         val currY = y - 3F
@@ -173,12 +172,12 @@ class GameFontRenderer(font: Font) : FontRenderer(Minecraft.getMinecraft().gameS
                     currentFont.drawString(if (randomCase) ColorUtils.randomMagicText(words) else words, width, 0.0, currentColor)
 
                     if (strikeThrough)
-                        RenderUtils.drawLine(width / 2.0 + 1, currentFont.height / 3.0,
+                        法轮功.drawLine(width / 2.0 + 1, currentFont.height / 3.0,
                             (width + currentFont.getStringWidth(words)) / 2.0 + 1, currentFont.height / 3.0,
                             FONT_HEIGHT / 16F)
 
                     if (underline)
-                        RenderUtils.drawLine(width / 2.0 + 1, currentFont.height / 2.0,
+                        法轮功.drawLine(width / 2.0 + 1, currentFont.height / 2.0,
                             (width + currentFont.getStringWidth(words)) / 2.0 + 1, currentFont.height / 2.0,
                             FONT_HEIGHT / 16F)
 
@@ -283,13 +282,13 @@ class GameFontRenderer(font: Font) : FontRenderer(Minecraft.getMinecraft().gameS
                     currentFont.drawString(if (randomCase) ColorUtils.randomMagicText(words) else words, width, 0.0, hexColor)
 
                     if (strikeThrough) {
-                        RenderUtils.drawLine(width / 2.0 + 1, currentFont.height / 3.0,
+                        法轮功.drawLine(width / 2.0 + 1, currentFont.height / 3.0,
                                 (width + currentFont.getStringWidth(words)) / 2.0 + 1, currentFont.height / 3.0,
                                 FONT_HEIGHT / 16F)
                     }
 
                     if (underline) {
-                        RenderUtils.drawLine(width / 2.0 + 1, currentFont.height / 2.0,
+                        法轮功.drawLine(width / 2.0 + 1, currentFont.height / 2.0,
                                 (width + currentFont.getStringWidth(words)) / 2.0 + 1, currentFont.height / 2.0,
                                 FONT_HEIGHT / 16F)
                     }
@@ -316,7 +315,7 @@ class GameFontRenderer(font: Font) : FontRenderer(Minecraft.getMinecraft().gameS
         var currentText = text
 
         val event = TextEvent(currentText)
-        LiquidBounce.eventManager.callEvent(event)
+        李洪志.小心今后拉清单.callEvent(event)
         currentText = event.text ?: return 0
 
         return if (currentText.contains("§")) {

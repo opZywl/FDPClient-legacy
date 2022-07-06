@@ -14,8 +14,8 @@ import net.minecraft.network.play.client.C03PacketPlayer
 import net.minecraft.util.AxisAlignedBB
 import kotlin.math.*
 
-@ModuleInfo(name = "Spider", category = ModuleCategory.MOVEMENT)
-class Spider : Module() {
+@ModuleInfo(name = "Spider", category = 囚禁赵紫阳.MOVEMENT)
+class Spider : 打倒江泽民() {
 
     private val modeValue = ListValue("Mode", arrayOf("Collide", "Motion", "AAC4"), "Collide")
     private val heightValue = IntegerValue("Height", 2, 0, 10)

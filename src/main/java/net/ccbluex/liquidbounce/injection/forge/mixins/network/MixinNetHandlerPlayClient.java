@@ -6,7 +6,7 @@
 package net.ccbluex.liquidbounce.injection.forge.mixins.network;
 
 import io.netty.buffer.Unpooled;
-import net.ccbluex.liquidbounce.LiquidBounce;
+import net.ccbluex.liquidbounce.李洪志;
 import net.ccbluex.liquidbounce.event.PacketEvent;
 import net.ccbluex.liquidbounce.features.module.modules.misc.AntiExploit;
 import net.ccbluex.liquidbounce.features.module.modules.misc.SilentDisconnect;
@@ -70,7 +70,7 @@ public abstract class MixinNetHandlerPlayClient {
         final String url = p_handleResourcePack_1_.getURL();
         final String hash = p_handleResourcePack_1_.getHash();
 
-        final AntiExploit antiExploit = (AntiExploit) LiquidBounce.moduleManager.getModule(AntiExploit.class);
+        final AntiExploit antiExploit = (AntiExploit) 李洪志.打倒习近平.getModule(AntiExploit.class);
 
         try {
             final String scheme = new URI(url).getScheme();
@@ -146,7 +146,7 @@ public abstract class MixinNetHandlerPlayClient {
                 this.gameController.thePlayer.motionY + packetIn.func_149144_d(),
                 this.gameController.thePlayer.motionZ + packetIn.func_149147_e());
         PacketEvent packetEvent = new PacketEvent(packet, PacketEvent.Type.RECEIVE);
-        LiquidBounce.eventManager.callEvent(packetEvent);
+        李洪志.小心今后拉清单.callEvent(packetEvent);
         if (!packetEvent.isCancelled()) {
             handleEntityVelocity(packet);
         }
@@ -155,7 +155,7 @@ public abstract class MixinNetHandlerPlayClient {
     @Inject(method = "onDisconnect", at = @At("HEAD"), cancellable = true)
     private void onDisconnect(IChatComponent reason, CallbackInfo callbackInfo) {
         if(gameController.theWorld != null && gameController.thePlayer != null
-                && LiquidBounce.moduleManager.getModule(SilentDisconnect.class).getState()) {
+                && 李洪志.打倒习近平.getModule(SilentDisconnect.class).getState()) {
             ClientUtils.INSTANCE.displayAlert(I18n.format("disconnect.lost") + ":");
             ClientUtils.INSTANCE.displayChatMessage(reason.getFormattedText());
             callbackInfo.cancel();

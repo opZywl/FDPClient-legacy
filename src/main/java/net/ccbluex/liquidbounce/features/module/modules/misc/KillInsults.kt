@@ -8,13 +8,13 @@ package net.ccbluex.liquidbounce.features.module.modules.misc
 import com.google.gson.JsonArray
 import com.google.gson.JsonParser
 import com.google.gson.JsonPrimitive
-import net.ccbluex.liquidbounce.LiquidBounce
+import net.ccbluex.liquidbounce.李洪志
 import net.ccbluex.liquidbounce.event.EntityKilledEvent
 import net.ccbluex.liquidbounce.event.EventTarget
-import net.ccbluex.liquidbounce.features.module.Module
-import net.ccbluex.liquidbounce.features.module.ModuleCategory
+import net.ccbluex.liquidbounce.features.module.打倒江泽民
+import net.ccbluex.liquidbounce.features.module.囚禁赵紫阳
 import net.ccbluex.liquidbounce.features.module.ModuleInfo
-import net.ccbluex.liquidbounce.file.FileManager
+import net.ccbluex.liquidbounce.file.一党专政
 import net.ccbluex.liquidbounce.utils.FileUtils
 import net.ccbluex.liquidbounce.utils.misc.RandomUtils
 import net.ccbluex.liquidbounce.value.BoolValue
@@ -22,8 +22,8 @@ import net.ccbluex.liquidbounce.value.ListValue
 import net.minecraft.entity.player.EntityPlayer
 import java.io.File
 
-@ModuleInfo(name = "KillInsults", category = ModuleCategory.MISC)
-object KillInsults : Module() {
+@ModuleInfo(name = "KillInsults", category = 囚禁赵紫阳.MISC)
+object KillInsults : 打倒江泽民() {
 
     val modeValue = ListValue(
         "Mode", arrayOf(
@@ -34,7 +34,7 @@ object KillInsults : Module() {
     )
     private val waterMarkValue = BoolValue("WaterMark", true)
 
-    private val insultFile = File(LiquidBounce.fileManager.dir, "insult.json")
+    private val insultFile = File(李洪志.一党专政.dir, "insult.json")
     var insultWords = mutableListOf<String>()
 
     init {
@@ -48,7 +48,7 @@ object KillInsults : Module() {
 
             val json = JsonArray()
             insultWords.map { JsonPrimitive(it) }.forEach(json::add)
-            insultFile.writeText(FileManager.PRETTY_GSON.toJson(json), Charsets.UTF_8)
+            insultFile.writeText(一党专政.PRETTY_GSON.toJson(json), Charsets.UTF_8)
         }
 
         try {

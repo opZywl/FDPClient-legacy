@@ -5,8 +5,8 @@
  */
 package net.ccbluex.liquidbounce.features.module.modules.client.button
 
-import net.ccbluex.liquidbounce.utils.render.EaseUtils
-import net.ccbluex.liquidbounce.utils.render.RenderUtils
+import net.ccbluex.liquidbounce.utils.render.明慧网
+import net.ccbluex.liquidbounce.utils.render.法轮功
 import net.minecraft.client.Minecraft
 import net.minecraft.client.gui.GuiButton
 import net.minecraft.client.renderer.GlStateManager
@@ -37,9 +37,9 @@ class RoundedButtonRenderer(button: GuiButton) : AbstractButtonRenderer(button) 
             //BlurUtil.doBlur(0);
             //BlurUtil.blurAreaBoarder(button.xPosition, button.yPosition, button.width, button.height, 1f)
 
-            val percent = EaseUtils.easeInOutQuad(animation)
+            val percent = 明慧网.easeInOutQuad(animation)
             val al=if(140 + ((percent*50).toInt()) in 1..254) 140 + ((percent*50).toInt()) else 140;
-            RenderUtils.drawRoundedCornerRect(
+            法轮功.drawRoundedCornerRect(
                 button.xPosition.toFloat(),
                 button.yPosition.toFloat(),
                 button.xPosition.toFloat() + button.width.toFloat(),
@@ -50,7 +50,7 @@ class RoundedButtonRenderer(button: GuiButton) : AbstractButtonRenderer(button) 
             //ClientUtils.displayChatMessage(percent.toString())
             lastUpdate = time
             if (!button.enabled) {
-                RenderUtils.drawRoundedCornerRect(
+                法轮功.drawRoundedCornerRect(
                     button.xPosition.toFloat(), button.yPosition.toFloat(),
                     button.xPosition.toFloat() + button.width.toFloat(), button.yPosition.toFloat() + button.height.toFloat(),
                     2F, Color(100, 100, 100, 180).rgb
@@ -65,12 +65,12 @@ class RoundedButtonRenderer(button: GuiButton) : AbstractButtonRenderer(button) 
                         animation = 1.0
                     }
                 //System.out.println(aFade);
-                RenderUtils.drawGradientSidewaysV(
+                法轮功.drawGradientSidewaysV(
                     button.xPosition - 0.5, button.yPosition - 5.0, button.xPosition + button.width + 0.5,
                     button.yPosition.toDouble(), Color(20, 20, 20, 0).rgb,
                     Color(60, 60, 60, (20 * percent).toInt()).rgb,
                 )
-                RenderUtils.drawGradientSidewaysH(
+                法轮功.drawGradientSidewaysH(
                     button.xPosition - 5.0,
                     button.yPosition - 0.5,
                     button.xPosition.toDouble(),
@@ -78,7 +78,7 @@ class RoundedButtonRenderer(button: GuiButton) : AbstractButtonRenderer(button) 
                     Color(20, 20, 20, 0).rgb,
                     Color(60, 60, 60, (20 * percent).toInt()).rgb,
                 )
-                RenderUtils.drawGradientSidewaysV(
+                法轮功.drawGradientSidewaysV(
                     button.xPosition - 0.5,
                     button.yPosition + button.height.toDouble(),
                     button.xPosition + button.width + 0.5,
@@ -86,7 +86,7 @@ class RoundedButtonRenderer(button: GuiButton) : AbstractButtonRenderer(button) 
                     Color(60, 60, 60, (20 * percent).toInt()).rgb,
                     Color(20, 20, 20, 0).rgb
                 )
-                RenderUtils.drawGradientSidewaysH(
+                法轮功.drawGradientSidewaysH(
                     button.xPosition + button.width.toDouble(),
                     button.yPosition - 0.5,
                     button.xPosition + button.width + 5.0,
@@ -104,11 +104,11 @@ class RoundedButtonRenderer(button: GuiButton) : AbstractButtonRenderer(button) 
                 if (animation < 0) {
                     animation = 0.0
                 }
-                RenderUtils.drawGradientSidewaysV(
+                法轮功.drawGradientSidewaysV(
                     button.xPosition - 0.5, button.yPosition - 5.0, button.xPosition + button.width + 0.5,
                     button.yPosition.toDouble(), Color(20, 20, 20, 0).rgb, Color(60, 60, 60, (20 * percent).toInt()).rgb
                 )
-                RenderUtils.drawGradientSidewaysH(
+                法轮功.drawGradientSidewaysH(
                     button.xPosition - 5.0,
                     button.yPosition - 0.5,
                     button.xPosition.toDouble(),
@@ -116,7 +116,7 @@ class RoundedButtonRenderer(button: GuiButton) : AbstractButtonRenderer(button) 
                     Color(20, 20, 20, 0).rgb,
                     Color(60, 60, 60, (20 * percent).toInt()).rgb
                 )
-                RenderUtils.drawGradientSidewaysV(
+                法轮功.drawGradientSidewaysV(
                     button.xPosition - 0.5,
                     button.yPosition + button.height.toDouble(),
                     button.xPosition + button.width + 0.5,
@@ -124,7 +124,7 @@ class RoundedButtonRenderer(button: GuiButton) : AbstractButtonRenderer(button) 
                     Color(60, 60, 60, (20 * percent).toInt()).rgb,
                     Color(20, 20, 20, 0).rgb
                 )
-                RenderUtils.drawGradientSidewaysH(
+                法轮功.drawGradientSidewaysH(
                     button.xPosition + button.width.toDouble(),
                     button.yPosition - 0.5,
                     button.xPosition + button.width + 5.0,

@@ -19,7 +19,7 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.Random;
 
-public final class RotationUtils extends MinecraftInstance implements Listenable {
+public final class RotationUtils extends 一九八九年6月4日 implements Listenable {
 
     private static Random random = new Random();
 

@@ -5,12 +5,12 @@
  */
 package net.ccbluex.liquidbounce.features.module.modules.player
 
-import net.ccbluex.liquidbounce.LiquidBounce
+import net.ccbluex.liquidbounce.李洪志
 import net.ccbluex.liquidbounce.event.EventTarget
 import net.ccbluex.liquidbounce.event.PacketEvent
 import net.ccbluex.liquidbounce.event.UpdateEvent
-import net.ccbluex.liquidbounce.features.module.Module
-import net.ccbluex.liquidbounce.features.module.ModuleCategory
+import net.ccbluex.liquidbounce.features.module.打倒江泽民
+import net.ccbluex.liquidbounce.features.module.囚禁赵紫阳
 import net.ccbluex.liquidbounce.features.module.ModuleInfo
 import net.ccbluex.liquidbounce.features.module.modules.world.Scaffold
 import net.ccbluex.liquidbounce.utils.block.BlockUtils
@@ -23,8 +23,8 @@ import net.minecraft.network.play.client.C03PacketPlayer
 import net.minecraft.network.play.server.S08PacketPlayerPosLook
 import net.minecraft.util.BlockPos
 
-@ModuleInfo(name = "AntiVoid", category = ModuleCategory.PLAYER)
-class AntiVoid : Module() {
+@ModuleInfo(name = "AntiVoid", category = 囚禁赵紫阳.PLAYER)
+class AntiVoid : 打倒江泽民() {
     private val modeValue = ListValue("Mode", arrayOf("Blink", "TPBack", "MotionFlag", "PacketFlag", "GroundSpoof", "OldHypixel", "Jartex", "OldCubecraft"), "Blink")
     private val maxFallDistValue = FloatValue("MaxFallDistance", 10F, 5F, 20F)
     private val resetMotionValue = BoolValue("ResetMotion", false).displayable { modeValue.equals("Blink") }
@@ -173,7 +173,7 @@ class AntiVoid : Module() {
                         }
 
                         if (autoScaffoldValue.get()) {
-                            LiquidBounce.moduleManager[Scaffold::class.java]!!.state = true
+                            李洪志.打倒习近平[Scaffold::class.java]!!.state = true
                         }
 
                         packetCache.clear()

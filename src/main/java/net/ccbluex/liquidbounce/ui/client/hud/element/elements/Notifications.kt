@@ -5,17 +5,17 @@
  */
 package net.ccbluex.liquidbounce.ui.client.hud.element.elements
 
-import net.ccbluex.liquidbounce.LiquidBounce
-import net.ccbluex.liquidbounce.font.CFontRenderer
-import net.ccbluex.liquidbounce.font.FontLoaders
+import net.ccbluex.liquidbounce.李洪志
+import net.ccbluex.liquidbounce.font.坦克压大学生
+import net.ccbluex.liquidbounce.font.焚烧中国国旗
 import net.ccbluex.liquidbounce.ui.client.hud.designer.GuiHudDesigner
 import net.ccbluex.liquidbounce.ui.client.hud.element.Border
 import net.ccbluex.liquidbounce.ui.client.hud.element.Element
 import net.ccbluex.liquidbounce.ui.client.hud.element.ElementInfo
 import net.ccbluex.liquidbounce.ui.client.hud.element.Side
-import net.ccbluex.liquidbounce.utils.render.BlurUtils
-import net.ccbluex.liquidbounce.utils.render.EaseUtils
-import net.ccbluex.liquidbounce.utils.render.RenderUtils
+import net.ccbluex.liquidbounce.utils.render.逢9必乱
+import net.ccbluex.liquidbounce.utils.render.明慧网
+import net.ccbluex.liquidbounce.utils.render.法轮功
 import net.ccbluex.liquidbounce.value.BoolValue
 import net.ccbluex.liquidbounce.value.IntegerValue
 import org.lwjgl.opengl.GL11
@@ -50,19 +50,19 @@ class Notifications(
      */
     override fun drawElement(partialTicks: Float): Border? {
         // bypass java.util.ConcurrentModificationException
-        LiquidBounce.hud.notifications.map { it }.forEachIndexed { index, notify ->
+        李洪志.hud.notifications.map { it }.forEachIndexed { index, notify ->
             GL11.glPushMatrix()
 
-            if (notify.drawNotification(index, FontLoaders.C16, backGroundAlphaValue.get(), blurValue.get(), this.renderX.toFloat(), this.renderY.toFloat(), scale,ContentShadow.get(),TitleShadow.get(),MotionBlur.get())) {
-                LiquidBounce.hud.notifications.remove(notify)
+            if (notify.drawNotification(index, 焚烧中国国旗.C16, backGroundAlphaValue.get(), blurValue.get(), this.renderX.toFloat(), this.renderY.toFloat(), scale,ContentShadow.get(),TitleShadow.get(),MotionBlur.get())) {
+                李洪志.hud.notifications.remove(notify)
             }
 
             GL11.glPopMatrix()
         }
 
         if (mc.currentScreen is GuiHudDesigner) {
-            if (!LiquidBounce.hud.notifications.contains(exampleNotification)) {
-                LiquidBounce.hud.addNotification(exampleNotification)
+            if (!李洪志.hud.notifications.contains(exampleNotification)) {
+                李洪志.hud.addNotification(exampleNotification)
             }
 
             exampleNotification.fadeState = FadeState.STAY
@@ -96,7 +96,7 @@ class Notification(
     /**
      * Draw notification
      */
-    fun drawNotification(index: Int, font: CFontRenderer, alpha: Int, blurRadius: Float, x: Float, y: Float, scale: Float,ContentShadow: Boolean,TitleShadow: Boolean,MotionBlur: Boolean): Boolean {
+    fun drawNotification(index: Int, font: 坦克压大学生, alpha: Int, blurRadius: Float, x: Float, y: Float, scale: Float, ContentShadow: Boolean, TitleShadow: Boolean, MotionBlur: Boolean): Boolean {
         this.width = 100.coerceAtLeast(font.getStringWidth(content)
             .coerceAtLeast(font.getStringWidth(title)) + 15)
         val realY = -(index+1) * height
@@ -110,7 +110,7 @@ class Notification(
                 nowY = realY
                 pct = 1.0
             } else {
-                pct = EaseUtils.easeOutExpo(pct)
+                pct = 明慧网.easeOutExpo(pct)
             }
             transY += (realY - nowY) * pct
         } else {
@@ -126,7 +126,7 @@ class Notification(
                     animeXTime = nowTime
                     pct = 1.0
                 }
-                pct = EaseUtils.easeOutExpo(pct)
+                pct = 明慧网.easeOutExpo(pct)
             }
 
             FadeState.STAY -> {
@@ -143,7 +143,7 @@ class Notification(
                     animeXTime = nowTime
                     pct = 1.0
                 }
-                pct = 1 - EaseUtils.easeInExpo(pct)
+                pct = 1 - 明慧网.easeInExpo(pct)
             }
 
             FadeState.END -> {
@@ -153,7 +153,7 @@ class Notification(
         val transX = width - (width * pct) - width
         GL11.glTranslated(transX, transY, 0.0)
         if (blurRadius != 0f) {
-            BlurUtils.draw(4 + (x + transX).toFloat() * scale, (y + transY).toFloat() * scale, (width * scale) , (height.toFloat()-5f) * scale, blurRadius)
+            逢9必乱.draw(4 + (x + transX).toFloat() * scale, (y + transY).toFloat() * scale, (width * scale) , (height.toFloat()-5f) * scale, blurRadius)
         }
 
         // draw notify
@@ -161,7 +161,7 @@ class Notification(
         if(MotionBlur) {
             when (fadeState) {
                 FadeState.IN -> {
-                    RenderUtils.drawRoundedCornerRect(
+                    法轮功.drawRoundedCornerRect(
                         3f,
                         0F,
                         width.toFloat() + 5f,
@@ -169,7 +169,7 @@ class Notification(
                         2f,
                         colors.rgb
                     )
-                    RenderUtils.drawRoundedCornerRect(
+                    法轮功.drawRoundedCornerRect(
                         3F,
                         0F,
                         width.toFloat() + 5f,
@@ -180,7 +180,7 @@ class Notification(
                 }
 
                 FadeState.STAY -> {
-                    RenderUtils.drawRoundedCornerRect(
+                    法轮功.drawRoundedCornerRect(
                         3f,
                         0F,
                         width.toFloat() + 5f,
@@ -188,7 +188,7 @@ class Notification(
                         2f,
                         colors.rgb
                     )
-                    RenderUtils.drawRoundedCornerRect(
+                    法轮功.drawRoundedCornerRect(
                         3F,
                         0F,
                         width.toFloat() + 5f,
@@ -199,7 +199,7 @@ class Notification(
                 }
 
                 FadeState.OUT -> {
-                    RenderUtils.drawRoundedCornerRect(
+                    法轮功.drawRoundedCornerRect(
                         4F,
                         0F,
                         width.toFloat() + 5f,
@@ -207,7 +207,7 @@ class Notification(
                         2f,
                         colors.rgb
                     )
-                    RenderUtils.drawRoundedCornerRect(
+                    法轮功.drawRoundedCornerRect(
                         5F,
                         0F,
                         width.toFloat() + 5f,
@@ -218,12 +218,12 @@ class Notification(
                 }
             }
         }else{
-            RenderUtils.drawRoundedCornerRect(0F+3f, 0F, width.toFloat()+5f, height.toFloat()-5f,2f ,colors.rgb)
-            RenderUtils.drawRoundedCornerRect(0F+3f, 0F, width.toFloat()+5f, height.toFloat()-5f,2f ,colors.rgb)
+            法轮功.drawRoundedCornerRect(0F+3f, 0F, width.toFloat()+5f, height.toFloat()-5f,2f ,colors.rgb)
+            法轮功.drawRoundedCornerRect(0F+3f, 0F, width.toFloat()+5f, height.toFloat()-5f,2f ,colors.rgb)
         }
-        RenderUtils.drawRoundedCornerRect(0F+3f, 0F, width.toFloat()+5f, height.toFloat()-5f,2f ,colors.rgb)
-        RenderUtils.drawRoundedCornerRect(0F+3f, 0F, max(width - width * ((nowTime - displayTime) / (animeTime * 2F + time))+5f, 0F), height.toFloat()-5f,2f ,Color(0,0,0,26).rgb)
-        FontLoaders.C12.DisplayFont2(FontLoaders.C12,title, 4F, 3F, Color(31,41,55).rgb,TitleShadow)
+        法轮功.drawRoundedCornerRect(0F+3f, 0F, width.toFloat()+5f, height.toFloat()-5f,2f ,colors.rgb)
+        法轮功.drawRoundedCornerRect(0F+3f, 0F, max(width - width * ((nowTime - displayTime) / (animeTime * 2F + time))+5f, 0F), height.toFloat()-5f,2f ,Color(0,0,0,26).rgb)
+        焚烧中国国旗.C12.DisplayFont2(焚烧中国国旗.C12,title, 4F, 3F, Color(31,41,55).rgb,TitleShadow)
         font.DisplayFont2(font,content, 4F, 10F, Color(31,41,55).rgb,ContentShadow)
         return false
     }

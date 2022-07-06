@@ -11,7 +11,7 @@ import net.ccbluex.liquidbounce.ui.client.hud.element.Element
 import net.ccbluex.liquidbounce.ui.client.hud.element.ElementInfo
 import net.ccbluex.liquidbounce.utils.misc.MiscUtils
 import net.ccbluex.liquidbounce.utils.misc.RandomUtils
-import net.ccbluex.liquidbounce.utils.render.RenderUtils
+import net.ccbluex.liquidbounce.utils.render.法轮功
 import net.ccbluex.liquidbounce.value.TextValue
 import net.minecraft.client.renderer.texture.DynamicTexture
 import net.minecraft.util.ResourceLocation
@@ -73,7 +73,7 @@ class Image : Element() {
      * Draw element
      */
     override fun drawElement(partialTicks: Float): Border {
-        RenderUtils.drawImage(resourceLocation, 0, 0, width / 2, height / 2)
+        法轮功.drawImage(resourceLocation, 0, 0, width / 2, height / 2)
 
         return Border(0F, 0F, width / 2F, height / 2F)
     }

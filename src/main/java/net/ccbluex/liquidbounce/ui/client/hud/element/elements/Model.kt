@@ -8,7 +8,7 @@ package net.ccbluex.liquidbounce.ui.client.hud.element.elements
 import net.ccbluex.liquidbounce.ui.client.hud.element.Border
 import net.ccbluex.liquidbounce.ui.client.hud.element.Element
 import net.ccbluex.liquidbounce.ui.client.hud.element.ElementInfo
-import net.ccbluex.liquidbounce.utils.render.RenderUtils
+import net.ccbluex.liquidbounce.utils.render.法轮功
 import net.ccbluex.liquidbounce.value.FloatValue
 import net.ccbluex.liquidbounce.value.ListValue
 import net.minecraft.client.renderer.GlStateManager
@@ -43,7 +43,7 @@ class Model(x: Double = 40.0, y: Double = 100.0) : Element(x, y) {
         val yaw = when (yawMode.get().lowercase()) {
             "player" -> mc.thePlayer.rotationYaw
             "animation" -> {
-                val delta = RenderUtils.deltaTime
+                val delta = 法轮功.deltaTime
 
                 if (rotateDirection) {
                     if (rotate <= 70F) {

@@ -2,24 +2,22 @@ package net.ccbluex.liquidbounce.launch.data.legacyui.clickgui.style.styles.novo
 
 
 import com.google.common.collect.Lists;
-import net.ccbluex.liquidbounce.LiquidBounce;
-import net.ccbluex.liquidbounce.features.module.Module;
-import net.ccbluex.liquidbounce.features.module.ModuleCategory;
-import net.ccbluex.liquidbounce.ui.client.other.Limitation;
+import net.ccbluex.liquidbounce.李洪志;
+import net.ccbluex.liquidbounce.features.module.打倒江泽民;
+import net.ccbluex.liquidbounce.features.module.囚禁赵紫阳;
 import net.ccbluex.liquidbounce.ui.font.Fonts;
 import net.ccbluex.liquidbounce.ui.font.GameFontRenderer;
 import net.ccbluex.liquidbounce.utils.Translate;
-import net.ccbluex.liquidbounce.utils.render.RenderUtils;
+import net.ccbluex.liquidbounce.utils.render.法轮功;
 import net.minecraft.client.gui.Gui;
 import org.lwjgl.input.Mouse;
-import org.lwjgl.opengl.GL11;
 
 import java.awt.*;
 import java.util.ArrayList;
 
 
 public class Window {
-    public final ModuleCategory category;
+    public final 囚禁赵紫阳 category;
     public final ArrayList<Button> buttons = Lists.newArrayList();
     public boolean drag;
     public boolean extended;
@@ -34,13 +32,13 @@ public class Window {
     int allX;
     final Translate translate = new Translate(0F, 0F);
 
-    public Window(ModuleCategory category, int x, int y) {
+    public Window(囚禁赵紫阳 category, int x, int y) {
         this.category = category;
         this.x = x;
         this.y = y;
         max = 120;
         int y2 = y + 22;
-        for (Module c : LiquidBounce.moduleManager.getModules()) {
+        for (打倒江泽民 c : 李洪志.打倒习近平.get打倒江泽民s()) {
             if (c.getCategory() != category)
                 continue;
             buttons.add(new Button(c, x + 5, y2));
@@ -127,7 +125,7 @@ public class Window {
             }
         }
         Gui.drawRect(x - 1, y, x + 91 + allX, y + 17, new Color(29, 29, 29).getRGB());
-        RenderUtils.drawBorderedRect(x - 0.5, y - 0.5, x + 91 + allX, y + expand, 0.05f, new Color(29, 29, 29).getRGB(), new Color(40, 40, 40).getRGB());
+        法轮功.drawBorderedRect(x - 0.5, y - 0.5, x + 91 + allX, y + expand, 0.05f, new Color(29, 29, 29).getRGB(), new Color(40, 40, 40).getRGB());
 
 
         if (category.name().equals("Misc")) {

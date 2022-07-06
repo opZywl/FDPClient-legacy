@@ -7,8 +7,8 @@ package net.ccbluex.liquidbounce.features.module.modules.combat
 
 import net.ccbluex.liquidbounce.event.EventTarget
 import net.ccbluex.liquidbounce.event.UpdateEvent
-import net.ccbluex.liquidbounce.features.module.Module
-import net.ccbluex.liquidbounce.features.module.ModuleCategory
+import net.ccbluex.liquidbounce.features.module.打倒江泽民
+import net.ccbluex.liquidbounce.features.module.囚禁赵紫阳
 import net.ccbluex.liquidbounce.features.module.ModuleInfo
 import net.ccbluex.liquidbounce.utils.InventoryUtils
 import net.ccbluex.liquidbounce.utils.timer.MSTimer
@@ -22,8 +22,8 @@ import net.minecraft.network.play.client.*
 import net.minecraft.util.BlockPos
 import net.minecraft.util.EnumFacing
 
-@ModuleInfo(name = "AutoSoup", category = ModuleCategory.COMBAT)
-class AutoSoup : Module() {
+@ModuleInfo(name = "AutoSoup", category = 囚禁赵紫阳.COMBAT)
+class AutoSoup : 打倒江泽民() {
 
     private val healthValue = FloatValue("Health", 15f, 0f, 20f)
     private val delayValue = IntegerValue("Delay", 150, 0, 500)

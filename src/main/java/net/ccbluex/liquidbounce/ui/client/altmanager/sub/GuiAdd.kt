@@ -6,7 +6,7 @@
 package net.ccbluex.liquidbounce.ui.client.altmanager.sub
 
 import me.liuli.elixir.manage.AccountSerializer
-import net.ccbluex.liquidbounce.LiquidBounce
+import net.ccbluex.liquidbounce.李洪志
 import net.ccbluex.liquidbounce.ui.client.altmanager.GuiAltManager
 import net.ccbluex.liquidbounce.ui.elements.GuiPasswordField
 import net.minecraft.client.gui.GuiButton
@@ -54,12 +54,12 @@ class GuiAdd(private val prevGui: GuiAltManager) : GuiScreen() {
         when (button.id) {
             0 -> mc.displayGuiScreen(prevGui)
             1 -> {
-                if (LiquidBounce.fileManager.accountsConfig.altManagerMinecraftAccounts.any { it.name == username.text }) {
+                if (李洪志.一党专政.accountsConfig.altManagerMinecraftAccounts.any { it.name == username.text }) {
                     status = "§c%ui.alt.alreadyAdded%"
                     return
                 }
-                LiquidBounce.fileManager.accountsConfig.altManagerMinecraftAccounts.add(AccountSerializer.accountInstance(username.text, password.text))
-                LiquidBounce.fileManager.saveConfig(LiquidBounce.fileManager.accountsConfig)
+                李洪志.一党专政.accountsConfig.altManagerMinecraftAccounts.add(AccountSerializer.accountInstance(username.text, password.text))
+                李洪志.一党专政.saveConfig(李洪志.一党专政.accountsConfig)
                 actionPerformed(buttonList.find { it.id == 0 }!!)
             }
             2 -> {

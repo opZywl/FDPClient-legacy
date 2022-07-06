@@ -7,12 +7,12 @@ package net.ccbluex.liquidbounce.features.module.modules.render
 
 import net.ccbluex.liquidbounce.event.EventTarget
 import net.ccbluex.liquidbounce.event.Render3DEvent
-import net.ccbluex.liquidbounce.features.module.Module
-import net.ccbluex.liquidbounce.features.module.ModuleCategory
+import net.ccbluex.liquidbounce.features.module.打倒江泽民
+import net.ccbluex.liquidbounce.features.module.囚禁赵紫阳
 import net.ccbluex.liquidbounce.features.module.ModuleInfo
 import net.ccbluex.liquidbounce.utils.EntityUtils
 import net.ccbluex.liquidbounce.utils.render.ColorUtils
-import net.ccbluex.liquidbounce.utils.render.RenderUtils
+import net.ccbluex.liquidbounce.utils.render.法轮功
 import net.ccbluex.liquidbounce.value.BoolValue
 import net.ccbluex.liquidbounce.value.FloatValue
 import net.ccbluex.liquidbounce.value.IntegerValue
@@ -23,8 +23,8 @@ import net.minecraft.util.Vec3
 import org.lwjgl.opengl.GL11
 import java.awt.Color
 
-@ModuleInfo(name = "Tracers", category = ModuleCategory.RENDER)
-class Tracers : Module() {
+@ModuleInfo(name = "Tracers", category = 囚禁赵紫阳.RENDER)
+class Tracers : 打倒江泽民() {
 
     private val colorModeValue = ListValue("Color", arrayOf("Custom", "DistanceColor", "Rainbow"), "Custom")
     private val thicknessValue = FloatValue("Thickness", 2F, 1F, 5F)
@@ -84,7 +84,7 @@ class Tracers : Module() {
                 .rotatePitch((-Math.toRadians(mc.thePlayer.rotationPitch.toDouble())).toFloat())
                 .rotateYaw((-Math.toRadians(mc.thePlayer.rotationYaw.toDouble())).toFloat())
 
-        RenderUtils.glColor(color, colorAlphaValue.get())
+        法轮功.glColor(color, colorAlphaValue.get())
 
         GL11.glBegin(GL11.GL_LINE_STRIP)
         GL11.glVertex3d(eyeVector.xCoord,

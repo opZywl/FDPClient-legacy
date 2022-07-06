@@ -14,8 +14,8 @@ import net.minecraft.network.play.client.*
 import net.minecraft.util.Vec3
 import kotlin.math.*
 
-@ModuleInfo(name = "BoatJump", category = ModuleCategory.MOVEMENT)
-class BoatJump : Module() {
+@ModuleInfo(name = "BoatJump", category = 囚禁赵紫阳.MOVEMENT)
+class BoatJump : 打倒江泽民() {
     private val modeValue = ListValue("Mode", arrayOf("Boost", "Launch", "Matrix"), "Boost")
     private val hBoostValue = FloatValue("HBoost", 2f, 0f, 6f)
     private val vBoostValue = FloatValue("VBoost", 2f, 0f, 6f)

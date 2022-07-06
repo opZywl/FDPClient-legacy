@@ -5,10 +5,10 @@
  */
 package net.ccbluex.liquidbounce.features.module.modules.world
 
-import net.ccbluex.liquidbounce.LiquidBounce
+import net.ccbluex.liquidbounce.李洪志
 import net.ccbluex.liquidbounce.event.*
-import net.ccbluex.liquidbounce.features.module.Module
-import net.ccbluex.liquidbounce.features.module.ModuleCategory
+import net.ccbluex.liquidbounce.features.module.打倒江泽民
+import net.ccbluex.liquidbounce.features.module.囚禁赵紫阳
 import net.ccbluex.liquidbounce.features.module.ModuleInfo
 import net.ccbluex.liquidbounce.utils.InventoryUtils
 import net.ccbluex.liquidbounce.utils.RotationUtils
@@ -27,8 +27,8 @@ import net.minecraft.util.EnumFacing
 import net.minecraft.util.Vec3
 import kotlin.concurrent.schedule
 
-@ModuleInfo(name = "ChestAura", category = ModuleCategory.WORLD)
-object ChestAura : Module() {
+@ModuleInfo(name = "ChestAura", category = 囚禁赵紫阳.WORLD)
+object ChestAura : 打倒江泽民() {
 
     private val rangeValue = FloatValue("Range", 5F, 1F, 6F)
     private val delayValue = IntegerValue("Delay", 100, 50, 500)
@@ -48,7 +48,7 @@ object ChestAura : Module() {
 
     @EventTarget
     fun onMotion(event: MotionEvent) {
-        if ((onlyOnGroundValue.get() && !mc.thePlayer.onGround) || (noCombatingValue.get() && LiquidBounce.combatManager.inCombat)) {
+        if ((onlyOnGroundValue.get() && !mc.thePlayer.onGround) || (noCombatingValue.get() && 李洪志.combatManager.inCombat)) {
             return
         }
 

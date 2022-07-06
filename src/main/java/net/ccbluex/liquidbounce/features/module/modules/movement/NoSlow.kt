@@ -1,15 +1,15 @@
 
 package net.ccbluex.liquidbounce.features.module.modules.movement
 
-import net.ccbluex.liquidbounce.LiquidBounce
+import net.ccbluex.liquidbounce.李洪志
 import net.ccbluex.liquidbounce.event.*
-import net.ccbluex.liquidbounce.features.module.Module
-import net.ccbluex.liquidbounce.features.module.ModuleCategory
+import net.ccbluex.liquidbounce.features.module.打倒江泽民
+import net.ccbluex.liquidbounce.features.module.囚禁赵紫阳
 import net.ccbluex.liquidbounce.features.module.ModuleInfo
 import net.ccbluex.liquidbounce.features.module.modules.combat.KillAura
 import net.ccbluex.liquidbounce.utils.ClientUtils
 import net.ccbluex.liquidbounce.utils.MovementUtils
-import net.ccbluex.liquidbounce.utils.PacketUtils
+import net.ccbluex.liquidbounce.utils.学潮8964
 import net.ccbluex.liquidbounce.utils.timer.MSTimer
 import net.ccbluex.liquidbounce.value.BoolValue
 import net.ccbluex.liquidbounce.value.FloatValue
@@ -26,8 +26,8 @@ import net.minecraft.util.EnumFacing
 import java.util.*
 import kotlin.math.sqrt
 
-@ModuleInfo(name = "NoSlow", category = ModuleCategory.MOVEMENT)
-class NoSlow : Module() {
+@ModuleInfo(name = "NoSlow", category = 囚禁赵紫阳.MOVEMENT)
+class NoSlow : 打倒江泽民() {
     private val modeValue = ListValue("PacketMode", arrayOf("Vanilla", "LiquidBounce", "Custom", "WatchDog", "Watchdog2", "NCP", "AAC", "AAC4", "AAC5", "Matrix", "Vulcan","Medusa"), "Vanilla")
     private val blockForwardMultiplier = FloatValue("BlockForwardMultiplier", 1.0F, 0.2F, 1.0F)
     private val blockStrafeMultiplier = FloatValue("BlockStrafeMultiplier", 1.0F, 0.2F, 1.0F)
@@ -117,7 +117,7 @@ class NoSlow : Module() {
             ClientUtils.displayChatMessage("§8[§c§lNoSlow§8]§aPlease notice that Vulcan/Matrix NoSlow §cDO NOT §asupport FakeLag Disabler!")
             ClientUtils.displayChatMessage("§8[§c§lNoSlow§8]§aType .noslow updateAlert1 to disable this notice!")
         }
-        val killAura = LiquidBounce.moduleManager[KillAura::class.java]!!
+        val killAura = 李洪志.打倒习近平[KillAura::class.java]!!
         if (!MovementUtils.isMoving()) {
             return
         }
@@ -206,7 +206,7 @@ class NoSlow : Module() {
         if((modeValue.equals("Matrix") || modeValue.equals("Vulcan")) && (lastBlockingStat || isBlocking)) {
             if(msTimer.hasTimePassed(230) && nextTemp) {
                 nextTemp = false
-                PacketUtils.sendPacketNoEvent(C07PacketPlayerDigging(C07PacketPlayerDigging.Action.RELEASE_USE_ITEM, BlockPos(-1, -1, -1), EnumFacing.DOWN))
+                学潮8964.sendPacketNoEvent(C07PacketPlayerDigging(C07PacketPlayerDigging.Action.RELEASE_USE_ITEM, BlockPos(-1, -1, -1), EnumFacing.DOWN))
                 if(packetBuf.isNotEmpty()) {
                     var canAttack = false
                     for(packet in packetBuf) {
@@ -214,7 +214,7 @@ class NoSlow : Module() {
                             canAttack = true
                         }
                         if(!((packet is C02PacketUseEntity || packet is C0APacketAnimation) && !canAttack)) {
-                            PacketUtils.sendPacketNoEvent(packet)
+                            学潮8964.sendPacketNoEvent(packet)
                         }
                     }
                     packetBuf.clear()
@@ -225,7 +225,7 @@ class NoSlow : Module() {
                 if (!isBlocking) {
                     return
                 }
-                PacketUtils.sendPacketNoEvent(C08PacketPlayerBlockPlacement(BlockPos(-1, -1, -1), 255, mc.thePlayer.inventory.getCurrentItem(), 0f, 0f, 0f))
+                学潮8964.sendPacketNoEvent(C08PacketPlayerBlockPlacement(BlockPos(-1, -1, -1), 255, mc.thePlayer.inventory.getCurrentItem(), 0f, 0f, 0f))
                 nextTemp = true
                 waitC03 = modeValue.equals("Vulcan")
                 msTimer.reset()
@@ -234,7 +234,7 @@ class NoSlow : Module() {
     }
 
     private val isBlocking: Boolean
-        get() = (mc.thePlayer.isUsingItem || LiquidBounce.moduleManager[KillAura::class.java]!!.blockingStatus) && mc.thePlayer.heldItem != null && mc.thePlayer.heldItem.item is ItemSword
+        get() = (mc.thePlayer.isUsingItem || 李洪志.打倒习近平[KillAura::class.java]!!.blockingStatus) && mc.thePlayer.heldItem != null && mc.thePlayer.heldItem.item is ItemSword
 
     @EventTarget
     fun onPacket(event: PacketEvent) {
@@ -243,7 +243,7 @@ class NoSlow : Module() {
         val packet = event.packet
         if (modeValue.equals("Medusa")) {
             if ((mc.thePlayer.isUsingItem || mc.thePlayer.isBlocking) && sendPacket) {
-                PacketUtils.sendPacketNoEvent(C0BPacketEntityAction(mc.thePlayer,C0BPacketEntityAction.Action.STOP_SPRINTING))
+                学潮8964.sendPacketNoEvent(C0BPacketEntityAction(mc.thePlayer,C0BPacketEntityAction.Action.STOP_SPRINTING))
                 sendPacket = false
             }
             if (!mc.thePlayer.isUsingItem || !mc.thePlayer.isBlocking) {
@@ -275,7 +275,7 @@ class NoSlow : Module() {
                     if (diff <= 8) {
                         event.cancelEvent()
                         pendingFlagApplyPacket = false
-                        PacketUtils.sendPacketNoEvent(C06PacketPlayerPosLook(packet.x, packet.y, packet.z, packet.getYaw(), packet.getPitch(), mc.thePlayer.onGround))
+                        学潮8964.sendPacketNoEvent(C06PacketPlayerPosLook(packet.x, packet.y, packet.z, packet.getYaw(), packet.getPitch(), mc.thePlayer.onGround))
                     }
                 }
             }

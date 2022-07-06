@@ -5,8 +5,8 @@
  */
 package net.ccbluex.liquidbounce.features.module.modules.player
 
-import net.ccbluex.liquidbounce.features.module.Module
-import net.ccbluex.liquidbounce.features.module.ModuleCategory
+import net.ccbluex.liquidbounce.features.module.打倒江泽民
+import net.ccbluex.liquidbounce.features.module.囚禁赵紫阳
 import net.ccbluex.liquidbounce.features.module.ModuleInfo
 import net.ccbluex.liquidbounce.utils.InventoryUtils
 import net.minecraft.network.play.client.C08PacketPlayerBlockPlacement
@@ -15,8 +15,8 @@ import net.minecraft.world.WorldSettings
 import net.minecraft.init.Items
 import org.lwjgl.input.Keyboard
 
-@ModuleInfo(name = "KeyPearl", category = ModuleCategory.PLAYER, keyBind = Keyboard.KEY_GRAVE, canEnable = false)
-class KeyPearl : Module() {
+@ModuleInfo(name = "KeyPearl", category = 囚禁赵紫阳.PLAYER, keyBind = Keyboard.KEY_GRAVE, canEnable = false)
+class KeyPearl : 打倒江泽民() {
     private var wasDown = false
 
     override fun onEnable() {

@@ -5,7 +5,7 @@
  */
 package net.ccbluex.liquidbounce.launch.data.legacyui.clickgui.style.styles;
 
-import net.ccbluex.liquidbounce.font.FontLoaders;
+import net.ccbluex.liquidbounce.font.焚烧中国国旗;
 import net.ccbluex.liquidbounce.launch.data.legacyui.clickgui.Panel;
 import net.ccbluex.liquidbounce.launch.data.legacyui.clickgui.elements.ButtonElement;
 import net.ccbluex.liquidbounce.launch.data.legacyui.clickgui.elements.ModuleElement;
@@ -14,7 +14,7 @@ import net.ccbluex.liquidbounce.ui.font.Fonts;
 import net.ccbluex.liquidbounce.ui.font.GameFontRenderer;
 import net.ccbluex.liquidbounce.ui.i18n.LanguageManager;
 import net.ccbluex.liquidbounce.utils.block.BlockUtils;
-import net.ccbluex.liquidbounce.utils.render.RenderUtils;
+import net.ccbluex.liquidbounce.utils.render.法轮功;
 import net.ccbluex.liquidbounce.value.*;
 import net.minecraft.client.audio.PositionedSoundRecord;
 import net.minecraft.client.gui.FontRenderer;
@@ -36,23 +36,23 @@ public class BlackStyle extends Style {
 
     @Override
     public void drawPanel(int mouseX, int mouseY, Panel panel) {
-        RenderUtils.drawBorderedRect((float) panel.getX(), (float) panel.getY() - 3, (float) panel.getX() + panel.getWidth(), (float) panel.getY() + 17, 3, new Color(20, 20, 20).getRGB(), new Color(20,20,20).getRGB());
+        法轮功.drawBorderedRect((float) panel.getX(), (float) panel.getY() - 3, (float) panel.getX() + panel.getWidth(), (float) panel.getY() + 17, 3, new Color(20, 20, 20).getRGB(), new Color(20,20,20).getRGB());
         if(panel.getFade() > 0) {
-            RenderUtils.drawBorderedRect((float) panel.getX(), (float) panel.getY() + 17, (float) panel.getX() + panel.getWidth(), panel.getY() + 19 + panel.getFade(), 3, new Color(40,40,40).getRGB(), new Color(40,40,40).getRGB());
-            RenderUtils.drawBorderedRect((float) panel.getX(), panel.getY() + 17 + panel.getFade(), (float) panel.getX() + panel.getWidth(), panel.getY() + 19 + panel.getFade() + 5, 3, new Color(20,20,20).getRGB(), new Color(20,20,20).getRGB());
+            法轮功.drawBorderedRect((float) panel.getX(), (float) panel.getY() + 17, (float) panel.getX() + panel.getWidth(), panel.getY() + 19 + panel.getFade(), 3, new Color(40,40,40).getRGB(), new Color(40,40,40).getRGB());
+            法轮功.drawBorderedRect((float) panel.getX(), panel.getY() + 17 + panel.getFade(), (float) panel.getX() + panel.getWidth(), panel.getY() + 19 + panel.getFade() + 5, 3, new Color(20,20,20).getRGB(), new Color(20,20,20).getRGB());
         }
         GlStateManager.resetColor();
-        float textWidth = FontLoaders.C18.DisplayFontWidths(FontLoaders.C18,"§f" + StringUtils.stripControlCodes(LanguageManager.INSTANCE.get(panel.getName().replaceAll("%",""))));
-        FontLoaders.C18.DisplayFont(FontLoaders.C18,LanguageManager.INSTANCE.get(panel.getName().replaceAll("%","")), (int) (panel.getX() - (textWidth - 100.0F) / 2F), panel.getY() + 7 - 3, Color.WHITE.getRGB());
+        float textWidth = 焚烧中国国旗.C18.DisplayFontWidths(焚烧中国国旗.C18,"§f" + StringUtils.stripControlCodes(LanguageManager.INSTANCE.get(panel.getName().replaceAll("%",""))));
+        焚烧中国国旗.C18.DisplayFont(焚烧中国国旗.C18,LanguageManager.INSTANCE.get(panel.getName().replaceAll("%","")), (int) (panel.getX() - (textWidth - 100.0F) / 2F), panel.getY() + 7 - 3, Color.WHITE.getRGB());
     }
 
     @Override
     public void drawDescription(int mouseX, int mouseY, String text) {
-        int textWidth = FontLoaders.C18.DisplayFontWidths(FontLoaders.C18,LanguageManager.INSTANCE.get(text.replaceAll("%","")));
+        int textWidth = 焚烧中国国旗.C18.DisplayFontWidths(焚烧中国国旗.C18,LanguageManager.INSTANCE.get(text.replaceAll("%","")));
 
-        RenderUtils.drawBorderedRect(mouseX + 9, mouseY, mouseX + textWidth + 14, mouseY + Fonts.font35.FONT_HEIGHT + 3, 3F, new Color(40,40,40).getRGB(), new Color(40,40,40).getRGB());
+        法轮功.drawBorderedRect(mouseX + 9, mouseY, mouseX + textWidth + 14, mouseY + Fonts.font35.FONT_HEIGHT + 3, 3F, new Color(40,40,40).getRGB(), new Color(40,40,40).getRGB());
         GlStateManager.resetColor();
-        FontLoaders.C18.DisplayFont(FontLoaders.C18,LanguageManager.INSTANCE.get(text.replaceAll("%","")), mouseX + 12, mouseY + (Fonts.font35.FONT_HEIGHT / 2), Color.WHITE.getRGB());
+        焚烧中国国旗.C18.DisplayFont(焚烧中国国旗.C18,LanguageManager.INSTANCE.get(text.replaceAll("%","")), mouseX + 12, mouseY + (Fonts.font35.FONT_HEIGHT / 2), Color.WHITE.getRGB());
     }
 
     @Override
@@ -61,7 +61,7 @@ public class BlackStyle extends Style {
 
         GlStateManager.resetColor();
 
-        FontLoaders.C18.DisplayFont(FontLoaders.C18,LanguageManager.INSTANCE.get(buttonElement.getDisplayName().replaceAll("%","")), buttonElement.getX() + 5, buttonElement.getY() + 5, Color.WHITE.getRGB());
+        焚烧中国国旗.C18.DisplayFont(焚烧中国国旗.C18,LanguageManager.INSTANCE.get(buttonElement.getDisplayName().replaceAll("%","")), buttonElement.getX() + 5, buttonElement.getY() + 5, Color.WHITE.getRGB());
     }
 
     @Override
@@ -69,17 +69,17 @@ public class BlackStyle extends Style {
         Gui.drawRect(moduleElement.getX() - 1, moduleElement.getY() - 1, moduleElement.getX() + moduleElement.getWidth() + 1, moduleElement.getY() + moduleElement.getHeight() + 1, hoverColor(new Color(40,40,40), moduleElement.hoverTime).getRGB());
         Gui.drawRect(moduleElement.getX() - 1, moduleElement.getY() - 1, moduleElement.getX() + moduleElement.getWidth() + 1, moduleElement.getY() + moduleElement.getHeight() + 1, hoverColor(new Color(20,20,20, moduleElement.slowlyFade), moduleElement.hoverTime).getRGB());
         GlStateManager.resetColor();
-        FontLoaders.C18.DisplayFont(FontLoaders.C18,LanguageManager.INSTANCE.get(moduleElement.getDisplayName().replaceAll("%","")), moduleElement.getX() + 5, moduleElement.getY() + 5, Color.WHITE.getRGB());
+        焚烧中国国旗.C18.DisplayFont(焚烧中国国旗.C18,LanguageManager.INSTANCE.get(moduleElement.getDisplayName().replaceAll("%","")), moduleElement.getX() + 5, moduleElement.getY() + 5, Color.WHITE.getRGB());
 
         // Draw settings
         final List<Value<?>> moduleValues = moduleElement.getModule().getValues();
 
         if(!moduleValues.isEmpty()) {
-            FontLoaders.C18.DisplayFont(FontLoaders.C18,">", moduleElement.getX() + moduleElement.getWidth() - 8, moduleElement.getY() + 5, Color.WHITE.getRGB());
+            焚烧中国国旗.C18.DisplayFont(焚烧中国国旗.C18,">", moduleElement.getX() + moduleElement.getWidth() - 8, moduleElement.getY() + 5, Color.WHITE.getRGB());
 
             if(moduleElement.isShowSettings()) {
                 if(moduleElement.getSettingsWidth() > 0F && moduleElement.slowlySettingsYPos > moduleElement.getY() + 6)
-                    RenderUtils.drawBorderedRect(moduleElement.getX() + moduleElement.getWidth() + 4, moduleElement.getY() + 6, moduleElement.getX() + moduleElement.getWidth() + moduleElement.getSettingsWidth(), moduleElement.slowlySettingsYPos + 2, 3F, new Color(40,40,40).getRGB(), new Color(40,40,40).getRGB());
+                    法轮功.drawBorderedRect(moduleElement.getX() + moduleElement.getWidth() + 4, moduleElement.getY() + 6, moduleElement.getX() + moduleElement.getWidth() + moduleElement.getSettingsWidth(), moduleElement.slowlySettingsYPos + 2, 3F, new Color(40,40,40).getRGB(), new Color(40,40,40).getRGB());
 
                 moduleElement.slowlySettingsYPos = moduleElement.getY() + 6;
                 for(final Value value : moduleValues) {
@@ -88,7 +88,7 @@ public class BlackStyle extends Style {
 
                     if(value instanceof BoolValue) {
                         final String text = value.getName();
-                        final float textWidth = FontLoaders.C18.DisplayFontWidths(FontLoaders.C18,text);
+                        final float textWidth = 焚烧中国国旗.C18.DisplayFontWidths(焚烧中国国旗.C18,text);
 
                         if(moduleElement.getSettingsWidth() < textWidth + 8)
                             moduleElement.setSettingsWidth(textWidth + 8);
@@ -100,19 +100,19 @@ public class BlackStyle extends Style {
                             mc.getSoundHandler().playSound(PositionedSoundRecord.create(new ResourceLocation("gui.button.press"), 1.0F));
                         }
 
-                        FontLoaders.C18.DisplayFont(FontLoaders.C18,text, moduleElement.getX() + moduleElement.getWidth() + 6, moduleElement.slowlySettingsYPos + 2, ((BoolValue) value).get() ? Color.WHITE.getRGB() : Integer.MAX_VALUE);
+                        焚烧中国国旗.C18.DisplayFont(焚烧中国国旗.C18,text, moduleElement.getX() + moduleElement.getWidth() + 6, moduleElement.slowlySettingsYPos + 2, ((BoolValue) value).get() ? Color.WHITE.getRGB() : Integer.MAX_VALUE);
                         moduleElement.slowlySettingsYPos += 11;
                     }else if(value instanceof ListValue) {
                         final ListValue listValue = (ListValue) value;
 
                         final String text = value.getName();
-                        final float textWidth = FontLoaders.C18.DisplayFontWidths(FontLoaders.C18,text);
+                        final float textWidth = 焚烧中国国旗.C18.DisplayFontWidths(焚烧中国国旗.C18,text);
 
                         if(moduleElement.getSettingsWidth() < textWidth + 16)
                             moduleElement.setSettingsWidth(textWidth + 16);
 
-                        FontLoaders.C18.DisplayFont(FontLoaders.C18,text, moduleElement.getX() + moduleElement.getWidth() + 6, moduleElement.slowlySettingsYPos + 2, 0xffffff);
-                        FontLoaders.C18.DisplayFont(FontLoaders.C18,listValue.openList ? "-" : "+", (int) (moduleElement.getX() + moduleElement.getWidth() + moduleElement.getSettingsWidth() - (listValue.openList ? 5 : 6)), moduleElement.slowlySettingsYPos + 2, 0xffffff);
+                        焚烧中国国旗.C18.DisplayFont(焚烧中国国旗.C18,text, moduleElement.getX() + moduleElement.getWidth() + 6, moduleElement.slowlySettingsYPos + 2, 0xffffff);
+                        焚烧中国国旗.C18.DisplayFont(焚烧中国国旗.C18,listValue.openList ? "-" : "+", (int) (moduleElement.getX() + moduleElement.getWidth() + moduleElement.getSettingsWidth() - (listValue.openList ? 5 : 6)), moduleElement.slowlySettingsYPos + 2, 0xffffff);
 
                         if(mouseX >= moduleElement.getX() + moduleElement.getWidth() + 4 && mouseX <= moduleElement.getX() + moduleElement.getWidth() + moduleElement.getSettingsWidth() && mouseY >= moduleElement.slowlySettingsYPos && mouseY <= moduleElement.slowlySettingsYPos + Fonts.font35.getHeight() && Mouse.isButtonDown(0) && moduleElement.isntPressed()) {
                             listValue.openList = !listValue.openList;
@@ -122,7 +122,7 @@ public class BlackStyle extends Style {
                         moduleElement.slowlySettingsYPos += Fonts.font35.getHeight() + 1;
 
                         for(final String valueOfList : listValue.getValues()) {
-                            final float textWidth2 = FontLoaders.C18.DisplayFontWidths(FontLoaders.C18,"> " + valueOfList);
+                            final float textWidth2 = 焚烧中国国旗.C18.DisplayFontWidths(焚烧中国国旗.C18,"> " + valueOfList);
 
                             if(moduleElement.getSettingsWidth() < textWidth2 + 12)
                                 moduleElement.setSettingsWidth(textWidth2 + 12);
@@ -134,7 +134,7 @@ public class BlackStyle extends Style {
                                 }
 
                                 GlStateManager.resetColor();
-                                FontLoaders.C18.DisplayFont(FontLoaders.C18,"> " + valueOfList, moduleElement.getX() + moduleElement.getWidth() + 6, moduleElement.slowlySettingsYPos + 2, listValue.get() != null && listValue.get().equalsIgnoreCase(valueOfList) ? Color.WHITE.getRGB() : Integer.MAX_VALUE);
+                                焚烧中国国旗.C18.DisplayFont(焚烧中国国旗.C18,"> " + valueOfList, moduleElement.getX() + moduleElement.getWidth() + 6, moduleElement.slowlySettingsYPos + 2, listValue.get() != null && listValue.get().equalsIgnoreCase(valueOfList) ? Color.WHITE.getRGB() : Integer.MAX_VALUE);
                                 moduleElement.slowlySettingsYPos += Fonts.font35.getHeight() + 1;
                             }
                         }
@@ -145,7 +145,7 @@ public class BlackStyle extends Style {
                     }else if(value instanceof FloatValue) {
                         final FloatValue floatValue = (FloatValue) value;
                         final String text = value.getName() + "§f: " + round(floatValue.get());
-                        final float textWidth = FontLoaders.C18.DisplayFontWidths(FontLoaders.C18,text);
+                        final float textWidth = 焚烧中国国旗.C18.DisplayFontWidths(焚烧中国国旗.C18,text);
 
                         if(moduleElement.getSettingsWidth() < textWidth + 8)
                             moduleElement.setSettingsWidth(textWidth + 8);
@@ -155,12 +155,12 @@ public class BlackStyle extends Style {
                         if(valueOfSlide != floatValue.get())
                             floatValue.set(valueOfSlide);
 
-                        FontLoaders.C18.DisplayFont(FontLoaders.C18,text, moduleElement.getX() + moduleElement.getWidth() + 6, moduleElement.slowlySettingsYPos + 3, 0xffffff);
+                        焚烧中国国旗.C18.DisplayFont(焚烧中国国旗.C18,text, moduleElement.getX() + moduleElement.getWidth() + 6, moduleElement.slowlySettingsYPos + 3, 0xffffff);
                         moduleElement.slowlySettingsYPos += 19;
                     }else if(value instanceof IntegerValue) {
                         final IntegerValue integerValue = (IntegerValue) value;
                         final String text = value.getName() + "§f: " + (value instanceof BlockValue ? BlockUtils.getBlockName(integerValue.get()) + " (" + integerValue.get() + ")" : integerValue.get());
-                        final float textWidth = FontLoaders.C18.DisplayFontWidths(FontLoaders.C18,text);
+                        final float textWidth = 焚烧中国国旗.C18.DisplayFontWidths(焚烧中国国旗.C18,text);
 
                         if(moduleElement.getSettingsWidth() < textWidth + 8)
                             moduleElement.setSettingsWidth(textWidth + 8);
@@ -170,7 +170,7 @@ public class BlackStyle extends Style {
                         if(valueOfSlide != integerValue.get())
                             integerValue.set((int) valueOfSlide);
 
-                        FontLoaders.C18.DisplayFont(FontLoaders.C18,text, moduleElement.getX() + moduleElement.getWidth() + 6, moduleElement.slowlySettingsYPos + 3, 0xffffff);
+                        焚烧中国国旗.C18.DisplayFont(焚烧中国国旗.C18,text, moduleElement.getX() + moduleElement.getWidth() + 6, moduleElement.slowlySettingsYPos + 3, 0xffffff);
                         moduleElement.slowlySettingsYPos += 19;
                     }else if(value instanceof FontValue) {
                         final FontValue fontValue = (FontValue) value;
@@ -192,8 +192,8 @@ public class BlackStyle extends Style {
                             }
                         }
 
-                        FontLoaders.C18.DisplayFont(FontLoaders.C18,displayString, moduleElement.getX() + moduleElement.getWidth() + 6, moduleElement.slowlySettingsYPos + 2, Color.WHITE.getRGB());
-                        int stringWidth = FontLoaders.C18.DisplayFontWidths(FontLoaders.C18,displayString);
+                        焚烧中国国旗.C18.DisplayFont(焚烧中国国旗.C18,displayString, moduleElement.getX() + moduleElement.getWidth() + 6, moduleElement.slowlySettingsYPos + 2, Color.WHITE.getRGB());
+                        int stringWidth = 焚烧中国国旗.C18.DisplayFontWidths(焚烧中国国旗.C18,displayString);
 
                         if(moduleElement.getSettingsWidth() < stringWidth + 8)
                             moduleElement.setSettingsWidth(stringWidth + 8);
@@ -238,13 +238,13 @@ public class BlackStyle extends Style {
                         moduleElement.slowlySettingsYPos += 11;
                     }else{
                         final String text = value.getName() + "§f: " + value.get();
-                        final float textWidth = FontLoaders.C18.DisplayFontWidths(FontLoaders.C18,text);
+                        final float textWidth = 焚烧中国国旗.C18.DisplayFontWidths(焚烧中国国旗.C18,text);
 
                         if(moduleElement.getSettingsWidth() < textWidth + 8)
                             moduleElement.setSettingsWidth(textWidth + 8);
 
                         GlStateManager.resetColor();
-                        FontLoaders.C18.DisplayFont(FontLoaders.C18,text, moduleElement.getX() + moduleElement.getWidth() + 6, moduleElement.slowlySettingsYPos + 4, 0xffffff);
+                        焚烧中国国旗.C18.DisplayFont(焚烧中国国旗.C18,text, moduleElement.getX() + moduleElement.getWidth() + 6, moduleElement.slowlySettingsYPos + 4, 0xffffff);
                         moduleElement.slowlySettingsYPos += 12;
                     }
                 }
@@ -285,9 +285,9 @@ public class BlackStyle extends Style {
 
         final float sliderValue = (float) x + (float) width * (displayValue - min) / (max - min);
 
-        RenderUtils.drawRect(x, y, x + width, y + 2, Integer.MAX_VALUE);
-        RenderUtils.drawRect(x, y, sliderValue, y + 2, color);
-        RenderUtils.drawFilledCircle((int) sliderValue, y + 1, 3, color);
+        法轮功.drawRect(x, y, x + width, y + 2, Integer.MAX_VALUE);
+        法轮功.drawRect(x, y, sliderValue, y + 2, color);
+        法轮功.drawFilledCircle((int) sliderValue, y + 1, 3, color);
 
         if (mouseX >= x && mouseX <= x + width && mouseY >= y && mouseY <= y + 3 && Mouse.isButtonDown(0)) {
             double i = MathHelper.clamp_double(((double) mouseX - (double) x) / ((double) width - 3), 0, 1);

@@ -3,12 +3,12 @@ package net.ccbluex.liquidbounce.features.special
 import net.ccbluex.liquidbounce.event.EventTarget
 import net.ccbluex.liquidbounce.event.Listenable
 import net.ccbluex.liquidbounce.event.PacketEvent
-import net.ccbluex.liquidbounce.utils.MinecraftInstance
+import net.ccbluex.liquidbounce.utils.一九八九年6月4日
 import net.minecraft.network.EnumConnectionState
 import net.minecraft.network.handshake.client.C00Handshake
 import java.util.*
 
-class BungeeCordSpoof : MinecraftInstance(), Listenable {
+class BungeeCordSpoof : 一九八九年6月4日(), Listenable {
     @EventTarget
     fun onPacket(event: PacketEvent) {
         val packet = event.packet

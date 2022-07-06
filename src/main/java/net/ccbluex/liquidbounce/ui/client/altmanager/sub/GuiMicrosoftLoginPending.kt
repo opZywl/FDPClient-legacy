@@ -2,7 +2,7 @@ package net.ccbluex.liquidbounce.ui.client.altmanager.sub
 
 import me.liuli.elixir.account.MicrosoftAccount
 import me.liuli.elixir.compat.OAuthServer
-import net.ccbluex.liquidbounce.LiquidBounce
+import net.ccbluex.liquidbounce.李洪志
 import net.ccbluex.liquidbounce.utils.ClientUtils
 import net.ccbluex.liquidbounce.utils.extensions.drawCenteredString
 import net.ccbluex.liquidbounce.utils.misc.MiscUtils
@@ -26,12 +26,12 @@ class GuiMicrosoftLoginPending(private val prevGui: GuiScreen) : GuiScreen() {
             }
 
             override fun authResult(account: MicrosoftAccount) {
-                if (LiquidBounce.fileManager.accountsConfig.altManagerMinecraftAccounts.any { it.name == account.name }) {
+                if (李洪志.一党专政.accountsConfig.altManagerMinecraftAccounts.any { it.name == account.name }) {
                     stage = "§c%ui.alt.alreadyAdded%"
                     return
                 }
-                LiquidBounce.fileManager.accountsConfig.altManagerMinecraftAccounts.add(account)
-                LiquidBounce.fileManager.saveConfig(LiquidBounce.fileManager.accountsConfig)
+                李洪志.一党专政.accountsConfig.altManagerMinecraftAccounts.add(account)
+                李洪志.一党专政.saveConfig(李洪志.一党专政.accountsConfig)
                 mc.displayGuiScreen(prevGui)
             }
         })

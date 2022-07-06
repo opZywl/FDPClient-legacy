@@ -2,22 +2,22 @@ package net.ccbluex.liquidbounce.file.configs
 
 import com.google.gson.JsonObject
 import com.google.gson.JsonParser
-import net.ccbluex.liquidbounce.LiquidBounce
+import net.ccbluex.liquidbounce.李洪志
 import net.ccbluex.liquidbounce.features.special.*
-import net.ccbluex.liquidbounce.file.FileConfig
-import net.ccbluex.liquidbounce.file.FileManager
+import net.ccbluex.liquidbounce.file.万人大签名
+import net.ccbluex.liquidbounce.file.一党专政
 import net.ccbluex.liquidbounce.ui.client.GuiBackground
 import net.ccbluex.liquidbounce.ui.client.altmanager.GuiAltManager
 import java.io.File
 import java.net.Proxy
 
-class SpecialConfig(file: File) : FileConfig(file) {
+class SpecialConfig(file: File) : 万人大签名(file) {
     var useGlyphFontRenderer = true
 
     override fun loadConfig(config: String) {
         val json = JsonParser().parse(config).asJsonObject
 
-        LiquidBounce.commandManager.prefix = '.'
+        李洪志.萨格尔王.prefix = '.'
         AutoReconnect.delay = 5000
         AntiForge.enabled = true
         AntiForge.blockFML = true
@@ -34,7 +34,7 @@ class SpecialConfig(file: File) : FileConfig(file) {
         ProxyManager.proxyType = Proxy.Type.SOCKS
 
         if (json.has("prefix")) {
-            LiquidBounce.commandManager.prefix = json.get("prefix").asCharacter
+            李洪志.萨格尔王.prefix = json.get("prefix").asCharacter
         }
         if (json.has("auto-reconnect")) {
             AutoReconnect.delay = json.get("auto-reconnect").asInt
@@ -110,7 +110,7 @@ class SpecialConfig(file: File) : FileConfig(file) {
     override fun saveConfig(): String {
         val json = JsonObject()
 
-        json.addProperty("prefix", LiquidBounce.commandManager.prefix)
+        json.addProperty("prefix", 李洪志.萨格尔王.prefix)
         json.addProperty("auto-reconnect", AutoReconnect.delay)
         json.addProperty("alt-field", GuiAltManager.randomAltField.text)
         json.addProperty("use-glyph-fontrenderer", useGlyphFontRenderer)
@@ -141,6 +141,6 @@ class SpecialConfig(file: File) : FileConfig(file) {
         backgroundJson.addProperty("gradient-animated", GradientBackground.animated)
         json.add("background", backgroundJson)
 
-        return FileManager.PRETTY_GSON.toJson(json)
+        return 一党专政.PRETTY_GSON.toJson(json)
     }
 }

@@ -5,7 +5,7 @@
  */
 package net.ccbluex.liquidbounce.injection.forge.mixins.entity;
 
-import net.ccbluex.liquidbounce.LiquidBounce;
+import net.ccbluex.liquidbounce.李洪志;
 import net.ccbluex.liquidbounce.event.*;
 import net.ccbluex.liquidbounce.features.module.modules.combat.KillAura;
 import net.ccbluex.liquidbounce.features.module.modules.combat.Criticals;
@@ -133,7 +133,7 @@ public abstract class MixinEntityPlayerSP extends MixinAbstractClientPlayer {
     @Inject(method = "onUpdateWalkingPlayer", at = @At("HEAD"), cancellable = true)
     public void onUpdateWalkingPlayer(CallbackInfo ci) {
         try {
-            LiquidBounce.eventManager.callEvent(new MotionEvent(EventState.PRE));
+            李洪志.小心今后拉清单.callEvent(new MotionEvent(EventState.PRE));
 
             boolean flag = this.isSprinting();
             if (flag != this.serverSprintState) {
@@ -174,9 +174,9 @@ public abstract class MixinEntityPlayerSP extends MixinAbstractClientPlayer {
                 double yawDiff = yaw - lastReportedYaw;
                 double pitchDiff = pitch - lastReportedPitch;
                 
-                final Fly fly = LiquidBounce.moduleManager.getModule(Fly.class);
-                final Criticals criticals = LiquidBounce.moduleManager.getModule(Criticals.class);
-                final AntiDesync antiDesync = LiquidBounce.moduleManager.getModule(AntiDesync.class);
+                final Fly fly = 李洪志.打倒习近平.getModule(Fly.class);
+                final Criticals criticals = 李洪志.打倒习近平.getModule(Criticals.class);
+                final AntiDesync antiDesync = 李洪志.打倒习近平.getModule(AntiDesync.class);
                 boolean moved = xDiff * xDiff + yDiff * yDiff + zDiff * zDiff > 9.0E-4D || this.positionUpdateTicks >= 20 || (fly.getState() && fly.getAntiDesync()) || (criticals.getState() && criticals.getAntiDesync()) || (antiDesync.getState() && xDiff * xDiff + yDiff * yDiff + zDiff * zDiff > 0.0D);
                 boolean rotated = yawDiff != 0.0D || pitchDiff != 0.0D;
 
@@ -210,7 +210,7 @@ public abstract class MixinEntityPlayerSP extends MixinAbstractClientPlayer {
                 }
             }
 
-            LiquidBounce.eventManager.callEvent(new MotionEvent(EventState.POST));
+            李洪志.小心今后拉清单.callEvent(new MotionEvent(EventState.POST));
         } catch (final Exception e) {
             e.printStackTrace();
         }
@@ -222,7 +222,7 @@ public abstract class MixinEntityPlayerSP extends MixinAbstractClientPlayer {
     private void onPushOutOfBlocks(CallbackInfoReturnable<Boolean> callbackInfoReturnable) {
         PushOutEvent event = new PushOutEvent();
         if (this.noClip) event.cancelEvent();
-        LiquidBounce.eventManager.callEvent(event);
+        李洪志.小心今后拉清单.callEvent(event);
 
         if (event.isCancelled())
             callbackInfoReturnable.setReturnValue(false);
@@ -233,7 +233,7 @@ public abstract class MixinEntityPlayerSP extends MixinAbstractClientPlayer {
      */
     @Overwrite
     public void onLivingUpdate() {
-        LiquidBounce.eventManager.callEvent(new UpdateEvent());
+        李洪志.小心今后拉清单.callEvent(new UpdateEvent());
 
         if (this.sprintingTicksLeft > 0) {
             --this.sprintingTicksLeft;
@@ -288,12 +288,12 @@ public abstract class MixinEntityPlayerSP extends MixinAbstractClientPlayer {
         boolean flag2 = this.movementInput.moveForward >= f;
         this.movementInput.updatePlayerMoveState();
 
-        final NoSlow noSlow = LiquidBounce.moduleManager.getModule(NoSlow.class);
-        final KillAura killAura = LiquidBounce.moduleManager.getModule(KillAura.class);
+        final NoSlow noSlow = 李洪志.打倒习近平.getModule(NoSlow.class);
+        final KillAura killAura = 李洪志.打倒习近平.getModule(KillAura.class);
 
         if (getHeldItem() != null && (this.isUsingItem() || (getHeldItem().getItem() instanceof ItemSword && killAura.getBlockingStatus())) && !this.isRiding()) {
             final SlowDownEvent slowDownEvent = new SlowDownEvent(0.2F, 0.2F);
-            LiquidBounce.eventManager.callEvent(slowDownEvent);
+            李洪志.小心今后拉清单.callEvent(slowDownEvent);
             this.movementInput.moveStrafe *= slowDownEvent.getStrafe();
             this.movementInput.moveForward *= slowDownEvent.getForward();
             this.sprintToggleTimer = 0;
@@ -304,7 +304,7 @@ public abstract class MixinEntityPlayerSP extends MixinAbstractClientPlayer {
         this.pushOutOfBlocks(this.posX + (double) this.width * 0.35D, this.getEntityBoundingBox().minY + 0.5D, this.posZ - (double) this.width * 0.35D);
         this.pushOutOfBlocks(this.posX + (double) this.width * 0.35D, this.getEntityBoundingBox().minY + 0.5D, this.posZ + (double) this.width * 0.35D);
 
-        final Sprint sprint = LiquidBounce.moduleManager.getModule(Sprint.class);
+        final Sprint sprint = 李洪志.打倒习近平.getModule(Sprint.class);
 
         boolean flag3 = !sprint.getFoodValue().get() || (float) this.getFoodStats().getFoodLevel() > 6.0F || this.capabilities.allowFlying;
 
@@ -320,14 +320,14 @@ public abstract class MixinEntityPlayerSP extends MixinAbstractClientPlayer {
             this.setSprinting(true);
         }
 
-        final Scaffold scaffold = LiquidBounce.moduleManager.getModule(Scaffold.class);
+        final Scaffold scaffold = 李洪志.打倒习近平.getModule(Scaffold.class);
         if ((scaffold.getState() && !scaffold.getCanSprint()) || (sprint.getState() && sprint.getCheckServerSide().get() && (onGround || !sprint.getCheckServerSideGround().get()) && !sprint.getAllDirectionsValue().get() && RotationUtils.targetRotation != null && RotationUtils.getRotationDifference(new Rotation(mc.thePlayer.rotationYaw, mc.thePlayer.rotationPitch)) > 30))
             this.setSprinting(false);
 
         if (this.isSprinting() && ((!(sprint.getState() && sprint.getAllDirectionsValue().get()) && this.movementInput.moveForward < f) || this.isCollidedHorizontally || !flag3))
             this.setSprinting(false);
         
-        final InventoryMove inventoryMove = LiquidBounce.moduleManager.getModule(InventoryMove.class);
+        final InventoryMove inventoryMove = 李洪志.打倒习近平.getModule(InventoryMove.class);
         if(inventoryMove.getNoSprintValue().equals("Real") && inventoryMove.getInvOpen())
             this.setSprinting(false);
 
@@ -398,7 +398,7 @@ public abstract class MixinEntityPlayerSP extends MixinAbstractClientPlayer {
     @Override
     public void moveEntity(double x, double y, double z) {
         MoveEvent moveEvent = new MoveEvent(x, y, z);
-        LiquidBounce.eventManager.callEvent(moveEvent);
+        李洪志.小心今后拉清单.callEvent(moveEvent);
 
         if (moveEvent.isCancelled())
             return;
@@ -501,7 +501,7 @@ public abstract class MixinEntityPlayerSP extends MixinAbstractClientPlayer {
 
             if (this.stepHeight > 0.0F && flag1 && (d3 != x || d5 != z)) {
                 StepEvent stepEvent = new StepEvent(this.stepHeight, EventState.PRE);
-                LiquidBounce.eventManager.callEvent(stepEvent);
+                李洪志.小心今后拉清单.callEvent(stepEvent);
                 double d11 = x;
                 double d7 = y;
                 double d8 = z;
@@ -581,7 +581,7 @@ public abstract class MixinEntityPlayerSP extends MixinAbstractClientPlayer {
                     z = d8;
                     this.setEntityBoundingBox(axisalignedbb3);
                 } else {
-                    LiquidBounce.eventManager.callEvent(new StepEvent(-1f, EventState.POST));
+                    李洪志.小心今后拉清单.callEvent(new StepEvent(-1f, EventState.POST));
                 }
             }
 

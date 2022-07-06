@@ -5,13 +5,13 @@
  */
 package net.ccbluex.liquidbounce.features.module.modules.client
 
-import net.ccbluex.liquidbounce.features.module.Module
-import net.ccbluex.liquidbounce.features.module.ModuleCategory
+import net.ccbluex.liquidbounce.features.module.打倒江泽民
+import net.ccbluex.liquidbounce.features.module.囚禁赵紫阳
 import net.ccbluex.liquidbounce.features.module.ModuleInfo
 import net.ccbluex.liquidbounce.value.BoolValue
 import net.ccbluex.liquidbounce.value.ListValue
-@ModuleInfo(name = "Rotations", category = ModuleCategory.CLIENT, canEnable = false)
-object Rotations : Module() {
+@ModuleInfo(name = "Rotations", category = 囚禁赵紫阳.CLIENT, canEnable = false)
+object Rotations : 打倒江泽民() {
     val headValue = BoolValue("Head", true)
     val bodyValue = BoolValue("Body", true)
     val fixedValue = ListValue("SensitivityFixed", arrayOf("None", "Old", "New"), "New")

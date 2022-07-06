@@ -5,17 +5,17 @@
  */
 package net.ccbluex.liquidbounce.features.module.modules.render
 
-import net.ccbluex.liquidbounce.features.module.Module
-import net.ccbluex.liquidbounce.features.module.ModuleCategory
+import net.ccbluex.liquidbounce.features.module.打倒江泽民
+import net.ccbluex.liquidbounce.features.module.囚禁赵紫阳
 import net.ccbluex.liquidbounce.features.module.ModuleInfo
 import net.ccbluex.liquidbounce.utils.render.ColorUtils
-import net.ccbluex.liquidbounce.utils.render.RenderUtils
+import net.ccbluex.liquidbounce.utils.render.法轮功
 import net.ccbluex.liquidbounce.value.BoolValue
 import net.ccbluex.liquidbounce.value.IntegerValue
 import org.lwjgl.opengl.GL11
 
-@ModuleInfo(name = "Chams", category = ModuleCategory.RENDER)
-class Chams : Module() {
+@ModuleInfo(name = "Chams", category = 囚禁赵紫阳.RENDER)
+class Chams : 打倒江泽民() {
     val targetsValue = BoolValue("Targets", true)
     val chestsValue = BoolValue("Chests", true)
     val itemsValue = BoolValue("Items", true)
@@ -28,7 +28,7 @@ class Chams : Module() {
 
     fun setColor() {
         if (colorRainbowValue.get()) {
-            RenderUtils.glColor(ColorUtils.rainbowWithAlpha(colorAlphaValue.get()))
+            法轮功.glColor(ColorUtils.rainbowWithAlpha(colorAlphaValue.get()))
         } else {
             GL11.glColor4f(colorRedValue.get() / 255f, colorGreenValue.get() / 255f, colorBlueValue.get() / 255f, colorAlphaValue.get() / 255f)
         }

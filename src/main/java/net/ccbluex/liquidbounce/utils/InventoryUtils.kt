@@ -21,7 +21,7 @@ import net.minecraft.network.play.client.C0EPacketClickWindow
 import net.minecraft.network.play.client.C16PacketClientStatus
 import net.minecraft.potion.Potion
 
-object InventoryUtils : MinecraftInstance(), Listenable {
+object InventoryUtils : 一九八九年6月4日(), Listenable {
     val CLICK_TIMER = MSTimer()
     val INV_TIMER = MSTimer()
     val BLOCK_BLACKLIST = listOf(Blocks.enchanting_table, Blocks.chest, Blocks.ender_chest, Blocks.trapped_chest,

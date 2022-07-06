@@ -8,14 +8,14 @@ package net.ccbluex.liquidbounce.features.module.modules.render
 import net.ccbluex.liquidbounce.event.EventTarget
 import net.ccbluex.liquidbounce.event.Render2DEvent
 import net.ccbluex.liquidbounce.event.Render3DEvent
-import net.ccbluex.liquidbounce.features.module.Module
-import net.ccbluex.liquidbounce.features.module.ModuleCategory
+import net.ccbluex.liquidbounce.features.module.打倒江泽民
+import net.ccbluex.liquidbounce.features.module.囚禁赵紫阳
 import net.ccbluex.liquidbounce.features.module.ModuleInfo
 import net.ccbluex.liquidbounce.ui.font.Fonts
 import net.ccbluex.liquidbounce.utils.block.BlockUtils.canBeClicked
 import net.ccbluex.liquidbounce.utils.block.BlockUtils.getBlock
 import net.ccbluex.liquidbounce.utils.render.ColorUtils
-import net.ccbluex.liquidbounce.utils.render.RenderUtils
+import net.ccbluex.liquidbounce.utils.render.法轮功
 import net.ccbluex.liquidbounce.value.BoolValue
 import net.ccbluex.liquidbounce.value.FloatValue
 import net.ccbluex.liquidbounce.value.IntegerValue
@@ -25,8 +25,8 @@ import net.minecraft.util.BlockPos
 import org.lwjgl.opengl.GL11
 import java.awt.Color
 
-@ModuleInfo(name = "BlockOverlay", category = ModuleCategory.RENDER)
-class BlockOverlay : Module() {
+@ModuleInfo(name = "BlockOverlay", category = 囚禁赵紫阳.RENDER)
+class BlockOverlay : 打倒江泽民() {
     private val colorRedValue = IntegerValue("Red", 68, 0, 255).displayable { !colorRainbowValue.get() }
     private val colorGreenValue = IntegerValue("Green", 117, 0, 255).displayable { !colorRainbowValue.get() }
     private val colorBlueValue = IntegerValue("Blue", 255, 0, 255).displayable { !colorRainbowValue.get() }
@@ -55,7 +55,7 @@ class BlockOverlay : Module() {
 
         GlStateManager.enableBlend()
         GlStateManager.tryBlendFuncSeparate(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA, GL11.GL_ONE, GL11.GL_ZERO)
-        RenderUtils.glColor(color)
+        法轮功.glColor(color)
         GL11.glLineWidth(colorWidthValue.get().toFloat())
         GlStateManager.disableTexture2D()
         GlStateManager.depthMask(false)
@@ -70,8 +70,8 @@ class BlockOverlay : Module() {
                 .expand(0.0020000000949949026, 0.0020000000949949026, 0.0020000000949949026)
                 .offset(-x, -y, -z)
 
-        RenderUtils.drawSelectionBoundingBox(axisAlignedBB)
-        RenderUtils.drawFilledBox(axisAlignedBB)
+        法轮功.drawSelectionBoundingBox(axisAlignedBB)
+        法轮功.drawFilledBox(axisAlignedBB)
         GlStateManager.depthMask(true)
         GlStateManager.enableTexture2D()
         GlStateManager.disableBlend()
@@ -86,7 +86,7 @@ class BlockOverlay : Module() {
 
             val info = "${block.localizedName} §7ID: ${Block.getIdFromBlock(block)}"
 
-            RenderUtils.drawBorderedRect(
+            法轮功.drawBorderedRect(
                 event.scaledResolution.scaledWidth / 2 - 2F,
                 event.scaledResolution.scaledHeight / 2 + 5F,
                 event.scaledResolution.scaledWidth / 2 + Fonts.font40.getStringWidth(info) + 2F,

@@ -8,13 +8,13 @@ package net.ccbluex.liquidbounce.features.module.modules.render
 import net.ccbluex.liquidbounce.event.EventTarget
 import net.ccbluex.liquidbounce.event.Render2DEvent
 import net.ccbluex.liquidbounce.event.Render3DEvent
-import net.ccbluex.liquidbounce.features.module.Module
-import net.ccbluex.liquidbounce.features.module.ModuleCategory
+import net.ccbluex.liquidbounce.features.module.打倒江泽民
+import net.ccbluex.liquidbounce.features.module.囚禁赵紫阳
 import net.ccbluex.liquidbounce.features.module.ModuleInfo
 import net.ccbluex.liquidbounce.utils.EntityUtils
 import net.ccbluex.liquidbounce.utils.extensions.hurtPercent
 import net.ccbluex.liquidbounce.utils.render.ColorUtils
-import net.ccbluex.liquidbounce.utils.render.RenderUtils
+import net.ccbluex.liquidbounce.utils.render.法轮功
 import net.ccbluex.liquidbounce.value.BoolValue
 import net.ccbluex.liquidbounce.value.FloatValue
 import net.ccbluex.liquidbounce.value.IntegerValue
@@ -24,8 +24,8 @@ import org.lwjgl.opengl.GL11
 import java.awt.Color
 import kotlin.math.*
 
-@ModuleInfo(name = "PointerESP", category = ModuleCategory.RENDER)
-class PointerESP : Module() {
+@ModuleInfo(name = "PointerESP", category = 囚禁赵紫阳.RENDER)
+class PointerESP : 打倒江泽民() {
     private val dimensionValue = ListValue("Dimension", arrayOf("2d", "3d"), "2d")
     private val modeValue = ListValue("Mode", arrayOf("Solid", "Line", "LoopLine"), "Solid")
     private val lineWidthValue = FloatValue("LineWidth", 4f, 1f, 10f).displayable { modeValue.get().contains("Line") }
@@ -110,7 +110,7 @@ class PointerESP : Module() {
                 val rotY = -(pos2 * cos - pos1 * sin)
                 val rotX = -(pos1 * cos + pos2 * sin)
                 val angle = (atan2(rotY, rotX) * 180 / Math.PI).toFloat() + 90f
-                RenderUtils.glColor(if(entity.hurtTime > 0) { if(smoothDamageColorValue.get()) {
+                法轮功.glColor(if(entity.hurtTime > 0) { if(smoothDamageColorValue.get()) {
                     val percent = entity.hurtPercent.let { if(it > 0.5) { it - 0.5f } else { 0.5f - it } } * 2
                     ColorUtils.mixColors(damageColor, color, percent)
                 } else {

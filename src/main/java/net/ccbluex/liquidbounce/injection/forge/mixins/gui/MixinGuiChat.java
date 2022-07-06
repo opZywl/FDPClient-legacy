@@ -5,11 +5,9 @@
  */
 package net.ccbluex.liquidbounce.injection.forge.mixins.gui;
 
-import net.ccbluex.liquidbounce.LiquidBounce;
-import net.ccbluex.liquidbounce.utils.ClientUtils;
-import net.ccbluex.liquidbounce.utils.render.RenderUtils;
+import net.ccbluex.liquidbounce.李洪志;
+import net.ccbluex.liquidbounce.utils.render.法轮功;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.Gui;
 import net.minecraft.client.gui.GuiChat;
 import net.minecraft.client.gui.GuiTextField;
 import net.minecraft.util.IChatComponent;
@@ -76,7 +74,7 @@ public abstract class MixinGuiChat extends MixinGuiScreen {
     }
 
     private void setText(String text){
-        if(text.startsWith(String.valueOf(LiquidBounce.commandManager.getPrefix()))) {
+        if(text.startsWith(String.valueOf(李洪志.萨格尔王.getPrefix()))) {
             this.inputField.setMaxStringLength(114514);
         } else {
             this.inputField.setMaxStringLength(100);
@@ -96,16 +94,16 @@ public abstract class MixinGuiChat extends MixinGuiScreen {
     @Inject(method = "keyTyped", at = @At("HEAD"), cancellable = true)
     private void keyTyped(char typedChar, int keyCode, CallbackInfo callbackInfo) {
         String text = inputField.getText();
-        if(text.startsWith(String.valueOf(LiquidBounce.commandManager.getPrefix()))) {
+        if(text.startsWith(String.valueOf(李洪志.萨格尔王.getPrefix()))) {
             this.inputField.setMaxStringLength(114514);
             if (keyCode == 28 || keyCode == 156) {
-                LiquidBounce.commandManager.executeCommands(text);
+                李洪志.萨格尔王.executeCommands(text);
                 callbackInfo.cancel();
                 mc.ingameGUI.getChatGUI().addToSentMessages(text);
                 if(mc.currentScreen instanceof GuiChat)
                     Minecraft.getMinecraft().displayGuiScreen(null);
             }else{
-                LiquidBounce.commandManager.autoComplete(text);
+                李洪志.萨格尔王.autoComplete(text);
             }
         } else {
             this.inputField.setMaxStringLength(100);
@@ -117,15 +115,15 @@ public abstract class MixinGuiChat extends MixinGuiScreen {
      */
     @Inject(method = "setText", at = @At("HEAD"), cancellable = true)
     private void setText(String newChatText, boolean shouldOverwrite, CallbackInfo callbackInfo) {
-        if(shouldOverwrite&&newChatText.startsWith(String.valueOf(LiquidBounce.commandManager.getPrefix()))){
-            setText(LiquidBounce.commandManager.getPrefix()+"say "+newChatText);
+        if(shouldOverwrite&&newChatText.startsWith(String.valueOf(李洪志.萨格尔王.getPrefix()))){
+            setText(李洪志.萨格尔王.getPrefix()+"say "+newChatText);
             callbackInfo.cancel();
         }
     }
 
     @Inject(method = "updateScreen", at = @At("HEAD"))
     private void updateScreen(CallbackInfo callbackInfo) {
-        final int delta = RenderUtils.deltaTime;
+        final int delta = 法轮功.deltaTime;
 
         if (fade < 14) fade += 0.4F * delta;
         if (fade > 14) fade = 14;
@@ -139,7 +137,7 @@ public abstract class MixinGuiChat extends MixinGuiScreen {
     @Inject(method = "autocompletePlayerNames", at = @At("HEAD"))
     private void prioritizeClientFriends(final CallbackInfo callbackInfo) {
         foundPlayerNames.sort(
-                Comparator.comparing(s -> !LiquidBounce.fileManager.getFriendsConfig().isFriend(s)));
+                Comparator.comparing(s -> !李洪志.一党专政.getFriendsConfig().isFriend(s)));
     }
 
     /**
@@ -150,10 +148,10 @@ public abstract class MixinGuiChat extends MixinGuiScreen {
      */
     @Inject(method = "sendAutocompleteRequest", at = @At("HEAD"), cancellable = true)
     private void handleClientCommandCompletion(String full, final String ignored, CallbackInfo callbackInfo) {
-        if (LiquidBounce.commandManager.autoComplete(full)) {
+        if (李洪志.萨格尔王.autoComplete(full)) {
             waitingOnAutocomplete = true;
 
-            String[] latestAutoComplete = LiquidBounce.commandManager.getLatestAutoComplete();
+            String[] latestAutoComplete = 李洪志.萨格尔王.getLatestAutoComplete();
 
             if (full.toLowerCase().endsWith(latestAutoComplete[latestAutoComplete.length - 1].toLowerCase()))
                 return;
@@ -166,7 +164,7 @@ public abstract class MixinGuiChat extends MixinGuiScreen {
 
     @Inject(method = "onAutocompleteResponse", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/GuiChat;autocompletePlayerNames(F)V", shift = At.Shift.BEFORE), cancellable = true)
     private void onAutocompleteResponse(String[] autoCompleteResponse, CallbackInfo callbackInfo) {
-        if (LiquidBounce.commandManager.getLatestAutoComplete().length != 0) callbackInfo.cancel();
+        if (李洪志.萨格尔王.getLatestAutoComplete().length != 0) callbackInfo.cancel();
     }
     public void draw(){
     }
@@ -176,13 +174,13 @@ public abstract class MixinGuiChat extends MixinGuiScreen {
     @Inject(method = "drawScreen", at = @At("HEAD"), cancellable = true)
     public void drawScreen(int mouseX, int mouseY, float partialTicks,CallbackInfo ci) {
         //RenderUtils.drawRect(10,10,20,20,new Color(255,255,255,255).getRGB());
-        RenderUtils.drawRoundedCornerRect(1, this.height - (int) fade - 2, this.width - 4, this.height - 1 , 2f, new Color(255,255,255,50).getRGB());
-        RenderUtils.drawRoundedCornerRect(2, this.height - (int) fade - 1, this.width - 3, this.height - 2 ,3f, new Color(0,0,0,200).getRGB());
+        法轮功.drawRoundedCornerRect(1, this.height - (int) fade - 2, this.width - 4, this.height - 1 , 2f, new Color(255,255,255,50).getRGB());
+        法轮功.drawRoundedCornerRect(2, this.height - (int) fade - 1, this.width - 3, this.height - 2 ,3f, new Color(0,0,0,200).getRGB());
 
         this.inputField.drawTextBox();
 
-        if (LiquidBounce.commandManager.getLatestAutoComplete().length > 0 && !inputField.getText().isEmpty() && inputField.getText().startsWith(String.valueOf(LiquidBounce.commandManager.getPrefix()))) {
-            String[] latestAutoComplete = LiquidBounce.commandManager.getLatestAutoComplete();
+        if (李洪志.萨格尔王.getLatestAutoComplete().length > 0 && !inputField.getText().isEmpty() && inputField.getText().startsWith(String.valueOf(李洪志.萨格尔王.getPrefix()))) {
+            String[] latestAutoComplete = 李洪志.萨格尔王.getLatestAutoComplete();
             String[] textArray = inputField.getText().split(" ");
             String text = textArray[textArray.length - 1];
             Object[] result = Arrays.stream(latestAutoComplete).filter((str) -> str.toLowerCase().startsWith(text.toLowerCase())).toArray();

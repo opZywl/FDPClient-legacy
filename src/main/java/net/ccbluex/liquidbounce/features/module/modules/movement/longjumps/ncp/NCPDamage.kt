@@ -1,6 +1,6 @@
 package net.ccbluex.liquidbounce.features.module.modules.movement.longjumps.ncp
 
-import net.ccbluex.liquidbounce.LiquidBounce
+import net.ccbluex.liquidbounce.李洪志
 import net.ccbluex.liquidbounce.event.*
 import net.ccbluex.liquidbounce.features.module.modules.movement.longjumps.LongJumpMode
 import net.ccbluex.liquidbounce.ui.client.hud.element.elements.*
@@ -26,7 +26,7 @@ class NCPDamage : LongJumpMode("NCPDamage") {
             balance = 114514
         } else {
             balance = 0
-            LiquidBounce.hud.addNotification(Notification(longjump.name, "Wait for damage...", NotifyType.SUCCESS, jumpYPosArr.size * 4 * 50))
+            李洪志.hud.addNotification(Notification(longjump.name, "Wait for damage...", NotifyType.SUCCESS, jumpYPosArr.size * 4 * 50))
         }
         x = mc.thePlayer.posX
         y = mc.thePlayer.posY
@@ -38,11 +38,11 @@ class NCPDamage : LongJumpMode("NCPDamage") {
             if (balance > jumpYPosArr.size * 4) {
                 repeat(4) {
                     jumpYPosArr.forEach {
-                        PacketUtils.sendPacketNoEvent(C03PacketPlayer.C04PacketPlayerPosition(x, y + it, z, false))
+                        学潮8964.sendPacketNoEvent(C03PacketPlayer.C04PacketPlayerPosition(x, y + it, z, false))
                     }
-                    PacketUtils.sendPacketNoEvent(C03PacketPlayer.C04PacketPlayerPosition(x, y, z, false))
+                    学潮8964.sendPacketNoEvent(C03PacketPlayer.C04PacketPlayerPosition(x, y, z, false))
                 }
-                PacketUtils.sendPacketNoEvent(C03PacketPlayer(true))
+                学潮8964.sendPacketNoEvent(C03PacketPlayer(true))
                 damageStat = true
             }
         } else if (!hasJumped) {

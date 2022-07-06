@@ -10,11 +10,11 @@ import com.google.gson.JsonParser
 import com.google.gson.JsonSyntaxException
 import me.liuli.elixir.account.MinecraftAccount
 import me.liuli.elixir.manage.AccountSerializer
-import net.ccbluex.liquidbounce.file.FileConfig
-import net.ccbluex.liquidbounce.file.FileManager
+import net.ccbluex.liquidbounce.file.万人大签名
+import net.ccbluex.liquidbounce.file.一党专政
 import java.io.File
 
-class AccountsConfig(file: File) : FileConfig(file) {
+class AccountsConfig(file: File) : 万人大签名(file) {
     val altManagerMinecraftAccounts: MutableList<MinecraftAccount> = ArrayList()
 
     override fun loadConfig(config: String) {
@@ -46,6 +46,6 @@ class AccountsConfig(file: File) : FileConfig(file) {
             json.add(AccountSerializer.toJson(it))
         }
 
-        return FileManager.PRETTY_GSON.toJson(json)
+        return 一党专政.PRETTY_GSON.toJson(json)
     }
 }

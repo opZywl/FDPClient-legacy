@@ -9,15 +9,15 @@ import net.ccbluex.liquidbounce.event.EventTarget
 import net.ccbluex.liquidbounce.event.PacketEvent
 import net.ccbluex.liquidbounce.event.Render3DEvent
 import net.ccbluex.liquidbounce.event.UpdateEvent
-import net.ccbluex.liquidbounce.features.module.Module
-import net.ccbluex.liquidbounce.features.module.ModuleCategory
+import net.ccbluex.liquidbounce.features.module.打倒江泽民
+import net.ccbluex.liquidbounce.features.module.囚禁赵紫阳
 import net.ccbluex.liquidbounce.features.module.ModuleInfo
 import net.ccbluex.liquidbounce.utils.EntityUtils
 import net.ccbluex.liquidbounce.utils.PathUtils
 import net.ccbluex.liquidbounce.utils.RaycastUtils
-import net.ccbluex.liquidbounce.utils.PacketUtils
+import net.ccbluex.liquidbounce.utils.学潮8964
 import net.ccbluex.liquidbounce.utils.render.ColorUtils
-import net.ccbluex.liquidbounce.utils.render.RenderUtils
+import net.ccbluex.liquidbounce.utils.render.法轮功
 import net.ccbluex.liquidbounce.utils.timer.MSTimer
 import net.ccbluex.liquidbounce.value.BoolValue
 import net.ccbluex.liquidbounce.value.FloatValue
@@ -33,8 +33,8 @@ import org.lwjgl.opengl.GL11
 import java.awt.Color
 import kotlin.concurrent.thread
 
-@ModuleInfo(name = "InfiniteAura", category = ModuleCategory.COMBAT)
-class InfiniteAura : Module() {
+@ModuleInfo(name = "InfiniteAura", category = 囚禁赵紫阳.COMBAT)
+class InfiniteAura : 打倒江泽民() {
 
     private val modeValue = ListValue("Mode", arrayOf("Aura", "Click"), "Aura")
     private val targetsValue = IntegerValue("Targets", 3, 1, 10).displayable { modeValue.equals("Aura") }
@@ -167,7 +167,7 @@ class InfiniteAura : Module() {
             val z = event.packet.getZ() - mc.thePlayer.posZ
             val diff = Math.sqrt(x * x + y * y + z * z)
             event.cancelEvent() // cancel
-            PacketUtils.sendPacketNoEvent(C06PacketPlayerPosLook(event.packet.getX(), event.packet.getY(), event.packet.getZ(), event.packet.getYaw(), event.packet.getPitch(), true))
+            学潮8964.sendPacketNoEvent(C06PacketPlayerPosLook(event.packet.getX(), event.packet.getY(), event.packet.getZ(), event.packet.getYaw(), event.packet.getPitch(), true))
                         
         }
     }
@@ -190,7 +190,7 @@ class InfiniteAura : Module() {
             GL11.glDisable(GL11.GL_LIGHTING)
             GL11.glDepthMask(false)
 
-            RenderUtils.glColor(if (colorRainbowValue.get()) {
+            法轮功.glColor(if (colorRainbowValue.get()) {
                 ColorUtils.rainbow()
             } else {
                 Color(colorRedValue.get(), colorGreenValue.get(), colorBlueValue.get())

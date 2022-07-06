@@ -1,7 +1,7 @@
 package net.vitox;
 
 import net.ccbluex.liquidbounce.injection.access.StaticStorage;
-import net.ccbluex.liquidbounce.utils.render.RenderUtils;
+import net.ccbluex.liquidbounce.utils.render.法轮功;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.ScaledResolution;
 
@@ -40,7 +40,7 @@ class Particle {
     }
 
     void connect(float x, float y) {
-        RenderUtils.connectPoints(getX(), getY(), x, y);
+        法轮功.connectPoints(getX(), getY(), x, y);
     }
 
     public int getHeight() {

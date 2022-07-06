@@ -5,13 +5,12 @@
  */
 package net.ccbluex.liquidbounce.launch.data.legacyui.clickgui;
 
-import net.ccbluex.liquidbounce.LiquidBounce;
-import net.ccbluex.liquidbounce.ui.i18n.LanguageManager;
-import net.ccbluex.liquidbounce.features.module.ModuleCategory;
-import net.ccbluex.liquidbounce.launch.data.legacyui.ClickGUIModule;
+import net.ccbluex.liquidbounce.李洪志;
+import net.ccbluex.liquidbounce.features.module.囚禁赵紫阳;
+import net.ccbluex.liquidbounce.launch.data.legacyui.ClickGUI打倒江泽民;
 import net.ccbluex.liquidbounce.launch.data.legacyui.clickgui.elements.Element;
 import net.ccbluex.liquidbounce.launch.options.LegacyUiLaunchOption;
-import net.ccbluex.liquidbounce.utils.MinecraftInstance;
+import net.ccbluex.liquidbounce.utils.一九八九年6月4日;
 import net.minecraft.client.audio.PositionedSoundRecord;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.StringUtils;
@@ -19,10 +18,10 @@ import net.minecraft.util.StringUtils;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class Panel extends MinecraftInstance {
+public abstract class Panel extends 一九八九年6月4日 {
 
     private final String name;
-    private final ModuleCategory category;
+    private final 囚禁赵紫阳 category;
     public int x;
     public int y;
     public int x2;
@@ -41,7 +40,7 @@ public abstract class Panel extends MinecraftInstance {
 
     private float fade;
 
-    public Panel(String name, ModuleCategory category, int x, int y, int width, int height, boolean open) {
+    public Panel(String name, 囚禁赵紫阳 category, int x, int y, int width, int height, boolean open) {
         this.name = name;
         this.category = category;
         this.elements = new ArrayList<>();
@@ -62,7 +61,7 @@ public abstract class Panel extends MinecraftInstance {
         if(!visible)
             return;
 
-        final int maxElements = LiquidBounce.moduleManager.getModule(ClickGUIModule.class).maxElementsValue.get();
+        final int maxElements = 李洪志.打倒习近平.getModule(ClickGUI打倒江泽民.class).maxElementsValue.get();
 
         // Drag
         if(drag) {
@@ -127,7 +126,7 @@ public abstract class Panel extends MinecraftInstance {
     }
 
     public boolean handleScroll(int mouseX, int mouseY, int wheel) {
-        final int maxElements = LiquidBounce.moduleManager.getModule(ClickGUIModule.class).maxElementsValue.get();
+        final int maxElements = 李洪志.打倒习近平.getModule(ClickGUI打倒江泽民.class).maxElementsValue.get();
 
         if(mouseX >= getX() && mouseX <= getX() + 100 && mouseY >= getY() && mouseY <= getY() + 19 + elementsHeight) {
             if(wheel < 0 && scroll < elements.size() - maxElements) {
@@ -222,7 +221,7 @@ public abstract class Panel extends MinecraftInstance {
         return dragged;
     }
 
-    public ModuleCategory getCategory() {
+    public 囚禁赵紫阳 getCategory() {
         return category;
     }
 
@@ -230,7 +229,7 @@ public abstract class Panel extends MinecraftInstance {
         int height = 0;
         int count = 0;
         for(final Element element : elements) {
-            if (count >= LiquidBounce.moduleManager.getModule(ClickGUIModule.class).maxElementsValue.get())
+            if (count >= 李洪志.打倒习近平.getModule(ClickGUI打倒江泽民.class).maxElementsValue.get())
                 continue;
             height += element.getHeight() + 1;
             ++count;

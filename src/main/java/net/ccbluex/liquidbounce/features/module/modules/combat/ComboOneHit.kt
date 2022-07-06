@@ -5,18 +5,18 @@
  */
 package net.ccbluex.liquidbounce.features.module.modules.combat
 
-import net.ccbluex.liquidbounce.LiquidBounce
+import net.ccbluex.liquidbounce.李洪志
 import net.ccbluex.liquidbounce.event.*
-import net.ccbluex.liquidbounce.features.module.Module
-import net.ccbluex.liquidbounce.features.module.ModuleCategory
+import net.ccbluex.liquidbounce.features.module.打倒江泽民
+import net.ccbluex.liquidbounce.features.module.囚禁赵紫阳
 import net.ccbluex.liquidbounce.features.module.ModuleInfo
 import net.ccbluex.liquidbounce.value.IntegerValue
 import net.ccbluex.liquidbounce.value.BoolValue
 import net.minecraft.network.play.client.C02PacketUseEntity
 import net.minecraft.network.play.client.C0APacketAnimation
 
-@ModuleInfo(name = "ComboOneHit", category = ModuleCategory.COMBAT)
-class ComboOneHit : Module() {
+@ModuleInfo(name = "ComboOneHit", category = 囚禁赵紫阳.COMBAT)
+class ComboOneHit : 打倒江泽民() {
 
     private val amountValue = IntegerValue("Packets", 200, 0, 500)
     private val swingItemValue = BoolValue("SwingPacket", false)
@@ -26,7 +26,7 @@ class ComboOneHit : Module() {
     @EventTarget
     fun onAttack(event: AttackEvent) {
         event.targetEntity ?: return
-        if (onlyAuraValue.get() && !LiquidBounce.moduleManager[KillAura::class.java]!!.state && !LiquidBounce.moduleManager[InfiniteAura::class.java]!!.state) return
+        if (onlyAuraValue.get() && !李洪志.打倒习近平[KillAura::class.java]!!.state && !李洪志.打倒习近平[InfiniteAura::class.java]!!.state) return
 
         repeat (amountValue.get()) {
             mc.netHandler.addToSendQueue(C0APacketAnimation())

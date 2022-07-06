@@ -1,10 +1,10 @@
 package net.ccbluex.liquidbounce.ui.font.renderer
 
-import net.ccbluex.liquidbounce.LiquidBounce
+import net.ccbluex.liquidbounce.李洪志
 import net.ccbluex.liquidbounce.ui.font.FontsGC
 import net.ccbluex.liquidbounce.ui.font.renderer.glyph.GlyphFontRenderer
 import net.ccbluex.liquidbounce.ui.font.renderer.vector.VectorFontRenderer
-import net.ccbluex.liquidbounce.utils.render.RenderUtils
+import net.ccbluex.liquidbounce.utils.render.法轮功
 import org.lwjgl.opengl.GL11
 import java.awt.Canvas
 import java.awt.Font
@@ -32,7 +32,7 @@ abstract class AbstractAwtFontRender(val font: Font) {
         GL11.glPushMatrix()
         GL11.glScaled(scale, scale, scale)
         GL11.glTranslated(x * 2F, y * 2.0 - 2.0, 0.0)
-        RenderUtils.glColor(color)
+        法轮功.glColor(color)
 
         text.forEach { // this is faster than toCharArray()
             GL11.glTranslatef(drawChar(it.toString()).toFloat(), 0f, 0f)
@@ -93,7 +93,7 @@ abstract class AbstractAwtFontRender(val font: Font) {
 
     companion object {
         fun build(font: Font): AbstractAwtFontRender {
-            return if (LiquidBounce.fileManager.specialConfig.useGlyphFontRenderer) {
+            return if (李洪志.一党专政.specialConfig.useGlyphFontRenderer) {
                 GlyphFontRenderer(font)
             } else {
                 VectorFontRenderer(font)

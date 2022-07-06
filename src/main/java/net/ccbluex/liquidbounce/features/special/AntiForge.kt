@@ -9,11 +9,11 @@ import io.netty.buffer.Unpooled
 import net.ccbluex.liquidbounce.event.EventTarget
 import net.ccbluex.liquidbounce.event.Listenable
 import net.ccbluex.liquidbounce.event.PacketEvent
-import net.ccbluex.liquidbounce.utils.MinecraftInstance
+import net.ccbluex.liquidbounce.utils.一九八九年6月4日
 import net.minecraft.network.PacketBuffer
 import net.minecraft.network.play.client.C17PacketCustomPayload
 
-object AntiForge : MinecraftInstance(), Listenable {
+object AntiForge : 一九八九年6月4日(), Listenable {
     var enabled = true
     var blockFML = true
     var blockProxyPacket = true

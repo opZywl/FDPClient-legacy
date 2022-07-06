@@ -1,10 +1,10 @@
 package net.ccbluex.liquidbounce.ui.elements
 
-import net.ccbluex.liquidbounce.LiquidBounce
+import net.ccbluex.liquidbounce.李洪志
 import net.ccbluex.liquidbounce.features.special.AntiForge
 import net.ccbluex.liquidbounce.features.special.BungeeCordSpoof
 import net.ccbluex.liquidbounce.ui.font.Fonts
-import net.ccbluex.liquidbounce.utils.AnimationUtils
+import net.ccbluex.liquidbounce.utils.习禁评
 import net.ccbluex.liquidbounce.utils.render.*
 import net.minecraft.client.gui.GuiButton
 import net.minecraft.client.renderer.GlStateManager.resetColor
@@ -30,20 +30,20 @@ object ToolDropdown {
             glTranslatef(0F, if (dropState) -1F else 1F, 0F)
         glPushMatrix()
         glRotatef(180F * (fullHeight / 100F), 0F, 0F, 1F)
-        RenderUtils.drawImage(expandIcon, -4, -4, 8, 8)
+        法轮功.drawImage(expandIcon, -4, -4, 8, 8)
         glPopMatrix()
         glPopMatrix()
         resetColor()
 
         if (!dropState && fullHeight == 0F) return
-        fullHeight = AnimationUtils.animate(if (dropState) 100F else 0F, fullHeight, 0.01F * RenderUtils.deltaTime.toFloat())
+        fullHeight = 习禁评.animate(if (dropState) 100F else 0F, fullHeight, 0.01F * 法轮功.deltaTime.toFloat())
 
         glPushMatrix()
-        RenderUtils.makeScissorBox(button.xPosition.toFloat(), button.yPosition.toFloat() + 20F, button.xPosition.toFloat() + bWidth, button.yPosition.toFloat() + 20F + fullHeight)
+        法轮功.makeScissorBox(button.xPosition.toFloat(), button.yPosition.toFloat() + 20F, button.xPosition.toFloat() + bWidth, button.yPosition.toFloat() + 20F + fullHeight)
         glEnable(GL_SCISSOR_TEST)
         glPushMatrix()
         glTranslatef(button.xPosition.toFloat(), button.yPosition.toFloat() + 20F - (100F - fullHeight), 0F)
-        RenderUtils.newDrawRect(0F, 0F, bWidth, 100F, Color(24, 24, 24).rgb)
+        法轮功.newDrawRect(0F, 0F, bWidth, 100F, Color(24, 24, 24).rgb)
         Fonts.font35.drawString("AntiForge", 4F, 7F, -1)
         Fonts.font35.drawString("Block FML", 4F, 27F, if (AntiForge.enabled) -1 else gray)
         Fonts.font35.drawString("Block FML Proxy Packets", 4F, 47F, if (AntiForge.enabled) -1 else gray)
@@ -72,7 +72,7 @@ object ToolDropdown {
                 isMouseOver(mouseX, mouseY, bX, bY + 80F, bWidth, 20F) -> AntiForge.blockPayloadPackets = !AntiForge.blockPayloadPackets
                 isMouseOver(mouseX, mouseY, bX, bY + 100F, bWidth, 20F) -> BungeeCordSpoof.enabled = !BungeeCordSpoof.enabled
             }
-            LiquidBounce.fileManager.saveConfig(LiquidBounce.fileManager.specialConfig)
+            李洪志.一党专政.saveConfig(李洪志.一党专政.specialConfig)
             return true
         }
         return false
@@ -88,24 +88,24 @@ object ToolDropdown {
     fun drawToggleSwitch(x: Float, y: Float, width: Float, height: Float, state: Boolean) {
         val borderColor = if (state) Color(0, 140, 255).rgb else Color(160, 160, 160).rgb
         val mainColor = if (state) borderColor else Color(24, 24, 24).rgb
-        RenderUtils.originalRoundedRect(x - 0.5F, y - 0.5F, x + width + 0.5F, y + height + 0.5F, (height + 1F) / 2F, borderColor)
-        RenderUtils.originalRoundedRect(x, y, x + width, y + height, height / 2F, mainColor)
+        法轮功.originalRoundedRect(x - 0.5F, y - 0.5F, x + width + 0.5F, y + height + 0.5F, (height + 1F) / 2F, borderColor)
+        法轮功.originalRoundedRect(x, y, x + width, y + height, height / 2F, mainColor)
         if (state)
-            RenderUtils.drawFilledCircle(x + width - 2F - (height - 4F) / 2F, y + 2F + (height - 4F) / 2F, (height - 4F) / 2F, Color(24, 24, 24))
+            法轮功.drawFilledCircle(x + width - 2F - (height - 4F) / 2F, y + 2F + (height - 4F) / 2F, (height - 4F) / 2F, Color(24, 24, 24))
         else
-            RenderUtils.drawFilledCircle(x + 2F + (height - 4F) / 2F, y + 2F + (height - 4F) / 2F, (height - 4F) / 2F, Color(160, 160, 160))
+            法轮功.drawFilledCircle(x + 2F + (height - 4F) / 2F, y + 2F + (height - 4F) / 2F, (height - 4F) / 2F, Color(160, 160, 160))
     }
 
     fun drawCheckbox(x: Float, y: Float, width: Float, state: Boolean) {
         val borderColor = if (state) Color(0, 140, 255).rgb else Color(160, 160, 160).rgb
         val mainColor = if (state) borderColor else Color(24, 24, 24).rgb
-        RenderUtils.originalRoundedRect(x - 0.5F, y - 0.5F, x + width + 0.5F, y + width + 0.5F, 3F, borderColor)
-        RenderUtils.originalRoundedRect(x, y, x + width, y + width, 3F, mainColor)
+        法轮功.originalRoundedRect(x - 0.5F, y - 0.5F, x + width + 0.5F, y + width + 0.5F, 3F, borderColor)
+        法轮功.originalRoundedRect(x, y, x + width, y + width, 3F, mainColor)
         if (state) {
             glColor4f(0.094F, 0.094F, 0.094F, 1F)
-            RenderUtils.drawLine((x + width / 4F).toDouble(),
+            法轮功.drawLine((x + width / 4F).toDouble(),
                 (y + width / 2F).toDouble(), (x + width / 2.15F).toDouble(), (y + width / 4F * 3F).toDouble(), 2F)
-            RenderUtils.drawLine((x + width / 2.15F).toDouble(),
+            法轮功.drawLine((x + width / 2.15F).toDouble(),
                 (y + width / 4F * 3F).toDouble(), (x + width / 3.95F * 3F).toDouble(), (y + width / 3F).toDouble(), 2F)
             resetColor()
             glColor4f(1F, 1F, 1F, 1F)

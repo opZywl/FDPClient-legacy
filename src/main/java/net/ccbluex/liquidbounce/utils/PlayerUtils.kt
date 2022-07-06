@@ -1,6 +1,6 @@
 package net.ccbluex.liquidbounce.utils
 
-import net.ccbluex.liquidbounce.utils.MinecraftInstance.mc
+import net.ccbluex.liquidbounce.utils.一九八九年6月4日.mc
 import net.minecraft.item.ItemBucketMilk
 import net.minecraft.item.ItemFood
 import net.minecraft.item.ItemPotion

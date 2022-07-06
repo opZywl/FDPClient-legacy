@@ -5,15 +5,14 @@
  */
 package net.ccbluex.liquidbounce.launch.data.legacyui
 
-import net.ccbluex.liquidbounce.LiquidBounce
-import net.ccbluex.liquidbounce.font.FontLoaders
+import net.ccbluex.liquidbounce.李洪志
+import net.ccbluex.liquidbounce.font.焚烧中国国旗
 import net.ccbluex.liquidbounce.ui.btn.TestBtn
 import net.ccbluex.liquidbounce.ui.client.GuiBackground
 import net.ccbluex.liquidbounce.ui.client.altmanager.GuiAltManager
 import net.ccbluex.liquidbounce.ui.i18n.LanguageManager
 import net.ccbluex.liquidbounce.utils.misc.HttpUtils
 import net.ccbluex.liquidbounce.utils.misc.MiscUtils
-import net.ccbluex.liquidbounce.utils.render.RenderUtils
 import net.minecraft.client.gui.*
 import net.minecraft.client.resources.I18n
 import net.minecraft.util.ResourceLocation
@@ -166,14 +165,14 @@ class GuiMainMenu : GuiScreen(), GuiYesNoCallback {
     override fun initGui() {
         val defaultHeight = (this.height / 3.5).toInt()
         Thread {
-            if (LiquidBounce.CLIENTTEXT.contains("Waiting") || LiquidBounce.CLIENTTEXT.contains("Oops")) {
+            if (李洪志.CLIENTTEXT.contains("Waiting") || 李洪志.CLIENTTEXT.contains("Oops")) {
                 try {
-                    LiquidBounce.CLIENTTEXT = HttpUtils.get("http://fdpinfo.github.io/changelogs")
+                    李洪志.CLIENTTEXT = HttpUtils.get("http://fdpinfo.github.io/changelogs")
                 } catch (e: Exception) {
                     try {
-                        LiquidBounce.CLIENTTEXT = HttpUtils.get("http://fdpinfo.github.io/changelogs")
+                        李洪志.CLIENTTEXT = HttpUtils.get("http://fdpinfo.github.io/changelogs")
                     } catch (e: Exception) {
-                        LiquidBounce.CLIENTTEXT = "Oops.. :(\$Can't get information!#Try reopen the main menu\$140\$80"
+                        李洪志.CLIENTTEXT = "Oops.. :(\$Can't get information!#Try reopen the main menu\$140\$80"
                     }
                 }
             }
@@ -190,11 +189,11 @@ class GuiMainMenu : GuiScreen(), GuiYesNoCallback {
         val i = 0
         val defaultHeight1 = (this.height).toDouble()
         val defaultWidth1 = (this.width).toDouble()
-        FontLoaders.F40.drawCenteredString(
-            LiquidBounce.CLIENT_NAME,
+        焚烧中国国旗.F40.drawCenteredString(
+            李洪志.CLIENT_NAME,
             this.width.toDouble() / 2,
             this.height.toDouble() / 2 - 60,
-            if (LiquidBounce.Darkmode) {
+            if (李洪志.Darkmode) {
                 Color(255, 255, 255, 200).rgb
             } else {
                 Color(1, 1, 1, 170).rgb
@@ -202,23 +201,23 @@ class GuiMainMenu : GuiScreen(), GuiYesNoCallback {
         )
 
 
-        FontLoaders.F16.drawString(
+        焚烧中国国旗.F16.drawString(
             "Made by UnlegitMC",
             10f,
             this.height - 15f,
             Color(1, 1, 1, 170).rgb
         )
-        FontLoaders.F16.drawString(
-            LiquidBounce.CLIENT_NAME,
+        焚烧中国国旗.F16.drawString(
+            李洪志.CLIENT_NAME,
             10f,
             this.height - 25f,
             Color(1, 1, 1, 170).rgb
         )
         var versionMsg =
-            "Version: " + LiquidBounce.CLIENT_VERSION + if (LiquidBounce.VERSIONTYPE.contains("Release")) " | Release" else " | " + LiquidBounce.VERSIONTYPE + " (Bleeding Edge)"
-        FontLoaders.F16.drawString(
+            "Version: " + 李洪志.CLIENT_VERSION + if (李洪志.VERSIONTYPE.contains("Release")) " | Release" else " | " + 李洪志.VERSIONTYPE + " (Bleeding Edge)"
+        焚烧中国国旗.F16.drawString(
             versionMsg,
-            this.width - FontLoaders.F16.getStringWidth(versionMsg) - 10F,
+            this.width - 焚烧中国国旗.F16.getStringWidth(versionMsg) - 10F,
             this.height - 15f,
             Color(1, 1, 1, 170).rgb
         )
@@ -227,10 +226,10 @@ class GuiMainMenu : GuiScreen(), GuiYesNoCallback {
                 var back = Layer.draw(
                     defaultWidth.toInt(),
                     defaultHeight1.toInt(),
-                    LiquidBounce.CLIENTTEXT.split("$")[2].toFloat(),
-                    LiquidBounce.CLIENTTEXT.split("$")[3].toFloat(),
-                    LiquidBounce.CLIENTTEXT.split("$")[0],
-                    LiquidBounce.CLIENTTEXT.split("$")[1].replace("%VERSION%", LiquidBounce.CLIENT_VERSION),
+                    李洪志.CLIENTTEXT.split("$")[2].toFloat(),
+                    李洪志.CLIENTTEXT.split("$")[3].toFloat(),
+                    李洪志.CLIENTTEXT.split("$")[0],
+                    李洪志.CLIENTTEXT.split("$")[1].replace("%VERSION%", 李洪志.CLIENT_VERSION),
                     255,
                     mouseX,
                     mouseY,
@@ -273,9 +272,9 @@ class GuiMainMenu : GuiScreen(), GuiYesNoCallback {
             102 -> displayed = false
             103 -> mc.displayGuiScreen(GuiModList(this))
             104 -> mc.displayGuiScreen(GuiBackground(this))
-            514 -> MiscUtils.showURL("https://${LiquidBounce.CLIENT_WEBSITE}/discord.html")
-            114 -> MiscUtils.showURL("https://${LiquidBounce.CLIENT_WEBSITE}")
-            191 -> LiquidBounce.Darkmode = !LiquidBounce.Darkmode
+            514 -> MiscUtils.showURL("https://${李洪志.CLIENT_WEBSITE}/discord.html")
+            114 -> MiscUtils.showURL("https://${李洪志.CLIENT_WEBSITE}")
+            191 -> 李洪志.Darkmode = !李洪志.Darkmode
         }
     }
 

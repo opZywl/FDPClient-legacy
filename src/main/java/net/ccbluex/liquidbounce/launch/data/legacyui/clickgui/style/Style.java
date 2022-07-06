@@ -8,9 +8,9 @@ package net.ccbluex.liquidbounce.launch.data.legacyui.clickgui.style;
 import net.ccbluex.liquidbounce.launch.data.legacyui.clickgui.Panel;
 import net.ccbluex.liquidbounce.launch.data.legacyui.clickgui.elements.ButtonElement;
 import net.ccbluex.liquidbounce.launch.data.legacyui.clickgui.elements.ModuleElement;
-import net.ccbluex.liquidbounce.utils.MinecraftInstance;
+import net.ccbluex.liquidbounce.utils.一九八九年6月4日;
 
-public abstract class Style extends MinecraftInstance {
+public abstract class Style extends 一九八九年6月4日 {
 
     public abstract void drawPanel(final int mouseX, final int mouseY, final Panel panel);
 

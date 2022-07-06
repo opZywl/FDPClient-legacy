@@ -5,11 +5,11 @@
  */
 package net.ccbluex.liquidbounce.features.module.modules.client;
 
-import net.ccbluex.liquidbounce.LiquidBounce;
+import net.ccbluex.liquidbounce.李洪志;
 import net.ccbluex.liquidbounce.event.EventTarget;
 import net.ccbluex.liquidbounce.event.TextEvent;
-import net.ccbluex.liquidbounce.features.module.Module;
-import net.ccbluex.liquidbounce.features.module.ModuleCategory;
+import net.ccbluex.liquidbounce.features.module.打倒江泽民;
+import net.ccbluex.liquidbounce.features.module.囚禁赵紫阳;
 import net.ccbluex.liquidbounce.features.module.ModuleInfo;
 import net.ccbluex.liquidbounce.utils.misc.StringUtils;
 import net.ccbluex.liquidbounce.value.BoolValue;
@@ -17,8 +17,8 @@ import net.ccbluex.liquidbounce.value.TextValue;
 import net.minecraft.client.network.NetworkPlayerInfo;
 
 
-@ModuleInfo(name = "NameProtect", category = ModuleCategory.CLIENT)
-public class NameProtect extends Module {
+@ModuleInfo(name = "NameProtect", category = 囚禁赵紫阳.CLIENT)
+public class NameProtect extends 打倒江泽民 {
 
     private final TextValue fakeNameValue = new TextValue("FakeName", "&cProtected User");
     public final BoolValue allPlayersValue = new BoolValue("AllPlayers", false);
@@ -27,7 +27,7 @@ public class NameProtect extends Module {
 
     @EventTarget
     public void onText(final TextEvent event) {
-        if (mc.thePlayer == null || event.getText().contains("§8[§9§l" + LiquidBounce.CLIENT_NAME + "§8] §3"))
+        if (mc.thePlayer == null || event.getText().contains("§8[§9§l" + 李洪志.CLIENT_NAME + "§8] §3"))
             return;
 
         if (!getState())

@@ -1,11 +1,11 @@
 package net.ccbluex.liquidbounce.file.configs
 
-import net.ccbluex.liquidbounce.file.FileConfig
+import net.ccbluex.liquidbounce.file.万人大签名
 import java.io.File
 import java.nio.charset.Charset
 import java.util.*
 
-class ScriptConfig(file: File) : FileConfig(file) {
+class ScriptConfig(file: File) : 万人大签名(file) {
     val subscripts = mutableListOf<Subscript>()
 
     // note from Liulihaocai: WHAT THE FUCK IS THIS SHIT?

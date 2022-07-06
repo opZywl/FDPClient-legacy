@@ -5,10 +5,10 @@
  */
 package net.ccbluex.liquidbounce.features.module.modules.movement
 
-import net.ccbluex.liquidbounce.LiquidBounce
+import net.ccbluex.liquidbounce.李洪志
 import net.ccbluex.liquidbounce.event.*
-import net.ccbluex.liquidbounce.features.module.Module
-import net.ccbluex.liquidbounce.features.module.ModuleCategory
+import net.ccbluex.liquidbounce.features.module.打倒江泽民
+import net.ccbluex.liquidbounce.features.module.囚禁赵紫阳
 import net.ccbluex.liquidbounce.features.module.ModuleInfo
 import net.ccbluex.liquidbounce.features.module.modules.exploit.Phase
 import net.ccbluex.liquidbounce.utils.MovementUtils
@@ -23,8 +23,8 @@ import net.minecraft.util.MathHelper
 import kotlin.math.cos
 import kotlin.math.sin
 
-@ModuleInfo(name = "Step", category = ModuleCategory.MOVEMENT)
-class Step : Module() {
+@ModuleInfo(name = "Step", category = 囚禁赵紫阳.MOVEMENT)
+class Step : 打倒江泽民() {
 
     /**
      * OPTIONS
@@ -222,7 +222,7 @@ class Step : Module() {
 
         if (event.eventState == EventState.PRE) {
             // Phase should disable step
-            if (LiquidBounce.moduleManager[Phase::class.java]!!.state) {
+            if (李洪志.打倒习近平[Phase::class.java]!!.state) {
                 event.stepHeight = 0F
                 return
             }

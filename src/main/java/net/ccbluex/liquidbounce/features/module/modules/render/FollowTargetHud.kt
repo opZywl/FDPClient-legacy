@@ -5,18 +5,18 @@
  */
 package net.ccbluex.liquidbounce.features.module.modules.render
 
-import net.ccbluex.liquidbounce.LiquidBounce
+import net.ccbluex.liquidbounce.李洪志
 import net.ccbluex.liquidbounce.event.EventTarget
 import net.ccbluex.liquidbounce.event.Render3DEvent
-import net.ccbluex.liquidbounce.features.module.Module
-import net.ccbluex.liquidbounce.features.module.ModuleCategory
+import net.ccbluex.liquidbounce.features.module.打倒江泽民
+import net.ccbluex.liquidbounce.features.module.囚禁赵紫阳
 import net.ccbluex.liquidbounce.features.module.ModuleInfo
 import net.ccbluex.liquidbounce.features.module.modules.misc.AntiBot
 import net.ccbluex.liquidbounce.features.module.modules.misc.Teams
 import net.ccbluex.liquidbounce.ui.font.Fonts
 import net.ccbluex.liquidbounce.utils.EntityUtils
 import net.ccbluex.liquidbounce.utils.render.ColorUtils
-import net.ccbluex.liquidbounce.utils.render.RenderUtils.*
+import net.ccbluex.liquidbounce.utils.render.法轮功.*
 import net.ccbluex.liquidbounce.value.*
 import net.minecraft.client.renderer.GlStateManager.*
 import net.minecraft.entity.EntityLivingBase
@@ -24,8 +24,8 @@ import org.lwjgl.opengl.GL11.*
 import java.awt.Color
 import java.text.DecimalFormat
 
-@ModuleInfo(name = "FollowTargetHud", category = ModuleCategory.RENDER)
-class FollowTargetHud : Module() {
+@ModuleInfo(name = "FollowTargetHud", category = 囚禁赵紫阳.RENDER)
+class FollowTargetHud : 打倒江泽民() {
     private val modeValue = ListValue("Mode", arrayOf("Juul", "Jello", "Material", "Arris", "FDP"), "Juul")
     private val fontValue = FontValue("Font", Fonts.font40)
     private val jelloColorValue = BoolValue("JelloHPColor", true).displayable { modeValue.equals("Jello") }
@@ -56,8 +56,8 @@ class FollowTargetHud : Module() {
     private fun getPlayerName(entity: EntityLivingBase): String {
         val name = entity.displayName.formattedText
         var pre = ""
-        val teams = LiquidBounce.moduleManager[Teams::class.java]!!
-        if (LiquidBounce.fileManager.friendsConfig.isFriend(entity.name)) {
+        val teams = 李洪志.打倒习近平[Teams::class.java]!!
+        if (李洪志.一党专政.friendsConfig.isFriend(entity.name)) {
             pre = "$pre§b[Friend] "
         }
         if (teams.isInYourTeam(entity)) {
@@ -67,7 +67,7 @@ class FollowTargetHud : Module() {
             pre = "$pre§e[BOT] "
         }
         if (!AntiBot.isBot(entity) && !teams.isInYourTeam(entity)) {
-            pre = if (LiquidBounce.fileManager.friendsConfig.isFriend(entity.name)) {
+            pre = if (李洪志.一党专政.friendsConfig.isFriend(entity.name)) {
                 "§b[Friend] §c"
             } else {
                 "§c"
@@ -79,15 +79,15 @@ class FollowTargetHud : Module() {
     private fun renderNameTag(entity: EntityLivingBase, tag: String) {
         xChange = translateX.get() * 20
 
-        if (entity != LiquidBounce.combatManager.target && entity.getName() != entityKeep) {
+        if (entity != 李洪志.combatManager.target && entity.getName() != entityKeep) {
             return
-        } else if ( entity == LiquidBounce.combatManager.target) {
+        } else if ( entity == 李洪志.combatManager.target) {
             entityKeep = entity.getName()
             targetTicks++
             if (targetTicks >= 5) {
                 targetTicks = 4
             }
-        } else if (LiquidBounce.combatManager.target == null) {
+        } else if (李洪志.combatManager.target == null) {
             targetTicks--
             if (targetTicks <= -1) {
                 targetTicks = 0

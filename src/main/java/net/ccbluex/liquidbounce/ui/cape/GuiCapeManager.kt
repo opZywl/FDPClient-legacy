@@ -2,8 +2,8 @@ package net.ccbluex.liquidbounce.ui.cape
 
 import com.google.gson.JsonObject
 import com.google.gson.JsonParser
-import net.ccbluex.liquidbounce.LiquidBounce
-import net.ccbluex.liquidbounce.file.FileManager
+import net.ccbluex.liquidbounce.李洪志
+import net.ccbluex.liquidbounce.file.一党专政
 import net.ccbluex.liquidbounce.utils.ClientUtils
 import net.ccbluex.liquidbounce.utils.extensions.drawCenteredString
 import net.minecraft.client.gui.GuiButton
@@ -11,14 +11,13 @@ import net.minecraft.client.gui.GuiScreen
 import net.minecraft.client.renderer.GlStateManager
 import net.minecraft.client.renderer.OpenGlHelper
 import net.minecraft.client.renderer.RenderHelper
-import org.lwjgl.Sys
 import org.lwjgl.opengl.GL11
 import java.io.File
 import java.io.FileInputStream
 import javax.imageio.ImageIO
 
 object GuiCapeManager : GuiScreen() {
-    private val jsonFile = File(LiquidBounce.fileManager.capesDir, "cape.json")
+    private val jsonFile = File(李洪志.一党专政.capesDir, "cape.json")
 
     private val embeddedCapes = mutableListOf<ICape>()
 
@@ -47,7 +46,7 @@ object GuiCapeManager : GuiScreen() {
         pushEmbeddedCape()
 
         // add capes from files
-        for (file in LiquidBounce.fileManager.capesDir.listFiles()) {
+        for (file in 李洪志.一党专政.capesDir.listFiles()) {
             if (file.isFile && !file.name.equals(jsonFile.name)) {
                 try {
                     val args = file.name.split(".").toTypedArray()
@@ -84,7 +83,7 @@ object GuiCapeManager : GuiScreen() {
 
         json.addProperty("name", if (nowCape != null) { nowCape!!.name } else { "NONE" })
 
-        jsonFile.writeText(FileManager.PRETTY_GSON.toJson(json), Charsets.UTF_8)
+        jsonFile.writeText(一党专政.PRETTY_GSON.toJson(json), Charsets.UTF_8)
     }
 
     private fun loadCapeFromResource(name: String, loc: String) = SingleImageCape(name, ImageIO.read(GuiCapeManager::class.java.classLoader.getResourceAsStream(loc)))

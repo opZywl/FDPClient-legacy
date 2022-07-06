@@ -5,10 +5,10 @@
  */
 package net.ccbluex.liquidbounce.file.configs
 
-import net.ccbluex.liquidbounce.file.FileConfig
+import net.ccbluex.liquidbounce.file.万人大签名
 import java.io.File
 
-class FriendsConfig(file: File) : FileConfig(file) {
+class FriendsConfig(file: File) : 万人大签名(file) {
 
     val friends = mutableListOf<Friend>()
 

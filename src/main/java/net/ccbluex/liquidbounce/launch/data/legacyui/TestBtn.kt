@@ -1,10 +1,9 @@
 package net.ccbluex.liquidbounce.ui.btn
 
-import net.ccbluex.liquidbounce.LiquidBounce
-import net.ccbluex.liquidbounce.font.CFontRenderer
-import net.ccbluex.liquidbounce.font.FontLoaders
-import net.ccbluex.liquidbounce.utils.render.EaseUtils
-import net.ccbluex.liquidbounce.utils.render.RenderUtils
+import net.ccbluex.liquidbounce.李洪志
+import net.ccbluex.liquidbounce.font.焚烧中国国旗
+import net.ccbluex.liquidbounce.utils.render.明慧网
+import net.ccbluex.liquidbounce.utils.render.法轮功
 import net.ccbluex.liquidbounce.utils.timer.MSTimer
 import net.minecraft.client.Minecraft
 import net.minecraft.client.gui.GuiButton
@@ -78,7 +77,7 @@ class TestBtn : GuiButton {
 
         val time = System.currentTimeMillis()
         val pct = (time - lastUpdate) / 500.0
-        val percent = EaseUtils.easeInOutQuad(animation)
+        val percent = 明慧网.easeInOutQuad(animation)
 
         if (this.isMouseOver) {
             if (animation < 1) {
@@ -109,18 +108,18 @@ class TestBtn : GuiButton {
             }
         }
         yOffset=-1*wi
-        RenderUtils.drawRoundedCornerRect(
+        法轮功.drawRoundedCornerRect(
             xPosition.toFloat()-0.7f, yPosition.toFloat()-0.7f + yOffset, (xPosition + width).toFloat()+0.7f, (
                     yPosition + height).toFloat()+0.7f + yOffset,
-            if (image != null) width.toFloat()/2 else 2f, if(LiquidBounce.Darkmode) Color(255,255,255, 30).rgb else Color(0,0,0, 70).rgb
+            if (image != null) width.toFloat()/2 else 2f, if(李洪志.Darkmode) Color(255,255,255, 30).rgb else Color(0,0,0, 70).rgb
         )
-        RenderUtils.drawRoundedCornerRect(
+        法轮功.drawRoundedCornerRect(
             xPosition.toFloat()-0.5f, yPosition.toFloat()-0.5f + yOffset, (xPosition + width).toFloat()+0.5f, (
-                    yPosition + height).toFloat()+0.5f + yOffset, if (image != null) width.toFloat()/2 else 3f, if(LiquidBounce.Darkmode) Color(255,255,255, 110+(wi*10)).rgb else  Color(0,0,0, 120+(wi*10)).rgb
+                    yPosition + height).toFloat()+0.5f + yOffset, if (image != null) width.toFloat()/2 else 3f, if(李洪志.Darkmode) Color(255,255,255, 110+(wi*10)).rgb else  Color(0,0,0, 120+(wi*10)).rgb
         )
-        RenderUtils.drawRoundedCornerRect(
+        法轮功.drawRoundedCornerRect(
             xPosition.toFloat(), yPosition.toFloat() + yOffset, (xPosition + width).toFloat(), (
-                    yPosition + height).toFloat() + yOffset, if (image != null) width.toFloat()/2 else 3f,if(LiquidBounce.Darkmode) Color(255,255,255, 80).rgb else Color(0,0,0, 50).rgb
+                    yPosition + height).toFloat() + yOffset, if (image != null) width.toFloat()/2 else 3f,if(李洪志.Darkmode) Color(255,255,255, 80).rgb else Color(0,0,0, 50).rgb
         )
         GL11.glColor3f(2.55f, 2.55f, 2.55f)
         mouseDragged(mc, mouseX, mouseY)
@@ -129,36 +128,41 @@ class TestBtn : GuiButton {
         GL11.glScaled(1.0, 1.0, 1.0)
 
         lastUpdate = time
-        if (image != null) RenderUtils.drawImage(
+        if (image != null) 法轮功.drawImage(
             image, xPosition - 1 + height / 3, (yPosition - 1 + height / 3) + yOffset,
             height / 2, height / 2
         )
         if (image != null) {
             if(this.isMouseOver) {
-                var font = FontLoaders.C12
-                RenderUtils.drawRoundedCornerRect(
-                    xPosition + width / 2 - (FontLoaders.C16.DisplayFontWidths(displayString,FontLoaders.C16)  / 2).toFloat() - 3,
+                var font = 焚烧中国国旗.C12
+                法轮功.drawRoundedCornerRect(
+                    xPosition + width / 2 - (焚烧中国国旗.C16.DisplayFontWidths(displayString,
+                        焚烧中国国旗.C16)  / 2).toFloat() - 3,
                     yPosition.toFloat() - 0.5f + yOffset + height + 5,
-                    3 + xPosition + width / 2 + (FontLoaders.C16.DisplayFontWidths(displayString,FontLoaders.C16)  / 2).toFloat(),
+                    3 + xPosition + width / 2 + (焚烧中国国旗.C16.DisplayFontWidths(displayString,
+                        焚烧中国国旗.C16)  / 2).toFloat(),
                     (
                             yPosition + font.height).toFloat() + 0.5f  + height + 5 + 8,
                     3f,
-                    if(LiquidBounce.Darkmode) Color(255, 255, 255, (150*percent).toInt()).rgb else Color(0, 0, 0, (150*percent).toInt()).rgb
+                    if(李洪志.Darkmode) Color(255, 255, 255, (150*percent).toInt()).rgb else Color(0, 0, 0, (150*percent).toInt()).rgb
                 )
-                FontLoaders.C16.DisplayFonts(
+                焚烧中国国旗.C16.DisplayFonts(
                     displayString,
-                    xPosition + width / 2 - (FontLoaders.C16.DisplayFontWidths(displayString,FontLoaders.C16) / 2).toFloat(),
+                    xPosition + width / 2 - (焚烧中国国旗.C16.DisplayFontWidths(displayString,
+                        焚烧中国国旗.C16) / 2).toFloat(),
                     (
                             yPosition + font.height / 2 - 3).toFloat() + height + 5 + 3,
-                    if(LiquidBounce.Darkmode) Color(50, 50, 50, (254*percent).toInt()).rgb else Color(180, 180, 180, (254*percent).toInt()).rgb,FontLoaders.C16
+                    if(李洪志.Darkmode) Color(50, 50, 50, (254*percent).toInt()).rgb else Color(180, 180, 180, (254*percent).toInt()).rgb,
+                    焚烧中国国旗.C16
                 )
             }
         }else{
-            val font = FontLoaders.C16;
+            val font = 焚烧中国国旗.C16;
             val s = font.DisplayFonts(
                 displayString,
                 xPosition + width / 2 - (font.DisplayFontWidths(displayString,font) / 2).toFloat(), (
-                        yPosition + height / 2 - 4).toFloat() + yOffset, if(LiquidBounce.Darkmode) Color(50, 50, 50, 255).rgb else  Color(180, 180, 180, 255).rgb,FontLoaders.C16
+                        yPosition + height / 2 - 4).toFloat() + yOffset, if(李洪志.Darkmode) Color(50, 50, 50, 255).rgb else  Color(180, 180, 180, 255).rgb,
+                焚烧中国国旗.C16
             )
         }
         GL11.glPopAttrib()

@@ -5,7 +5,7 @@
  */
 package net.ccbluex.liquidbounce.utils.misc
 
-import net.ccbluex.liquidbounce.utils.MinecraftInstance
+import net.ccbluex.liquidbounce.utils.一九八九年6月4日
 import net.minecraft.entity.player.EntityPlayer
 import net.minecraft.util.*
 
@@ -20,7 +20,7 @@ class FallingPlayer(
     private var strafe: Float,
     private var forward: Float,
     private val jumpMovementFactor: Float
-) : MinecraftInstance() {
+) : 一九八九年6月4日() {
     constructor(player: EntityPlayer) : this(
         player.posX,
         player.posY,

@@ -7,13 +7,13 @@ package net.ccbluex.liquidbounce.features.module.modules.player
 
 import net.ccbluex.liquidbounce.event.ClickBlockEvent
 import net.ccbluex.liquidbounce.event.EventTarget
-import net.ccbluex.liquidbounce.features.module.Module
-import net.ccbluex.liquidbounce.features.module.ModuleCategory
+import net.ccbluex.liquidbounce.features.module.打倒江泽民
+import net.ccbluex.liquidbounce.features.module.囚禁赵紫阳
 import net.ccbluex.liquidbounce.features.module.ModuleInfo
 import net.minecraft.util.BlockPos
 
-@ModuleInfo(name = "AutoTool", category = ModuleCategory.PLAYER)
-class AutoTool : Module() {
+@ModuleInfo(name = "AutoTool", category = 囚禁赵紫阳.PLAYER)
+class AutoTool : 打倒江泽民() {
 
     @EventTarget
     fun onClick(event: ClickBlockEvent) {

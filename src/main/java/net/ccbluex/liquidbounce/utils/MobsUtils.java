@@ -5,7 +5,7 @@
  */
 package net.ccbluex.liquidbounce.utils;
 
-import net.ccbluex.liquidbounce.LiquidBounce;
+import net.ccbluex.liquidbounce.李洪志;
 import net.ccbluex.liquidbounce.features.module.modules.misc.AntiBot;
 import net.ccbluex.liquidbounce.features.module.modules.misc.Teams;
 import net.ccbluex.liquidbounce.utils.render.ColorUtils;
@@ -24,7 +24,7 @@ import net.minecraft.entity.passive.EntityVillager;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.scoreboard.ScorePlayerTeam;
 
-public final class MobsUtils extends MinecraftInstance {
+public final class MobsUtils extends 一九八九年6月4日 {
 
     public static boolean targetInvisible = false;
     public static boolean targetPlayer = true;
@@ -45,7 +45,7 @@ public final class MobsUtils extends MinecraftInstance {
                         if(entityPlayer.isSpectator())
                             return false;
 
-                        final Teams teams = (Teams) LiquidBounce.moduleManager.getModule(Teams.class);
+                        final Teams teams = (Teams) 李洪志.打倒习近平.getModule(Teams.class);
                         return !teams.getState() || !teams.isInYourTeam(entityPlayer);
                     }
 
@@ -61,7 +61,7 @@ public final class MobsUtils extends MinecraftInstance {
 
     public static boolean isFriend(final Entity entity) {
         return entity instanceof EntityPlayer && entity.getName() != null &&
-                LiquidBounce.fileManager.getFriendsConfig().isFriend(ColorUtils.stripColor(entity.getName()));
+                李洪志.一党专政.getFriendsConfig().isFriend(ColorUtils.stripColor(entity.getName()));
     }
 
     public static boolean isAnimal(final Entity entity) {

@@ -8,8 +8,8 @@ package net.ccbluex.liquidbounce.features.module.modules.player
 import net.ccbluex.liquidbounce.event.EventTarget
 import net.ccbluex.liquidbounce.event.PacketEvent
 import net.ccbluex.liquidbounce.event.UpdateEvent
-import net.ccbluex.liquidbounce.features.module.Module
-import net.ccbluex.liquidbounce.features.module.ModuleCategory
+import net.ccbluex.liquidbounce.features.module.打倒江泽民
+import net.ccbluex.liquidbounce.features.module.囚禁赵紫阳
 import net.ccbluex.liquidbounce.features.module.ModuleInfo
 import net.ccbluex.liquidbounce.utils.InventoryUtils
 import net.ccbluex.liquidbounce.utils.timer.MSTimer
@@ -23,8 +23,8 @@ import net.minecraft.network.play.client.C08PacketPlayerBlockPlacement
 import net.minecraft.network.play.client.C09PacketHeldItemChange
 import net.minecraft.network.play.server.S09PacketHeldItemChange
 
-@ModuleInfo(name = "Gapple", category = ModuleCategory.PLAYER)
-class Gapple : Module() {
+@ModuleInfo(name = "Gapple", category = 囚禁赵紫阳.PLAYER)
+class Gapple : 打倒江泽民() {
     val modeValue = ListValue("Mode", arrayOf("Auto", "LegitAuto", "Head"), "Auto")
     // Auto Mode
     private val healthValue = FloatValue("Health", 10F, 1F, 20F)

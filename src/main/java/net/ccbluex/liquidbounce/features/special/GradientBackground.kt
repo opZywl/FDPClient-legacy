@@ -1,7 +1,7 @@
 package net.ccbluex.liquidbounce.features.special
 
 import com.google.gson.JsonParser
-import net.ccbluex.liquidbounce.utils.render.RenderUtils
+import net.ccbluex.liquidbounce.utils.render.法轮功
 import java.awt.Color
 
 object GradientBackground {
@@ -29,10 +29,10 @@ object GradientBackground {
             val col1 = nowGradient.from.rgb
             val col2 = nowGradient.to.rgb
             when(gradientSide) {
-                GradientSide.LEFT ->  RenderUtils.drawGradientSidewaysH(0.0, 0.0, width.toDouble(), height.toDouble(), col1, col2)
-                GradientSide.RIGHT -> RenderUtils.drawGradientSidewaysH(0.0, 0.0, width.toDouble(), height.toDouble(), col2, col1)
-                GradientSide.TOP -> RenderUtils.drawGradientSidewaysV(0.0, 0.0, width.toDouble(), height.toDouble(), col1, col2)
-                GradientSide.BOTTOM -> RenderUtils.drawGradientSidewaysV(0.0, 0.0, width.toDouble(), height.toDouble(), col2, col1)
+                GradientSide.LEFT ->  法轮功.drawGradientSidewaysH(0.0, 0.0, width.toDouble(), height.toDouble(), col1, col2)
+                GradientSide.RIGHT -> 法轮功.drawGradientSidewaysH(0.0, 0.0, width.toDouble(), height.toDouble(), col2, col1)
+                GradientSide.TOP -> 法轮功.drawGradientSidewaysV(0.0, 0.0, width.toDouble(), height.toDouble(), col1, col2)
+                GradientSide.BOTTOM -> 法轮功.drawGradientSidewaysV(0.0, 0.0, width.toDouble(), height.toDouble(), col2, col1)
             }
             return
         }
@@ -45,10 +45,10 @@ object GradientBackground {
             val col2 = interpolateColor(nowGradient.from, nowGradient.to, pct2)
             val pos = i / 1500.0
             when(gradientSide) {
-                GradientSide.LEFT ->  RenderUtils.drawGradientSidewaysH(width * pos, 0.0, width * (pos + posAffect), height.toDouble(), col1, col2)
-                GradientSide.RIGHT -> RenderUtils.drawGradientSidewaysH(width * (1 - pos), 0.0, width * (1 - pos + posAffect), height.toDouble(), col2, col1)
-                GradientSide.TOP -> RenderUtils.drawGradientSidewaysV(0.0, height * pos, width.toDouble(), height * (pos + posAffect), col1, col2)
-                GradientSide.BOTTOM -> RenderUtils.drawGradientSidewaysV(0.0, height * (1 - pos), width.toDouble(), height * (1 - pos + posAffect), col2, col1)
+                GradientSide.LEFT ->  法轮功.drawGradientSidewaysH(width * pos, 0.0, width * (pos + posAffect), height.toDouble(), col1, col2)
+                GradientSide.RIGHT -> 法轮功.drawGradientSidewaysH(width * (1 - pos), 0.0, width * (1 - pos + posAffect), height.toDouble(), col2, col1)
+                GradientSide.TOP -> 法轮功.drawGradientSidewaysV(0.0, height * pos, width.toDouble(), height * (pos + posAffect), col1, col2)
+                GradientSide.BOTTOM -> 法轮功.drawGradientSidewaysV(0.0, height * (1 - pos), width.toDouble(), height * (1 - pos + posAffect), col2, col1)
             }
         }
     }

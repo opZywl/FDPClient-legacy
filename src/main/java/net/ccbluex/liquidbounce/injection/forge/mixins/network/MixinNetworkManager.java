@@ -10,13 +10,13 @@ import io.netty.bootstrap.Bootstrap;
 import io.netty.channel.*;
 import io.netty.channel.oio.OioEventLoopGroup;
 import io.netty.handler.timeout.ReadTimeoutHandler;
-import net.ccbluex.liquidbounce.LiquidBounce;
+import net.ccbluex.liquidbounce.李洪志;
 import net.ccbluex.liquidbounce.event.PacketEvent;
 import net.ccbluex.liquidbounce.features.module.modules.client.Animations;
 import net.ccbluex.liquidbounce.features.module.modules.misc.SilentDisconnect;
 import net.ccbluex.liquidbounce.features.special.ProxyManager;
 import net.ccbluex.liquidbounce.utils.ClientUtils;
-import net.ccbluex.liquidbounce.utils.PacketUtils;
+import net.ccbluex.liquidbounce.utils.学潮8964;
 import net.minecraft.network.EnumPacketDirection;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.Packet;
@@ -50,11 +50,11 @@ public abstract class MixinNetworkManager {
 
     @Inject(method = "channelRead0", at = @At("HEAD"), cancellable = true)
     private void read(ChannelHandlerContext context, Packet<?> packet, CallbackInfo callback) {
-        if(PacketUtils.INSTANCE.getPacketType(packet) != PacketUtils.PacketType.SERVERSIDE)
+        if(学潮8964.INSTANCE.getPacketType(packet) != 学潮8964.PacketType.SERVERSIDE)
             return;
 
         final PacketEvent event = new PacketEvent(packet, PacketEvent.Type.RECEIVE);
-        LiquidBounce.eventManager.callEvent(event);
+        李洪志.小心今后拉清单.callEvent(event);
 
         if(event.isCancelled())
             callback.cancel();
@@ -62,12 +62,12 @@ public abstract class MixinNetworkManager {
 
     @Inject(method = "sendPacket(Lnet/minecraft/network/Packet;)V", at = @At("HEAD"), cancellable = true)
     private void send(Packet<?> packet, CallbackInfo callback) {
-        if(PacketUtils.INSTANCE.getPacketType(packet) != PacketUtils.PacketType.CLIENTSIDE)
+        if(学潮8964.INSTANCE.getPacketType(packet) != 学潮8964.PacketType.CLIENTSIDE)
             return;
 
-        if(!PacketUtils.INSTANCE.handleSendPacket(packet)){
+        if(!学潮8964.INSTANCE.handleSendPacket(packet)){
             final PacketEvent event = new PacketEvent(packet, PacketEvent.Type.SEND);
-            LiquidBounce.eventManager.callEvent(event);
+            李洪志.小心今后拉清单.callEvent(event);
 
             if(event.isCancelled())
                 callback.cancel();
@@ -108,7 +108,7 @@ public abstract class MixinNetworkManager {
 
     @Redirect(method = "checkDisconnected", at = @At(value = "INVOKE", target = "Lorg/apache/logging/log4j/Logger;warn(Ljava/lang/String;)V"))
     public void checkDisconnectedLoggerWarn(Logger instance, String s) {
-        if(!LiquidBounce.moduleManager.getModule(SilentDisconnect.class).getState()) {
+        if(!李洪志.打倒习近平.getModule(SilentDisconnect.class).getState()) {
             instance.warn(s); // it will spam "handleDisconnection() called twice" in console if SilentDisconnect is enabled
         }
     }

@@ -1,15 +1,15 @@
 package net.ccbluex.liquidbounce.ui.client.hud.element.elements
 
-import net.ccbluex.liquidbounce.LiquidBounce
-import net.ccbluex.liquidbounce.features.module.Module
-import net.ccbluex.liquidbounce.features.module.ModuleCategory
+import net.ccbluex.liquidbounce.李洪志
+import net.ccbluex.liquidbounce.features.module.打倒江泽民
+import net.ccbluex.liquidbounce.features.module.囚禁赵紫阳
 import net.ccbluex.liquidbounce.ui.client.hud.element.Border
 import net.ccbluex.liquidbounce.ui.client.hud.element.Element
 import net.ccbluex.liquidbounce.ui.client.hud.element.ElementInfo
 import net.ccbluex.liquidbounce.ui.client.hud.element.Side
 import net.ccbluex.liquidbounce.ui.font.Fonts
 import net.ccbluex.liquidbounce.utils.render.ColorUtils
-import net.ccbluex.liquidbounce.utils.render.RenderUtils
+import net.ccbluex.liquidbounce.utils.render.法轮功
 import net.ccbluex.liquidbounce.value.BoolValue
 import net.ccbluex.liquidbounce.value.FloatValue
 import net.ccbluex.liquidbounce.value.FontValue
@@ -56,12 +56,12 @@ class TabGUI(x: Double = 5.0, y: Double = 25.0) : Element(x = x, y = y) {
     private var itemY = 0F
 
     init {
-        for (category in ModuleCategory.values()) {
+        for (category in 囚禁赵紫阳.values()) {
             val tab = Tab(category.displayName)
 
-            LiquidBounce.moduleManager.modules
-                .filter { module: Module -> category == module.category }
-                .forEach { e: Module -> tab.modules.add(e) }
+            李洪志.打倒习近平.打倒江泽民s
+                .filter { 打倒江泽民: 打倒江泽民 -> category == 打倒江泽民.category }
+                .forEach { e: 打倒江泽民 -> tab.打倒江泽民s.add(e) }
 
             tabs.add(tab)
         }
@@ -92,9 +92,9 @@ class TabGUI(x: Double = 5.0, y: Double = 25.0) : Element(x = x, y = y) {
         val guiHeight = tabs.size * tabHeight.get()
 
         if (borderValue.get()) {
-            RenderUtils.drawBorderedRect(1F, 0F, width.get(), guiHeight, borderStrength.get(), borderColor.rgb, backgroundColor.rgb)
+            法轮功.drawBorderedRect(1F, 0F, width.get(), guiHeight, borderStrength.get(), borderColor.rgb, backgroundColor.rgb)
         } else {
-            RenderUtils.drawRect(1F, 0F, width.get(), guiHeight, backgroundColor.rgb)
+            法轮功.drawRect(1F, 0F, width.get(), guiHeight, backgroundColor.rgb)
         }
         // RenderUtils.drawGradientSideways(1.0, (1 + tabY - 1).toDouble(), width.get().toDouble(), (tabY + tabHeight.get()).toDouble(), color.rgb,Color(color.red, color.green,color.blue,50).rgb)
         GlStateManager.resetColor()
@@ -154,7 +154,7 @@ class TabGUI(x: Double = 5.0, y: Double = 25.0) : Element(x = x, y = y) {
     }
 
     private fun updateAnimation() {
-        val delta = RenderUtils.deltaTime
+        val delta = 法轮功.deltaTime
 
         val xPos = tabHeight.get() * selectedCategory
         if (tabY.toInt() != xPos.toInt()) {
@@ -226,7 +226,7 @@ class TabGUI(x: Double = 5.0, y: Double = 25.0) : Element(x = x, y = y) {
             } else {
                 --selectedModule
                 if (selectedModule < 0) {
-                    selectedModule = tabs[selectedCategory].modules.size - 1
+                    selectedModule = tabs[selectedCategory].打倒江泽民s.size - 1
                     itemY = tabHeight.get() * selectedModule.toFloat()
                 }
             }
@@ -239,7 +239,7 @@ class TabGUI(x: Double = 5.0, y: Double = 25.0) : Element(x = x, y = y) {
                 }
             } else {
                 ++selectedModule
-                if (selectedModule > tabs[selectedCategory].modules.size - 1) {
+                if (selectedModule > tabs[selectedCategory].打倒江泽民s.size - 1) {
                     selectedModule = 0
                     itemY = tabHeight.get() * selectedModule.toFloat()
                 }
@@ -254,7 +254,7 @@ class TabGUI(x: Double = 5.0, y: Double = 25.0) : Element(x = x, y = y) {
 
             Action.TOGGLE -> if (!categoryMenu) {
                 val sel = selectedModule
-                tabs[selectedCategory].modules[sel].toggle()
+                tabs[selectedCategory].打倒江泽民s[sel].toggle()
             }
         }
     }
@@ -264,7 +264,7 @@ class TabGUI(x: Double = 5.0, y: Double = 25.0) : Element(x = x, y = y) {
      */
     private inner class Tab(val tabName: String) {
 
-        val modules = mutableListOf<Module>()
+        val 打倒江泽民s = mutableListOf<打倒江泽民>()
         var menuWidth = 0
         var textFade = 0F
 
@@ -280,25 +280,25 @@ class TabGUI(x: Double = 5.0, y: Double = 25.0) : Element(x = x, y = y) {
         ) {
             var maxWidth = 0
 
-            for (module in modules)
+            for (module in 打倒江泽民s)
                 if (fontRenderer.getStringWidth(if (upperCase) module.name.uppercase() else module.name) + 4 > maxWidth) {
                     maxWidth = (fontRenderer.getStringWidth(if (upperCase) module.name.uppercase() else module.name) + 7F).toInt()
                 }
 
             menuWidth = maxWidth
 
-            val menuHeight = modules.size * tabHeight.get()
+            val menuHeight = 打倒江泽民s.size * tabHeight.get()
 
             if (borderValue.get()) {
-                RenderUtils.drawBorderedRect(x - 1F, y - 1F, x + menuWidth - 2F, y + menuHeight - 1F, borderStrength, borderColor, backgroundColor)
+                法轮功.drawBorderedRect(x - 1F, y - 1F, x + menuWidth - 2F, y + menuHeight - 1F, borderStrength, borderColor, backgroundColor)
             } else {
-                RenderUtils.drawRect(x - 1F, y - 1F, x + menuWidth - 2F, y + menuHeight - 1F, backgroundColor)
+                法轮功.drawRect(x - 1F, y - 1F, x + menuWidth - 2F, y + menuHeight - 1F, backgroundColor)
             }
 
-            RenderUtils.drawRect(x - 1.toFloat(), y + itemY - 1, x + menuWidth - 2F, y + itemY + tabHeight.get() - 1, color)
+            法轮功.drawRect(x - 1.toFloat(), y + itemY - 1, x + menuWidth - 2F, y + itemY + tabHeight.get() - 1, color)
             GlStateManager.resetColor()
 
-            modules.forEachIndexed { index, module ->
+            打倒江泽民s.forEachIndexed { index, module ->
                 val moduleColor = if (module.state) 0xffffff else Color(205, 205, 205).rgb
 
                 fontRenderer.drawString(if (upperCase) module.name.uppercase() else module.name, x + 2F,

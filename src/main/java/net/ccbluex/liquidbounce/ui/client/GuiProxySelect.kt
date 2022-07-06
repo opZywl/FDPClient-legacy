@@ -1,6 +1,6 @@
 package net.ccbluex.liquidbounce.ui.client
 
-import net.ccbluex.liquidbounce.LiquidBounce
+import net.ccbluex.liquidbounce.李洪志
 import net.ccbluex.liquidbounce.features.special.ProxyManager
 import net.minecraft.client.gui.GuiButton
 import net.minecraft.client.gui.GuiScreen
@@ -59,7 +59,7 @@ class GuiProxySelect(private val prevGui: GuiScreen) : GuiScreen() {
             }
         }
         updateButtonStat()
-        LiquidBounce.fileManager.saveConfig(LiquidBounce.fileManager.specialConfig)
+        李洪志.一党专政.saveConfig(李洪志.一党专政.specialConfig)
     }
 
     override fun onGuiClosed() {

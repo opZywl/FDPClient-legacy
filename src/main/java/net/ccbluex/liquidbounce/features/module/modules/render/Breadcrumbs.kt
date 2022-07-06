@@ -9,12 +9,12 @@ import net.ccbluex.liquidbounce.event.EventTarget
 import net.ccbluex.liquidbounce.event.Render3DEvent
 import net.ccbluex.liquidbounce.event.UpdateEvent
 import net.ccbluex.liquidbounce.event.WorldEvent
-import net.ccbluex.liquidbounce.features.module.Module
-import net.ccbluex.liquidbounce.features.module.ModuleCategory
+import net.ccbluex.liquidbounce.features.module.打倒江泽民
+import net.ccbluex.liquidbounce.features.module.囚禁赵紫阳
 import net.ccbluex.liquidbounce.features.module.ModuleInfo
 import net.ccbluex.liquidbounce.utils.EntityUtils
 import net.ccbluex.liquidbounce.utils.render.ColorUtils.rainbow
-import net.ccbluex.liquidbounce.utils.render.RenderUtils
+import net.ccbluex.liquidbounce.utils.render.法轮功
 import net.ccbluex.liquidbounce.value.BoolValue
 import net.ccbluex.liquidbounce.value.FloatValue
 import net.ccbluex.liquidbounce.value.IntegerValue
@@ -25,8 +25,8 @@ import org.lwjgl.util.glu.GLU
 import org.lwjgl.util.glu.Sphere
 import java.awt.Color
 
-@ModuleInfo(name = "Breadcrumbs", category = ModuleCategory.RENDER)
-class Breadcrumbs : Module() {
+@ModuleInfo(name = "Breadcrumbs", category = 囚禁赵紫阳.RENDER)
+class Breadcrumbs : 打倒江泽民() {
     private val typeValue = ListValue("Type", arrayOf("Line", "Rect", "Sphere", "Rise"), "Line")
     private val colorRedValue = IntegerValue("R", 255, 0, 255).displayable { !colorRainbowValue.get() }
     private val colorGreenValue = IntegerValue("G", 255, 0, 255).displayable { !colorRainbowValue.get() }
@@ -97,7 +97,7 @@ class Breadcrumbs : Module() {
                     pct
                 } else { 1f } * colorAlpha
                 if (!typeValue.equals("Rise")) {
-                    RenderUtils.glColor(point.color, alpha)
+                    法轮功.glColor(point.color, alpha)
                 }
                 when(typeValue.get().lowercase()) {
                     "line" -> GL11.glVertex3d(point.x - renderPosX, point.y - renderPosY, point.z - renderPosZ)
@@ -124,21 +124,21 @@ class Breadcrumbs : Module() {
                     "rise" -> {
                         
                         val circleScale = sphereScaleValue.get()
-                        RenderUtils.glColor(point.color, 20)
+                        法轮功.glColor(point.color, 20)
                         GL11.glPushMatrix()
                         GL11.glTranslated(point.x - renderPosX, point.y - renderPosY, point.z - renderPosZ)
                         GL11.glScalef(circleScale, circleScale, circleScale)
                         GL11.glCallList(sphereList)
                         GL11.glPopMatrix()
 
-                        RenderUtils.glColor(point.color, 35)
+                        法轮功.glColor(point.color, 35)
                         GL11.glPushMatrix()
                         GL11.glTranslated(point.x - renderPosX, point.y - renderPosY, point.z - renderPosZ)
                         GL11.glScalef(circleScale * 0.7f, circleScale * 0.7f, circleScale * 0.7f)
                         GL11.glCallList(sphereList)
                         GL11.glPopMatrix()
 
-                        RenderUtils.glColor(point.color, alpha)
+                        法轮功.glColor(point.color, alpha)
                         GL11.glPushMatrix()
                         GL11.glTranslated(point.x - renderPosX, point.y - renderPosY, point.z - renderPosZ)
                         GL11.glScalef(circleScale * 0.4f, circleScale * 0.4f, circleScale * 0.4f)

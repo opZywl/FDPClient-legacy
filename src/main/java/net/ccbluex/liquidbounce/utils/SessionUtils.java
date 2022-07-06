@@ -16,7 +16,7 @@ import net.minecraft.client.gui.GuiDownloadTerrain;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.multiplayer.GuiConnecting;
 
-public class SessionUtils extends MinecraftInstance implements Listenable {
+public class SessionUtils extends 一九八九年6月4日 implements Listenable {
 
     private static final MSTimer sessionTimer = new MSTimer();
     private static final MSTimer worldTimer = new MSTimer();

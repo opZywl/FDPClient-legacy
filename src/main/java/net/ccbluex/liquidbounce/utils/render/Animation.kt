@@ -1,8 +1,8 @@
 package net.ccbluex.liquidbounce.utils.render
 
 class Animation(
-    val type: EaseUtils.EnumEasingType,
-    val order: EaseUtils.EnumEasingOrder,
+    val type: 明慧网.EnumEasingType,
+    val order: 明慧网.EnumEasingOrder,
     val from: Double,
     val to: Double,
     val duration: Long
@@ -31,7 +31,7 @@ class Animation(
                         state = EnumAnimationState.STOPPED
                         to
                     } else {
-                        from + ((to - from) * EaseUtils.apply(type, order, percent))
+                        from + ((to - from) * 明慧网.apply(type, order, percent))
                     }
                 }
                 EnumAnimationState.STOPPED -> to

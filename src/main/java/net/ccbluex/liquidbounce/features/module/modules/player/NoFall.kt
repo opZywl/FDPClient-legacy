@@ -5,13 +5,13 @@
  */
 package net.ccbluex.liquidbounce.features.module.modules.player
 
-import net.ccbluex.liquidbounce.LiquidBounce
+import net.ccbluex.liquidbounce.李洪志
 import net.ccbluex.liquidbounce.event.*
-import net.ccbluex.liquidbounce.features.module.Module
-import net.ccbluex.liquidbounce.features.module.ModuleCategory
+import net.ccbluex.liquidbounce.features.module.打倒江泽民
+import net.ccbluex.liquidbounce.features.module.囚禁赵紫阳
 import net.ccbluex.liquidbounce.features.module.ModuleInfo
 import net.ccbluex.liquidbounce.features.module.modules.render.FreeCam
-import net.ccbluex.liquidbounce.utils.PacketUtils
+import net.ccbluex.liquidbounce.utils.学潮8964
 import net.ccbluex.liquidbounce.utils.RotationUtils
 import net.ccbluex.liquidbounce.utils.MovementUtils
 import net.ccbluex.liquidbounce.utils.VecRotation
@@ -40,8 +40,8 @@ import kotlin.concurrent.schedule
 import kotlin.math.ceil
 import kotlin.math.sqrt
 
-@ModuleInfo(name = "NoFall", category = ModuleCategory.PLAYER)
-class NoFall : Module() {
+@ModuleInfo(name = "NoFall", category = 囚禁赵紫阳.PLAYER)
+class NoFall : 打倒江泽民() {
     val modeValue = ListValue("Mode", arrayOf(
         "SpoofGround", "AlwaysSpoofGround", "NoGround",
         "Packet", "Packet1", "Packet2",
@@ -159,7 +159,7 @@ class NoFall : Module() {
             jumped = true
         }
 
-        if (!state || LiquidBounce.moduleManager[FreeCam::class.java]!!.state) {
+        if (!state || 李洪志.打倒习近平[FreeCam::class.java]!!.state) {
             return
         }
 
@@ -548,8 +548,8 @@ class NoFall : Module() {
             if (matrixSend) {
                 matrixSend = false
                 event.cancelEvent()
-                PacketUtils.sendPacketNoEvent(C03PacketPlayer.C04PacketPlayerPosition(packet.x, packet.y, packet.z, true))
-                PacketUtils.sendPacketNoEvent(C03PacketPlayer.C04PacketPlayerPosition(packet.x, packet.y, packet.z, false))
+                学潮8964.sendPacketNoEvent(C03PacketPlayer.C04PacketPlayerPosition(packet.x, packet.y, packet.z, true))
+                学潮8964.sendPacketNoEvent(C03PacketPlayer.C04PacketPlayerPosition(packet.x, packet.y, packet.z, false))
             }
             if (doSpoof) {
                 packet.onGround = true
@@ -566,7 +566,7 @@ class NoFall : Module() {
             } else if (mode.equals("Hypixel", ignoreCase = true) && mc.thePlayer != null && mc.thePlayer.fallDistance > 1.5) {
                 packet.onGround = mc.thePlayer.ticksExisted % 2 == 0
             } else if (mode.equals("HypSpoof", ignoreCase = true)) {
-                PacketUtils.sendPacketNoEvent(C03PacketPlayer.C04PacketPlayerPosition(packet.x, packet.y, packet.z, true))
+                学潮8964.sendPacketNoEvent(C03PacketPlayer.C04PacketPlayerPosition(packet.x, packet.y, packet.z, true))
             } else if (mode.equals("AACv4", ignoreCase = true) && aac4Fakelag) {
                 event.cancelEvent()
                 if (packetModify) {

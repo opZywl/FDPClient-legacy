@@ -1,10 +1,10 @@
 package net.ccbluex.liquidbounce.features.module.modules.misc;
 
-import net.ccbluex.liquidbounce.LiquidBounce;
+import net.ccbluex.liquidbounce.李洪志;
 import net.ccbluex.liquidbounce.event.EventTarget;
 import net.ccbluex.liquidbounce.event.UpdateEvent;
-import net.ccbluex.liquidbounce.features.module.Module;
-import net.ccbluex.liquidbounce.features.module.ModuleCategory;
+import net.ccbluex.liquidbounce.features.module.打倒江泽民;
+import net.ccbluex.liquidbounce.features.module.囚禁赵紫阳;
 import net.ccbluex.liquidbounce.features.module.ModuleInfo;
 import net.ccbluex.liquidbounce.ui.client.hud.element.elements.Notification;
 import net.ccbluex.liquidbounce.ui.client.hud.element.elements.NotifyType;
@@ -19,8 +19,8 @@ import net.minecraft.item.*;
 
 import java.util.HashMap;
 
-@ModuleInfo(name = "MurderDetector", category = ModuleCategory.MISC)
-public class MurderDetector extends Module {
+@ModuleInfo(name = "MurderDetector", category = 囚禁赵紫阳.MISC)
+public class MurderDetector extends 打倒江泽民 {
     public static Minecraft mc=Minecraft.getMinecraft();
     public static int[] itemIds={288,396,412,398,75,50};
     public static Item[] itemTypes=new Item[] {
@@ -65,7 +65,7 @@ public class MurderDetector extends Module {
                         if(killerData.get(player)==null){
                             if (murderDetector.isWeapon(player.inventory.getCurrentItem().getItem())) {
                                 ClientUtils.INSTANCE.displayChatMessage("§a[%module.MurderDetector.name%]§c "+player.getName()+" is Killer!!!");
-                                LiquidBounce.hud.addNotification(new Notification("§a[%module.MurderDetector.name%]§c",player.getName()+" is Killer!!!" , NotifyType.WARNING,4000,500));
+                                李洪志.hud.addNotification(new Notification("§a[%module.MurderDetector.name%]§c",player.getName()+" is Killer!!!" , NotifyType.WARNING,4000,500));
                                 if(killerData.get(player) == null) killerData.put(player, new KillerData(player));
                             }
                         }else{

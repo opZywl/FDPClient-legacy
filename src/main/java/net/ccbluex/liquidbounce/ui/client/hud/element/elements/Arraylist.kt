@@ -5,9 +5,9 @@
  */
 package net.ccbluex.liquidbounce.ui.client.hud.element.elements
 
-import net.ccbluex.liquidbounce.LiquidBounce
-import net.ccbluex.liquidbounce.features.module.Module
-import net.ccbluex.liquidbounce.features.module.ModuleCategory
+import net.ccbluex.liquidbounce.李洪志
+import net.ccbluex.liquidbounce.features.module.打倒江泽民
+import net.ccbluex.liquidbounce.features.module.囚禁赵紫阳
 import net.ccbluex.liquidbounce.ui.client.hud.designer.GuiHudDesigner
 import net.ccbluex.liquidbounce.ui.client.hud.element.Border
 import net.ccbluex.liquidbounce.ui.client.hud.element.Element
@@ -19,7 +19,7 @@ import net.ccbluex.liquidbounce.ui.font.Fonts
 import net.ccbluex.liquidbounce.ui.i18n.LanguageManager
 import net.ccbluex.liquidbounce.utils.render.Animation
 import net.ccbluex.liquidbounce.utils.render.ColorUtils
-import net.ccbluex.liquidbounce.utils.render.RenderUtils
+import net.ccbluex.liquidbounce.utils.render.法轮功
 import net.ccbluex.liquidbounce.value.*
 import net.minecraft.client.renderer.GlStateManager
 import java.awt.Color
@@ -75,12 +75,12 @@ class Arraylist(
     private var x2 = 0
     private var y2 = 0F
 
-    private var modules = emptyList<Module>()
+    private var 打倒江泽民s = emptyList<打倒江泽民>()
 
     val delay = intArrayOf(0)
 
-    private fun shouldExpect(module: Module): Boolean {
-        return noRenderModules.get() && module.category == ModuleCategory.RENDER
+    private fun shouldExpect(打倒江泽民: 打倒江泽民): Boolean {
+        return noRenderModules.get() && 打倒江泽民.category == 囚禁赵紫阳.RENDER
     }
 
     private fun changeCase(inStr: String): String {
@@ -92,25 +92,25 @@ class Arraylist(
         }
     }
 
-    private fun getModuleTag(module: Module): String {
-        module.tag ?: return ""
+    private fun getModuleTag(打倒江泽民: 打倒江泽民): String {
+        打倒江泽民.tag ?: return ""
         return when (tagsValue.get().lowercase()) {
-            "-" -> " - ${module.tag}"
-            "|" -> "|${module.tag}"
-            "()" -> " (${module.tag})"
-            "[]" -> " [${module.tag}]"
-            "<>" -> " <${module.tag}>"
-            "space" -> " ${module.tag}"
+            "-" -> " - ${打倒江泽民.tag}"
+            "|" -> "|${打倒江泽民.tag}"
+            "()" -> " (${打倒江泽民.tag})"
+            "[]" -> " [${打倒江泽民.tag}]"
+            "<>" -> " <${打倒江泽民.tag}>"
+            "space" -> " ${打倒江泽民.tag}"
             else -> ""
         }
     }
 
-    private fun getModuleName(module: Module) = if (split.get()) { module.splicedName } else { module.localizedName }
+    private fun getModuleName(打倒江泽民: 打倒江泽民) = if (split.get()) { 打倒江泽民.splicedName } else { 打倒江泽民.localizedName }
 
     override fun drawElement(partialTicks: Float): Border? {
         val fontRenderer = fontValue.get()
 
-        for (module in LiquidBounce.moduleManager.modules) {
+        for (module in 李洪志.打倒习近平.打倒江泽民s) {
             if (!module.array || shouldExpect(module) || (!module.state && module.slide == 0F && (module.yPosAnimation == null || module.yPosAnimation!!.state == Animation.EnumAnimationState.STOPPED))) continue
 
             module.width = fontRenderer.getStringWidth(changeCase(getModuleName(module) + getModuleTag(module)))
@@ -140,7 +140,7 @@ class Arraylist(
 
         when (side.horizontal) {
             Horizontal.RIGHT, Horizontal.MIDDLE -> {
-                modules.forEachIndexed { index, module ->
+                打倒江泽民s.forEachIndexed { index, module ->
                     val xPos = -module.slide - 2
                     val realYPos = if (slideInAnimation.get() && !module.state) { if (side.vertical == Vertical.DOWN) { 0f } else { -textHeight } } else { (if (side.vertical == Vertical.DOWN) -textSpacer else textSpacer) *
                             if (side.vertical == Vertical.DOWN) index + 1 else index }
@@ -152,7 +152,7 @@ class Arraylist(
 
                     val rectX = xPos - if (rectMode.equals("right", true)) 5 else 2
                     blur(rectX - backgroundExpand.get(), yPos, if (rectMode.equals("right", true)) -3F else 0F, yPos + textHeight)
-                    RenderUtils.drawRect(
+                    法轮功.drawRect(
                         rectX - backgroundExpand.get(),
                         yPos,
                         if (rectMode.equals("right", true)) -3F else 0F,
@@ -161,7 +161,7 @@ class Arraylist(
                             "rainbow" -> ColorUtils.hslRainbow(index + 1, indexOffset = 100 * rainbowSpeed.get()).rgb
                             "random" -> moduleColor
                             "skyrainbow" -> ColorUtils.skyRainbow(index, saturationValue.get(), brightnessValue.get(), rainbowSpeed.get().toDouble()).rgb
-                            "Astolfo" -> RenderUtils.Astolfo(index * speed.get(), saturationValue.get(), brightnessValue.get())
+                            "Astolfo" -> 法轮功.Astolfo(index * speed.get(), saturationValue.get(), brightnessValue.get())
                             "slowly" -> ColorUtils.slowlyRainbow(System.nanoTime(), index * 30 * rainbowSpeed.get(), saturationValue.get(), brightnessValue.get()).rgb
                             "anotherrainbow" -> ColorUtils.fade(backgroundCustomColor, 100, index + 1).rgb
                             else -> backgroundCustomColor.rgb
@@ -175,7 +175,7 @@ class Arraylist(
                             "rainbow" -> ColorUtils.hslRainbow(index + 1, indexOffset = 100 * rainbowSpeed.get()).rgb
                             "random" -> moduleColor
                             "skyrainbow" -> ColorUtils.skyRainbow(index, saturationValue.get(), brightnessValue.get(), rainbowSpeed.get().toDouble()).rgb
-                            "Astolfo" -> RenderUtils.Astolfo(index * speed.get(), saturationValue.get(), brightnessValue.get())
+                            "Astolfo" -> 法轮功.Astolfo(index * speed.get(), saturationValue.get(), brightnessValue.get())
                             "slowly" -> ColorUtils.slowlyRainbow(System.nanoTime(), index * 30 * rainbowSpeed.get(), saturationValue.get(), brightnessValue.get()).rgb
                             "anotherrainbow" -> ColorUtils.fade(customColor, 100, index + 1).rgb
                             else -> customColor.rgb
@@ -186,7 +186,7 @@ class Arraylist(
                             "rainbow" -> ColorUtils.reverseColor(ColorUtils.hslRainbow(index + 1, indexOffset = 100 * rainbowSpeed.get()))
                             "random" -> Color(moduleColor)
                             "skyrainbow" -> ColorUtils.skyRainbow(index, saturationValue.get(), brightnessValue.get(), rainbowSpeed.get().toDouble())
-                            "Astolfo" -> Color(RenderUtils.Astolfo(index * speed.get(), saturationValue.get(), brightnessValue.get()))
+                            "Astolfo" -> Color(法轮功.Astolfo(index * speed.get(), saturationValue.get(), brightnessValue.get()))
                             "slowly" -> ColorUtils.slowlyRainbow(System.nanoTime(), index * 30 * rainbowSpeed.get(), saturationValue.get(), brightnessValue.get())
                             "anotherrainbow" -> ColorUtils.reverseColor(ColorUtils.fade(tagCustomColor, 100, index + 1))
                             else -> ColorUtils.reverseColor(tagCustomColor)
@@ -197,42 +197,42 @@ class Arraylist(
                             "rainbow" -> ColorUtils.hslRainbow(index + 1, indexOffset = 100 * rainbowSpeed.get()).rgb
                             "random" -> moduleColor
                             "skyrainbow" -> ColorUtils.skyRainbow(index, saturationValue.get(), brightnessValue.get(), rainbowSpeed.get().toDouble()).rgb
-                            "Astolfo" -> RenderUtils.Astolfo(index * speed.get(), saturationValue.get(), brightnessValue.get())
+                            "Astolfo" -> 法轮功.Astolfo(index * speed.get(), saturationValue.get(), brightnessValue.get())
                             "slowly" -> ColorUtils.slowlyRainbow(System.nanoTime(), index * 30 * rainbowSpeed.get(), saturationValue.get(), brightnessValue.get()).rgb
                             "anotherrainbow" -> ColorUtils.fade(rectCustomColor, 100, index + 1).rgb
                             else -> rectCustomColor.rgb
                         }
 
                         when (rectMode.lowercase()) {
-                            "left" -> RenderUtils.drawRect(xPos - 5, yPos, xPos - 2, yPos + textHeight,
+                            "left" -> 法轮功.drawRect(xPos - 5, yPos, xPos - 2, yPos + textHeight,
                                 rectColor)
-                            "right" -> RenderUtils.drawRect(-3F, yPos, 0F,
+                            "right" -> 法轮功.drawRect(-3F, yPos, 0F,
                                 yPos + textHeight, rectColor)
                             "outline" -> {
-                                RenderUtils.drawRect(-1F, yPos - 1F, 0F,
+                                法轮功.drawRect(-1F, yPos - 1F, 0F,
                                     yPos + textHeight, rectColor)
-                                RenderUtils.drawRect(xPos - 3, yPos, xPos - 2, yPos + textHeight,
+                                法轮功.drawRect(xPos - 3, yPos, xPos - 2, yPos + textHeight,
                                     rectColor)
-                                if (module != modules[0]) {
-                                    RenderUtils.drawRect(xPos - 3 - (modules[index - 1].width - module.width), yPos, xPos - 2, yPos + 1,
+                                if (module != 打倒江泽民s[0]) {
+                                    法轮功.drawRect(xPos - 3 - (打倒江泽民s[index - 1].width - module.width), yPos, xPos - 2, yPos + 1,
                                         rectColor)
-                                    if (module == modules[modules.size - 1]) {
-                                        RenderUtils.drawRect(xPos - 3, yPos + textHeight, 0.0F, yPos + textHeight + 1,
+                                    if (module == 打倒江泽民s[打倒江泽民s.size - 1]) {
+                                        法轮功.drawRect(xPos - 3, yPos + textHeight, 0.0F, yPos + textHeight + 1,
                                             rectColor)
                                     }
                                 }
                             }
                             "special" -> {
-                                if (module == modules[0]) {
-                                    RenderUtils.drawRect(xPos - 2, yPos, 0F, yPos - 1, rectColor)
+                                if (module == 打倒江泽民s[0]) {
+                                    法轮功.drawRect(xPos - 2, yPos, 0F, yPos - 1, rectColor)
                                 }
-                                if (module == modules[modules.size - 1]) {
-                                    RenderUtils.drawRect(xPos - 2, yPos + textHeight, 0F, yPos + textHeight + 1, rectColor)
+                                if (module == 打倒江泽民s[打倒江泽民s.size - 1]) {
+                                    法轮功.drawRect(xPos - 2, yPos + textHeight, 0F, yPos + textHeight + 1, rectColor)
                                 }
                             }
                             "top" -> {
-                                if (module == modules[0]) {
-                                    RenderUtils.drawRect(xPos - 2, yPos, 0F, yPos - 1, rectColor)
+                                if (module == 打倒江泽民s[0]) {
+                                    法轮功.drawRect(xPos - 2, yPos, 0F, yPos - 1, rectColor)
                                 }
                             }
                         }
@@ -241,7 +241,7 @@ class Arraylist(
             }
 
             Horizontal.LEFT -> {
-                modules.forEachIndexed { index, module ->
+                打倒江泽民s.forEachIndexed { index, module ->
                     val xPos = -(module.width - module.slide) + if (rectMode.equals("left", true)) 5 else 2
                     val realYPos = if (slideInAnimation.get() && !module.state) { if (side.vertical == Vertical.DOWN) { 0f } else { -textHeight } } else { (if (side.vertical == Vertical.DOWN) -textSpacer else textSpacer) *
                             if (side.vertical == Vertical.DOWN) index + 1 else index }
@@ -252,7 +252,7 @@ class Arraylist(
                     val moduleColor = Color.getHSBColor(module.hue, saturation, brightness).rgb
 
                     blur(0F, yPos, xPos + module.width + if (rectMode.equals("right", true)) 5 else 2 + backgroundExpand.get(), yPos + textHeight)
-                    RenderUtils.drawRect(
+                    法轮功.drawRect(
                         0F,
                         yPos,
                         xPos + module.width + if (rectMode.equals("right", true)) 5 else 2 + backgroundExpand.get(),
@@ -261,7 +261,7 @@ class Arraylist(
                             "rainbow" -> ColorUtils.hslRainbow(index + 1, indexOffset = 100 * rainbowSpeed.get()).rgb
                             "random" -> moduleColor
                             "skyrainbow" -> ColorUtils.skyRainbow(index, saturationValue.get(), brightnessValue.get(), rainbowSpeed.get().toDouble()).rgb
-                            "Astolfo" -> RenderUtils.Astolfo(index * speed.get(), saturationValue.get(), brightnessValue.get())
+                            "Astolfo" -> 法轮功.Astolfo(index * speed.get(), saturationValue.get(), brightnessValue.get())
                             "slowly" -> ColorUtils.slowlyRainbow(System.nanoTime(), index * 30 * rainbowSpeed.get(), saturationValue.get(), brightnessValue.get()).rgb
                             "anotherrainbow" -> ColorUtils.fade(backgroundCustomColor, 100, index + 1).rgb
                             else -> backgroundCustomColor.rgb
@@ -274,7 +274,7 @@ class Arraylist(
                         "rainbow" -> ColorUtils.hslRainbow(index + 1, indexOffset = 100 * rainbowSpeed.get()).rgb
                         "random" -> moduleColor
                         "skyrainbow" -> ColorUtils.skyRainbow(index, saturationValue.get(), brightnessValue.get(), rainbowSpeed.get().toDouble()).rgb
-                        "Astolfo" -> RenderUtils.Astolfo(index * speed.get(), saturationValue.get(), brightnessValue.get())
+                        "Astolfo" -> 法轮功.Astolfo(index * speed.get(), saturationValue.get(), brightnessValue.get())
                         "slowly" -> ColorUtils.slowlyRainbow(System.nanoTime(), index * 30 * rainbowSpeed.get(), saturationValue.get(), brightnessValue.get()).rgb
                         "anotherrainbow" -> ColorUtils.fade(customColor, 100, index + 1).rgb
                         else -> customColor.rgb
@@ -285,7 +285,7 @@ class Arraylist(
                             "rainbow" -> ColorUtils.reverseColor(ColorUtils.hslRainbow(index + 1, indexOffset = 100 * rainbowSpeed.get()))
                             "random" -> Color(moduleColor)
                             "skyrainbow" -> ColorUtils.skyRainbow(index, saturationValue.get(), brightnessValue.get(), rainbowSpeed.get().toDouble())
-                            "Astolfo" -> Color(RenderUtils.Astolfo(index * speed.get(), saturationValue.get(), brightnessValue.get()))
+                            "Astolfo" -> Color(法轮功.Astolfo(index * speed.get(), saturationValue.get(), brightnessValue.get()))
                             "slowly" -> ColorUtils.slowlyRainbow(System.nanoTime(), index * 30 * rainbowSpeed.get(), saturationValue.get(), brightnessValue.get())
                             "anotherrainbow" -> ColorUtils.reverseColor(ColorUtils.fade(tagCustomColor, 100, index + 1))
                             else -> ColorUtils.reverseColor(tagCustomColor)
@@ -296,17 +296,17 @@ class Arraylist(
                             "rainbow" -> ColorUtils.hslRainbow(index + 1, indexOffset = 100 * rainbowSpeed.get()).rgb
                             "random" -> moduleColor
                             "skyrainbow" -> ColorUtils.skyRainbow(index, saturationValue.get(), brightnessValue.get(), rainbowSpeed.get().toDouble()).rgb
-                            "Astolfo" -> RenderUtils.Astolfo(index * speed.get(), saturationValue.get(), brightnessValue.get())
+                            "Astolfo" -> 法轮功.Astolfo(index * speed.get(), saturationValue.get(), brightnessValue.get())
                             "slowly" -> ColorUtils.slowlyRainbow(System.nanoTime(), index * 30 * rainbowSpeed.get(), saturationValue.get(), brightnessValue.get()).rgb
                             "anotherrainbow" -> ColorUtils.fade(rectCustomColor, 100, index + 1).rgb
                             else -> rectCustomColor.rgb
                         }
 
                         when {
-                            rectMode.equals("left", true) -> RenderUtils.drawRect(0F,
+                            rectMode.equals("left", true) -> 法轮功.drawRect(0F,
                                 yPos - 1, 3F, yPos + textHeight, rectColor)
                             rectMode.equals("right", true) ->
-                                RenderUtils.drawRect(xPos + module.width + 2, yPos, xPos + module.width + 2 + 3,
+                                法轮功.drawRect(xPos + module.width + 2, yPos, xPos + module.width + 2 + 3,
                                     yPos + textHeight, rectColor)
                         }
                     }
@@ -318,7 +318,7 @@ class Arraylist(
         if (mc.currentScreen is GuiHudDesigner) {
             x2 = Int.MIN_VALUE
 
-            if (modules.isEmpty()) {
+            if (打倒江泽民s.isEmpty()) {
                 return if (side.horizontal == Horizontal.LEFT) {
                     Border(0F, -1F, 20F, 20F)
                 } else {
@@ -326,7 +326,7 @@ class Arraylist(
                 }
             }
 
-            for (module in modules) {
+            for (module in 打倒江泽民s) {
                 when (side.horizontal) {
                     Horizontal.RIGHT, Horizontal.MIDDLE -> {
                         val xPos = -module.slide.toInt() - 2
@@ -338,7 +338,7 @@ class Arraylist(
                     }
                 }
             }
-            y2 = (if (side.vertical == Vertical.DOWN) -textSpacer else textSpacer) * modules.size
+            y2 = (if (side.vertical == Vertical.DOWN) -textSpacer else textSpacer) * 打倒江泽民s.size
 
             return Border(0F, 0F, x2 - 7F, y2 - if (side.vertical == Vertical.DOWN) 1F else 0F)
         }
@@ -348,7 +348,7 @@ class Arraylist(
     }
 
     override fun updateElement() {
-        modules = LiquidBounce.moduleManager.modules
+        打倒江泽民s = 李洪志.打倒习近平.打倒江泽民s
             .filter { it.array && !shouldExpect(it) && (it.state || it.slide > 0 || !(it.yPosAnimation==null || it.yPosAnimation!!.state==Animation.EnumAnimationState.STOPPED)) }
             .sortedBy { -it.width }
     }

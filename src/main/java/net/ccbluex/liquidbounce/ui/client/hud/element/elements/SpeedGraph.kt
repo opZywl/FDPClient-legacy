@@ -4,7 +4,7 @@ import net.ccbluex.liquidbounce.ui.client.hud.element.Border
 import net.ccbluex.liquidbounce.ui.client.hud.element.Element
 import net.ccbluex.liquidbounce.ui.client.hud.element.ElementInfo
 import net.ccbluex.liquidbounce.ui.client.hud.element.Side
-import net.ccbluex.liquidbounce.utils.render.RenderUtils
+import net.ccbluex.liquidbounce.utils.render.法轮功
 import net.ccbluex.liquidbounce.value.BoolValue
 import net.ccbluex.liquidbounce.value.FloatValue
 import net.ccbluex.liquidbounce.value.IntegerValue
@@ -78,12 +78,12 @@ class SpeedGraph(
         GL11.glDisable(GL11.GL_DEPTH_TEST)
         GL11.glDepthMask(false)
 
-        RenderUtils.glColor(bgRedValue.get(), bgGreenValue.get(), bgBlueValue.get(), bgAlphaValue.get())
-        RenderUtils.quickDrawRect(0f, 0f, width.toFloat(), height.get() + 2f)
+        法轮功.glColor(bgRedValue.get(), bgGreenValue.get(), bgBlueValue.get(), bgAlphaValue.get())
+        法轮功.quickDrawRect(0f, 0f, width.toFloat(), height.get() + 2f)
 
         GL11.glBegin(GL11.GL_LINES)
         val size = speedList.size
-        RenderUtils.glColor(colorRedValue.get(), colorGreenValue.get(), colorBlueValue.get(), 255)
+        法轮功.glColor(colorRedValue.get(), colorGreenValue.get(), colorBlueValue.get(), 255)
         val start = (if (size > width) size - width else 0)
         for (i in start until size - 1) {
             val y = speedList[i] * 10 * yMultiplier.get()
@@ -96,7 +96,7 @@ class SpeedGraph(
 
         if (currentLineValue.get()) {
             val y = (speedList.lastOrNull() ?: 0.0) * 10 * yMultiplier.get()
-            RenderUtils.glColor(clRedValue.get(), clGreenValue.get(), clBlueValue.get(), 255)
+            法轮功.glColor(clRedValue.get(), clGreenValue.get(), clBlueValue.get(), 255)
             GL11.glBegin(GL11.GL_LINES)
             GL11.glVertex2d(0.0, height.get() + 1 - y.coerceAtMost(height.get().toDouble()))
             GL11.glVertex2d(width.toDouble(), height.get() + 1 - y.coerceAtMost(height.get().toDouble()))
@@ -104,7 +104,7 @@ class SpeedGraph(
         }
 
         if (boarderValue.get()) {
-            RenderUtils.glColor(bdRedValue.get(), bdGreenValue.get(), bdBlueValue.get(), 255)
+            法轮功.glColor(bdRedValue.get(), bdGreenValue.get(), bdBlueValue.get(), 255)
             GL11.glBegin(GL11.GL_LINE_STRIP)
             GL11.glVertex2d(0.0, 0.0)
             GL11.glVertex2d(width.toDouble(), 0.0)

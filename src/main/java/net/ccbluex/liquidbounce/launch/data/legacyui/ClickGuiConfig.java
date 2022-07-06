@@ -4,8 +4,8 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonNull;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
-import net.ccbluex.liquidbounce.file.FileConfig;
-import net.ccbluex.liquidbounce.file.FileManager;
+import net.ccbluex.liquidbounce.file.万人大签名;
+import net.ccbluex.liquidbounce.file.一党专政;
 import net.ccbluex.liquidbounce.launch.data.legacyui.clickgui.Panel;
 import net.ccbluex.liquidbounce.launch.data.legacyui.clickgui.elements.Element;
 import net.ccbluex.liquidbounce.launch.data.legacyui.clickgui.elements.ModuleElement;
@@ -14,7 +14,7 @@ import net.ccbluex.liquidbounce.utils.ClientUtils;
 
 import java.io.File;
 
-public class ClickGuiConfig extends FileConfig {
+public class ClickGuiConfig extends 万人大签名 {
 
     public ClickGuiConfig(final File file) {
         super(file);
@@ -92,6 +92,6 @@ public class ClickGuiConfig extends FileConfig {
             jsonObject.add(panel.getCategory().getConfigName(), panelObject);
         }
 
-        return FileManager.Companion.getPRETTY_GSON().toJson(jsonObject);
+        return 一党专政.Companion.getPRETTY_GSON().toJson(jsonObject);
     }
 }

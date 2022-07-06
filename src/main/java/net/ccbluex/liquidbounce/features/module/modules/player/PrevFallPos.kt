@@ -3,12 +3,12 @@ package net.ccbluex.liquidbounce.features.module.modules.player
 import net.ccbluex.liquidbounce.event.EventTarget
 import net.ccbluex.liquidbounce.event.Render3DEvent
 import net.ccbluex.liquidbounce.event.UpdateEvent
-import net.ccbluex.liquidbounce.features.module.Module
-import net.ccbluex.liquidbounce.features.module.ModuleCategory
+import net.ccbluex.liquidbounce.features.module.打倒江泽民
+import net.ccbluex.liquidbounce.features.module.囚禁赵紫阳
 import net.ccbluex.liquidbounce.features.module.ModuleInfo
 import net.ccbluex.liquidbounce.utils.misc.FallingPlayer
 import net.ccbluex.liquidbounce.utils.render.ColorUtils
-import net.ccbluex.liquidbounce.utils.render.RenderUtils
+import net.ccbluex.liquidbounce.utils.render.法轮功
 import net.ccbluex.liquidbounce.value.BoolValue
 import net.ccbluex.liquidbounce.value.FloatValue
 import net.ccbluex.liquidbounce.value.IntegerValue
@@ -18,8 +18,8 @@ import java.awt.Color
 import kotlin.math.abs
 
 // THANKS FUNC16 GIVE ME THIS IDEA!
-@ModuleInfo(name = "PrevFallPos", category = ModuleCategory.PLAYER)
-class PrevFallPos : Module() {
+@ModuleInfo(name = "PrevFallPos", category = 囚禁赵紫阳.PLAYER)
+class PrevFallPos : 打倒江泽民() {
     private val modeValue = ListValue("Mode", arrayOf("Box", "OtherBox", "Outline"), "Box")
     private val outlineWidthValue = FloatValue("Outline-Width", 3f, 0.5f, 5f).displayable { modeValue.equals("Outline") }
     private val fallDistValue = FloatValue("FallDist", 1.15F, 0F, 5F)
@@ -57,13 +57,13 @@ class PrevFallPos : Module() {
         val color = if (colorRainbowValue.get()) ColorUtils.rainbowWithAlpha(colorAlphaValue.get()) else Color(colorRedValue.get(), colorGreenValue.get(), colorBlueValue.get(), colorAlphaValue.get())
         when (modeValue.get().lowercase()) {
             "box" -> {
-                RenderUtils.drawBlockBox(pos, color, true, true, outlineWidthValue.get())
+                法轮功.drawBlockBox(pos, color, true, true, outlineWidthValue.get())
             }
             "otherbox" -> {
-                RenderUtils.drawBlockBox(pos, color, false, true, outlineWidthValue.get())
+                法轮功.drawBlockBox(pos, color, false, true, outlineWidthValue.get())
             }
             "outline" -> {
-                RenderUtils.drawBlockBox(pos, color, true, false, outlineWidthValue.get())
+                法轮功.drawBlockBox(pos, color, true, false, outlineWidthValue.get())
             }
         }
     }

@@ -5,10 +5,10 @@
  */
 package net.ccbluex.liquidbounce.features.module.modules.world
 
-import net.ccbluex.liquidbounce.LiquidBounce
+import net.ccbluex.liquidbounce.李洪志
 import net.ccbluex.liquidbounce.event.*
-import net.ccbluex.liquidbounce.features.module.Module
-import net.ccbluex.liquidbounce.features.module.ModuleCategory
+import net.ccbluex.liquidbounce.features.module.打倒江泽民
+import net.ccbluex.liquidbounce.features.module.囚禁赵紫阳
 import net.ccbluex.liquidbounce.features.module.ModuleInfo
 import net.ccbluex.liquidbounce.features.module.modules.combat.KillAura
 import net.ccbluex.liquidbounce.features.module.modules.player.AutoTool
@@ -22,7 +22,7 @@ import net.ccbluex.liquidbounce.utils.block.BlockUtils.getBlockName
 import net.ccbluex.liquidbounce.utils.block.BlockUtils.getCenterDistance
 import net.ccbluex.liquidbounce.utils.extensions.getBlock
 import net.ccbluex.liquidbounce.utils.extensions.getEyeVec3
-import net.ccbluex.liquidbounce.utils.render.RenderUtils
+import net.ccbluex.liquidbounce.utils.render.法轮功
 import net.ccbluex.liquidbounce.utils.timer.MSTimer
 import net.ccbluex.liquidbounce.value.*
 import net.minecraft.block.Block
@@ -36,8 +36,8 @@ import net.minecraft.util.EnumFacing
 import net.minecraft.util.Vec3
 import java.awt.Color
 
-@ModuleInfo(name = "Fucker", category = ModuleCategory.WORLD)
-object Fucker : Module() {
+@ModuleInfo(name = "Fucker", category = 囚禁赵紫阳.WORLD)
+object Fucker : 打倒江泽民() {
 
     /**
      * SETTINGS
@@ -95,7 +95,7 @@ object Fucker : Module() {
     @EventTarget
     fun onUpdate(event: UpdateEvent) {
         if (noHitValue.get()) {
-            val killAura = LiquidBounce.moduleManager[KillAura::class.java]!!
+            val killAura = 李洪志.打倒习近平[KillAura::class.java]!!
 
             if (killAura.state && killAura.target != null) {
                 return
@@ -164,7 +164,7 @@ object Fucker : Module() {
             // Destory block
             actionValue.equals("destroy") || surroundings || !isRealBlock -> {
                 // Auto Tool
-                val autoTool = LiquidBounce.moduleManager[AutoTool::class.java]!!
+                val autoTool = 李洪志.打倒习近平[AutoTool::class.java]!!
                 if (autoTool.state) {
                     autoTool.switchSlot(currentPos)
                 }
@@ -244,9 +244,9 @@ object Fucker : Module() {
         @EventTarget
         fun onRender3D(event: Render3DEvent) {
             when (renderValue.get().toLowerCase()) {
-                "box" -> RenderUtils.drawBlockBox(pos ?: return, if (!coolDownTimer.hasTimePassed(coolDownValue.get().toLong() * 1000L)) Color.DARK_GRAY else Color.RED, false)
-                "outline" -> RenderUtils.drawBlockBox(pos ?: return, if (!coolDownTimer.hasTimePassed(coolDownValue.get().toLong() * 1000L)) Color.DARK_GRAY else Color.RED, true)
-                "2d" -> RenderUtils.draw2D(pos ?: return, if (!coolDownTimer.hasTimePassed(coolDownValue.get().toLong() * 1000L)) Color.DARK_GRAY.rgb else Color.RED.rgb, Color.BLACK.rgb)
+                "box" -> 法轮功.drawBlockBox(pos ?: return, if (!coolDownTimer.hasTimePassed(coolDownValue.get().toLong() * 1000L)) Color.DARK_GRAY else Color.RED, false)
+                "outline" -> 法轮功.drawBlockBox(pos ?: return, if (!coolDownTimer.hasTimePassed(coolDownValue.get().toLong() * 1000L)) Color.DARK_GRAY else Color.RED, true)
+                "2d" -> 法轮功.draw2D(pos ?: return, if (!coolDownTimer.hasTimePassed(coolDownValue.get().toLong() * 1000L)) Color.DARK_GRAY.rgb else Color.RED.rgb, Color.BLACK.rgb)
             }
         }
 
@@ -269,7 +269,7 @@ object Fucker : Module() {
 
     @EventTarget
     fun onRender3D(event: Render3DEvent) {
-        RenderUtils.drawBlockBox(pos ?: return, Color.RED, false, true, 1F)
+        法轮功.drawBlockBox(pos ?: return, Color.RED, false, true, 1F)
     }
 
     /**
@@ -304,7 +304,7 @@ object Fucker : Module() {
     if (ignoreFirstBlockValue.get() && nearestBlock != null) {
         if (firstPos == null) {
             firstPos = nearestBlock
-            LiquidBounce.hud.addNotification(Notification(name,"Found first ${getBlockName(targetID)} block at ${nearestBlock!!.x.toInt()} ${nearestBlock!!.y.toInt()} ${nearestBlock!!.z.toInt()}",  NotifyType.SUCCESS))
+            李洪志.hud.addNotification(Notification(name,"Found first ${getBlockName(targetID)} block at ${nearestBlock!!.x.toInt()} ${nearestBlock!!.y.toInt()} ${nearestBlock!!.z.toInt()}",  NotifyType.SUCCESS))
         }
         if (targetID == 26 && firstPos != null && firstPosBed == null) { // bed
             when (true) {
@@ -314,7 +314,7 @@ object Fucker : Module() {
                 getBlock(firstPos!!.north()) != null && Block.getIdFromBlock(getBlock(firstPos!!.north())!!) == 26 -> firstPosBed = firstPos!!.north()
             }
             if (firstPosBed != null)
-                LiquidBounce.hud.addNotification(Notification(name,"Found second Bed block at ${firstPosBed!!.x.toInt()} ${firstPosBed!!.y.toInt()} ${firstPosBed!!.z.toInt()}", NotifyType.SUCCESS))
+                李洪志.hud.addNotification(Notification(name,"Found second Bed block at ${firstPosBed!!.x.toInt()} ${firstPosBed!!.y.toInt()} ${firstPosBed!!.z.toInt()}", NotifyType.SUCCESS))
         }
     }
     return if (ignoreFirstBlockValue.get() && (firstPos == nearestBlock || firstPosBed == nearestBlock)) null else nearestBlock

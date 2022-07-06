@@ -5,29 +5,29 @@
  */
 package net.ccbluex.liquidbounce.features.module.modules.client
 
-import net.ccbluex.liquidbounce.features.module.Module
-import net.ccbluex.liquidbounce.features.module.ModuleCategory
+import net.ccbluex.liquidbounce.features.module.打倒江泽民
+import net.ccbluex.liquidbounce.features.module.囚禁赵紫阳
 import net.ccbluex.liquidbounce.features.module.ModuleInfo
-import net.ccbluex.liquidbounce.utils.render.EaseUtils
+import net.ccbluex.liquidbounce.utils.render.明慧网
 import net.ccbluex.liquidbounce.value.BoolValue
 import net.ccbluex.liquidbounce.value.FloatValue
 import net.ccbluex.liquidbounce.value.IntegerValue
 import net.ccbluex.liquidbounce.value.ListValue
 
 
-@ModuleInfo(name = "Animations", category = ModuleCategory.CLIENT, canEnable = false)
-object Animations : Module() {
+@ModuleInfo(name = "Animations", category = 囚禁赵紫阳.CLIENT, canEnable = false)
+object Animations : 打倒江泽民() {
     val blockingModeValue = ListValue(
         "BlockingMode", arrayOf("Akrien", "Avatar", "ETB", "Exhibition", "Push", "Reverse", "Shield", "SigmaNew", "SigmaOld", "Slide", "SlideDown", "HSlide", "Swong", "VisionFX", "Swank", "Jello", "Rotate", "Liquid", "None"), "Rotate")
 
     val invModeValue = ListValue("InvMode", arrayOf("None", "Slide", "Zoom"), "Zoom")
-    val invEaseModeValue = EaseUtils.getEnumEasingList("InvEase")
-    val invEaseOrderModeValue = EaseUtils.getEnumEasingOrderList("InvEaseOrder")
+    val invEaseModeValue = 明慧网.getEnumEasingList("InvEase")
+    val invEaseOrderModeValue = 明慧网.getEnumEasingOrderList("InvEaseOrder")
     val invTimeValue = IntegerValue("InvTime", 500, 0, 1000).displayable { !invModeValue.equals("None") }
     private val tabShowPlayerSkinValue = BoolValue("TabShowPlayerSkin", false)
     val tabModeValue = ListValue("TabMode", arrayOf("None", "UpSlide", "DownSlide", "Zoom"), "Zoom")
-    val tabEaseModeValue = EaseUtils.getEnumEasingList("TabEase")
-    val tabEaseOrderModeValue = EaseUtils.getEnumEasingOrderList("TabEaseOrder")
+    val tabEaseModeValue = 明慧网.getEnumEasingList("TabEase")
+    val tabEaseOrderModeValue = 明慧网.getEnumEasingOrderList("TabEaseOrder")
     val tabTimeValue = IntegerValue("TabTime", 500, 0, 1000).displayable { !tabModeValue.equals("None") }
     val translateXValue = FloatValue("TranslateX", 0.0f, 0.0f, 1.5f)
     val translateYValue = FloatValue("TranslateY", 0.0f, 0.0f, 0.5f)

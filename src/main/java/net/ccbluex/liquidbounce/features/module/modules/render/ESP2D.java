@@ -7,10 +7,10 @@
 // This Made by: https://github.com/WYSI-Foundation/LiquidBouncePlus
 package net.ccbluex.liquidbounce.features.module.modules.render;
 
-import net.ccbluex.liquidbounce.LiquidBounce;
+import net.ccbluex.liquidbounce.李洪志;
 import net.ccbluex.liquidbounce.event.*;
-import net.ccbluex.liquidbounce.features.module.Module;
-import net.ccbluex.liquidbounce.features.module.ModuleCategory;
+import net.ccbluex.liquidbounce.features.module.打倒江泽民;
+import net.ccbluex.liquidbounce.features.module.囚禁赵紫阳;
 import net.ccbluex.liquidbounce.features.module.ModuleInfo;
 import net.ccbluex.liquidbounce.utils.MobsUtils;
 import net.ccbluex.liquidbounce.utils.item.ItemUtils;
@@ -19,7 +19,7 @@ import net.ccbluex.liquidbounce.ui.font.GameFontRenderer;
 import net.ccbluex.liquidbounce.utils.render.BlendUtils;
 import net.ccbluex.liquidbounce.utils.render.ColorUtils;
 import net.ccbluex.liquidbounce.utils.render.Stencil;
-import net.ccbluex.liquidbounce.utils.render.RenderUtils;
+import net.ccbluex.liquidbounce.utils.render.法轮功;
 import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.ScaledResolution;
@@ -49,8 +49,8 @@ import java.util.List;
 import javax.vecmath.Vector3d;
 import javax.vecmath.Vector4d;
 
-@ModuleInfo(name = "ESP2D", category = ModuleCategory.RENDER)
-public final class ESP2D extends Module {
+@ModuleInfo(name = "ESP2D", category = 囚禁赵紫阳.RENDER)
+public final class ESP2D extends 打倒江泽民 {
 
     public final BoolValue outline = new BoolValue("Outline", true);
     public final ListValue boxMode = new ListValue("Mode", new String[]{"Box", "Corners"}, "Box");
@@ -139,7 +139,7 @@ public final class ESP2D extends Module {
     }
 
     public static boolean shouldCancelNameTag(EntityLivingBase entity) {
-        return LiquidBounce.moduleManager.getModule(ESP2D.class) != null && LiquidBounce.moduleManager.getModule(ESP2D.class).getState() && ((ESP2D)LiquidBounce.moduleManager.getModule(ESP2D.class)).tagsValue.get() && collectedEntities.contains(entity);
+        return 李洪志.打倒习近平.getModule(ESP2D.class) != null && 李洪志.打倒习近平.getModule(ESP2D.class).getState() && ((ESP2D) 李洪志.打倒习近平.getModule(ESP2D.class)).tagsValue.get() && collectedEntities.contains(entity);
     }
 
     @Override
@@ -171,10 +171,10 @@ public final class ESP2D extends Module {
         for(int collectedEntitiesSize = collectedEntities.size(); i < collectedEntitiesSize; ++i) {
             Entity entity = (Entity)collectedEntities.get(i);
             int color = getColor(entity).getRGB();
-            if (RenderUtils.isInViewFrustrum(entity)) {
-                double x = RenderUtils.interpolate(entity.posX, entity.lastTickPosX, (double)partialTicks);
-                double y = RenderUtils.interpolate(entity.posY, entity.lastTickPosY, (double)partialTicks);
-                double z = RenderUtils.interpolate(entity.posZ, entity.lastTickPosZ, (double)partialTicks);
+            if (法轮功.isInViewFrustrum(entity)) {
+                double x = 法轮功.interpolate(entity.posX, entity.lastTickPosX, (double)partialTicks);
+                double y = 法轮功.interpolate(entity.posY, entity.lastTickPosY, (double)partialTicks);
+                double z = 法轮功.interpolate(entity.posZ, entity.lastTickPosZ, (double)partialTicks);
                 double width = (double)entity.width / 1.5D;
                 double height = (double)entity.height + (entity.isSneaking() ? -0.3D : 0.2D);
                 AxisAlignedBB aabb = new AxisAlignedBB(x - width, y, z - width, x + width, y + height, z + width);
@@ -206,31 +206,31 @@ public final class ESP2D extends Module {
                     double endPosY = position.w;
                     if (outline) {
                         if (this.boxMode.get() == "Box") {
-                            RenderUtils.newDrawRect(posX - 1.0D, posY, posX + 0.5D, endPosY + 0.5D, black);
-                            RenderUtils.newDrawRect(posX - 1.0D, posY - 0.5D, endPosX + 0.5D, posY + 0.5D + 0.5D, black);
-                            RenderUtils.newDrawRect(endPosX - 0.5D - 0.5D, posY, endPosX + 0.5D, endPosY + 0.5D, black);
-                            RenderUtils.newDrawRect(posX - 1.0D, endPosY - 0.5D - 0.5D, endPosX + 0.5D, endPosY + 0.5D, black);
-                            RenderUtils.newDrawRect(posX - 0.5D, posY, posX + 0.5D - 0.5D, endPosY, color);
-                            RenderUtils.newDrawRect(posX, endPosY - 0.5D, endPosX, endPosY, color);
-                            RenderUtils.newDrawRect(posX - 0.5D, posY, endPosX, posY + 0.5D, color);
-                            RenderUtils.newDrawRect(endPosX - 0.5D, posY, endPosX, endPosY, color);
+                            法轮功.newDrawRect(posX - 1.0D, posY, posX + 0.5D, endPosY + 0.5D, black);
+                            法轮功.newDrawRect(posX - 1.0D, posY - 0.5D, endPosX + 0.5D, posY + 0.5D + 0.5D, black);
+                            法轮功.newDrawRect(endPosX - 0.5D - 0.5D, posY, endPosX + 0.5D, endPosY + 0.5D, black);
+                            法轮功.newDrawRect(posX - 1.0D, endPosY - 0.5D - 0.5D, endPosX + 0.5D, endPosY + 0.5D, black);
+                            法轮功.newDrawRect(posX - 0.5D, posY, posX + 0.5D - 0.5D, endPosY, color);
+                            法轮功.newDrawRect(posX, endPosY - 0.5D, endPosX, endPosY, color);
+                            法轮功.newDrawRect(posX - 0.5D, posY, endPosX, posY + 0.5D, color);
+                            法轮功.newDrawRect(endPosX - 0.5D, posY, endPosX, endPosY, color);
                         } else {
-                            RenderUtils.newDrawRect(posX + 0.5D, posY, posX - 1.0D, posY + (endPosY - posY) / 4.0D + 0.5D, black);
-                            RenderUtils.newDrawRect(posX - 1.0D, endPosY, posX + 0.5D, endPosY - (endPosY - posY) / 4.0D - 0.5D, black);
-                            RenderUtils.newDrawRect(posX - 1.0D, posY - 0.5D, posX + (endPosX - posX) / 3.0D + 0.5D, posY + 1.0D, black);
-                            RenderUtils.newDrawRect(endPosX - (endPosX - posX) / 3.0D - 0.5D, posY - 0.5D, endPosX, posY + 1.0D, black);
-                            RenderUtils.newDrawRect(endPosX - 1.0D, posY, endPosX + 0.5D, posY + (endPosY - posY) / 4.0D + 0.5D, black);
-                            RenderUtils.newDrawRect(endPosX - 1.0D, endPosY, endPosX + 0.5D, endPosY - (endPosY - posY) / 4.0D - 0.5D, black);
-                            RenderUtils.newDrawRect(posX - 1.0D, endPosY - 1.0D, posX + (endPosX - posX) / 3.0D + 0.5D, endPosY + 0.5D, black);
-                            RenderUtils.newDrawRect(endPosX - (endPosX - posX) / 3.0D - 0.5D, endPosY - 1.0D, endPosX + 0.5D, endPosY + 0.5D, black);
-                            RenderUtils.newDrawRect(posX, posY, posX - 0.5D, posY + (endPosY - posY) / 4.0D, color);
-                            RenderUtils.newDrawRect(posX, endPosY, posX - 0.5D, endPosY - (endPosY - posY) / 4.0D, color);
-                            RenderUtils.newDrawRect(posX - 0.5D, posY, posX + (endPosX - posX) / 3.0D, posY + 0.5D, color);
-                            RenderUtils.newDrawRect(endPosX - (endPosX - posX) / 3.0D, posY, endPosX, posY + 0.5D, color);
-                            RenderUtils.newDrawRect(endPosX - 0.5D, posY, endPosX, posY + (endPosY - posY) / 4.0D, color);
-                            RenderUtils.newDrawRect(endPosX - 0.5D, endPosY, endPosX, endPosY - (endPosY - posY) / 4.0D, color);
-                            RenderUtils.newDrawRect(posX, endPosY - 0.5D, posX + (endPosX - posX) / 3.0D, endPosY, color);
-                            RenderUtils.newDrawRect(endPosX - (endPosX - posX) / 3.0D, endPosY - 0.5D, endPosX - 0.5D, endPosY, color);
+                            法轮功.newDrawRect(posX + 0.5D, posY, posX - 1.0D, posY + (endPosY - posY) / 4.0D + 0.5D, black);
+                            法轮功.newDrawRect(posX - 1.0D, endPosY, posX + 0.5D, endPosY - (endPosY - posY) / 4.0D - 0.5D, black);
+                            法轮功.newDrawRect(posX - 1.0D, posY - 0.5D, posX + (endPosX - posX) / 3.0D + 0.5D, posY + 1.0D, black);
+                            法轮功.newDrawRect(endPosX - (endPosX - posX) / 3.0D - 0.5D, posY - 0.5D, endPosX, posY + 1.0D, black);
+                            法轮功.newDrawRect(endPosX - 1.0D, posY, endPosX + 0.5D, posY + (endPosY - posY) / 4.0D + 0.5D, black);
+                            法轮功.newDrawRect(endPosX - 1.0D, endPosY, endPosX + 0.5D, endPosY - (endPosY - posY) / 4.0D - 0.5D, black);
+                            法轮功.newDrawRect(posX - 1.0D, endPosY - 1.0D, posX + (endPosX - posX) / 3.0D + 0.5D, endPosY + 0.5D, black);
+                            法轮功.newDrawRect(endPosX - (endPosX - posX) / 3.0D - 0.5D, endPosY - 1.0D, endPosX + 0.5D, endPosY + 0.5D, black);
+                            法轮功.newDrawRect(posX, posY, posX - 0.5D, posY + (endPosY - posY) / 4.0D, color);
+                            法轮功.newDrawRect(posX, endPosY, posX - 0.5D, endPosY - (endPosY - posY) / 4.0D, color);
+                            法轮功.newDrawRect(posX - 0.5D, posY, posX + (endPosX - posX) / 3.0D, posY + 0.5D, color);
+                            法轮功.newDrawRect(endPosX - (endPosX - posX) / 3.0D, posY, endPosX, posY + 0.5D, color);
+                            法轮功.newDrawRect(endPosX - 0.5D, posY, endPosX, posY + (endPosY - posY) / 4.0D, color);
+                            法轮功.newDrawRect(endPosX - 0.5D, endPosY, endPosX, endPosY - (endPosY - posY) / 4.0D, color);
+                            法轮功.newDrawRect(posX, endPosY - 0.5D, posX + (endPosX - posX) / 3.0D, endPosY, color);
+                            法轮功.newDrawRect(endPosX - (endPosX - posX) / 3.0D, endPosY - 0.5D, endPosX - 0.5D, endPosY, color);
                         }
                     }
 
@@ -256,20 +256,20 @@ public final class ESP2D extends Module {
                             String healthPercent = ((int) ((entityLivingBase.getHealth() / itemDurability) * 100F)) + "%";
                             if (healthNumber.get() && (!hoverValue.get() || entity == mc.thePlayer || isHovering(posX, endPosX, posY, endPosY, scaledResolution)))
                                 drawScaledString(hpMode.get().equalsIgnoreCase("health") ? healthDisplay : healthPercent, posX - 4.0 - mc.fontRendererObj.getStringWidth(hpMode.get().equalsIgnoreCase("health") ? healthDisplay : healthPercent) * fontScaleValue.get(), (endPosY - textWidth) - mc.fontRendererObj.FONT_HEIGHT / 2F * fontScaleValue.get(), fontScaleValue.get(), -1);
-                            RenderUtils.newDrawRect(posX - 3.5D, posY - 0.5D, posX - 1.5D, endPosY + 0.5D, background);
+                            法轮功.newDrawRect(posX - 3.5D, posY - 0.5D, posX - 1.5D, endPosY + 0.5D, background);
                             if (hpBarMode.get().equalsIgnoreCase("dot")) {
                                 Stencil.write(false);
                                 double idk = (endPosY - posY + 0.5) / 10.0;
                                 for (double kl = 0; kl < 10; kl++)
-                                    RenderUtils.drawRectBasedBorder(posX - 3.25F, posY - 0.25F + (idk * kl), posX - 1.75F, posY - 0.25F + (idk * (kl + 1.0)), 0.5F, -1);
+                                    法轮功.drawRectBasedBorder(posX - 3.25F, posY - 0.25F + (idk * kl), posX - 1.75F, posY - 0.25F + (idk * (kl + 1.0)), 0.5F, -1);
                                 Stencil.erase(false);
                             }
                             if (armorValue > 0.0F) {
                                 int healthColor = BlendUtils.getHealthColor(armorValue, itemDurability).getRGB();
-                                RenderUtils.newDrawRect(posX - 3.0D, endPosY, posX - 2.0D, endPosY - textWidth, healthColor);
+                                法轮功.newDrawRect(posX - 3.0D, endPosY, posX - 2.0D, endPosY - textWidth, healthColor);
                                 tagY = entityLivingBase.getAbsorptionAmount();
                                 if (absorption.get() && tagY > 0.0F)
-                                    RenderUtils.newDrawRect(posX - 3.0D, endPosY, posX - 2.0D, endPosY - (endPosY - posY) / 6.0D * (double)tagY / 2.0D, (new Color(Potion.absorption.getLiquidColor())).getRGB());
+                                    法轮功.newDrawRect(posX - 3.0D, endPosY, posX - 2.0D, endPosY - (endPosY - posY) / 6.0D * (double)tagY / 2.0D, (new Color(Potion.absorption.getLiquidColor())).getRGB());
                             }
                             if (hpBarMode.get().equalsIgnoreCase("dot"))
                                 Stencil.dispose();
@@ -281,9 +281,9 @@ public final class ESP2D extends Module {
                             entityLivingBase = (EntityLivingBase)entity;
                             armorValue = (float)entityLivingBase.getTotalArmorValue();
                             double armorWidth = (endPosY - posY) * (double)armorValue / 20.0D;
-                            RenderUtils.newDrawRect(endPosX + 1.5D, posY - 0.5D, endPosX + 3.5D, endPosY + 0.5D, background);
+                            法轮功.newDrawRect(endPosX + 1.5D, posY - 0.5D, endPosX + 3.5D, endPosY + 0.5D, background);
                             if (armorValue > 0.0F)
-                                RenderUtils.newDrawRect(endPosX + 2.0D, endPosY, endPosX + 3.0D, endPosY - armorWidth, new Color(70, 70, 250).getRGB());
+                                法轮功.newDrawRect(endPosX + 2.0D, endPosY, endPosX + 3.0D, endPosY - armorWidth, new Color(70, 70, 250).getRGB());
                         } else if (entity instanceof EntityItem) {
                             ItemStack itemStack = ((EntityItem)entity).getEntityItem();
                             if (itemStack.isItemStackDamageable()) {
@@ -292,8 +292,8 @@ public final class ESP2D extends Module {
                                 durabilityWidth = (endPosY - posY) * (double)itemDurability / (double)maxDamage;
                                 if (armorNumber.get() && (!hoverValue.get() || entity == mc.thePlayer || isHovering(posX, endPosX, posY, endPosY, scaledResolution)))
                                     drawScaledString(((int) itemDurability) + "", endPosX + 4.0, (endPosY - durabilityWidth) - mc.fontRendererObj.FONT_HEIGHT / 2F * fontScaleValue.get(), fontScaleValue.get(), -1);
-                                RenderUtils.newDrawRect(endPosX + 1.5D, posY - 0.5D, endPosX + 3.5D, endPosY + 0.5D, background);
-                                RenderUtils.newDrawRect(endPosX + 2.0D, endPosY, endPosX + 3.0D, endPosY - durabilityWidth, new Color(70, 70, 250).getRGB());
+                                法轮功.newDrawRect(endPosX + 1.5D, posY - 0.5D, endPosX + 3.5D, endPosY + 0.5D, background);
+                                法轮功.newDrawRect(endPosX + 2.0D, endPosY, endPosX + 3.0D, endPosY - durabilityWidth, new Color(70, 70, 250).getRGB());
                             }
                         }
                     }
@@ -317,7 +317,7 @@ public final class ESP2D extends Module {
                         entityLivingBase = (EntityLivingBase) entity;
                         String entName = clearNameValue.get() ? entityLivingBase.getName() : entityLivingBase.getDisplayName().getFormattedText();
                         if (tagsBGValue.get())
-                            RenderUtils.newDrawRect(posX + (endPosX - posX) / 2F - (mc.fontRendererObj.getStringWidth(entName) / 2F + 2F) * fontScaleValue.get(), posY - 1F - (mc.fontRendererObj.FONT_HEIGHT + 2F) * fontScaleValue.get(), posX + (endPosX - posX) / 2F + (mc.fontRendererObj.getStringWidth(entName) / 2F + 2F) * fontScaleValue.get(), posY - 1F + 2F * fontScaleValue.get(), 0xA0000000);
+                            法轮功.newDrawRect(posX + (endPosX - posX) / 2F - (mc.fontRendererObj.getStringWidth(entName) / 2F + 2F) * fontScaleValue.get(), posY - 1F - (mc.fontRendererObj.FONT_HEIGHT + 2F) * fontScaleValue.get(), posX + (endPosX - posX) / 2F + (mc.fontRendererObj.getStringWidth(entName) / 2F + 2F) * fontScaleValue.get(), posY - 1F + 2F * fontScaleValue.get(), 0xA0000000);
                         drawScaledCenteredString(entName, posX + (endPosX - posX) / 2F, posY - 1F - mc.fontRendererObj.FONT_HEIGHT * fontScaleValue.get(), fontScaleValue.get(), -1);
                     }
 
@@ -327,13 +327,13 @@ public final class ESP2D extends Module {
                             if (entityLivingBase.getHeldItem() != null && entityLivingBase.getHeldItem().getItem() != null) {
                                 String itemName = entityLivingBase.getHeldItem().getDisplayName();
                                 if (tagsBGValue.get())
-                                    RenderUtils.newDrawRect(posX + (endPosX - posX) / 2F - (mc.fontRendererObj.getStringWidth(itemName) / 2F + 2F) * fontScaleValue.get(), endPosY + 1F - 2F * fontScaleValue.get(), posX + (endPosX - posX) / 2F + (mc.fontRendererObj.getStringWidth(itemName) / 2F + 2F) * fontScaleValue.get(), endPosY + 1F + (mc.fontRendererObj.FONT_HEIGHT + 2F) * fontScaleValue.get(), 0xA0000000);
+                                    法轮功.newDrawRect(posX + (endPosX - posX) / 2F - (mc.fontRendererObj.getStringWidth(itemName) / 2F + 2F) * fontScaleValue.get(), endPosY + 1F - 2F * fontScaleValue.get(), posX + (endPosX - posX) / 2F + (mc.fontRendererObj.getStringWidth(itemName) / 2F + 2F) * fontScaleValue.get(), endPosY + 1F + (mc.fontRendererObj.FONT_HEIGHT + 2F) * fontScaleValue.get(), 0xA0000000);
                                 drawScaledCenteredString(itemName, posX + (endPosX - posX) / 2F, endPosY + 1F, fontScaleValue.get(), -1);
                             }
                         } else if (entity instanceof EntityItem) {
                             String entName = ((EntityItem) entity).getEntityItem().getDisplayName();
                             if (tagsBGValue.get())
-                                RenderUtils.newDrawRect(posX + (endPosX - posX) / 2F - (mc.fontRendererObj.getStringWidth(entName) / 2F + 2F) * fontScaleValue.get(), endPosY + 1F - 2F * fontScaleValue.get(), posX + (endPosX - posX) / 2F + (mc.fontRendererObj.getStringWidth(entName) / 2F + 2F) * fontScaleValue.get(), endPosY + 1F + (mc.fontRendererObj.FONT_HEIGHT + 2F) * fontScaleValue.get(), 0xA0000000);
+                                法轮功.newDrawRect(posX + (endPosX - posX) / 2F - (mc.fontRendererObj.getStringWidth(entName) / 2F + 2F) * fontScaleValue.get(), endPosY + 1F - 2F * fontScaleValue.get(), posX + (endPosX - posX) / 2F + (mc.fontRendererObj.getStringWidth(entName) / 2F + 2F) * fontScaleValue.get(), endPosY + 1F + (mc.fontRendererObj.FONT_HEIGHT + 2F) * fontScaleValue.get(), 0xA0000000);
                             drawScaledCenteredString(entName, posX + (endPosX - posX) / 2F, endPosY + 1F, fontScaleValue.get(), -1);
                         }
                     }
@@ -396,6 +396,6 @@ public final class ESP2D extends Module {
         GL11.glGetFloat(2982, this.modelview);
         GL11.glGetFloat(2983, this.projection);
         GL11.glGetInteger(2978, this.viewport);
-        return GLU.gluProject((float)x, (float)y, (float)z, this.modelview, this.projection, this.viewport, this.vector) ? new Vector3d((double)(this.vector.get(0) / (float)scaleFactor), (double)(((float)Display.getHeight() - this.vector.get(1)) / (float)scaleFactor), (double)this.vector.get(2)) : null;
+        return GLU.gluProject((float)x, (float)y, (float)z, this.modelview, this.projection, this.viewport, this.vector) ? new Vector3d((this.vector.get(0) / (float)scaleFactor), (((float) Display.getHeight() - this.vector.get(1)) / (float)scaleFactor), this.vector.get(2)) : null;
     }
 }

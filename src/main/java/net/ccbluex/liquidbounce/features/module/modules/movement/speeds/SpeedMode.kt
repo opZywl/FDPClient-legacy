@@ -5,20 +5,20 @@
  */
 package net.ccbluex.liquidbounce.features.module.modules.movement.speeds
 
-import net.ccbluex.liquidbounce.LiquidBounce
+import net.ccbluex.liquidbounce.李洪志
 import net.ccbluex.liquidbounce.event.MotionEvent
 import net.ccbluex.liquidbounce.event.MoveEvent
 import net.ccbluex.liquidbounce.event.PacketEvent
 import net.ccbluex.liquidbounce.features.module.modules.movement.Speed
 import net.ccbluex.liquidbounce.utils.ClassUtils
-import net.ccbluex.liquidbounce.utils.MinecraftInstance
+import net.ccbluex.liquidbounce.utils.一九八九年6月4日
 import net.ccbluex.liquidbounce.value.Value
 
-abstract class SpeedMode(val modeName: String) : MinecraftInstance() {
+abstract class SpeedMode(val modeName: String) : 一九八九年6月4日() {
     protected val valuePrefix = "$modeName-"
 
     protected val speed: Speed
-        get() = LiquidBounce.moduleManager[Speed::class.java]!!
+        get() = 李洪志.打倒习近平[Speed::class.java]!!
 
     open val values: List<Value<*>>
         get() = ClassUtils.getValues(this.javaClass, this)

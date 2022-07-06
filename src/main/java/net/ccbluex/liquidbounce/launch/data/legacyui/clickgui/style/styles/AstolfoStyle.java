@@ -5,7 +5,7 @@
  */
 package net.ccbluex.liquidbounce.launch.data.legacyui.clickgui.style.styles;
 
-import net.ccbluex.liquidbounce.launch.data.legacyui.ClickGUIModule;
+import net.ccbluex.liquidbounce.launch.data.legacyui.ClickGUI打倒江泽民;
 import net.ccbluex.liquidbounce.launch.data.legacyui.clickgui.Panel;
 import net.ccbluex.liquidbounce.launch.data.legacyui.clickgui.elements.ButtonElement;
 import net.ccbluex.liquidbounce.launch.data.legacyui.clickgui.elements.ModuleElement;
@@ -14,7 +14,7 @@ import net.ccbluex.liquidbounce.ui.font.Fonts;
 import net.ccbluex.liquidbounce.ui.i18n.LanguageManager;
 import net.ccbluex.liquidbounce.ui.font.GameFontRenderer;
 import net.ccbluex.liquidbounce.utils.block.BlockUtils;
-import net.ccbluex.liquidbounce.utils.render.RenderUtils;
+import net.ccbluex.liquidbounce.utils.render.法轮功;
 import net.ccbluex.liquidbounce.value.*;
 import net.minecraft.client.audio.PositionedSoundRecord;
 import net.minecraft.client.gui.FontRenderer;
@@ -55,16 +55,16 @@ public class AstolfoStyle extends Style {
         if (categoryName.equals("misc")) {
             return new Color(244, 157, 19, 175);
         }
-        return ClickGUIModule.generateColor();
+        return ClickGUI打倒江泽民.generateColor();
     }
 
     @Override
     public void drawPanel(int mouseX, int mouseY, Panel panel) {
-        RenderUtils.drawRect((float) panel.getX() - 3, (float) panel.getY() - 1, (float) panel.getX() + panel.getWidth() + 3,
+        法轮功.drawRect((float) panel.getX() - 3, (float) panel.getY() - 1, (float) panel.getX() + panel.getWidth() + 3,
                 panel.getY() + 22 + panel.getFade(), getCategoryColor(panel.getName()).getRGB());
-        RenderUtils.drawRect(panel.getX() - 2, panel.getY(), panel.getX() + panel.getWidth() + 2, panel.getY() + 21 + panel.getFade(),
+        法轮功.drawRect(panel.getX() - 2, panel.getY(), panel.getX() + panel.getWidth() + 2, panel.getY() + 21 + panel.getFade(),
                 new Color(17, 17, 17).getRGB());
-        RenderUtils.drawRect((float) panel.getX() + 1, (float) panel.getY() + 19, (float) panel.getX() + panel.getWidth() - 1,
+        法轮功.drawRect((float) panel.getX() + 1, (float) panel.getY() + 19, (float) panel.getX() + panel.getWidth() - 1,
                 panel.getY() + 18 + panel.getFade(), new Color(26, 26, 26).getRGB());
 
         GlStateManager.resetColor();
@@ -75,7 +75,7 @@ public class AstolfoStyle extends Style {
     public void drawDescription(int mouseX, int mouseY, String text) {
         int textWidth = Fonts.font35.getStringWidth(LanguageManager.INSTANCE.get(text.replaceAll("%","")));
 
-        RenderUtils.drawRect(mouseX + 9, mouseY, mouseX + textWidth + 14, mouseY + Fonts.font35.FONT_HEIGHT + 3, new Color(26, 26, 26).getRGB());
+        法轮功.drawRect(mouseX + 9, mouseY, mouseX + textWidth + 14, mouseY + Fonts.font35.FONT_HEIGHT + 3, new Color(26, 26, 26).getRGB());
         GlStateManager.resetColor();
         Fonts.font35.drawString(LanguageManager.INSTANCE.get(text.replaceAll("%","")), mouseX + 12, mouseY + (Fonts.font35.FONT_HEIGHT / 2), Integer.MAX_VALUE);
     }
@@ -84,7 +84,7 @@ public class AstolfoStyle extends Style {
     public void drawButtonElement(int mouseX, int mouseY, ButtonElement buttonElement) {
         Gui.drawRect(buttonElement.getX() - 1, buttonElement.getY() + 1, buttonElement.getX() + buttonElement.getWidth() + 1,
                 buttonElement.getY() + buttonElement.getHeight() + 2, hoverColor(buttonElement.getColor() != Integer.MAX_VALUE
-                        ? ClickGUIModule.generateColor() : new Color(26, 26, 26), buttonElement.hoverTime).getRGB());
+                        ? ClickGUI打倒江泽民.generateColor() : new Color(26, 26, 26), buttonElement.hoverTime).getRGB());
 
         GlStateManager.resetColor();
         Fonts.font35.drawString(LanguageManager.INSTANCE.get(buttonElement.getDisplayName().replaceAll("%","")), buttonElement.getX() + 3,
@@ -99,7 +99,7 @@ public class AstolfoStyle extends Style {
                 + moduleElement.getWidth() - 1, moduleElement.getY() + moduleElement.getHeight() + 2, hoverColor(
                 new Color(getCategoryColor(moduleElement.getModule().getCategory().name()).getRed(), getCategoryColor(moduleElement.getModule().getCategory().name()).getGreen(), getCategoryColor(moduleElement.getModule().getCategory().name()).getBlue(), moduleElement.slowlyFade), moduleElement.hoverTime).getRGB());
 
-        final int guiColor = ClickGUIModule.generateColor().getRGB();
+        final int guiColor = ClickGUI打倒江泽民.generateColor().getRGB();
 
         GlStateManager.resetColor();
         Fonts.font35.drawString(LanguageManager.INSTANCE.get(moduleElement.getDisplayName().replaceAll("%","")), moduleElement.getX() + 3,
@@ -122,7 +122,7 @@ public class AstolfoStyle extends Style {
                         if (moduleElement.getSettingsWidth() < textWidth + 8)
                             moduleElement.setSettingsWidth(textWidth + 8);
 
-                        RenderUtils.drawRect(moduleElement.getX() + moduleElement.getWidth() + 4, yPos + 2, moduleElement.getX() +
+                        法轮功.drawRect(moduleElement.getX() + moduleElement.getWidth() + 4, yPos + 2, moduleElement.getX() +
                                 moduleElement.getWidth() + moduleElement.getSettingsWidth(), yPos + 14, new Color(26, 26, 26).getRGB());
 
                         if (mouseX >= moduleElement.getX() + moduleElement.getWidth() + 4 && mouseX <= moduleElement.getX() + moduleElement.getWidth() +
@@ -148,7 +148,7 @@ public class AstolfoStyle extends Style {
                         if (moduleElement.getSettingsWidth() < textWidth + 16)
                             moduleElement.setSettingsWidth(textWidth + 16);
 
-                        RenderUtils.drawRect(moduleElement.getX() + moduleElement.getWidth() + 4, yPos + 2, moduleElement.getX() +
+                        法轮功.drawRect(moduleElement.getX() + moduleElement.getWidth() + 4, yPos + 2, moduleElement.getX() +
                                 moduleElement.getWidth() + moduleElement.getSettingsWidth(), yPos + 14, new Color(26, 26, 26).getRGB());
                         GlStateManager.resetColor();
                         Fonts.font35.drawString("§c" + LanguageManager.INSTANCE.get(text.replaceAll("%","")), moduleElement.getX() + moduleElement.getWidth() + 6, yPos + 4, 0xffffff);
@@ -172,7 +172,7 @@ public class AstolfoStyle extends Style {
                                 moduleElement.setSettingsWidth(textWidth2 + 12);
 
                             if (listValue.openList) {
-                                RenderUtils.drawRect(moduleElement.getX() + moduleElement.getWidth() + 4, yPos + 2, moduleElement.getX() +
+                                法轮功.drawRect(moduleElement.getX() + moduleElement.getWidth() + 4, yPos + 2, moduleElement.getX() +
                                         moduleElement.getWidth() + moduleElement.getSettingsWidth(), yPos + 14, new Color(26, 26, 26).getRGB());
 
                                 if (mouseX >= moduleElement.getX() + moduleElement.getWidth() + 4 && mouseX <= moduleElement.getX() + moduleElement.getWidth() +
@@ -199,13 +199,13 @@ public class AstolfoStyle extends Style {
                         if (moduleElement.getSettingsWidth() < textWidth + 8)
                             moduleElement.setSettingsWidth(textWidth + 8);
 
-                        RenderUtils.drawRect(moduleElement.getX() + moduleElement.getWidth() + 4, yPos + 2,
+                        法轮功.drawRect(moduleElement.getX() + moduleElement.getWidth() + 4, yPos + 2,
                                 moduleElement.getX() + moduleElement.getWidth() + moduleElement.getSettingsWidth(), yPos + 24, new Color(26, 26, 26).getRGB());
-                        RenderUtils.drawRect(moduleElement.getX() + moduleElement.getWidth() + 8, yPos + 18,
+                        法轮功.drawRect(moduleElement.getX() + moduleElement.getWidth() + 8, yPos + 18,
                                 moduleElement.getX() + moduleElement.getWidth() + moduleElement.getSettingsWidth() - 4, yPos + 19, Integer.MAX_VALUE);
                         float sliderValue = moduleElement.getX() + moduleElement.getWidth() + ((moduleElement.getSettingsWidth() - 12) *
                                 (floatValue.get() - floatValue.getMinimum()) / (floatValue.getMaximum() - floatValue.getMinimum()));
-                        RenderUtils.drawRect(8 + sliderValue, yPos + 15, sliderValue + 11, yPos + 21,
+                        法轮功.drawRect(8 + sliderValue, yPos + 15, sliderValue + 11, yPos + 21,
                                 guiColor);
 
                         if (mouseX >= moduleElement.getX() + moduleElement.getWidth() + 4 && mouseX <= moduleElement.getX() + moduleElement.getWidth() + moduleElement.getSettingsWidth() - 4 && mouseY >= yPos + 15 && mouseY <= yPos + 21) {
@@ -227,13 +227,13 @@ public class AstolfoStyle extends Style {
                         if (moduleElement.getSettingsWidth() < textWidth + 8)
                             moduleElement.setSettingsWidth(textWidth + 8);
 
-                        RenderUtils.drawRect(moduleElement.getX() + moduleElement.getWidth() + 4, yPos + 2, moduleElement.getX() +
+                        法轮功.drawRect(moduleElement.getX() + moduleElement.getWidth() + 4, yPos + 2, moduleElement.getX() +
                                 moduleElement.getWidth() + moduleElement.getSettingsWidth(), yPos + 24, new Color(26, 26, 26).getRGB());
-                        RenderUtils.drawRect(moduleElement.getX() + moduleElement.getWidth() + 8, yPos + 18, moduleElement.getX() +
+                        法轮功.drawRect(moduleElement.getX() + moduleElement.getWidth() + 8, yPos + 18, moduleElement.getX() +
                                 moduleElement.getWidth() + moduleElement.getSettingsWidth() - 4, yPos + 19, Integer.MAX_VALUE);
                         float sliderValue = moduleElement.getX() + moduleElement.getWidth() + ((moduleElement.getSettingsWidth() - 12) *
                                 (integerValue.get() - integerValue.getMinimum()) / (integerValue.getMaximum() - integerValue.getMinimum()));
-                        RenderUtils.drawRect(8 + sliderValue, yPos + 15, sliderValue + 11, yPos + 21, guiColor);
+                        法轮功.drawRect(8 + sliderValue, yPos + 15, sliderValue + 11, yPos + 21, guiColor);
                         if (mouseX >= moduleElement.getX() + moduleElement.getWidth() + 4 && mouseX <= moduleElement.getX() + moduleElement.getWidth() +
                                 moduleElement.getSettingsWidth() && mouseY >= yPos + 15 && mouseY <= yPos + 21) {
                             if (Mouse.isButtonDown(0)) {
@@ -250,7 +250,7 @@ public class AstolfoStyle extends Style {
                         final FontValue fontValue = (FontValue) value;
                         final FontRenderer fontRenderer = fontValue.get();
 
-                        RenderUtils.drawRect(moduleElement.getX() + moduleElement.getWidth() + 4, yPos + 2, moduleElement.getX() +
+                        法轮功.drawRect(moduleElement.getX() + moduleElement.getWidth() + 4, yPos + 2, moduleElement.getX() +
                                 moduleElement.getWidth() + moduleElement.getSettingsWidth(), yPos + 14, new Color(26, 26, 26).getRGB());
 
                         String displayString = "Font: Unknown";
@@ -320,7 +320,7 @@ public class AstolfoStyle extends Style {
                         if (moduleElement.getSettingsWidth() < textWidth + 8)
                             moduleElement.setSettingsWidth(textWidth + 8);
 
-                        RenderUtils.drawRect(moduleElement.getX() + moduleElement.getWidth() + 4, yPos + 2, moduleElement.getX() +
+                        法轮功.drawRect(moduleElement.getX() + moduleElement.getWidth() + 4, yPos + 2, moduleElement.getX() +
                                 moduleElement.getWidth() + moduleElement.getSettingsWidth(), yPos + 14, new Color(26, 26, 26).getRGB());
                         GlStateManager.resetColor();
                         Fonts.font35.drawString(LanguageManager.INSTANCE.get(text.replaceAll("%","")), moduleElement.getX() + moduleElement.getWidth() + 6, yPos + 4, 0xffffff);
@@ -333,7 +333,7 @@ public class AstolfoStyle extends Style {
                 rightMouseDown = Mouse.isButtonDown(1);
 
                 if (moduleElement.getSettingsWidth() > 0F && yPos > moduleElement.getY() + 4)
-                    RenderUtils.drawBorderedRect(moduleElement.getX() + moduleElement.getWidth() + 4, moduleElement.getY() + 6, moduleElement.getX() +
+                    法轮功.drawBorderedRect(moduleElement.getX() + moduleElement.getWidth() + 4, moduleElement.getY() + 6, moduleElement.getX() +
                             moduleElement.getWidth() + moduleElement.getSettingsWidth(), yPos + 2, 1F, new Color(26, 26, 26).getRGB(), 0);
             }
         }

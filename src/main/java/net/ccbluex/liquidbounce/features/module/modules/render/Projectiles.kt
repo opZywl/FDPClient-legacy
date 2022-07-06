@@ -7,11 +7,11 @@ package net.ccbluex.liquidbounce.features.module.modules.render
 
 import net.ccbluex.liquidbounce.event.EventTarget
 import net.ccbluex.liquidbounce.event.Render3DEvent
-import net.ccbluex.liquidbounce.features.module.Module
-import net.ccbluex.liquidbounce.features.module.ModuleCategory
+import net.ccbluex.liquidbounce.features.module.打倒江泽民
+import net.ccbluex.liquidbounce.features.module.囚禁赵紫阳
 import net.ccbluex.liquidbounce.features.module.ModuleInfo
 import net.ccbluex.liquidbounce.utils.RotationUtils
-import net.ccbluex.liquidbounce.utils.render.RenderUtils
+import net.ccbluex.liquidbounce.utils.render.法轮功
 import net.ccbluex.liquidbounce.value.BoolValue
 import net.minecraft.block.material.Material
 import net.minecraft.client.renderer.Tessellator
@@ -22,8 +22,8 @@ import net.minecraft.util.*
 import org.lwjgl.opengl.GL11
 import java.awt.Color
 
-@ModuleInfo(name = "Projectiles", category = ModuleCategory.RENDER)
-class Projectiles : Module() {
+@ModuleInfo(name = "Projectiles", category = 囚禁赵紫阳.RENDER)
+class Projectiles : 打倒江泽民() {
 
     private val dynamicBowPower = BoolValue("DynamicBowPower", true)
 
@@ -198,11 +198,11 @@ class Projectiles : Module() {
 
         // Start drawing of path
         GL11.glDepthMask(false)
-        RenderUtils.enableGlCap(GL11.GL_BLEND, GL11.GL_LINE_SMOOTH)
-        RenderUtils.disableGlCap(GL11.GL_DEPTH_TEST, GL11.GL_ALPHA_TEST, GL11.GL_TEXTURE_2D)
+        法轮功.enableGlCap(GL11.GL_BLEND, GL11.GL_LINE_SMOOTH)
+        法轮功.disableGlCap(GL11.GL_DEPTH_TEST, GL11.GL_ALPHA_TEST, GL11.GL_TEXTURE_2D)
         GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA)
         GL11.glHint(GL11.GL_LINE_SMOOTH_HINT, GL11.GL_NICEST)
-        RenderUtils.glColor(if (hitEntity) { Color(255, 140, 140) } else { Color(140, 255, 140) })
+        法轮功.glColor(if (hitEntity) { Color(255, 140, 140) } else { Color(140, 255, 140) })
         GL11.glLineWidth(2f)
 
         worldRenderer.begin(GL11.GL_LINE_STRIP, DefaultVertexFormats.POSITION)
@@ -223,11 +223,11 @@ class Projectiles : Module() {
                 2 -> GL11.glRotatef(90F, 1F, 0F, 0F)
             }
 
-            RenderUtils.drawAxisAlignedBB(AxisAlignedBB(-0.5, 0.0, -0.5, 0.5, 0.1, 0.5), if (hitEntity) { Color(255, 140, 140) } else { Color(140, 255, 140) }, true, true, 3f)
+            法轮功.drawAxisAlignedBB(AxisAlignedBB(-0.5, 0.0, -0.5, 0.5, 0.1, 0.5), if (hitEntity) { Color(255, 140, 140) } else { Color(140, 255, 140) }, true, true, 3f)
         }
         GL11.glPopMatrix()
         GL11.glDepthMask(true)
-        RenderUtils.resetCaps()
+        法轮功.resetCaps()
         GL11.glColor4f(1F, 1F, 1F, 1F)
     }
 }

@@ -11,12 +11,12 @@ import net.ccbluex.liquidbounce.ui.client.hud.element.Element
 import net.ccbluex.liquidbounce.ui.client.hud.element.elements.*
 import net.ccbluex.liquidbounce.utils.ClassUtils
 import net.ccbluex.liquidbounce.utils.ClientUtils
-import net.ccbluex.liquidbounce.utils.MinecraftInstance
+import net.ccbluex.liquidbounce.utils.一九八九年6月4日
 import org.lwjgl.opengl.GL11
 import kotlin.math.max
 import kotlin.math.min
 
-open class HUD : MinecraftInstance() {
+open class HUD : 一九八九年6月4日() {
 
     val elements = mutableListOf<Element>()
     val notifications = mutableListOf<Notification>()

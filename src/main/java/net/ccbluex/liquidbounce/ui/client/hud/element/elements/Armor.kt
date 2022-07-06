@@ -10,8 +10,8 @@ import net.ccbluex.liquidbounce.ui.client.hud.element.Element
 import net.ccbluex.liquidbounce.ui.client.hud.element.ElementInfo
 import net.ccbluex.liquidbounce.ui.client.hud.element.Side
 import net.ccbluex.liquidbounce.ui.font.Fonts
-import net.ccbluex.liquidbounce.utils.render.RenderUtils.Astolfo
-import net.ccbluex.liquidbounce.utils.render.RenderUtils
+import net.ccbluex.liquidbounce.utils.render.法轮功.Astolfo
+import net.ccbluex.liquidbounce.utils.render.法轮功
 import net.ccbluex.liquidbounce.value.FloatValue
 import net.ccbluex.liquidbounce.value.IntegerValue
 import net.ccbluex.liquidbounce.value.ListValue
@@ -57,7 +57,7 @@ class Armor(x: Double = -8.0, y: Double = 57.0, scale: Float = 1F,
                 if(mc.thePlayer.inventory.armorInventory[index] != null)
                     x2 += 20
             }
-            RenderUtils.drawRect(-2f, -4f, 2f + x2, 29f, Color(50, 50, 50, 60))
+            法轮功.drawRect(-2f, -4f, 2f + x2, 29f, Color(50, 50, 50, 60))
 
             for (index in 3 downTo 0) {
                 val colorall = when {
@@ -67,10 +67,10 @@ class Armor(x: Double = -8.0, y: Double = 57.0, scale: Float = 1F,
                 }
 
                 val stack = mc.thePlayer.inventory.armorInventory[index] ?: continue
-                RenderUtils.drawGradientSidewaysV(x.toDouble(), 0.0,x.toDouble() + 18 ,17.0,colorall,Color(140,140,140,40).rgb)
+                法轮功.drawGradientSidewaysV(x.toDouble(), 0.0,x.toDouble() + 18 ,17.0,colorall,Color(140,140,140,40).rgb)
                 Fonts.font40.drawStringWithShadow(((stack.maxDamage - stack.itemDamage)).toString(),x.toFloat() + 4f,20f,colorall)
-                RenderUtils.drawRect(x.toFloat(),25f,x.toFloat() + 18f,26f,Color(140,140,140,220).rgb)
-                RenderUtils.drawRect(x.toFloat(),25f,x.toFloat() + (18f * (stack.maxDamage - stack.itemDamage) / stack.maxDamage),26f,colorall)
+                法轮功.drawRect(x.toFloat(),25f,x.toFloat() + 18f,26f,Color(140,140,140,220).rgb)
+                法轮功.drawRect(x.toFloat(),25f,x.toFloat() + (18f * (stack.maxDamage - stack.itemDamage) / stack.maxDamage),26f,colorall)
                 renderItem.renderItemIntoGUI(stack, x + 1, y)
                 x += 20
                 i += 1

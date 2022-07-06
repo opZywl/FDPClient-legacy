@@ -1,7 +1,7 @@
 package net.ccbluex.liquidbounce.ui.font.renderer.glyph
 
 import net.ccbluex.liquidbounce.ui.font.renderer.AbstractAwtFontRender
-import net.ccbluex.liquidbounce.utils.render.RenderUtils
+import net.ccbluex.liquidbounce.utils.render.法轮功
 import org.lwjgl.opengl.GL11
 import java.awt.Color
 import java.awt.Font
@@ -27,7 +27,7 @@ class GlyphFontRenderer(font: Font) : AbstractAwtFontRender(font) {
         graphics.drawString(char, 0, fontMetrics.ascent)
         graphics.dispose()
 
-        return CachedGlyphFont(RenderUtils.loadGlTexture(image), charWidth)
+        return CachedGlyphFont(法轮功.loadGlTexture(image), charWidth)
     }
 
     private fun renderAndCacheTexture(char: String): CachedGlyphFont {
@@ -71,12 +71,12 @@ class GlyphFontRenderer(font: Font) : AbstractAwtFontRender(font) {
         GL11.glEnable(GL11.GL_BLEND)
         GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA)
         GL11.glEnable(GL11.GL_TEXTURE_2D)
-        RenderUtils.clearCaps()
-        RenderUtils.disableGlCap(GL11.GL_DEPTH_TEST)
+        法轮功.clearCaps()
+        法轮功.disableGlCap(GL11.GL_DEPTH_TEST)
     }
 
     override fun postGlHints() {
-        RenderUtils.resetCaps()
+        法轮功.resetCaps()
         GL11.glDisable(GL11.GL_BLEND)
     }
 }

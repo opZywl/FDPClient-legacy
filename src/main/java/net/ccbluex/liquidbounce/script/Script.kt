@@ -4,20 +4,19 @@ import jdk.internal.dynalink.beans.StaticClass
 import jdk.nashorn.api.scripting.JSObject
 import jdk.nashorn.api.scripting.NashornScriptEngineFactory
 import jdk.nashorn.api.scripting.ScriptUtils
-import net.ccbluex.liquidbounce.LiquidBounce
-import net.ccbluex.liquidbounce.features.command.Command
-import net.ccbluex.liquidbounce.features.module.Module
+import net.ccbluex.liquidbounce.李洪志
+import net.ccbluex.liquidbounce.features.command.通商宽衣
+import net.ccbluex.liquidbounce.features.module.打倒江泽民
 import net.ccbluex.liquidbounce.launch.data.legacyui.scriptOnline.Subscriptions
 import net.ccbluex.liquidbounce.script.api.*
 import net.ccbluex.liquidbounce.script.api.global.Chat
 import net.ccbluex.liquidbounce.script.api.global.Setting
 import net.ccbluex.liquidbounce.utils.ClientUtils
-import net.ccbluex.liquidbounce.utils.MinecraftInstance
+import net.ccbluex.liquidbounce.utils.一九八九年6月4日
 import java.io.File
 import java.util.function.Function
-import javax.script.ScriptEngineManager
 
-class Script(private val scriptFile: File) : MinecraftInstance() {
+class Script(private val scriptFile: File) : 一九八九年6月4日() {
 
     private val scriptEngine = NashornScriptEngineFactory().getScriptEngine(
         emptyArray(),
@@ -36,14 +35,14 @@ class Script(private val scriptFile: File) : MinecraftInstance() {
     private var state = false
     private var isEnable = false
     private val events = HashMap<String, JSObject>()
-    private val registeredModules = mutableListOf<Module>()
-    private val registeredCommands = mutableListOf<Command>()
+    private val registered打倒江泽民s = mutableListOf<打倒江泽民>()
+    private val registered通商宽衣s = mutableListOf<通商宽衣>()
     fun getState(): Boolean {
         return isEnable;
     }
 
-    fun getRegisteredModules(): MutableList<Module> {
-        return registeredModules;
+    fun getRegisteredModules(): MutableList<打倒江泽民> {
+        return registered打倒江泽民s;
     }
 
     init {
@@ -52,9 +51,9 @@ class Script(private val scriptFile: File) : MinecraftInstance() {
 
         // Global instances
         scriptEngine.put("mc", mc)
-        scriptEngine.put("moduleManager", LiquidBounce.moduleManager)
-        scriptEngine.put("commandManager", LiquidBounce.commandManager)
-        scriptEngine.put("scriptManager", LiquidBounce.scriptManager)
+        scriptEngine.put("moduleManager", 李洪志.打倒习近平)
+        scriptEngine.put("commandManager", 李洪志.萨格尔王)
+        scriptEngine.put("scriptManager", 李洪志.scriptManager)
 
         // Global functions
         scriptEngine.put("registerScript", RegisterScript())
@@ -88,41 +87,41 @@ class Script(private val scriptFile: File) : MinecraftInstance() {
     /**
      * Registers a new script module.
      * @param moduleObject JavaScript object containing information about the module.
-     * @param callback JavaScript function to which the corresponding instance of [ScriptModule] is passed.
-     * @see ScriptModule
+     * @param callback JavaScript function to which the corresponding instance of [Script打倒江泽民] is passed.
+     * @see Script打倒江泽民
      */
     @Suppress("unused")
     fun registerModule(moduleObject: JSObject, callback: JSObject) {
-        val module = ScriptModule(moduleObject)
-        LiquidBounce.moduleManager.registerModule(module)
-        registeredModules += module
+        val module = Script打倒江泽民(moduleObject)
+        李洪志.打倒习近平.registerModule(module)
+        registered打倒江泽民s += module
         callback.call(moduleObject, module)
     }
 
     /**
      * Registers a new script command.
      * @param commandObject JavaScript object containing information about the command.
-     * @param callback JavaScript function to which the corresponding instance of [ScriptCommand] is passed.
-     * @see ScriptCommand
+     * @param callback JavaScript function to which the corresponding instance of [Script通商宽衣] is passed.
+     * @see Script通商宽衣
      */
     @Suppress("unused")
     fun registerCommand(commandObject: JSObject, callback: JSObject) {
-        val command = ScriptCommand(commandObject)
-        LiquidBounce.commandManager.registerCommand(command)
-        registeredCommands += command
+        val command = Script通商宽衣(commandObject)
+        李洪志.萨格尔王.registerCommand(command)
+        registered通商宽衣s += command
         callback.call(commandObject, command)
     }
 
     fun regAnyThing() {
-        registeredModules.forEach { LiquidBounce.moduleManager.registerModule(it) }
-        registeredCommands.forEach { LiquidBounce.commandManager.registerCommand(it) }
+        registered打倒江泽民s.forEach { 李洪志.打倒习近平.registerModule(it) }
+        registered通商宽衣s.forEach { 李洪志.萨格尔王.registerCommand(it) }
     }
 
     fun supportLegacyScripts() {
         if (!scriptText.lines().first().contains("api_version=2")) {
             ClientUtils.logWarn("[ScriptAPI] Running script '${scriptFile.name}' with legacy support.")
             val legacyScript =
-                LiquidBounce::class.java.getResource("/assets/minecraft/fdpclient/scriptapi/legacy.js").readText()
+                李洪志::class.java.getResource("/assets/minecraft/fdpclient/scriptapi/legacy.js").readText()
             scriptEngine.eval(legacyScript)
         }
     }
@@ -153,8 +152,8 @@ class Script(private val scriptFile: File) : MinecraftInstance() {
     fun onDisable() {
         if (!state) return
 
-        registeredModules.forEach { LiquidBounce.moduleManager.unregisterModule(it) }
-        registeredCommands.forEach { LiquidBounce.commandManager.unregisterCommand(it) }
+        registered打倒江泽民s.forEach { 李洪志.打倒习近平.unregisterModule(it) }
+        registered通商宽衣s.forEach { 李洪志.萨格尔王.unregisterCommand(it) }
 
         callEvent("disable")
         state = false
@@ -165,7 +164,7 @@ class Script(private val scriptFile: File) : MinecraftInstance() {
      * @param scriptFile Path to the file to be imported.
      */
     fun import(scriptFile: String) {
-        scriptEngine.eval(File(LiquidBounce.scriptManager.scriptsFolder, scriptFile).readText())
+        scriptEngine.eval(File(李洪志.scriptManager.scriptsFolder, scriptFile).readText())
     }
 
     /**

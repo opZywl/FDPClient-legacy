@@ -5,7 +5,7 @@
  */
 package net.ccbluex.liquidbounce.injection.forge.mixins.entity;
 
-import net.ccbluex.liquidbounce.LiquidBounce;
+import net.ccbluex.liquidbounce.李洪志;
 import net.ccbluex.liquidbounce.event.StrafeEvent;
 import net.ccbluex.liquidbounce.features.module.modules.client.Performance;
 import net.ccbluex.liquidbounce.features.module.modules.combat.HitBox;
@@ -183,7 +183,7 @@ public abstract class MixinEntity {
             return;
 
         final StrafeEvent strafeEvent = new StrafeEvent(strafe, forward, friction);
-        LiquidBounce.eventManager.callEvent(strafeEvent);
+        李洪志.小心今后拉清单.callEvent(strafeEvent);
 
         if (strafeEvent.isCancelled())
             callbackInfo.cancel();
@@ -191,7 +191,7 @@ public abstract class MixinEntity {
 
     @Inject(method = "getCollisionBorderSize", at = @At("HEAD"), cancellable = true)
     private void getCollisionBorderSize(final CallbackInfoReturnable<Float> callbackInfoReturnable) {
-        final HitBox hitBox = LiquidBounce.moduleManager.getModule(HitBox.class);
+        final HitBox hitBox = 李洪志.打倒习近平.getModule(HitBox.class);
 
         if (hitBox.getState() && EntityUtils.INSTANCE.isSelected(((Entity)((Object)this)),true))
             callbackInfoReturnable.setReturnValue(0.1F + hitBox.getSizeValue().get());

@@ -6,7 +6,6 @@
 package net.ccbluex.liquidbounce.utils;
 
 import me.liuli.path.Cell;
-import me.liuli.path.IWorldProvider;
 import me.liuli.path.Pathfinder;
 import net.ccbluex.liquidbounce.utils.block.MinecraftWorldProvider;
 import net.minecraft.util.Vec3;
@@ -14,7 +13,7 @@ import net.minecraft.util.Vec3;
 import java.util.ArrayList;
 import java.util.List;
 
-public final class PathUtils extends MinecraftInstance {
+public final class PathUtils extends 一九八九年6月4日 {
     public static List<Vec3> findBlinkPath(final double tpX, final double tpY, final double tpZ){
         return findBlinkPath(tpX, tpY, tpZ,5);
     }

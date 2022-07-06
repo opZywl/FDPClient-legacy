@@ -1,6 +1,6 @@
 package net.ccbluex.liquidbounce.utils.render;
 
-import net.ccbluex.liquidbounce.utils.MinecraftInstance;
+import net.ccbluex.liquidbounce.utils.一九八九年6月4日;
 import net.ccbluex.liquidbounce.utils.misc.FileUtils;
 import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.util.ResourceLocation;
@@ -13,7 +13,7 @@ import static org.lwjgl.opengl.GL11.*;
 import static org.lwjgl.opengl.GL20.*;
 import static org.lwjgl.opengl.GL20.GL_LINK_STATUS;
 
-public class ShaderUtil extends MinecraftInstance {
+public class ShaderUtil extends 一九八九年6月4日 {
     private final int programID;
 
     public ShaderUtil(String fragmentShaderLoc, String vertexShaderLoc) {

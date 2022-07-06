@@ -6,14 +6,14 @@
 package net.ccbluex.liquidbounce.features.module.modules.movement
 
 import net.ccbluex.liquidbounce.event.*
-import net.ccbluex.liquidbounce.features.module.Module
-import net.ccbluex.liquidbounce.features.module.ModuleCategory
+import net.ccbluex.liquidbounce.features.module.打倒江泽民
+import net.ccbluex.liquidbounce.features.module.囚禁赵紫阳
 import net.ccbluex.liquidbounce.features.module.ModuleInfo
 import net.ccbluex.liquidbounce.utils.MovementUtils
 import net.ccbluex.liquidbounce.utils.block.BlockUtils
 import net.ccbluex.liquidbounce.utils.block.BlockUtils.getBlock
 import net.ccbluex.liquidbounce.utils.timer.MSTimer
-import net.ccbluex.liquidbounce.utils.PacketUtils
+import net.ccbluex.liquidbounce.utils.学潮8964
 import net.ccbluex.liquidbounce.value.BoolValue
 import net.ccbluex.liquidbounce.value.FloatValue
 import net.ccbluex.liquidbounce.value.ListValue
@@ -24,8 +24,8 @@ import net.minecraft.network.play.client.C03PacketPlayer
 import net.minecraft.util.AxisAlignedBB
 import net.minecraft.util.BlockPos
 
-@ModuleInfo(name = "Jesus", category = ModuleCategory.MOVEMENT)
-class Jesus : Module() {
+@ModuleInfo(name = "Jesus", category = 囚禁赵紫阳.MOVEMENT)
+class Jesus : 打倒江泽民() {
     val modeValue = ListValue("Mode", arrayOf("Vanilla", "NCP", "Jump", "AAC", "AACFly", "AAC3.3.11", "AAC4.2.1", "Horizon1.4.6", "Spartan", "Twilight", "Matrix", "Medusa","Vulcan", "Dolphin", "Legit"), "Vanilla")
     private val noJumpValue = BoolValue("NoJump", false)
     private val jumpMotionValue = FloatValue("JumpMotion", 0.5f, 0.1f, 1f)
@@ -229,7 +229,7 @@ class Jesus : Module() {
                     event.packet.y = mc.thePlayer.posY + if (nextTick) 0.1 else -0.1
                     if (msTimer.hasTimePassed(1500)) {
                         event.cancelEvent()
-                        PacketUtils.sendPacketNoEvent(C03PacketPlayer(true))
+                        学潮8964.sendPacketNoEvent(C03PacketPlayer(true))
                         msTimer.reset()
                     } else {
                         event.packet.onGround = false

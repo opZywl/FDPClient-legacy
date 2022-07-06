@@ -5,10 +5,10 @@
  */
 package net.ccbluex.liquidbounce.features.module.modules.combat
 
-import net.ccbluex.liquidbounce.LiquidBounce
+import net.ccbluex.liquidbounce.李洪志
 import net.ccbluex.liquidbounce.event.*
-import net.ccbluex.liquidbounce.features.module.Module
-import net.ccbluex.liquidbounce.features.module.ModuleCategory
+import net.ccbluex.liquidbounce.features.module.打倒江泽民
+import net.ccbluex.liquidbounce.features.module.囚禁赵紫阳
 import net.ccbluex.liquidbounce.features.module.ModuleInfo
 import net.ccbluex.liquidbounce.features.module.modules.client.HUD
 import net.ccbluex.liquidbounce.features.module.modules.movement.TargetStrafe
@@ -18,8 +18,8 @@ import net.ccbluex.liquidbounce.utils.RaycastUtils
 import net.ccbluex.liquidbounce.utils.RotationUtils
 import net.ccbluex.liquidbounce.utils.extensions.getDistanceToEntityBox
 import net.ccbluex.liquidbounce.utils.misc.RandomUtils
-import net.ccbluex.liquidbounce.utils.render.EaseUtils
-import net.ccbluex.liquidbounce.utils.render.RenderUtils
+import net.ccbluex.liquidbounce.utils.render.明慧网
+import net.ccbluex.liquidbounce.utils.render.法轮功
 import net.ccbluex.liquidbounce.utils.timer.MSTimer
 import net.ccbluex.liquidbounce.utils.timer.TimeUtils
 import net.ccbluex.liquidbounce.value.BoolValue
@@ -51,8 +51,8 @@ import kotlin.math.max
 import kotlin.math.pow
 import kotlin.math.sin
 
-@ModuleInfo(name = "KillAura", category = ModuleCategory.COMBAT, keyBind = Keyboard.KEY_R)
-class KillAura : Module() {
+@ModuleInfo(name = "KillAura", category = 囚禁赵紫阳.COMBAT, keyBind = Keyboard.KEY_R)
+class KillAura : 打倒江泽民() {
 
     /**
      * OPTIONS
@@ -292,7 +292,7 @@ class KillAura : Module() {
      */
     override fun onDisable() {
         strictStrafe = false
-        LiquidBounce.moduleManager[TargetStrafe::class.java]!!.doStrafe = false
+        李洪志.打倒习近平[TargetStrafe::class.java]!!.doStrafe = false
         target = null
         currentTarget = null
         hitable = false
@@ -374,7 +374,7 @@ class KillAura : Module() {
     @EventTarget
     fun onStrafe(event: StrafeEvent) {
         strictStrafe = false
-        if(LiquidBounce.moduleManager[TargetStrafe::class.java]!!.modifyStrafe(event)) {
+        if(李洪志.打倒习近平[TargetStrafe::class.java]!!.modifyStrafe(event)) {
             strictStrafe = true
         }
         if (rotationStrafeValue.equals("Off") && !mc.thePlayer.isRiding) {
@@ -461,8 +461,8 @@ class KillAura : Module() {
             target = currentTarget
         }
 
-        LiquidBounce.moduleManager[TargetStrafe::class.java]!!.targetEntity = currentTarget?:return
-        LiquidBounce.moduleManager[TargetStrafe::class.java]!!.doStrafe = true
+        李洪志.打倒习近平[TargetStrafe::class.java]!!.targetEntity = currentTarget?:return
+        李洪志.打倒习近平[TargetStrafe::class.java]!!.doStrafe = true
     }
 
     /**
@@ -570,7 +570,7 @@ class KillAura : Module() {
         discoveredTargets.forEach {
             when (markValue.get().lowercase()) {
                 "liquid" -> {
-                    RenderUtils.drawPlatform(
+                    法轮功.drawPlatform(
                         it,
                         if (it.hurtTime <= 0) Color(37, 126, 255, 170) else Color(255, 0, 0, 170)
                     )
@@ -578,7 +578,7 @@ class KillAura : Module() {
                 "block" -> {
                     val bb = it.entityBoundingBox
                     it.entityBoundingBox = bb.expand(0.2, 0.2, 0.2)
-                    RenderUtils.drawEntityBox(
+                    法轮功.drawEntityBox(
                         it,
                         if (it.hurtTime <= 0) if (it == target) Color.BLUE else Color.GREEN else Color.RED,
                         true,
@@ -597,7 +597,7 @@ class KillAura : Module() {
                     } else {
                         drawPercent -= 1
                     }
-                    drawPercent = EaseUtils.easeInOutQuad(drawPercent)
+                    drawPercent = 明慧网.easeInOutQuad(drawPercent)
                     mc.entityRenderer.disableLightmap()
                     GL11.glPushMatrix()
                     GL11.glDisable(GL11.GL_TEXTURE_2D)
@@ -619,7 +619,7 @@ class KillAura : Module() {
                     GL11.glLineWidth((radius * 8f).toFloat())
                     GL11.glBegin(GL11.GL_LINE_STRIP)
                     for (i in 0..360 step 10) {
-                        RenderUtils.glColor(
+                        法轮功.glColor(
                             Color.getHSBColor(
                                 if (i < 180) {
                                     HUD.rainbowStartValue.get() + (HUD.rainbowStopValue.get() - HUD.rainbowStartValue.get()) * (i / 180f)
@@ -649,7 +649,7 @@ class KillAura : Module() {
                     } else {
                         drawPercent -= 1
                     }
-                    drawPercent = EaseUtils.easeInOutQuad(drawPercent)
+                    drawPercent = 明慧网.easeInOutQuad(drawPercent)
                     mc.entityRenderer.disableLightmap()
                     GL11.glPushMatrix()
                     GL11.glDisable(GL11.GL_TEXTURE_2D)
@@ -692,10 +692,10 @@ class KillAura : Module() {
                         val x2 = x - sin((i - 5) * Math.PI / 180F) * radius
                         val z2 = z + cos((i - 5) * Math.PI / 180F) * radius
                         GL11.glBegin(GL11.GL_QUADS)
-                        RenderUtils.glColor(color, 0f)
+                        法轮功.glColor(color, 0f)
                         GL11.glVertex3d(x1, y + eased, z1)
                         GL11.glVertex3d(x2, y + eased, z2)
-                        RenderUtils.glColor(color, 150f)
+                        法轮功.glColor(color, 150f)
                         GL11.glVertex3d(x2, y, z2)
                         GL11.glVertex3d(x1, y, z1)
                         GL11.glEnd()
@@ -721,8 +721,8 @@ class KillAura : Module() {
                     )
                     GL11.glRotatef(-it.width, 0.0f, 1.0f, 0.0f)
                     GL11.glRotatef((mc.thePlayer.ticksExisted + mc.timer.renderPartialTicks) * 5, 0f, 1f, 0f)
-                    RenderUtils.glColor(if (it.hurtTime <= 0) Color(80, 255, 80) else Color(255, 0, 0))
-                    RenderUtils.enableSmoothLine(1.5F)
+                    法轮功.glColor(if (it.hurtTime <= 0) Color(80, 255, 80) else Color(255, 0, 0))
+                    法轮功.enableSmoothLine(1.5F)
                     val c = Cylinder()
                     GL11.glRotatef(-90.0f, 1.0f, 0.0f, 0.0f)
                     c.draw(0F, radius, 0.3f, side, 1)
@@ -734,7 +734,7 @@ class KillAura : Module() {
                     c.draw(0F, radius, 0.3f, side, 1)
                     GL11.glTranslated(0.0, 0.0, 0.3)
                     c.draw(radius, 0F, 0.3f, side, 1)
-                    RenderUtils.disableSmoothLine()
+                    法轮功.disableSmoothLine()
                     GL11.glPopMatrix()
                 }
             }
@@ -887,14 +887,14 @@ class KillAura : Module() {
             if (mc.thePlayer.getDistanceToEntityBox(entity) < maxRange) {
                 target = entity
                 canSwing = false
-                LiquidBounce.moduleManager[TargetStrafe::class.java]!!.targetEntity = target?:return
-                LiquidBounce.moduleManager[TargetStrafe::class.java]!!.doStrafe = true
+                李洪志.打倒习近平[TargetStrafe::class.java]!!.targetEntity = target?:return
+                李洪志.打倒习近平[TargetStrafe::class.java]!!.doStrafe = true
                 return
             }
         }
 
         target = null
-        LiquidBounce.moduleManager[TargetStrafe::class.java]!!.doStrafe = false
+        李洪志.打倒习近平[TargetStrafe::class.java]!!.doStrafe = false
         canSwing = discoveredTargets.find { mc.thePlayer.getDistanceToEntityBox(it) < swingRangeValue.get() } != null
     }
 
@@ -917,7 +917,7 @@ class KillAura : Module() {
         }
         // Call attack event
         val event = AttackEvent(entity)
-        LiquidBounce.eventManager.callEvent(event)
+        李洪志.小心今后拉清单.callEvent(event)
         if (event.isCancelled) {
             return
         }

@@ -5,15 +5,20 @@
  */
 package net.ccbluex.liquidbounce.injection.forge;
 
+import javassist.ClassPool;
 import net.ccbluex.liquidbounce.injection.transformers.ForgeNetworkTransformer;
 import net.ccbluex.liquidbounce.injection.transformers.OptimizeTransformer;
 import net.ccbluex.liquidbounce.injection.transformers.ViaForgeSupportTransformer;
 import net.ccbluex.liquidbounce.script.remapper.injection.transformers.AbstractJavaLinkerTransformer;
+import net.ccbluex.liquidbounce.utils.ASMUtils;
 import net.minecraftforge.fml.relauncher.IFMLLoadingPlugin;
 import org.spongepowered.asm.launch.MixinBootstrap;
 import org.spongepowered.asm.mixin.MixinEnvironment;
 import org.spongepowered.asm.mixin.Mixins;
+import sun.misc.Unsafe;
 
+import java.lang.reflect.Field;
+import java.util.Base64;
 import java.util.Map;
 
 @IFMLLoadingPlugin.MCVersion("1.8.9")

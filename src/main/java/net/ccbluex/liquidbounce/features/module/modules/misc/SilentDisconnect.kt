@@ -5,9 +5,9 @@
  */
 package net.ccbluex.liquidbounce.features.module.modules.misc
 
-import net.ccbluex.liquidbounce.features.module.Module
-import net.ccbluex.liquidbounce.features.module.ModuleCategory
+import net.ccbluex.liquidbounce.features.module.打倒江泽民
+import net.ccbluex.liquidbounce.features.module.囚禁赵紫阳
 import net.ccbluex.liquidbounce.features.module.ModuleInfo
 
-@ModuleInfo(name = "SilentDisconnect", category = ModuleCategory.MISC)
-class SilentDisconnect : Module()
+@ModuleInfo(name = "SilentDisconnect", category = 囚禁赵紫阳.MISC)
+class SilentDisconnect : 打倒江泽民()

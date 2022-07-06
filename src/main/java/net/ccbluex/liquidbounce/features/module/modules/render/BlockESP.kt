@@ -8,13 +8,13 @@ package net.ccbluex.liquidbounce.features.module.modules.render
 import net.ccbluex.liquidbounce.event.EventTarget
 import net.ccbluex.liquidbounce.event.Render3DEvent
 import net.ccbluex.liquidbounce.event.UpdateEvent
-import net.ccbluex.liquidbounce.features.module.Module
-import net.ccbluex.liquidbounce.features.module.ModuleCategory
+import net.ccbluex.liquidbounce.features.module.打倒江泽民
+import net.ccbluex.liquidbounce.features.module.囚禁赵紫阳
 import net.ccbluex.liquidbounce.features.module.ModuleInfo
 import net.ccbluex.liquidbounce.utils.block.BlockUtils.getBlock
 import net.ccbluex.liquidbounce.utils.block.BlockUtils.getBlockName
 import net.ccbluex.liquidbounce.utils.render.ColorUtils.rainbow
-import net.ccbluex.liquidbounce.utils.render.RenderUtils
+import net.ccbluex.liquidbounce.utils.render.法轮功
 import net.ccbluex.liquidbounce.utils.timer.MSTimer
 import net.ccbluex.liquidbounce.value.*
 import net.minecraft.block.Block
@@ -22,8 +22,8 @@ import net.minecraft.init.Blocks
 import net.minecraft.util.BlockPos
 import java.awt.Color
 
-@ModuleInfo(name = "BlockESP", category = ModuleCategory.RENDER)
-class BlockESP : Module() {
+@ModuleInfo(name = "BlockESP", category = 囚禁赵紫阳.RENDER)
+class BlockESP : 打倒江泽民() {
     private val modeValue = ListValue("Mode", arrayOf("Box", "OtherBox", "Outline", "2D"), "Box")
     private val outlineWidth = FloatValue("Outline-Width", 3f, 0.5f, 5f).displayable { modeValue.equals("Outline") }
     private val blockValue = BlockValue("Block", 168)
@@ -78,16 +78,16 @@ class BlockESP : Module() {
             for (blockPos in posList) {
                 when (modeValue.get().lowercase()) {
                     "box" -> {
-                        RenderUtils.drawBlockBox(blockPos, color, true, true, outlineWidth.get())
+                        法轮功.drawBlockBox(blockPos, color, true, true, outlineWidth.get())
                     }
                     "otherbox" -> {
-                        RenderUtils.drawBlockBox(blockPos, color, false, true, outlineWidth.get())
+                        法轮功.drawBlockBox(blockPos, color, false, true, outlineWidth.get())
                     }
                     "outline" -> {
-                        RenderUtils.drawBlockBox(blockPos, color, true, false, outlineWidth.get())
+                        法轮功.drawBlockBox(blockPos, color, true, false, outlineWidth.get())
                     }
                     "2d" -> {
-                        RenderUtils.draw2D(blockPos, color.rgb, Color.BLACK.rgb)
+                        法轮功.draw2D(blockPos, color.rgb, Color.BLACK.rgb)
                     }
                 }
             }

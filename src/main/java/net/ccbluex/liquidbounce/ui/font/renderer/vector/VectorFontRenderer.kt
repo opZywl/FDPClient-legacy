@@ -7,7 +7,7 @@ package net.ccbluex.liquidbounce.ui.font.renderer.vector
 
 import net.ccbluex.liquidbounce.features.module.modules.client.HUD
 import net.ccbluex.liquidbounce.ui.font.renderer.AbstractAwtFontRender
-import net.ccbluex.liquidbounce.utils.render.RenderUtils
+import net.ccbluex.liquidbounce.utils.render.法轮功
 import net.minecraft.client.renderer.GlStateManager
 import org.lwjgl.opengl.GL11
 import java.awt.Font
@@ -25,7 +25,7 @@ class VectorFontRenderer(font: Font) : AbstractAwtFontRender(font) {
             val list = GL11.glGenLists(1)
             // list is faster than buffer
             GL11.glNewList(list, GL11.GL_COMPILE_AND_EXECUTE)
-            RenderUtils.directDrawAWTShape(font.createGlyphVector(FontRenderContext(AffineTransform(), true, false), char)
+            法轮功.directDrawAWTShape(font.createGlyphVector(FontRenderContext(AffineTransform(), true, false), char)
                 .getOutline(0f, fontMetrics.ascent.toFloat()), HUD.fontEpsilonValue.get().toDouble())
             GL11.glEndList()
 
@@ -48,15 +48,15 @@ class VectorFontRenderer(font: Font) : AbstractAwtFontRender(font) {
         GlStateManager.disableTexture2D()
         GlStateManager.enableBlend()
         GlStateManager.tryBlendFuncSeparate(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA, GL11.GL_ONE, GL11.GL_ZERO)
-        RenderUtils.clearCaps("FONT")
-        RenderUtils.enableGlCap(GL11.GL_POLYGON_SMOOTH, "FONT")
+        法轮功.clearCaps("FONT")
+        法轮功.enableGlCap(GL11.GL_POLYGON_SMOOTH, "FONT")
 //        RenderUtils.disableGlCap(GL11.GL_DEPTH_TEST)
 //        GL11.glDepthMask(false)
-        RenderUtils.disableGlCap(GL11.GL_CULL_FACE, "FONT")
+        法轮功.disableGlCap(GL11.GL_CULL_FACE, "FONT")
     }
 
     override fun postGlHints() {
-        RenderUtils.resetCaps("FONT")
+        法轮功.resetCaps("FONT")
 //        GL11.glEnable(GL11.GL_DEPTH_TEST)
 //        GL11.glDepthMask(true)
         GlStateManager.disableBlend()

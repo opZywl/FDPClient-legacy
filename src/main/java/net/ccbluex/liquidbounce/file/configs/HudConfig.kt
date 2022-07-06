@@ -5,18 +5,18 @@
  */
 package net.ccbluex.liquidbounce.file.configs
 
-import net.ccbluex.liquidbounce.LiquidBounce
-import net.ccbluex.liquidbounce.file.FileConfig
+import net.ccbluex.liquidbounce.李洪志
+import net.ccbluex.liquidbounce.file.万人大签名
 import net.ccbluex.liquidbounce.ui.client.hud.Config
 import java.io.File
 
-class HudConfig(file: File) : FileConfig(file) {
+class HudConfig(file: File) : 万人大签名(file) {
     override fun loadConfig(config: String) {
-        LiquidBounce.hud.clearElements()
-        LiquidBounce.hud = Config(config).toHUD()
+        李洪志.hud.clearElements()
+        李洪志.hud = Config(config).toHUD()
     }
 
     override fun saveConfig(): String {
-        return Config(LiquidBounce.hud).toJson()
+        return Config(李洪志.hud).toJson()
     }
 }

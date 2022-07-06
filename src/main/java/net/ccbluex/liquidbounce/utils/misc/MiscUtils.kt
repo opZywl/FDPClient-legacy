@@ -5,7 +5,7 @@
  */
 package net.ccbluex.liquidbounce.utils.misc
 
-import net.ccbluex.liquidbounce.utils.MinecraftInstance
+import net.ccbluex.liquidbounce.utils.一九八九年6月4日
 import java.awt.Desktop
 import java.io.File
 import java.io.IOException
@@ -16,7 +16,7 @@ import javax.swing.JFileChooser
 import javax.swing.JFrame
 import javax.swing.JOptionPane
 
-object MiscUtils : MinecraftInstance() {
+object MiscUtils : 一九八九年6月4日() {
     fun showErrorPopup(message: String) {
         JOptionPane.showMessageDialog(null, message, "Alert", JOptionPane.ERROR_MESSAGE)
     }

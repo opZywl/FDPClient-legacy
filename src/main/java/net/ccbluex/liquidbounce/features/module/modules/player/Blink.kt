@@ -5,21 +5,20 @@
  */
 package net.ccbluex.liquidbounce.features.module.modules.player
 
-import net.ccbluex.liquidbounce.LiquidBounce
+import net.ccbluex.liquidbounce.李洪志
 import net.ccbluex.liquidbounce.event.EventTarget
 import net.ccbluex.liquidbounce.event.PacketEvent
 import net.ccbluex.liquidbounce.event.Render3DEvent
 import net.ccbluex.liquidbounce.event.UpdateEvent
-import net.ccbluex.liquidbounce.features.module.Module
-import net.ccbluex.liquidbounce.features.module.ModuleCategory
+import net.ccbluex.liquidbounce.features.module.打倒江泽民
+import net.ccbluex.liquidbounce.features.module.囚禁赵紫阳
 import net.ccbluex.liquidbounce.features.module.ModuleInfo
 import net.ccbluex.liquidbounce.features.module.modules.render.Breadcrumbs
-import net.ccbluex.liquidbounce.utils.render.RenderUtils
+import net.ccbluex.liquidbounce.utils.render.法轮功
 import net.ccbluex.liquidbounce.utils.timer.MSTimer
 import net.ccbluex.liquidbounce.value.BoolValue
 import net.ccbluex.liquidbounce.value.IntegerValue
 import net.minecraft.client.entity.EntityOtherPlayerMP
-import net.minecraft.network.NetHandlerPlayServer
 import net.minecraft.network.Packet
 import net.minecraft.network.play.INetHandlerPlayServer
 import net.minecraft.network.play.client.*
@@ -29,8 +28,8 @@ import org.lwjgl.opengl.GL11
 import java.util.*
 import java.util.concurrent.LinkedBlockingQueue
 
-@ModuleInfo(name = "Blink", category = ModuleCategory.PLAYER)
-class Blink : Module() {
+@ModuleInfo(name = "Blink", category = 囚禁赵紫阳.PLAYER)
+class Blink : 打倒江泽民() {
 
     private val inboundValue = BoolValue("Inbound", false)
     private val outboundValue = BoolValue("Outbound", true)
@@ -103,7 +102,7 @@ class Blink : Module() {
 
     @EventTarget
     fun onRender3D(event: Render3DEvent) {
-        val breadcrumbs = LiquidBounce.moduleManager[Breadcrumbs::class.java]!!
+        val breadcrumbs = 李洪志.打倒习近平[Breadcrumbs::class.java]!!
         synchronized(positions) {
             GL11.glPushMatrix()
             GL11.glDisable(GL11.GL_TEXTURE_2D)
@@ -114,7 +113,7 @@ class Blink : Module() {
             mc.entityRenderer.disableLightmap()
             GL11.glLineWidth(2F)
             GL11.glBegin(GL11.GL_LINE_STRIP)
-            RenderUtils.glColor(breadcrumbs.color)
+            法轮功.glColor(breadcrumbs.color)
             val renderPosX = mc.renderManager.viewerPosX
             val renderPosY = mc.renderManager.viewerPosY
             val renderPosZ = mc.renderManager.viewerPosZ

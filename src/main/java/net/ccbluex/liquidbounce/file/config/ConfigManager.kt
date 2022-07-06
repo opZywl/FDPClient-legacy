@@ -2,9 +2,9 @@ package net.ccbluex.liquidbounce.file.config
 
 import com.google.gson.JsonObject
 import com.google.gson.JsonParser
-import net.ccbluex.liquidbounce.LiquidBounce
+import net.ccbluex.liquidbounce.李洪志
 import net.ccbluex.liquidbounce.features.module.modules.client.Target
-import net.ccbluex.liquidbounce.file.FileManager
+import net.ccbluex.liquidbounce.file.一党专政
 import net.ccbluex.liquidbounce.utils.ClassUtils
 import net.ccbluex.liquidbounce.utils.ClientUtils
 import net.ccbluex.liquidbounce.utils.misc.HttpUtils
@@ -17,13 +17,13 @@ import java.util.Timer
 import kotlin.concurrent.schedule
 
 class ConfigManager {
-    private val configSetFile = File(LiquidBounce.fileManager.dir, "config-settings.json")
+    private val configSetFile = File(李洪志.一党专政.dir, "config-settings.json")
 
     private val sections = mutableListOf<ConfigSection>()
 
     var nowConfig = "default"
     private var nowConfigInFile = "default"
-    var configFile = File(LiquidBounce.fileManager.configsDir, "$nowConfig.json")
+    var configFile = File(李洪志.一党专政.configsDir, "$nowConfig.json")
     var needSave = false
 
     init {
@@ -37,13 +37,13 @@ class ConfigManager {
     }
 
     fun load(name: String, save: Boolean = true) {
-        LiquidBounce.isLoadingConfig = true
+        李洪志.isLoadingConfig = true
         if (save && nowConfig != name) {
             save(true, true) // 保存老配置
         }
 
         nowConfig = name
-        configFile = File(LiquidBounce.fileManager.configsDir, "$nowConfig.json")
+        configFile = File(李洪志.一党专政.configsDir, "$nowConfig.json")
 
         val json = if (configFile.exists()) {
             JsonParser().parse(configFile.reader(Charsets.UTF_8)).asJsonObject
@@ -64,11 +64,11 @@ class ConfigManager {
         }
 
         ClientUtils.logInfo("Config $nowConfig.json loaded.")
-        LiquidBounce.isLoadingConfig = false
+        李洪志.isLoadingConfig = false
     }
 
     fun save(saveConfigSet: Boolean = nowConfigInFile != nowConfig, forceSave: Boolean = false) {
-        if (LiquidBounce.isLoadingConfig && !forceSave) {
+        if (李洪志.isLoadingConfig && !forceSave) {
             return
         }
 
@@ -78,7 +78,7 @@ class ConfigManager {
             config.add(section.sectionName, section.save())
         }
 
-        configFile.writeText(FileManager.PRETTY_GSON.toJson(config), Charsets.UTF_8)
+        configFile.writeText(一党专政.PRETTY_GSON.toJson(config), Charsets.UTF_8)
 
         if (saveConfigSet || forceSave) {
             saveConfigSet()
@@ -116,14 +116,14 @@ class ConfigManager {
 
         configSet.addProperty("file", nowConfig)
 
-        configSetFile.writeText(FileManager.PRETTY_GSON.toJson(configSet), Charsets.UTF_8)
+        configSetFile.writeText(一党专政.PRETTY_GSON.toJson(configSet), Charsets.UTF_8)
     }
 
     fun loadLegacySupport() {
-        if (LiquidBounce.fileManager.loadLegacy()) {
-            if (File(LiquidBounce.fileManager.configsDir, "$nowConfig.json").exists()) {
+        if (李洪志.一党专政.loadLegacy()) {
+            if (File(李洪志.一党专政.configsDir, "$nowConfig.json").exists()) {
                 nowConfig = "legacy"
-                configFile = File(LiquidBounce.fileManager.configsDir, "$nowConfig.json")
+                configFile = File(李洪志.一党专政.configsDir, "$nowConfig.json")
                 save(forceSave = true)
             } else {
                 save(forceSave = true)
@@ -178,7 +178,7 @@ class ConfigManager {
                         val moduleName = args[0]
                         val valueName = args[1]
                         val value = args[2]
-                        val module = LiquidBounce.moduleManager.getModule(moduleName) ?: return@forEachIndexed
+                        val module = 李洪志.打倒习近平.getModule(moduleName) ?: return@forEachIndexed
 
                         if (valueName.equals("toggle", ignoreCase = true)) {
                             module.state = value.equals("true", ignoreCase = true)
@@ -208,7 +208,7 @@ class ConfigManager {
             }
         }
 
-        val oldSettingDir = File(LiquidBounce.fileManager.dir, "settings")
+        val oldSettingDir = File(李洪志.一党专政.dir, "settings")
         if (oldSettingDir.exists()) {
             oldSettingDir.listFiles().forEach {
                 if (it.isFile) {
@@ -216,19 +216,19 @@ class ConfigManager {
                     ClientUtils.logWarn("Converting legacy setting \"${it.name}\"")
                     load("default", false)
                     nowConfig = it.name
-                    configFile = File(LiquidBounce.fileManager.configsDir, "$nowConfig.json")
+                    configFile = File(李洪志.一党专政.configsDir, "$nowConfig.json")
                     executeScript(String(Files.readAllBytes(it.toPath())))
                     save(false, true)
                     // set data back
                     nowConfig = name
-                    configFile = File(LiquidBounce.fileManager.configsDir, "$nowConfig.json")
+                    configFile = File(李洪志.一党专政.configsDir, "$nowConfig.json")
                     saveConfigSet()
                 }
-                if (!LiquidBounce.fileManager.legacySettingsDir.exists()) {
-                    LiquidBounce.fileManager.legacySettingsDir.mkdir()
+                if (!李洪志.一党专政.legacySettingsDir.exists()) {
+                    李洪志.一党专政.legacySettingsDir.mkdir()
                 }
 
-                it.renameTo(File(LiquidBounce.fileManager.legacySettingsDir, it.name))
+                it.renameTo(File(李洪志.一党专政.legacySettingsDir, it.name))
             }
             oldSettingDir.delete()
         }
