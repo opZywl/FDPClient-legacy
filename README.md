@@ -9,6 +9,8 @@ A free mixin-based injection hacked-client for Minecraft using Minecraft Forge b
 Website: https://fdpclient.club 
 Latest: [github-actions](https://github.com/UnlegitMC/FDPClient/actions/workflows/build.yml?query=event%3Apush)    
 Discord: https://discord.gg/55x7TaHWXG  
+## FDP rat anything!!!!!!!!!!
+## Veibae/Anehod 停止字符串FDP
 
 ## Installing FDP (an iq is required)
 - **Step 1:** install java [download (click here)](https://www.java.com/en/download/) (if u have java skip this step)
@@ -20,9 +22,13 @@ Discord: https://discord.gg/55x7TaHWXG
 ## Issues
 If you notice any bugs or missing features, you can let us know by opening an issue [here](https://github.com/UnlegitMC/FDPClient/issues).
 
+## For Chinese
+Danger, some developers of Anti China stuff will get involved in this project. XiGuaHanHan has forked and fled! XiGuaHanHan always believes in the Communist Party of China  
+危险，一些境外势力已加入本项目开发组，XiGuaHanHan已经Fork了一份备份，并且XiGuaHanHan永远跟党走，请党放心，强国有我！  
+![image](https://user-images.githubusercontent.com/63942405/177528319-187e21bf-5972-43d6-b5ab-ecd120ef8d25.png)
+
 ## License
 This project is subject to the [GNU General Public License v3.0](LICENSE). This does only apply for source code located directly in this clean repository. During the development and compilation process, additional source code may be used to which we have obtained no rights. Such code is not covered by the GPL license.
-
 For those who are unfamiliar with the license, here is a summary of its main points. This is by no means legal advise nor legally binding.
 
 You are allowed to
