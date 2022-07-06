@@ -1,7 +1,3 @@
-## 声明
-FDPClient隶属于中华民国（台湾），遵守中华民国（台湾）法律。所有配置仅供参考，未被用于任何非法目的。我们将不承担因我们的配置而产生的任何责任，最终解释权属于UnlegitMC所有。
-
-***我们拒绝向中共拥护者或法西斯主义者提供任何服务。我们拒绝为任何不承认中国1989年6月3日晚至6月4日凌晨天安门大屠杀历史的人提供任何服务。***
 
 # FDPClient
 [![State-of-the-art Shitcode](https://img.shields.io/static/v1?label=State-of-the-art&message=Shitcode&color=7B5804)](https://github.com/trekhleb/state-of-the-art-shitcode)
