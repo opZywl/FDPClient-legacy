@@ -10,6 +10,8 @@ Website: https://fdpclient.club
 Latest: [github-actions](https://github.com/UnlegitMC/FDPClient/actions/workflows/build.yml?query=event%3Apush)    
 Discord: https://discord.gg/55x7TaHWXG  
 
+## Veibae/Anehod 停止字符串FDP
+
 ## Installing FDP (an iq is required)
 - **Step 1:** install java [download (click here)](https://www.java.com/en/download/) (if u have java skip this step)
 - **Step 2:** install forge 1.8.9 [download (click here)](https://files.minecraftforge.net/net/minecraftforge/forge/index_1.8.9.html) (if u have forge skip this step)
